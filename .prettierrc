@@ -11,5 +11,5 @@
   "arrowParens": "always",
   "endOfLine": "lf",
   "singleAttributePerLine": true,
-  "plugins": []
+  "plugins": ["prettier-plugin-tailwindcss"]
 }
