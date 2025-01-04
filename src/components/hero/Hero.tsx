@@ -1,4 +1,4 @@
-import { OrbitingRectangle } from '../orbitingelement/OrbitingRectangle.tsx';
+import { OrbitingCircles } from '../orbitingelement/OrbitingCircles.tsx';
 
 export const Hero = () => {
   return (
@@ -18,31 +18,34 @@ export const Hero = () => {
       </div>
 
       <div className='bg-background relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border md:shadow-xl'>
-        <OrbitingRectangle
-          iconSize={50}
-          rectangleHeight={400}
-          rectangleWidth={800}
+        <OrbitingCircles iconSize={40}>
+          <Icons.whatsapp />
+          <Icons.notion />
+          <Icons.openai />
+          <Icons.googleDrive />
+          <Icons.whatsapp />
+        </OrbitingCircles>
+        <OrbitingCircles
+          iconSize={30}
+          radius={100}
           reverse
           speed={2}
         >
           <Icons.whatsapp />
-          {/*<Icons.notion />*/}
-          {/*<Icons.openai />*/}
-          {/*<Icons.googleDrive />*/}
-          {/*<Icons.whatsapp />*/}
-        </OrbitingRectangle>
-        <OrbitingRectangle
-          iconSize={30}
-          rectangleHeight={250}
-          rectangleWidth={500}
-          reverse
-          speed={2}
-        >
-          {/*<Icons.whatsapp />*/}
-          {/*<Icons.notion />*/}
-          {/*<Icons.openai />*/}
+          <Icons.notion />
+          <Icons.openai />
           <Icons.googleDrive />
-        </OrbitingRectangle>
+        </OrbitingCircles>
+        <OrbitingCircles
+          iconSize={30}
+          radius={60}
+          speed={3}
+        >
+          <Icons.whatsapp />
+          <Icons.notion />
+          <Icons.openai />
+          <Icons.googleDrive />
+        </OrbitingCircles>
       </div>
     </section>
   );
