@@ -13,8 +13,4 @@ export const NAV_ITEMS: NavbarItem[] = [
     label: 'School',
     link: '/school',
   },
-  {
-    label: 'Network',
-    link: '/network',
-  },
 ];
