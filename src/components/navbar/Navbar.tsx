@@ -7,7 +7,7 @@ import { Button } from '../button/Button.tsx';
 
 export const Navbar = () => {
   return (
-    <nav className='bg-black px-12 py-12'>
+    <nav className='absolute top-0 z-10 w-full px-20 py-12'>
       <div className='flex items-center justify-between border-b-[0.5px] border-white pb-8'>
         {/*Left side*/}
         <div className='flex space-x-14'>
@@ -40,10 +40,15 @@ export const Navbar = () => {
         {/* Right Side */}
         <div className='flex items-center space-x-6'>
           <NavIcon icon={Search} />
-          <NavIcon
-            icon={HomeIcon}
-            filled
-          />
+          <Link
+            to='/'
+            className='text-xl text-white hover:text-gray-300'
+          >
+            <NavIcon
+              icon={HomeIcon}
+              filled
+            />
+          </Link>
 
           <Link
             to='/signin'
