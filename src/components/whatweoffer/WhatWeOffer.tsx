@@ -1,4 +1,5 @@
 import { OfferCard } from '../offercard/OfferCard.tsx';
+import { SectionHeader } from '../sectionheader/SectionHeader.tsx';
 
 export const WhatWeOffer = () => {
   const cards = [
@@ -28,11 +29,14 @@ export const WhatWeOffer = () => {
     <section className='space-y-32 bg-gray-50 py-16'>
       {/* Heading */}
       <div className='mb-12 text-center'>
-        <h2 className='text-4xl font-bold text-gray-900'>What we Offer</h2>
-        <p className='mx-auto mt-4 max-w-2xl text-lg text-gray-600'>
-          All that CareerView has to offer, including their Student-Mentor
-          Connect, Young mentors signing up and School's involvement.
-        </p>
+        <SectionHeader
+          title={'What we Offer'}
+          subtitle={
+            'All that CareerView has to offer, including their Student-Mentor\n' +
+            "          Connect, Young mentors signing up and School's involvement."
+          }
+          className={'gap-4'}
+        />
       </div>
 
       {/* Cards Grid */}

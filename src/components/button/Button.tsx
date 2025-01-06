@@ -3,7 +3,7 @@ import { cn } from '../../utils/cn';
 interface ButtonProps {
   children: string;
   className?: string;
-  variant?: 'primary'; // Add more variants here as needed
+  variant?: 'primary' | 'secondary'; // Added 'secondary' variant
   onClick?: () => void;
   type?: 'button' | 'submit' | 'reset';
 }
@@ -21,6 +21,8 @@ export const Button = ({
   const variants = {
     primary:
       'bg-black text-white border border-yellow-500 hover:bg-white hover:text-black hover:border-black',
+    secondary:
+      'bg-white text-black border border-black hover:bg-black hover:text-white',
   };
 
   return (

@@ -1,6 +1,7 @@
 import { Hero } from '../../components/hero/Hero.tsx';
 import { WhatWeDo } from '../../components/whatwedo/WhatWeDo.tsx';
 import { WhatWeOffer } from '../../components/whatweoffer/WhatWeOffer.tsx';
+import { SchoolConnectCTA } from '../../components/schoolconnectcta/SchoolConnectCTA.tsx';
 
 export const Home = () => {
   return (
@@ -8,6 +9,7 @@ export const Home = () => {
       <Hero />
       <WhatWeDo />
       <WhatWeOffer />
+      <SchoolConnectCTA />
     </main>
   );
 };

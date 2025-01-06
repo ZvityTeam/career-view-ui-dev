@@ -1,5 +1,6 @@
 import { MessageCircle, Mic, Radio, Users } from 'lucide-react';
 import { Card } from '../card/Card.tsx';
+import { SectionHeader } from '../sectionheader/SectionHeader.tsx';
 
 export const WhatWeDo = () => {
   const cards = [
@@ -33,11 +34,14 @@ export const WhatWeDo = () => {
     <section className='flex flex-col items-center justify-center space-y-24 rounded-[80px] bg-white px-12 py-24'>
       {/* Heading */}
       <div className='text-center'>
-        <h2 className='text-4xl font-bold text-gray-900'>What we do?</h2>
-        <p className='mt-4 max-w-xl text-lg text-gray-500'>
-          Lorem ipsum dolor sit amet, consectetur sadipscing elitr, sed diam
-          nonumy eirmod tempor Lorem ipsum dolor sit amet.
-        </p>
+        <SectionHeader
+          title={'What we do?'}
+          subtitle={
+            'Lorem ipsum dolor sit amet, consectetur sadipscing elitr, sed diam\n' +
+            '          nonumy eirmod tempor Lorem ipsum dolor sit amet.'
+          }
+          className={'gap-4'}
+        />
       </div>
 
       {/* Cards */}
