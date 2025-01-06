@@ -3,6 +3,7 @@ import { WhatWeDo } from '../../components/whatwedo/WhatWeDo.tsx';
 import { WhatWeOffer } from '../../components/whatweoffer/WhatWeOffer.tsx';
 import { SchoolConnectCTA } from '../../components/schoolconnectcta/SchoolConnectCTA.tsx';
 import { MeetOutMentors } from '../../components/meetoutmentors/MeetOutMentors.tsx';
+import { Testimonials } from '../../components/testimonials/Testimonials.tsx';
 
 export const Home = () => {
   return (
@@ -12,6 +13,7 @@ export const Home = () => {
       <WhatWeOffer />
       <SchoolConnectCTA />
       <MeetOutMentors />
+      <Testimonials />
     </main>
   );
 };

@@ -1,12 +1,12 @@
 import React from 'react';
 import { cn } from '../../utils/cn.ts';
 
-interface ContainerProps {
+interface SectionProps {
   children: React.ReactNode; // Content inside the container
   className?: string; // Optional additional classes
 }
 
-export const Section: React.FC<ContainerProps> = ({ children, className }) => {
+export const Section: React.FC<SectionProps> = ({ children, className }) => {
   return (
     <section
       className={cn(
