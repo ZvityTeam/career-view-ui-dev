@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { animate, useInView } from 'framer-motion';
 
 interface Props {
@@ -6,9 +6,16 @@ interface Props {
   suffix: string;
   decimals?: number;
   subheading: string;
+  icon: React.ReactNode; // Icon as a prop
 }
 
-export const Stat = ({ num, suffix, decimals = 0, subheading }: Props) => {
+export const Stat = ({
+  num,
+  suffix,
+  decimals = 0,
+  subheading,
+  icon,
+}: Props) => {
   const ref = useRef<HTMLSpanElement | null>(null);
   const isInView = useInView(ref);
 
@@ -26,12 +33,19 @@ export const Stat = ({ num, suffix, decimals = 0, subheading }: Props) => {
   }, [num, decimals, isInView]);
 
   return (
-    <div className='flex w-72 flex-col items-center py-8 sm:py-0'>
-      <p className='mb-2 text-center text-7xl font-semibold sm:text-6xl'>
-        <span ref={ref}></span>
-        {suffix}
-      </p>
-      <p className='max-w-48 text-center text-neutral-600'>{subheading}</p>
+    <div className='flex items-center gap-4'>
+      {/* Icon Container */}
+      <div className='flex h-16 w-16 items-center justify-center rounded-lg bg-primary'>
+        {icon}
+      </div>
+      {/* Number and Text */}
+      <div className='flex flex-col'>
+        <p className='text-4xl font-semibold text-primary'>
+          <span ref={ref}></span>
+          {suffix}
+        </p>
+        <p className='text-lg text-neutral-600'>{subheading}</p>
+      </div>
     </div>
   );
 };
