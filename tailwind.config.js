@@ -6,6 +6,12 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        primary: "#272727", // Primary color (dark gray/black)
+        secondary: "#F1CE7E", // Secondary color (golden yellow)
+        lightYellow: "#FFFBF0", // Light yellow
+        white: "#FFFFFF", // White
+      },
       animation: {
         orbit: "orbit calc(var(--duration)*1s) linear infinite",
       },
@@ -24,5 +30,4 @@ export default {
     },
   },
   plugins: [],
-}
-
+};
