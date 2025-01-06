@@ -1,4 +1,4 @@
-import { OrbitingCircles } from '../orbitingelement/OrbitingCircles.tsx';
+import { RectOrbitFramer } from '../rectorbitframer/RectOrbitFramer.tsx';
 
 export const Hero = () => {
   return (
@@ -18,34 +18,35 @@ export const Hero = () => {
       </div>
 
       <div className='bg-background relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border md:shadow-xl'>
-        <OrbitingCircles iconSize={40}>
-          <Icons.whatsapp />
-          <Icons.notion />
-          <Icons.openai />
-          <Icons.googleDrive />
-          <Icons.whatsapp />
-        </OrbitingCircles>
-        <OrbitingCircles
-          iconSize={30}
-          radius={100}
-          reverse
-          speed={2}
+        <RectOrbitFramer
+          width={400}
+          height={250}
+          duration={15}
+          cornerRadius={100}
+          reverse={false}
+          showPath={true}
         >
-          <Icons.whatsapp />
-          <Icons.notion />
-          <Icons.openai />
-          <Icons.googleDrive />
-        </OrbitingCircles>
-        <OrbitingCircles
-          iconSize={30}
-          radius={60}
-          speed={3}
-        >
-          <Icons.whatsapp />
-          <Icons.notion />
-          <Icons.openai />
-          <Icons.googleDrive />
-        </OrbitingCircles>
+          <img
+            src='https://placehold.co/80x80?text=E-Books'
+            alt='E-Books'
+            className='rounded-full bg-white p-1 shadow'
+          />
+          <img
+            src='https://placehold.co/80x80?text=Livestream'
+            alt='Livestream'
+            className='rounded-full bg-white p-1 shadow'
+          />
+          <img
+            src='https://placehold.co/80x80?text=Podcast'
+            alt='Podcast'
+            className='rounded-full bg-white p-1 shadow'
+          />
+          <img
+            src='https://placehold.co/80x80?text=Avatar'
+            alt='User'
+            className='rounded-full bg-white p-1 shadow'
+          />
+        </RectOrbitFramer>{' '}
       </div>
     </section>
   );
