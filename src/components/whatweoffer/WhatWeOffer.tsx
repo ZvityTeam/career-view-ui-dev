@@ -26,7 +26,7 @@ export const WhatWeOffer = () => {
   ];
 
   return (
-    <section className='space-y-32 bg-gray-50 py-16'>
+    <section className='z-20 space-y-32 bg-slate-100 py-16 pt-48'>
       {/* Heading */}
       <div className='mb-12 text-center'>
         <SectionHeader

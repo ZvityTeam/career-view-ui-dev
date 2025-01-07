@@ -31,8 +31,8 @@ export const WhatWeDo = () => {
   ];
 
   return (
-    <div className='relative grid min-h-[70vh] place-items-center'>
-      <section className='absolute -top-16 flex w-full flex-col items-center justify-center space-y-24 rounded-[80px] bg-white px-12 py-24'>
+    <div className='relative grid min-h-[60vh] place-items-center'>
+      <section className='absolute -top-16 z-10 flex min-h-[80vh] w-full flex-col items-center justify-center space-y-24 rounded-[80px] bg-white px-12 py-24'>
         {/* Heading */}
         <div className='text-center'>
           <SectionHeader
