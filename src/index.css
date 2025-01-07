@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    background: lightcoral;
-}
-
 @layer base {
     /* Make everything use Avenir by default */
     html {
