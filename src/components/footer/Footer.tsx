@@ -12,11 +12,11 @@ export const Footer: React.FC<FooterProps> = () => {
     <footer className='w-full bg-primary text-white'>
       {/* If you need the height to cover the entire screen: */}
       <div className='min-h-screen'>
-        <div className='max-w-xl space-y-7 p-24 pl-40'>
+        <div className='max-w-2xl space-y-7 p-24 pl-52'>
           {/* Multiline heading */}
-          <h4 className='text-4xl font-bold leading-tight'>
+          <h4 className='text-5xl font-bold leading-tight'>
             <span className='relative'>
-              <span className='absolute -left-2/3 italic'>Let’s</span>Connect
+              <span className='absolute -left-[70%] italic'>Let’s</span>Connect
             </span>
             <br />
             Communicate <br />
@@ -39,7 +39,7 @@ export const Footer: React.FC<FooterProps> = () => {
         </div>
       </div>
       <div className='grid place-items-center'>
-        <p className='text-[200px]'>CareerView</p>
+        <h4 className='text-[200px]'>CareerView</h4>
       </div>
     </footer>
   );
