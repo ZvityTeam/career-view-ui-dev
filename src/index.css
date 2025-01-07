@@ -5,3 +5,111 @@
 body{
     background: lightcoral;
 }
+
+@layer base {
+    /* Make everything use Avenir by default */
+    html {
+        @apply font-avenir;
+    }
+
+    /* For headings, apply BritaniaLigatura instead */
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-britania;
+    }
+}
+@font-face {
+    font-family: "AvenirLTStd";
+    src: url("/fonts/avenir-font/AvenirLTStd-Black.otf") format("opentype");
+    font-weight: 900;
+    font-style: normal;
+}
+@font-face {
+    font-family: "AvenirLTStd";
+    src: url("/fonts/avenir-font/AvenirLTStd-BlackOblique.otf") format("opentype");
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "AvenirLTStd";
+    src: url("/fonts/avenir-font/AvenirLTStd-Heavy.otf") format("opentype");
+    font-weight: 800;
+    font-style: normal;
+}
+@font-face {
+    font-family: "AvenirLTStd";
+    src: url("/fonts/avenir-font/AvenirLTStd-HeavyOblique.otf") format("opentype");
+    font-weight: 800;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "AvenirLTStd";
+    src: url("/fonts/avenir-font/AvenirLTStd-Medium.otf") format("opentype");
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: "AvenirLTStd";
+    src: url("/fonts/avenir-font/AvenirLTStd-MediumOblique.otf") format("opentype");
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "AvenirLTStd";
+    src: url("/fonts/avenir-font/AvenirLTStd-Book.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: "AvenirLTStd";
+    src: url("/fonts/avenir-font/AvenirLTStd-BookOblique.otf") format("opentype");
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "AvenirLTStd";
+    src: url("/fonts/avenir-font/AvenirLTStd-Light.otf") format("opentype");
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: "AvenirLTStd";
+    src: url("/fonts/avenir-font/AvenirLTStd-LightOblique.otf") format("opentype");
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "AvenirLTStd";
+    src: url("/fonts/avenir-font/AvenirLTStd-Oblique.otf") format("opentype");
+    font-weight: 400;
+    font-style: italic;
+    /* This is basically a normal oblique, if you want to differentiate from "BookOblique" */
+}
+
+@font-face {
+    font-family: "AvenirLTStd";
+    src: url("/fonts/avenir-font/AvenirLTStd-Roman.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+    /* "Roman" typically = normal text as well. Overlaps with "Book"?
+       Use whichever naming you prefer.
+    */
+}
+
+/* Britania example */
+@font-face {
+    font-family: "BritaniaLigatura";
+    src: url("/fonts/britania_ligatura/Britania_Ligatura.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: "BritaniaLigatura";
+    src: url("/fonts/britania_ligatura/Britania_Ligatura.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}

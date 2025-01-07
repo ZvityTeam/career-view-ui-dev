@@ -37,6 +37,11 @@ export default {
           },
         },
       },
+      /* Add your custom fonts here: */
+      fontFamily: {
+        avenir: ["AvenirLTStd", "sans-serif"],
+        britania: ["BritaniaLigatura", "serif"],
+      },
     },
   },
   plugins: [],
