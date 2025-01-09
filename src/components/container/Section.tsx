@@ -10,7 +10,7 @@ export const Section: React.FC<SectionProps> = ({ children, className }) => {
   return (
     <section
       className={cn(
-        'mx-auto flex max-w-screen-xl flex-col items-center px-4 py-8 sm:px-6 sm:py-12 lg:px-8',
+        'mx-auto flex max-w-screen-2xl flex-col items-center px-4 py-8 sm:px-6 sm:py-12 lg:px-8',
         className
       )}
     >
