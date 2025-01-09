@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface FaqItemProps {
@@ -19,7 +19,12 @@ export const FaqItem = ({ question, answer }: FaqItemProps) => {
       >
         <div className='flex items-center'>
           <div className='mr-4 flex h-6 w-6 items-center justify-center rounded-full bg-black text-white'>
-            {isOpen ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+            <motion.div
+              animate={{ rotate: isOpen ? 180 : 0 }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+            >
+              <ChevronDown size={14} />
+            </motion.div>
           </div>
           <p className='text-xl font-medium text-gray-800'>{question}</p>
         </div>
