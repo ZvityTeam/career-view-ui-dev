@@ -6,6 +6,7 @@ import { MeetOutMentors } from '../../components/meetoutmentors/MeetOutMentors.t
 import { Testimonials } from '../../components/testimonials/Testimonials.tsx';
 import { WhyChooseUs } from '../../components/whychooseus/WhyChooseUs.tsx';
 import { StudentMentorConnect } from '../../components/studentmentorconnect/StudentMentorConnect.tsx';
+import { FaqSection } from '../../components/faqsection/FaqSection.tsx';
 
 export const Home = () => {
   return (
@@ -18,6 +19,7 @@ export const Home = () => {
       <SchoolConnectCTA />
       <MeetOutMentors />
       <Testimonials />
+      <FaqSection />
     </main>
   );
 };
