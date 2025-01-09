@@ -14,3 +14,22 @@ export const NAV_ITEMS: NavbarItem[] = [
     link: '/school',
   },
 ];
+
+export const FOOTER_NAV_ITEMS: NavbarItem[] = [
+  {
+    label: 'Home',
+    link: '/',
+  },
+  {
+    label: 'Resources',
+    link: '/resources',
+  },
+  {
+    label: 'About Us',
+    link: '/about-us',
+  },
+  {
+    label: 'Ask a Question',
+    link: '/ask-a-question',
+  },
+];
