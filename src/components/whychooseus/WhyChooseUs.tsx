@@ -89,6 +89,7 @@ export const WhyChooseUs: React.FC = () => {
           const position = index - middleIndex;
           // E.g., if we have 5 cards, indexes are 0..4, middleIndex=2,
           // positions => -2, -1, 0, +1, +2
+          const zIndex = 10 - Math.abs(position);
 
           // The "active" card is the center one (position === 0)
           const isActive = position === 0;
@@ -97,6 +98,7 @@ export const WhyChooseUs: React.FC = () => {
             <WhyChooseUsCard
               key={card.id}
               card={card}
+              zIndex={zIndex}
               position={position}
               isActive={isActive}
               onClick={() => handleMove(position)}

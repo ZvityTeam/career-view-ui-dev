@@ -9,6 +9,7 @@ export interface WhyChooseCardProps {
   position: number; // negative => left, 0 => center, positive => right
   isActive: boolean;
   onClick: () => void;
+  zIndex: number;
 }
 
 export interface CardData {
@@ -21,6 +22,7 @@ export const WhyChooseUsCard: React.FC<WhyChooseCardProps> = ({
   card,
   position,
   isActive,
+  zIndex,
   onClick,
 }) => {
   // Basic dimensions for each card
@@ -38,6 +40,7 @@ export const WhyChooseUsCard: React.FC<WhyChooseCardProps> = ({
         left: '50%',
         top: '50%',
         transformOrigin: 'center',
+        zIndex: zIndex,
       }}
       onClick={onClick}
       animate={{
