@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface FaqItemProps {
   question: string;
@@ -24,12 +25,19 @@ export const FaqItem = ({ question, answer }: FaqItemProps) => {
         </div>
       </div>
 
-      {/* Answer Section */}
-      {isOpen && (
+      {/* Answer Section with Animation */}
+      <motion.div
+        initial={{ height: 0, opacity: 0 }}
+        animate={
+          isOpen ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }
+        }
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
+        className='overflow-hidden'
+      >
         <div className='mt-3 pl-10 text-lg text-gray-600'>
           <p>{answer}</p>
         </div>
-      )}
+      </motion.div>
     </div>
   );
 };
