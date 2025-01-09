@@ -69,7 +69,7 @@ export const WhyChooseUs: React.FC = () => {
   };
 
   return (
-    <div className='relative w-full bg-white py-10'>
+    <section className='relative w-full bg-white py-10'>
       {/* Section heading */}
       <div className='mb-8 text-center'>
         <h2 className='font-britania text-3xl font-bold'>Why Choose Us</h2>
@@ -124,6 +124,6 @@ export const WhyChooseUs: React.FC = () => {
           <StepForward />
         </button>
       </div>
-    </div>
+    </section>
   );
 };
