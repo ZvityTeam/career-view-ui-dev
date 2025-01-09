@@ -5,6 +5,7 @@ import { SchoolConnectCTA } from '../../components/schoolconnectcta/SchoolConnec
 import { MeetOutMentors } from '../../components/meetoutmentors/MeetOutMentors.tsx';
 import { Testimonials } from '../../components/testimonials/Testimonials.tsx';
 import { WhyChooseUs } from '../../components/whychooseus/WhyChooseUs.tsx';
+import { StudentMentorConnect } from '../../components/studentmentorconnect/StudentMentorConnect.tsx';
 
 export const Home = () => {
   return (
@@ -13,6 +14,7 @@ export const Home = () => {
       <WhatWeDo />
       <WhatWeOffer />
       <WhyChooseUs />
+      <StudentMentorConnect />
       <SchoolConnectCTA />
       <MeetOutMentors />
       <Testimonials />
