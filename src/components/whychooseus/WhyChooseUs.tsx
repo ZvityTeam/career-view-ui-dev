@@ -69,61 +69,65 @@ export const WhyChooseUs: React.FC = () => {
   };
 
   return (
-    <section className='relative w-full bg-white py-10'>
-      {/* Section heading */}
-      <div className='mb-8 text-center'>
-        <h2 className='font-britania text-3xl font-bold'>Why Choose Us</h2>
-        <p className='mx-auto mt-2 max-w-xl text-gray-600'>
-          A small description of why students should choose your platform
-          instead of other competitors. This has a horizontal animation on a
-          loop.
-        </p>
-      </div>
+    <div className='relative mt-24 grid h-[55vh] place-items-center'>
+      <div className='absolute h-[72vh] w-full rounded-[80px] bg-white'>
+        <section className='relative w-full py-10'>
+          {/* Section heading */}
+          <div className='mb-8 text-center'>
+            <h2 className='font-britania text-3xl font-bold'>Why Choose Us</h2>
+            <p className='mx-auto mt-2 max-w-xl text-gray-600'>
+              A small description of why students should choose your platform
+              instead of other competitors. This has a horizontal animation on a
+              loop.
+            </p>
+          </div>
 
-      {/* The carousel container (relative) for stacking motion cards */}
-      <div className='relative mx-auto h-[400px] w-full overflow-hidden'>
-        {cards.map((card, index) => {
-          // We'll place the middle card (position=0) in the center,
-          // the next/prev around it, etc.
-          const middleIndex = Math.floor(cards.length / 2);
-          const position = index - middleIndex;
-          // E.g., if we have 5 cards, indexes are 0..4, middleIndex=2,
-          // positions => -2, -1, 0, +1, +2
-          const zIndex = 10 - Math.abs(position);
+          {/* The carousel container (relative) for stacking motion cards */}
+          <div className='relative mx-auto h-[400px] w-full overflow-hidden'>
+            {cards.map((card, index) => {
+              // We'll place the middle card (position=0) in the center,
+              // the next/prev around it, etc.
+              const middleIndex = Math.floor(cards.length / 2);
+              const position = index - middleIndex;
+              // E.g., if we have 5 cards, indexes are 0..4, middleIndex=2,
+              // positions => -2, -1, 0, +1, +2
+              const zIndex = 10 - Math.abs(position);
 
-          // The "active" card is the center one (position === 0)
-          const isActive = position === 0;
+              // The "active" card is the center one (position === 0)
+              const isActive = position === 0;
 
-          return (
-            <WhyChooseUsCard
-              key={card.id}
-              card={card}
-              zIndex={zIndex}
-              position={position}
-              isActive={isActive}
-              onClick={() => handleMove(position)}
-            />
-          );
-        })}
-      </div>
+              return (
+                <WhyChooseUsCard
+                  key={card.id}
+                  card={card}
+                  zIndex={zIndex}
+                  position={position}
+                  isActive={isActive}
+                  onClick={() => handleMove(position)}
+                />
+              );
+            })}
+          </div>
 
-      {/* Left/right arrow buttons */}
-      <div className='absolute inset-y-0 left-0 flex items-center'>
-        <button
-          onClick={() => handleMove(-1)}
-          className='ml-2 grid h-12 w-12 place-content-center rounded-full border text-2xl transition hover:bg-black hover:text-white'
-        >
-          <StepBack />
-        </button>
+          {/* Left/right arrow buttons */}
+          <div className='absolute inset-y-0 left-0 flex items-center'>
+            <button
+              onClick={() => handleMove(-1)}
+              className='ml-2 grid h-12 w-12 place-content-center rounded-full border text-2xl transition hover:bg-black hover:text-white'
+            >
+              <StepBack />
+            </button>
+          </div>
+          <div className='absolute inset-y-0 right-0 flex items-center'>
+            <button
+              onClick={() => handleMove(1)}
+              className='mr-2 grid h-12 w-12 place-content-center rounded-full border text-2xl transition hover:bg-black hover:text-white'
+            >
+              <StepForward />
+            </button>
+          </div>
+        </section>
       </div>
-      <div className='absolute inset-y-0 right-0 flex items-center'>
-        <button
-          onClick={() => handleMove(1)}
-          className='mr-2 grid h-12 w-12 place-content-center rounded-full border text-2xl transition hover:bg-black hover:text-white'
-        >
-          <StepForward />
-        </button>
-      </div>
-    </section>
+    </div>
   );
 };
