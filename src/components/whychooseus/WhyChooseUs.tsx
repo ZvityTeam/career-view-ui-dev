@@ -4,6 +4,7 @@ import {
   WhyChooseUsCard,
 } from '../whychooseuscard/WhyChooseUsCard.tsx';
 import { StepBack, StepForward } from 'lucide-react';
+import { SectionHeader } from '../sectionheader/SectionHeader.tsx';
 
 /** Example data. Replace with your actual content & images. */
 const WHY_CHOOSE_US_DATA: CardData[] = [
@@ -73,14 +74,13 @@ export const WhyChooseUs: React.FC = () => {
       <div className='absolute h-[72vh] w-full rounded-[80px] bg-white'>
         <section className='relative w-full py-10'>
           {/* Section heading */}
-          <div className='mb-8 text-center'>
-            <h2 className='font-britania text-3xl font-bold'>Why Choose Us</h2>
-            <p className='mx-auto mt-2 max-w-xl text-gray-600'>
-              A small description of why students should choose your platform
-              instead of other competitors. This has a horizontal animation on a
-              loop.
-            </p>
-          </div>
+          <SectionHeader
+            title={'Why Choose Us'}
+            subtitle={
+              'A small description of why students should choose your platform instead of other competitors. This has a horizontal animation on a loop.'
+            }
+            className={'mb-16'}
+          />
 
           {/* The carousel container (relative) for stacking motion cards */}
           <div className='relative mx-auto h-[400px] w-full overflow-hidden'>
@@ -110,7 +110,7 @@ export const WhyChooseUs: React.FC = () => {
           </div>
 
           {/* Left/right arrow buttons */}
-          <div className='absolute inset-y-0 left-0 flex items-center'>
+          <div className='absolute inset-y-0 left-10 flex items-center'>
             <button
               onClick={() => handleMove(-1)}
               className='ml-2 grid h-12 w-12 place-content-center rounded-full border text-2xl transition hover:bg-black hover:text-white'
@@ -118,7 +118,7 @@ export const WhyChooseUs: React.FC = () => {
               <StepBack />
             </button>
           </div>
-          <div className='absolute inset-y-0 right-0 flex items-center'>
+          <div className='absolute inset-y-0 right-10 flex items-center'>
             <button
               onClick={() => handleMove(1)}
               className='mr-2 grid h-12 w-12 place-content-center rounded-full border text-2xl transition hover:bg-black hover:text-white'
