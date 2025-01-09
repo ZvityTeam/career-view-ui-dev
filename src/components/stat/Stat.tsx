@@ -17,7 +17,7 @@ export const Stat = ({
   icon,
 }: Props) => {
   const ref = useRef<HTMLSpanElement | null>(null);
-  const isInView = useInView(ref);
+  const isInView = useInView(ref, { once: true });
 
   useEffect(() => {
     if (!isInView) return;
