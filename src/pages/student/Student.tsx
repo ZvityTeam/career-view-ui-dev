@@ -1,11 +1,10 @@
 import { QuestionsWeGet } from '../../components/questions-we-get/QuestionsWeGet.tsx';
+import { StudentHero } from '../../components/student-hero/StudentHero.tsx';
 
 export const Student = () => {
   return (
-    <main className=''>
-      <h1 className='grid min-h-screen place-items-center bg-slate-800 text-9xl text-white'>
-        Student Page
-      </h1>
+    <main className={''}>
+      <StudentHero />
       <QuestionsWeGet />
     </main>
   );

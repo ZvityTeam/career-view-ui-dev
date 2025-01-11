@@ -4,14 +4,21 @@ import { Link } from 'react-router-dom';
 import { AppLogo } from '../../assets';
 import { NavIcon } from '../navicon/NavIcon.tsx';
 import { Button } from '../button/Button.tsx';
+import { useNavbarContext } from '../../context/NavbarContext.tsx';
 
 export const Navbar = () => {
+  const { isDark } = useNavbarContext(); // Get theme from context
+
   return (
     <nav className='absolute top-0 z-10 w-full px-20 py-12'>
-      <div className='flex items-center justify-between border-b-[0.5px] border-white pb-8'>
-        {/*Left side*/}
+      <div
+        className={`flex items-center justify-between border-b-[0.5px] pb-8 ${
+          isDark ? 'border-gray-800' : 'border-white'
+        }`}
+      >
+        {/* Left Side */}
         <div className='flex space-x-14'>
-          {/*Logo*/}
+          {/* Logo */}
           <Link
             to='/'
             className='flex items-center space-x-2'
@@ -19,7 +26,7 @@ export const Navbar = () => {
             <img
               src={AppLogo}
               alt='CareerViewLogo'
-              className='h-10'
+              className={`h-10 ${isDark && 'invert'}`}
             />
           </Link>
 
@@ -29,7 +36,11 @@ export const Navbar = () => {
               <Link
                 key={item.label}
                 to={item.link}
-                className='text-white hover:text-gray-300'
+                className={`${
+                  isDark
+                    ? 'text-gray-800 hover:text-gray-600'
+                    : 'text-white hover:text-gray-300'
+                }`}
               >
                 {item.label}
               </Link>
@@ -39,10 +50,17 @@ export const Navbar = () => {
 
         {/* Right Side */}
         <div className='flex items-center space-x-6'>
-          <NavIcon icon={Search} />
+          <NavIcon
+            icon={Search}
+            className={isDark ? 'text-gray-800' : 'text-white'}
+          />
           <Link
             to='/'
-            className='text-xl text-white hover:text-gray-300'
+            className={`text-xl ${
+              isDark
+                ? 'text-gray-800 hover:text-gray-600'
+                : 'text-white hover:text-gray-300'
+            }`}
           >
             <NavIcon
               icon={HomeIcon}
@@ -52,12 +70,16 @@ export const Navbar = () => {
 
           <Link
             to='/signin'
-            className='text-xl text-white hover:text-gray-300'
+            className={`text-xl ${
+              isDark
+                ? 'text-gray-800 hover:text-gray-600'
+                : 'text-white hover:text-gray-300'
+            }`}
           >
             Sign in
           </Link>
           <Link to='/browse-mentors'>
-            <Button>Browse Mentors</Button>
+            <Button>{isDark ? 'Browse Mentors' : 'Browse Mentors'}</Button>
           </Link>
         </div>
       </div>
