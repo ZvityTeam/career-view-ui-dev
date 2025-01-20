@@ -5,6 +5,7 @@ interface SectionHeadersProps {
   title: string; // The main title text for the section
   subtitle?: string; // Optional subtitle text
   className?: string; // Additional classes for customization
+  subTitleClassName?: string;
   align?: 'left' | 'center' | 'right'; // Alignment of the text
 }
 
@@ -13,6 +14,7 @@ export const SectionHeader: React.FC<SectionHeadersProps> = ({
   subtitle,
   className = '',
   align = 'center',
+  subTitleClassName,
 }) => {
   return (
     <div
@@ -27,7 +29,9 @@ export const SectionHeader: React.FC<SectionHeadersProps> = ({
       )}
     >
       <h2 className='text-4xl font-bold'>{title}</h2>
-      {subtitle && <p className='text-lg'>{subtitle}</p>}
+      {subtitle && (
+        <p className={cn('text-lg', subTitleClassName)}>{subtitle}</p>
+      )}
     </div>
   );
 };

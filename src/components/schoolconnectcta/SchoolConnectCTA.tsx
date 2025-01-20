@@ -14,8 +14,13 @@ export const SchoolConnectCTA = () => {
       />
       <p></p>
       <div className='flex gap-6'>
-        <Button variant={'secondary'}>Request a Demo</Button>
-        <Button>Get a Callback</Button>
+        <Button
+          variant={'secondary'}
+          size={'lg'}
+        >
+          Request a Demo
+        </Button>
+        <Button size={'lg'}>Get a Callback</Button>
       </div>
     </Section>
   );
