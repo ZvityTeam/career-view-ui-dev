@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { AppLogo } from '../../assets';
 import { NavIcon } from '../navicon/NavIcon.tsx';
 import { Button } from '../button/Button.tsx';
-import { useNavbarContext } from '../../context/NavbarContext.tsx';
+import { useNavbarContext } from '../../context/navbar-context/NavbarContext.tsx';
 
 export const Navbar = () => {
   const { isDark } = useNavbarContext(); // Get theme from context

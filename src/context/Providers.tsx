@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { NavbarProvider } from './NavbarContext.tsx';
+import { NavbarProvider } from './navbar-context/NavbarContext.tsx';
 import { HelmetProvider } from 'react-helmet-async';
 
 interface ProvidersProps {

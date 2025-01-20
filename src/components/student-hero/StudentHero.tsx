@@ -1,6 +1,6 @@
 import { Section } from '../container/Section.tsx';
 import { Button } from '../button/Button.tsx';
-import { useNavbarContext } from '../../context/NavbarContext.tsx';
+import { useNavbarContext } from '../../context/navbar-context/NavbarContext.tsx';
 import { useEffect } from 'react';
 import {
   Activity,
