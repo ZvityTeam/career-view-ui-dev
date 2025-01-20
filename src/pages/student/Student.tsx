@@ -14,8 +14,8 @@ export const Student = () => {
       <WhatWeDo />
       <WhyChooseUs />
       <StudentMentorConnect />
-      <OurEvents />
       <QuestionsWeGet />
+      <OurEvents />
       <Testimonials />
       <FaqSection />
     </main>
