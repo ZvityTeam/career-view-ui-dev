@@ -3,6 +3,7 @@ import { SectionHeader } from '../sectionheader/SectionHeader.tsx';
 import { QuestionCard, QuestionCardProps } from './QuestionCard.tsx';
 import { QuestionCategory } from './QuestionCategory.tsx';
 import { useState } from 'react';
+import Masonry from 'react-responsive-masonry';
 
 const QUESTIONS_WE_GET: {
   category: string;
@@ -124,8 +125,7 @@ export const QuestionsWeGet = () => {
           />
         ))}
       </div>
-      {/* Questions */}
-      <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3'>
+      <Masonry gutter={'20px'}>
         {currentCategory &&
           ALL_CATEGORIES.find(
             (cat) => cat.category === currentCategory
@@ -135,7 +135,7 @@ export const QuestionsWeGet = () => {
               {...value}
             />
           ))}
-      </div>
+      </Masonry>
     </Section>
   );
 };
