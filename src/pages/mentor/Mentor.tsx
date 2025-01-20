@@ -1,10 +1,14 @@
 import { MentorsList } from '../../components/mentors-list';
+import { Testimonials } from '../../components/testimonials/Testimonials.tsx';
+import { FaqSection } from '../../components/faqsection/FaqSection.tsx';
 
 export const Mentor = () => {
   return (
     <main>
       <div className={'min-h-screen bg-slate-950'} />
       <MentorsList />
+      <Testimonials />
+      <FaqSection />
     </main>
   );
 };
