@@ -10,6 +10,8 @@ export const MentorDetails = () => {
   const { setNavbarTheme } = useNavbarContext();
   useEffect(() => {
     setNavbarTheme(true);
+
+    return () => setNavbarTheme(false);
   }, [setNavbarTheme]);
 
   const mentor = mentorData[id as unknown as number];
