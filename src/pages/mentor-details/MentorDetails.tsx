@@ -1,10 +1,44 @@
 import { useParams } from 'react-router-dom';
-import { mentorData } from '../../components/mentors-list';
-import { MentorProfileProps } from '../../components/mentor-profile-card';
 import { useNavbarContext } from '../../context/navbar-context/NavbarContext.tsx';
 import { useEffect } from 'react';
-import { Section } from '../../components/container/Section.tsx';
+import { Header } from './Header.tsx';
+import { MentorProfileSection } from './MentorProfileSection.tsx';
+import { mentorData } from '../../components/mentors-list';
 
+const mentorData2 = {
+  name: 'Mark Johnson',
+  role: 'Software Developer',
+  company: 'TechCorp',
+  university: 'Stanford University',
+  bio: 'Passionate about mentoring young developers and helping them build strong foundations in programming.',
+  availableHours: '9 AM - 5 PM on weekdays',
+  profileImage: 'https://randomuser.me/api/portraits/men/1.jpg',
+  hobbies: 'Football, Singing, and Playing Golf',
+  interests: 'Artificial Intelligence, Web Development, and Open Source',
+  sideHustles: 'Freelance UI/UX Design, Blogging',
+  location: 'San Francisco, USA',
+  industries: [
+    {
+      name: 'E-commerce',
+      description: 'Helping build scalable e-commerce platforms',
+    },
+    {
+      name: 'AI & ML',
+      description: 'Worked on AI-powered recommendation engines',
+    },
+  ],
+  questions: [
+    'How to get started with AI?',
+    'What are the best practices for scaling a web app?',
+  ],
+  socialLinks: {
+    linkedin: 'https://linkedin.com/in/markjohnson',
+    twitter: 'https://twitter.com/markdev',
+    github: 'https://github.com/markjohnson',
+  },
+  onAskQuestion: () => alert('Ask Question Clicked'),
+  onAddToMentorList: () => alert('Mentor Added to List'),
+};
 export const MentorDetails = () => {
   const { id } = useParams<string>();
   const { setNavbarTheme } = useNavbarContext();
@@ -18,30 +52,7 @@ export const MentorDetails = () => {
   return (
     <main className={'mt-32'}>
       <Header {...mentor} />
+      <MentorProfileSection {...mentorData2} />
     </main>
-  );
-};
-
-type HeaderProps = Pick<MentorProfileProps, 'name' | 'profileImage' | 'bio'>;
-
-const Header = ({ name, profileImage, bio }: HeaderProps) => {
-  return (
-    <Section className={'flex min-h-72 w-screen flex-col gap-20'}>
-      <div className='relative w-full'>
-        <img
-          src={'https://placehold.co/600x50'}
-          className='w-full object-contain'
-        />
-        <img
-          src={profileImage}
-          className='absolute -bottom-1/2 left-1/2 -translate-x-1/2 rounded-full border-2 border-white'
-          alt={name}
-        />
-      </div>
-      <div className={'flex flex-col items-center gap-2'}>
-        <p className={'text-4xl font-bold'}>{name}</p>
-        <p className={'text-2xl font-[100] italic'}>{bio}</p>
-      </div>
-    </Section>
   );
 };
