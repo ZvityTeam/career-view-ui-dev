@@ -1,5 +1,5 @@
 import { Award, ShoppingBag, Users } from 'lucide-react';
-import { SectionHeader } from '../sectionheader/SectionHeader.tsx';
+import { SectionHeader } from '../section-header/SectionHeader.tsx';
 import { Stat } from '../stat/Stat.tsx';
 import { Section } from '../container/Section.tsx';
 import { MentorCard, MentorCardProps } from './mentorcard/MentorCard.tsx';

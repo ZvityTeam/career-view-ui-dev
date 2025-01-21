@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronUp, Trash2 } from 'lucide-react';
 import { useLocalStorage } from '../../hooks/useLocalStorage.ts';
-import { MentorCardProps } from '../meetoutmentors/mentorcard/MentorCard.tsx';
+import { MentorCardProps } from '../meet-our-mentors/mentorcard/MentorCard.tsx';
 
 export const SavedMentors = () => {
   const [savedMentors, setSavedMentors] = useLocalStorage<MentorCardProps[]>(

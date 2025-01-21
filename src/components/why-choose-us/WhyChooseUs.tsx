@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import {
   CardData,
   WhyChooseUsCard,
-} from '../whychooseuscard/WhyChooseUsCard.tsx';
+} from '../why-choose-us-card/WhyChooseUsCard.tsx';
 import { StepBack, StepForward } from 'lucide-react';
-import { SectionHeader } from '../sectionheader/SectionHeader.tsx';
+import { SectionHeader } from '../section-header/SectionHeader.tsx';
 
 /** Example data. Replace with your actual content & images. */
 const WHY_CHOOSE_US_DATA: CardData[] = [

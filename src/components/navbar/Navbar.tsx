@@ -2,7 +2,7 @@ import { Home as HomeIcon, Search } from 'lucide-react';
 import { NAV_ITEMS } from './NavbarConfig';
 import { Link } from 'react-router-dom';
 import { AppLogo } from '../../assets';
-import { NavIcon } from '../navicon/NavIcon.tsx';
+import { NavIcon } from '../nav-icon/NavIcon.tsx';
 import { Button } from '../button/Button.tsx';
 import { useNavbarContext } from '../../context/navbar-context/NavbarContext.tsx';
 

@@ -1,5 +1,5 @@
 import { Section } from '../container/Section.tsx';
-import { SectionHeader } from '../sectionheader/SectionHeader.tsx';
+import { SectionHeader } from '../section-header/SectionHeader.tsx';
 import { OurEventCard, OurEventCardProps } from './OurEventCard.tsx';
 
 const OUR_EVENTS: OurEventCardProps[] = [

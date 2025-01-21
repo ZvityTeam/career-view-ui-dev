@@ -1,5 +1,5 @@
 import { Button } from '../button/Button.tsx';
-import { SectionHeader } from '../sectionheader/SectionHeader.tsx';
+import { SectionHeader } from '../section-header/SectionHeader.tsx';
 import { Section } from '../container/Section.tsx';
 
 export const SchoolConnectCTA = () => {

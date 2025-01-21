@@ -3,6 +3,7 @@ import { Student } from '../pages/student/Student.tsx';
 import { Route } from './types.ts';
 import { School } from '../pages/school/School.tsx';
 import { Mentor } from '../pages/mentor/Mentor.tsx';
+import { MentorDetails } from '../pages/mentor-details/MentorDetails.tsx';
 
 export const ROUTES: Route[] = [
   {
@@ -34,7 +35,15 @@ export const ROUTES: Route[] = [
     component: Mentor,
     secured: false,
     metaData: {
-      title: 'Career View - School',
+      title: 'Career View - Mentor',
+    },
+  },
+  {
+    path: '/mentor/:id',
+    component: MentorDetails,
+    secured: false,
+    metaData: {
+      title: 'Career View - Mentor Details',
     },
   },
 ];

@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '../button/Button';
 import { Spacer } from '../spacer';
 
-interface MentorProfileProps {
+export interface MentorProfileProps {
   name: string;
   role: string;
   company: string;
@@ -14,6 +14,7 @@ interface MentorProfileProps {
   interests: string;
   sideHustles: string;
   onAddToMentorList?: () => void;
+  onClick?: () => void;
 }
 
 export const MentorProfileCard: React.FC<MentorProfileProps> = ({
@@ -28,9 +29,13 @@ export const MentorProfileCard: React.FC<MentorProfileProps> = ({
   interests,
   sideHustles,
   onAddToMentorList,
+  onClick,
 }) => {
   return (
-    <div className='mx-auto flex w-full max-w-6xl items-center gap-6 rounded-xl border bg-white p-12 shadow-md'>
+    <div
+      className='mx-auto flex w-full max-w-6xl cursor-pointer items-center gap-6 rounded-xl border bg-white p-12 shadow-md'
+      onClick={onClick}
+    >
       {/* Profile Image */}
       <div className='flex flex-col items-center'>
         <img

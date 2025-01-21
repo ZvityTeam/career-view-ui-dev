@@ -1,5 +1,5 @@
 import { Section } from '../container/Section.tsx';
-import { SectionHeader } from '../sectionheader/SectionHeader.tsx';
+import { SectionHeader } from '../section-header/SectionHeader.tsx';
 import { QuestionCard, QuestionCardProps } from './QuestionCard.tsx';
 import { QuestionCategory } from './QuestionCategory.tsx';
 import { useState } from 'react';

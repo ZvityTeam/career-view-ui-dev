@@ -1,5 +1,5 @@
-import { OfferCard } from '../offercard/OfferCard.tsx';
-import { SectionHeader } from '../sectionheader/SectionHeader.tsx';
+import { OfferCard } from '../offer-card/OfferCard.tsx';
+import { SectionHeader } from '../section-header/SectionHeader.tsx';
 
 export const WhatWeOffer = () => {
   const cards = [

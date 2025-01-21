@@ -1,7 +1,7 @@
 import { Section } from '../container/Section.tsx';
-import { SectionHeader } from '../sectionheader/SectionHeader.tsx';
+import { SectionHeader } from '../section-header/SectionHeader.tsx';
 import { Marquee } from '../marquee/Marquee.tsx';
-import ProfileCard from '../profilecard/ProfileCard.tsx';
+import ProfileCard from '../profile-card/ProfileCard.tsx';
 
 export const Testimonials = () => {
   return (

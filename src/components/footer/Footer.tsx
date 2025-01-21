@@ -1,5 +1,5 @@
 import React from 'react';
-import { OutlinedInputWithButton } from '../inputbox/InputBox';
+import { OutlinedInputWithButton } from '../input-box/InputBox';
 import { Send } from 'lucide-react';
 import { FOOTER_NAV_ITEMS } from '../navbar/NavbarConfig.ts';
 import { FooterLink } from './footerlink/FooterLink.tsx';

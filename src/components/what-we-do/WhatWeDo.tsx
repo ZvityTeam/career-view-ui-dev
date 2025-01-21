@@ -1,6 +1,6 @@
 import { MessageCircle, Mic, Radio, Users } from 'lucide-react';
 import { Card } from '../card/Card.tsx';
-import { SectionHeader } from '../sectionheader/SectionHeader.tsx';
+import { SectionHeader } from '../section-header/SectionHeader.tsx';
 
 export const WhatWeDo = () => {
   const cards = [

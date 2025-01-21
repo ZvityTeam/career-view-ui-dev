@@ -1,19 +1,31 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { ROUTES } from './RouteConfig.ts';
 import { Helmet } from 'react-helmet-async';
+import { useEffect, useState } from 'react';
 
 export const AppRouter = () => {
-  const currentRoute = ROUTES.find((route) => route.path === location.pathname);
+  const location = useLocation(); // ✅ Get current location reactively
+  const [currentRoute, setCurrentRoute] = useState(() =>
+    ROUTES.find((route) => route.path === location.pathname)
+  );
+
+  // 🔥 Update currentRoute on location change
+  useEffect(() => {
+    const route = ROUTES.find((route) => route.path === location.pathname);
+    setCurrentRoute(route);
+  }, [location.pathname]);
 
   return (
     <>
       {currentRoute && (
         <Helmet>
           <title>{currentRoute?.metaData?.title ?? 'Career View'}</title>
-          <meta
-            name='description'
-            content={currentRoute?.metaData?.description}
-          />
+          {currentRoute?.metaData?.description && (
+            <meta
+              name='description'
+              content={currentRoute?.metaData?.description}
+            />
+          )}
         </Helmet>
       )}
       <Routes>
@@ -21,7 +33,7 @@ export const AppRouter = () => {
           <Route
             key={route.path}
             path={route.path}
-            element={route.component()}
+            element={<route.component />}
           />
         ))}
       </Routes>

@@ -1,4 +1,4 @@
-import { RectOrbitFramer } from '../rectorbitframer/RectOrbitFramer.tsx';
+import { RectOrbitFramer } from '../rect-orbit-framer/RectOrbitFramer.tsx';
 import { Button } from '../button/Button.tsx';
 
 export const Hero = () => {

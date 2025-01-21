@@ -1,8 +1,9 @@
 import { Section } from '../container/Section.tsx';
 import { MentorProfileCard } from '../mentor-profile-card';
 import { useLocalStorage } from '../../hooks/useLocalStorage.ts';
+import { useNavigate } from 'react-router-dom';
 
-const mentorData = [
+export const mentorData = [
   {
     name: 'Mark Johnson',
     role: 'Software Developer',
@@ -66,6 +67,8 @@ const mentorData = [
 ];
 
 export const MentorsList = () => {
+  const navigate = useNavigate(); // ✅ Initialize navigation
+
   const [savedMentors, setSavedMentors] = useLocalStorage(
     'savedMentors',
     [] as typeof mentorData
@@ -81,6 +84,7 @@ export const MentorsList = () => {
     <Section className='gap-8'>
       {mentorData.map((item, index) => (
         <MentorProfileCard
+          onClick={() => navigate(`/mentor/${index}`)}
           {...item}
           key={index}
           onAddToMentorList={() => handleAddToMentorList(item)}

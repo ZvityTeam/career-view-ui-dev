@@ -1,5 +1,5 @@
 import { Section } from '../container/Section.tsx';
-import { SectionHeader } from '../sectionheader/SectionHeader.tsx';
+import { SectionHeader } from '../section-header/SectionHeader.tsx';
 import { Button } from '../button/Button.tsx';
 
 export const WhatToExpect = () => {

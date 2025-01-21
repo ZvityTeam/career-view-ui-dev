@@ -1,4 +1,4 @@
-import { SectionHeader } from '../sectionheader/SectionHeader.tsx';
+import { SectionHeader } from '../section-header/SectionHeader.tsx';
 import { Section } from '../container/Section.tsx';
 import { FaqItem } from './faqitems/FaqItem.tsx';
 
