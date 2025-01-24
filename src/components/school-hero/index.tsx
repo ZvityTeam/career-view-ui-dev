@@ -21,13 +21,7 @@ export const SchoolHero = () => {
           consectetur adipisicing elit. Aspernatur, ex expedita illum laboriosam
           mollitia optio perferendis quod? Officiis.
         </p>
-        <Button
-          variant={'secondary'}
-          size={'md'}
-          className='border-white text-white'
-        >
-          Get a Callback
-        </Button>
+        <Button className='w-36 border-white text-white'>Get a Callback</Button>
       </div>
     </section>
   );
