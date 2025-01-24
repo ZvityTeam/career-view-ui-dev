@@ -8,6 +8,7 @@ import { WhyChooseUs } from '../../components/why-choose-us/WhyChooseUs.tsx';
 import { StudentMentorConnect } from '../../components/student-mentor-connect/StudentMentorConnect.tsx';
 import { FaqSection } from '../../components/faqsection/FaqSection.tsx';
 import { OurEvents } from '../../components/our-events/OurEvents.tsx';
+import LogoScroll from '../../components/logo-scroll.tsx';
 
 export const Home = () => {
   return (
@@ -19,6 +20,7 @@ export const Home = () => {
       <StudentMentorConnect />
       <OurEvents />
       <SchoolConnectCTA />
+      <LogoScroll />
       <MeetOutMentors />
       <Testimonials />
       <FaqSection />
