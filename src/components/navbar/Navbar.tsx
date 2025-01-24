@@ -1,4 +1,4 @@
-import { Home as HomeIcon, Search } from 'lucide-react';
+import { Home as HomeIcon } from 'lucide-react';
 import { NAV_ITEMS } from './NavbarConfig';
 import { Link } from 'react-router-dom';
 import { AppLogo } from '../../assets';
@@ -50,10 +50,6 @@ export const Navbar = () => {
 
         {/* Right Side */}
         <div className='flex items-center space-x-6'>
-          <NavIcon
-            icon={Search}
-            className={isDark ? 'text-gray-800' : 'text-white'}
-          />
           <Link
             to='/'
             className={`text-xl ${
@@ -66,17 +62,6 @@ export const Navbar = () => {
               icon={HomeIcon}
               filled
             />
-          </Link>
-
-          <Link
-            to='/signin'
-            className={`text-xl ${
-              isDark
-                ? 'text-gray-800 hover:text-gray-600'
-                : 'text-white hover:text-gray-300'
-            }`}
-          >
-            Sign in
           </Link>
           <Link to='/browse-mentors'>
             <Button>{isDark ? 'Browse Mentors' : 'Browse Mentors'}</Button>
