@@ -4,6 +4,7 @@ import { Route } from './types.ts';
 import { School } from '../pages/school/School.tsx';
 import { Mentor } from '../pages/mentor/Mentor.tsx';
 import { MentorDetails } from '../pages/mentor-details/MentorDetails.tsx';
+import { AskAQuestion } from '../pages/ask-a-question/AskAQuestion.tsx';
 
 export const ROUTES: Route[] = [
   {
@@ -44,6 +45,14 @@ export const ROUTES: Route[] = [
     secured: false,
     metaData: {
       title: 'Career View - Mentor Details',
+    },
+  },
+  {
+    path: '/ask-a-question',
+    component: AskAQuestion,
+    secured: false,
+    metaData: {
+      title: 'Career View - Ask a question',
     },
   },
 ];
