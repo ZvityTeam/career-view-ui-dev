@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import { Header } from './Header.tsx';
 import { MentorProfileSection } from './MentorProfileSection.tsx';
 import { mentorData } from '../../components/mentors-list';
-import BigBrushTimeline from '../../components/brush-stroke-timeline.tsx';
 
 const mentorData2 = {
   name: 'Mark Johnson',
@@ -54,7 +53,6 @@ export const MentorDetails = () => {
     <main className={'mt-32'}>
       <Header {...mentor} />
       <MentorProfileSection {...mentorData2} />
-      <BigBrushTimeline />
     </main>
   );
 };
