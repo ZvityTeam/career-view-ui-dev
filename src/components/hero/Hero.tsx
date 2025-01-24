@@ -1,6 +1,9 @@
 import { RectOrbitFramer } from '../rect-orbit-framer/RectOrbitFramer.tsx';
 import { Button } from '../button/Button.tsx';
 import { FlipWords } from '../ui/flip-words.tsx';
+import { Podcast } from '../rotating-items/podcast.tsx';
+import { Ebook } from '../rotating-items/ebook.tsx';
+import { LiveStream } from '../rotating-items/live-stream.tsx';
 
 const flipWords = ['Opportunities', 'Pathways', 'Connections'];
 export const Hero = () => {
@@ -33,8 +36,8 @@ export const Hero = () => {
           rectangleClassName='stroke-white'
           rectangleStrokeWidth={2}
         >
-          <div className='h-16 w-16 rounded-full bg-white'>E-Books</div>
-          <div className='h-16 w-16 rounded-full bg-white'>Livestream</div>
+          <Ebook />
+          <Podcast />
         </RectOrbitFramer>
         <RectOrbitFramer
           duration={12}
@@ -44,8 +47,8 @@ export const Hero = () => {
           rectangleClassName='stroke-white'
           rectangleStrokeWidth={2}
         >
-          <div className='h-16 w-16 rounded-full bg-white'>E-Books</div>
-          <div className='h-16 w-16 rounded-full bg-white'>Livestream</div>
+          <Ebook />
+          <LiveStream />
         </RectOrbitFramer>
         <RectOrbitFramer
           duration={10}
@@ -55,8 +58,8 @@ export const Hero = () => {
           rectangleClassName='stroke-white'
           rectangleStrokeWidth={2}
         >
-          <div className='h-16 w-16 rounded-full bg-white'>E-Books</div>
-          <div className='h-16 w-16 rounded-full bg-white'>Livestream</div>
+          <Podcast />
+          <LiveStream />
         </RectOrbitFramer>
         <Button className='scale-125'>Browse Mentors</Button>
       </div>
