@@ -25,7 +25,7 @@ export const WhatToExpect = () => {
           className={'max-w-2xl items-start'}
           subTitleClassName={'text-left'}
         />
-        <Button size={'md'}>Watch Now</Button>
+        <Button>Watch Now</Button>
       </div>
     </Section>
   );

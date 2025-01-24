@@ -154,7 +154,6 @@ export const MentorProfileSection: React.FC<MentorProfileProps> = ({
 
           {/* Add Mentor Button */}
           <Button
-            variant='primary'
             size='lg'
             onClick={onAddToMentorList}
           >

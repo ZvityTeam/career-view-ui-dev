@@ -51,7 +51,6 @@ export const MentorProfileCard: React.FC<MentorProfileProps> = ({
           See Profile
         </Button>
         <Button
-          variant='primary'
           size='lg'
           className='mt-2'
         >
