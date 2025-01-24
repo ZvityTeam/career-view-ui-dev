@@ -84,7 +84,7 @@ export const MentorsList = () => {
     <Section className='gap-8'>
       {mentorData.map((item, index) => (
         <MentorProfileCard
-          onClick={() => navigate(`/mentor/${index}`)}
+          onClick={() => navigate(`/browse-mentors/${index}`)}
           {...item}
           key={index}
           onAddToMentorList={() => handleAddToMentorList(item)}

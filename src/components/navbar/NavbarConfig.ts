@@ -7,7 +7,7 @@ export const NAV_ITEMS: NavbarItem[] = [
   },
   {
     label: 'Mentor',
-    link: '/mentor',
+    link: '/mentors',
   },
   {
     label: 'School',

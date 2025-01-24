@@ -7,6 +7,8 @@ export const AskAQuestion = () => {
   const { setNavbarTheme } = useNavbarContext(); // Get theme from context
   useEffect(() => {
     setNavbarTheme(true);
+
+    return () => setNavbarTheme(false);
   }, [setNavbarTheme]);
 
   return (

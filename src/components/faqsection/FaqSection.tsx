@@ -9,9 +9,9 @@ const FAQ_DATA = [
       'Our platform connects students with highly experienced mentors who provide personalized guidance.',
   },
   {
-    question: 'How do I become a mentor?',
+    question: 'How do I become a browse-mentors?',
     answer:
-      'You can become a mentor by signing up on our platform and completing the mentor registration process.',
+      'You can become a browse-mentors by signing up on our platform and completing the browse-mentors registration process.',
   },
   {
     question: 'What is the benefit of this platform?',

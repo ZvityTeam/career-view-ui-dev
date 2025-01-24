@@ -16,7 +16,7 @@ export const WhatWeOffer = () => {
       description:
         'Lorem ipsum dolor sit amet, consectetur sadipscing elitr, sed diam nonumy eirmod tempor.',
       gradientClass: 'bg-gradient-to-br from-gray-300 via-gray-600 to-gray-900',
-      href: '/mentor',
+      href: '/browse-mentors',
     },
     {
       title: 'School Collab',
