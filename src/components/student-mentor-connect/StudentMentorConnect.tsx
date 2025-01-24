@@ -1,10 +1,16 @@
 import { Button } from '../button/Button.tsx';
+import image from '../../assets/styled-comp.png';
 
 export const StudentMentorConnect = () => {
   return (
     <section className='grid min-h-[120vh] place-items-center bg-gradient-to-tr from-yellow-500 via-gray-700 to-black pt-44'>
       <div className='flex min-h-screen w-full p-32'>
-        <div className='flex-1'>Styled design</div>
+        <div className='flex-1'>
+          <img
+            src={image}
+            alt={'style'}
+          />
+        </div>
         <div className='flex-1 text-white'>
           <div className='flex flex-col gap-5'>
             <p className='text-4xl italic'>Boost your Career with</p>
