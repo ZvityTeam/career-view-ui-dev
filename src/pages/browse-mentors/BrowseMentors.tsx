@@ -3,11 +3,12 @@ import { Testimonials } from '../../components/testimonials/Testimonials.tsx';
 import { FaqSection } from '../../components/faqsection/FaqSection.tsx';
 import { ContactForm } from '../../components/contact-form';
 import MentorSearch from '../../components/mentor-search';
+import { BrowseMentorsHero } from '../../components/browse-mentors-hero.tsx';
 
 export const BrowseMentors = () => {
   return (
     <main>
-      <div className={'min-h-screen bg-slate-950'} />
+      <BrowseMentorsHero />
       <MentorSearch />
       <MentorsList />
       <Testimonials />
