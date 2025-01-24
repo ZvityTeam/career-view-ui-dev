@@ -26,7 +26,7 @@ export const SavedMentors = () => {
   };
 
   return (
-    <div className='fixed bottom-6 right-6 w-64 overflow-hidden rounded-lg bg-white shadow-lg'>
+    <div className='fixed bottom-6 right-6 z-[100] w-64 overflow-hidden rounded-lg bg-white shadow-lg'>
       {/* Collapsible Header */}
       <div
         className='flex cursor-pointer items-center justify-between bg-blue-600 p-3 text-white'
