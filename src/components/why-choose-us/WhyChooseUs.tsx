@@ -75,7 +75,7 @@ export const WhyChooseUs: React.FC = () => {
   };
 
   return (
-    <div className='relative mt-24 grid h-[55vh] place-items-center'>
+    <div className='relative mt-44 grid h-[55vh] place-items-center'>
       <div className='absolute h-[72vh] w-full rounded-[80px] bg-white'>
         <section className='relative w-full py-10'>
           {/* Section heading */}
