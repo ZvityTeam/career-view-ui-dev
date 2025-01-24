@@ -9,12 +9,14 @@ export const WhatWeOffer = () => {
         'Lorem ipsum dolor sit amet, consectetur sadipscing elitr, sed diam nonumy eirmod tempor.',
       gradientClass:
         'bg-gradient-to-br from-yellow-400 via-gray-300 to-gray-900',
+      href: '/student',
     },
     {
       title: 'Mentorship',
       description:
         'Lorem ipsum dolor sit amet, consectetur sadipscing elitr, sed diam nonumy eirmod tempor.',
       gradientClass: 'bg-gradient-to-br from-gray-300 via-gray-600 to-gray-900',
+      href: '/mentor',
     },
     {
       title: 'School Collab',
@@ -22,6 +24,7 @@ export const WhatWeOffer = () => {
         'Lorem ipsum dolor sit amet, consectetur sadipscing elitr, sed diam nonumy eirmod tempor.',
       gradientClass:
         'bg-gradient-to-br from-yellow-400 via-gray-300 to-gray-900',
+      href: '/school',
     },
   ];
 
@@ -47,6 +50,7 @@ export const WhatWeOffer = () => {
             title={card.title}
             description={card.description}
             gradientClass={card.gradientClass}
+            href={card.href}
           />
         ))}
       </div>

@@ -1,27 +1,31 @@
-import { Link } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Link as LinkIcon } from 'lucide-react';
 
 interface OfferCardProps {
   title: string;
   description: string;
-  gradientClass: string; // For dynamic background gradients
+  gradientClass: string;
+  href: string;
 }
 
 export const OfferCard = ({
   title,
   description,
   gradientClass,
+  href,
 }: OfferCardProps) => {
   return (
     <div className='flex h-[500px] flex-col overflow-hidden rounded-[60px] bg-white shadow-md'>
       {/* Gradient Top Section */}
       <div className={`relative h-[60%] ${gradientClass}`}>
         {/* Circular Link Icon */}
-        <div className='absolute right-6 top-6 flex flex-col items-center'>
-          <div className='flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-lg transition-colors hover:bg-slate-800 hover:text-white'>
-            <Link />
+        <Link to={href}>
+          <div className='absolute right-6 top-6 flex flex-col items-center'>
+            <div className='flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-lg transition-colors hover:bg-slate-800 hover:text-white'>
+              <LinkIcon />
+            </div>
           </div>
-          <p className='text-white'>Connect</p>
-        </div>
+        </Link>
       </div>
 
       {/* Content Section */}
