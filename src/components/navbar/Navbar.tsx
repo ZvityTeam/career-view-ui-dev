@@ -3,7 +3,7 @@ import { NAV_ITEMS } from './NavbarConfig';
 import { Link } from 'react-router-dom';
 import { AppLogo } from '../../assets';
 import { NavIcon } from '../nav-icon/NavIcon.tsx';
-import { Button } from '../button/Button.tsx';
+import { Button } from '../ui/Button.tsx';
 import { useNavbarContext } from '../../context/navbar-context/NavbarContext.tsx';
 
 export const Navbar = () => {

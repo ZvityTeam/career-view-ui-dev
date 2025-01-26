@@ -1,7 +1,7 @@
 'use client';
 
 import { Search, SlidersHorizontal } from 'lucide-react';
-import { Button } from '../button/Button.tsx';
+import { Button } from '../ui/Button.tsx';
 
 export default function MentorSearch() {
   const categories = [

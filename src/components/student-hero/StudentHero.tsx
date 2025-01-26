@@ -1,5 +1,5 @@
 import { Section } from '../container/Section.tsx';
-import { Button } from '../button/Button.tsx';
+import { Button } from '../ui/Button.tsx';
 import { useNavbarContext } from '../../context/navbar-context/NavbarContext.tsx';
 import { useEffect } from 'react';
 import {

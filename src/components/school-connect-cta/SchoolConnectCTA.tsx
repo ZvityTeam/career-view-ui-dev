@@ -1,4 +1,4 @@
-import { Button } from '../button/Button.tsx';
+import { Button } from '../ui/Button.tsx';
 import { SectionHeader } from '../section-header/SectionHeader.tsx';
 import { Section } from '../container/Section.tsx';
 

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ChevronDown, ChevronUp, Trash2 } from 'lucide-react';
 import { useLocalStorage } from '../../hooks/useLocalStorage.ts';
 import { MentorCardProps } from '../meet-our-mentors/mentorcard/MentorCard.tsx';
-import { Button } from '../button/Button.tsx';
+import { Button } from '../ui/Button.tsx';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 

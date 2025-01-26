@@ -1,5 +1,5 @@
 import { RectOrbitFramer } from '../rect-orbit-framer/RectOrbitFramer.tsx';
-import { Button } from '../button/Button.tsx';
+import { Button } from '../ui/Button.tsx';
 import { FlipWords } from '../ui/flip-words.tsx';
 import { Podcast } from '../rotating-items/podcast.tsx';
 import { Ebook } from '../rotating-items/ebook.tsx';

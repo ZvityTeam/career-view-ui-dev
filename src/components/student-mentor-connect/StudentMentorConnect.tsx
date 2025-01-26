@@ -1,4 +1,4 @@
-import { Button } from '../button/Button.tsx';
+import { Button } from '../ui/Button.tsx';
 import image from '../../assets/styled-comp.png';
 
 export const StudentMentorConnect = () => {

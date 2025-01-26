@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '../button/Button';
+import { Button } from '../ui/Button.tsx';
 import { Spacer } from '../spacer';
 
 export interface MentorProfileProps {

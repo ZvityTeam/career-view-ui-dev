@@ -1,4 +1,4 @@
-import { Button } from './button/Button.tsx';
+import { Button } from './ui/Button.tsx';
 
 export const MentorHero = () => {
   return (

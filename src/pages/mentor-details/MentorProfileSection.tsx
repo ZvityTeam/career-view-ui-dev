@@ -2,7 +2,7 @@ import React from 'react';
 import { MentorProfileProps } from './MentorDetails.types.ts';
 import { Github, Globe, Linkedin, X } from 'lucide-react';
 import { Spacer } from '../../components/spacer';
-import { Button } from '../../components/button/Button.tsx';
+import { Button } from '../../components/ui/Button.tsx';
 
 export const MentorProfileSection: React.FC<MentorProfileProps> = ({
   name,

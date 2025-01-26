@@ -2,7 +2,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Input } from './ui/input.tsx';
-import { Button } from './button/Button.tsx';
+import { Button } from './ui/Button.tsx';
 import { Textarea } from './ui/test-area.tsx';
 
 const formSchema = z.object({
