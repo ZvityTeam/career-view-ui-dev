@@ -1,17 +1,60 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  // Combine both configs’ `content` arrays, removing duplicates
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
   ],
   theme: {
     extend: {
+      // 1) Keep your original colors + rename the second config’s “primary/secondary” to avoid collision
       colors: {
-        primary: "#272727", // Primary color (dark gray/black)
-        secondary: "#F1CE7E", // Secondary color (golden yellow)
-        lightYellow: "#FFFBF0", // Light yellow
-        white: "#FFFFFF", // White
+        // From your original config
+        primary: "#272727",      // Primary color (dark gray/black)
+        secondary: "#F1CE7E",    // Secondary color (golden yellow)
+        lightYellow: "#FFFBF0",  // Light yellow
+        white: "#FFFFFF",        // White
+
+        // From the second config (renamed)
+        primaryHSL: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondaryHSL: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
       },
+
+      // 2) Merge your animations + keyframes
       animation: {
         orbit: "orbit calc(var(--duration)*1s) linear infinite",
         marquee: "marquee var(--duration) linear infinite",
@@ -37,12 +80,23 @@ export default {
           },
         },
       },
-      /* Add your custom fonts here: */
+
+      // 3) Merge both sets of fonts
       fontFamily: {
+        // From your config
         avenir: ["AvenirLTStd", "sans-serif"],
         britania: ["BritaniaLigatura", "serif"],
+
+        // From second config
+        serif: ["var(--font-serif)", "serif"],
+      },
+
+      // 4) Merge any extra theme values like borderRadius
+      borderRadius: {
+        "2xl": "1rem",
+        "3xl": "1.5rem",
       },
     },
   },
   plugins: [],
-};
+}

@@ -6,12 +6,14 @@ import { StudentMentorConnect } from '../../components/student-mentor-connect/St
 import { OurEvents } from '../../components/our-events/OurEvents.tsx';
 import { Testimonials } from '../../components/testimonials/Testimonials.tsx';
 import { FaqSection } from '../../components/faqsection/FaqSection.tsx';
+import WhatWeOffer2 from '../../components/what-we-offer-2/WhatWeOffer2.tsx';
 
 export const Student = () => {
   return (
     <main className={''}>
       <StudentHero />
       <WhatWeDo />
+      <WhatWeOffer2 />
       <WhyChooseUs />
       <StudentMentorConnect />
       <QuestionsWeGet />
