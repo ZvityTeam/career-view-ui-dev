@@ -1,9 +1,12 @@
 import { Button } from './ui/Button.tsx';
+import NetworkVisualization from './network-visualization.tsx';
 
 export const BrowseMentorsHero = () => {
   return (
     <section
-      className={'flex min-h-screen flex-col items-center bg-zinc-900 pt-44'}
+      className={
+        'flex min-h-screen w-full flex-col items-center bg-zinc-700 pt-44'
+      }
     >
       <div className='mt-24 space-y-16 text-center'>
         <h1 className='text-8xl font-bold text-white'>
@@ -17,6 +20,7 @@ export const BrowseMentorsHero = () => {
         </p>
 
         <Button variant={'outline'}>Ask a question</Button>
+        <NetworkVisualization />
       </div>
     </section>
   );
