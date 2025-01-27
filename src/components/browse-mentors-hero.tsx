@@ -1,13 +1,25 @@
 import { Button } from './ui/Button.tsx';
 import NetworkVisualization from './network-visualization.tsx';
+import bg1 from '../components/svgs/bg-1.svg';
+import bg2 from '../components/svgs/bg-2.svg';
 
 export const BrowseMentorsHero = () => {
   return (
     <section
       className={
-        'flex min-h-screen w-full flex-col items-center bg-zinc-700 pt-44'
+        'via-slate-0 relative flex min-h-screen w-full flex-col items-center bg-gradient-to-br from-slate-900 to-slate-700 pt-44'
       }
     >
+      <img
+        src={bg1}
+        alt={''}
+        className={'absolute left-0 top-0'}
+      />
+      <img
+        src={bg2}
+        alt={''}
+        className={'absolute right-0 top-0'}
+      />
       <div className='mt-24 space-y-16 text-center'>
         <h1 className='text-8xl font-bold text-white'>
           Mentor <span className={'text-yellow-500'}>Network</span>{' '}
