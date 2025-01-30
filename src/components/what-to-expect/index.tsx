@@ -1,18 +1,24 @@
 import { Section } from '../container/Section.tsx';
 import { SectionHeader } from '../section-header/SectionHeader.tsx';
 import { Button } from '../ui/Button.tsx';
+import { ImageCarousel } from '../ui/image-carousel.tsx';
 
 export const WhatToExpect = () => {
   return (
-    <Section className={'flex h-[70dvh] flex-row gap-12 px-24'}>
+    <Section className={'my-24 flex h-[70dvh] flex-row gap-12'}>
       <div className={'grid h-[80%] w-2/3 place-items-center'}>
-        <div className='h-full w-full overflow-hidden rounded-3xl'>
-          <img
-            className={'object-fill'}
-            src={
-              'https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg'
-            }
-            alt={'image'}
+        <div className='h-full w-full rounded-3xl'>
+          <ImageCarousel
+            className={'overflow-hidden rounded-3xl'}
+            showControls
+            autoPlay={true}
+            images={[
+              'https://images.pexels.com/photos/29823044/pexels-photo-29823044/free-photo-of-reindeer-herd-crossing-snowy-norwegian-landscape.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+              'https://images.pexels.com/photos/19376809/pexels-photo-19376809/free-photo-of-pigeons-sitting-on-the-exterior-of-a-residential-building-in-city.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+              'https://images.pexels.com/photos/28277464/pexels-photo-28277464/free-photo-of-a-mountain-covered-in-snow-and-clouds-at-sunset.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+              'https://images.pexels.com/photos/29713560/pexels-photo-29713560/free-photo-of-vibrant-cherry-blossoms-against-blue-sky.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+              'https://images.pexels.com/photos/26926276/pexels-photo-26926276/free-photo-of-elephant-on-savanna-with-kilimanjaro-behind.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+            ]}
           />
         </div>
       </div>
