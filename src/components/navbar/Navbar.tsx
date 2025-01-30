@@ -10,9 +10,9 @@ export const Navbar = () => {
   const { isDark } = useNavbarContext(); // Get theme from context
 
   return (
-    <nav className='absolute top-0 z-10 w-full px-20 py-12 backdrop-blur-3xl'>
+    <nav className='absolute top-0 z-10 w-full px-20 pt-12 backdrop-blur-3xl'>
       <div
-        className={`flex items-center justify-between border-b-[0.5px] pb-8 ${
+        className={`flex items-center justify-between border-b-[1px] pb-8 ${
           isDark ? 'border-gray-800' : 'border-white'
         }`}
       >
