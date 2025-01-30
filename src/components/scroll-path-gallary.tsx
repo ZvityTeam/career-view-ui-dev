@@ -11,7 +11,8 @@ import { cn } from '../utils/cn.ts';
  */
 export interface ScrollPathGalleryProps extends ReelImageGalleryProps {
   /**
-   * Optionally override the width of the gallery column
+   * Optionally override the width of the gallery column.
+   * Default is "w-96".
    */
   galleryWidthClass?: string;
 }
@@ -57,9 +58,18 @@ export default function ScrollPathGallery({
   ];
 
   return (
-    <div className='flex w-full bg-gray-50'>
-      {/* Left side: the reel image gallery */}
-      <div className={cn('sticky top-0 flex-shrink-0', galleryWidthClass)}>
+    <div
+      className={cn(
+        'flex w-full gap-8 bg-gray-50 px-20 py-8' // Padding on both sides
+      )}
+    >
+      {/* Left side: the reel image gallery - STICKY to keep it visible */}
+      <div
+        className={cn(
+          galleryWidthClass,
+          'sticky top-0 flex-shrink-0 self-start'
+        )}
+      >
         <ReelImageGallery
           images={images}
           aspectRatio={aspectRatio}
@@ -73,10 +83,14 @@ export default function ScrollPathGallery({
       {/* Right side: the scrolling timeline/path */}
       <div
         ref={containerRef}
-        className='relative mx-auto min-h-[200vh] max-w-6xl flex-1 px-4'
+        className='min-h-[200vh] flex-1'
       >
-        {/* We use a sticky container so the path remains visible as we scroll */}
-        <div className='sticky top-0 flex h-screen items-center'>
+        {/*
+          We use a "sticky" style on the left side so it stays put,
+          while the right side is tall (min-h-[200vh]) to demonstrate
+          the scroll-based animation.
+        */}
+        <div className='sticky top-12 flex h-screen items-center'>
           <div className='relative w-full'>
             {/* Background Path with Light Blue Gradient */}
             <svg

@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { Header } from './Header.tsx';
 import { MentorProfileSection } from './MentorProfileSection.tsx';
 import { mentorData } from '../../components/mentors-list';
+import ScrollPathGallery from '../../components/scroll-path-gallary.tsx';
 
 const mentorData2 = {
   name: 'Mark Johnson',
@@ -53,6 +54,15 @@ export const MentorDetails = () => {
     <main className={'mt-32'}>
       <Header {...mentor} />
       <MentorProfileSection {...mentorData2} />
+      <ScrollPathGallery
+        images={[
+          'https://images.pexels.com/photos/19376809/pexels-photo-19376809/free-photo-of-pigeons-sitting-on-the-exterior-of-a-residential-building-in-city.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+          'https://images.pexels.com/photos/29823044/pexels-photo-29823044/free-photo-of-reindeer-herd-crossing-snowy-norwegian-landscape.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+          'https://images.pexels.com/photos/28277464/pexels-photo-28277464/free-photo-of-a-mountain-covered-in-snow-and-clouds-at-sunset.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+          'https://images.pexels.com/photos/29713560/pexels-photo-29713560/free-photo-of-vibrant-cherry-blossoms-against-blue-sky.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+          'https://images.pexels.com/photos/26926276/pexels-photo-26926276/free-photo-of-elephant-on-savanna-with-kilimanjaro-behind.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        ]}
+      />
     </main>
   );
 };
