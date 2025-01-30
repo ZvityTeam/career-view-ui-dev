@@ -23,6 +23,47 @@ export interface VideoPlayerProps
   height?: number;
 }
 
+/**
+ * A reusable video player component in React.
+ *
+ * @remarks
+ * **Browser Autoplay Policies**:
+ * Modern browsers (e.g., Chrome) often block autoplay if the video is not muted or if there
+ * has been no user interaction on the page. If you set `autoPlay` to `true` and want it to work
+ * reliably, it is recommended to also set `muted` to `true`.
+ *
+ * @example
+ * ```tsx
+ * import { VideoPlayer } from "./VideoPlayer";
+ *
+ * function App() {
+ *   return (
+ *     <VideoPlayer
+ *       src="https://example.com/path-to-your-video.mp4"
+ *       showMuteButton
+ *       showPlayButton
+ *       autoPlay
+ *       muted
+ *       aspectRatio="16/9"
+ *       height={300}
+ *       className="rounded overflow-hidden"
+ *     />
+ *   );
+ * }
+ * ```
+ *
+ * @param src - The source URL or path for the video.
+ * @param showMuteButton - Whether to display a button to toggle mute/unmute.
+ * @param showPlayButton - Whether to display a button to toggle play/pause.
+ * @param muted - The initial mute state. Note that for reliable autoplay, muted should be `true`.
+ * @param autoPlay - Whether the video should attempt to start playing automatically. May be blocked by the browser if not muted.
+ * @param aspectRatio - The aspect ratio for the video container (e.g., `"16/9"`, `"9/16"`, or `"1/1"`).
+ * @param className - Additional Tailwind or custom class names to style the container.
+ * @param height - A numerical pixel height to override the aspect ratio (e.g., `height={300}`).
+ * @param props - Additional props passed to the underlying `<video>` element.
+ *
+ * @constructor
+ */
 export function VideoPlayer({
   src,
   showMuteButton = false,
