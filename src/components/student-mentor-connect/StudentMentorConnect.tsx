@@ -9,14 +9,14 @@ export const StudentMentorConnect = () => {
     <section className='grid min-h-[120vh] place-items-center bg-gradient-to-tr from-yellow-500 via-gray-700 to-black pt-44'>
       <div className='flex min-h-screen w-full gap-20 p-32'>
         <div className='relative flex-1 pr-20'>
-          <div className={'absolute right-0 -translate-y-1/2'}>
+          <div className={'float-animation absolute right-0 -translate-y-1/2'}>
             <Avatar
               image={'https://placehold.co/400'}
               alt={'Image'}
               isActive={true}
             />
           </div>
-          <div className={'absolute left-0 top-[10%]'}>
+          <div className={'float-animation absolute left-0 top-[10%]'}>
             <Avatar
               size={'sm'}
               image={'https://placehold.co/400'}
@@ -24,13 +24,17 @@ export const StudentMentorConnect = () => {
               isActive={true}
             />
           </div>
-          <div className={'absolute -top-[20%] right-[30%]'}>
+          <div className={'float-animation absolute -top-[20%] right-[30%]'}>
             <AvatarProfileCard />
           </div>{' '}
-          <div className={'absolute -left-[10%] bottom-[25%] scale-75'}>
+          <div
+            className={
+              'float-animation absolute -left-[10%] bottom-[25%] scale-75'
+            }
+          >
             <QACard />
           </div>{' '}
-          <div className={'absolute bottom-[10%] right-0'}>
+          <div className={'float-animation absolute bottom-[10%] right-0'}>
             <SearchFieldComponent />
           </div>
         </div>

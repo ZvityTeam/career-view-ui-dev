@@ -5,6 +5,25 @@
 html,body,:root{
     height: 100%;
 }
+
+.float-animation {
+    /* 3s = total animation duration, can be tweaked (e.g. 2s, 4s) */
+    animation: floatUpDown 3s ease-in-out infinite;
+}
+
+@keyframes floatUpDown {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        /* Move up (negative y), adjust the distance as needed */
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
 @layer base {
     /* Make everything use Avenir by default */
     html {
