@@ -1,16 +1,15 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronUp, Trash2 } from 'lucide-react';
-import { useLocalStorage } from '../../hooks/useLocalStorage.ts';
 import { MentorCardProps } from '../meet-our-mentors/mentorcard/MentorCard.tsx';
 import { Button } from '../ui/Button.tsx';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import useLocalStorageState from '../../hooks/useLocalStorageState.ts';
 
 export const SavedMentors = () => {
-  const [savedMentors, setSavedMentors] = useLocalStorage<MentorCardProps[]>(
-    'savedMentors',
-    []
-  );
+  const [savedMentors, setSavedMentors] = useLocalStorageState<
+    MentorCardProps[]
+  >('savedMentors', []);
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 

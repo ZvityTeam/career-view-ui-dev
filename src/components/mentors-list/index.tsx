@@ -1,8 +1,9 @@
 import { Section } from '../container/Section.tsx';
 import { MentorProfileCard } from '../mentor-profile-card';
-import { useLocalStorage } from '../../hooks/useLocalStorage.ts';
 import { useNavigate } from 'react-router-dom';
+import useLocalStorageState from '../../hooks/useLocalStorageState.ts';
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const mentorData = [
   {
     name: 'Mark Johnson',
@@ -69,7 +70,7 @@ export const mentorData = [
 export const MentorsList = () => {
   const navigate = useNavigate(); // ✅ Initialize navigation
 
-  const [savedMentors, setSavedMentors] = useLocalStorage(
+  const [savedMentors, setSavedMentors] = useLocalStorageState(
     'savedMentors',
     [] as typeof mentorData
   );
