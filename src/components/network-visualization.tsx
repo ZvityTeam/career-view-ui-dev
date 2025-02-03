@@ -1,6 +1,4 @@
-'use client';
-
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface Point {
   x: number;
@@ -49,63 +47,116 @@ const connections: Connection[] = [
 export default function NetworkVisualization() {
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Keep track of avatar refs
+  const avatarRefs = useRef<(HTMLDivElement | null)[]>([]);
+  // We track <line> elements after creation
+  const [lineElements, setLineElements] = useState<SVGLineElement[]>([]);
+
   useEffect(() => {
-    const updateLines = () => {
-      const container = containerRef.current;
-      if (!container) return;
+    const container = containerRef.current;
+    if (!container) return;
 
-      const avatars = container.querySelectorAll('.avatar-container');
-      const svg = container.querySelector('svg');
-      if (!svg) return;
+    const avatars =
+      container.querySelectorAll<HTMLDivElement>('.avatar-container');
+    const svg = container.querySelector('svg');
+    if (!svg) return;
 
-      while (svg.firstChild) {
-        svg.removeChild(svg.firstChild);
-      }
+    // Clear any existing lines
+    while (svg.firstChild) {
+      svg.removeChild(svg.firstChild);
+    }
 
-      connections.forEach(({ from, to }) => {
-        const fromAvatar = avatars[from];
-        const toAvatar = avatars[to];
-        if (!fromAvatar || !toAvatar) return;
+    // For storing newly created lines
+    const newLines: SVGLineElement[] = [];
 
-        const fromRect = fromAvatar.getBoundingClientRect();
-        const toRect = toAvatar.getBoundingClientRect();
-        const containerRect = container.getBoundingClientRect();
+    connections.forEach(({ from, to }) => {
+      const fromAvatar = avatars[from];
+      const toAvatar = avatars[to];
+      if (!fromAvatar || !toAvatar) return;
 
-        const line = document.createElementNS(
-          'http://www.w3.org/2000/svg',
-          'line'
-        );
-        line.setAttribute(
-          'x1',
-          (fromRect.left + fromRect.width / 2 - containerRect.left).toString()
-        );
-        line.setAttribute(
-          'y1',
-          (fromRect.top + fromRect.height / 2 - containerRect.top).toString()
-        );
-        line.setAttribute(
-          'x2',
-          (toRect.left + toRect.width / 2 - containerRect.left).toString()
-        );
-        line.setAttribute(
-          'y2',
-          (toRect.top + toRect.height / 2 - containerRect.top).toString()
-        );
-        line.setAttribute('stroke', 'rgba(0,0,0,1)'); // White for dark background
-        line.setAttribute('stroke-width', '2');
-        line.setAttribute('stroke-dasharray', '4 2');
+      const fromRect = fromAvatar.getBoundingClientRect();
+      const toRect = toAvatar.getBoundingClientRect();
+      const containerRect = container.getBoundingClientRect();
 
-        svg.appendChild(line);
-      });
-    };
+      const line = document.createElementNS(
+        'http://www.w3.org/2000/svg',
+        'line'
+      );
 
-    updateLines();
-    window.addEventListener('resize', updateLines);
+      // Compute line positions
+      const x1 = fromRect.left + fromRect.width / 2 - containerRect.left;
+      const y1 = fromRect.top + fromRect.height / 2 - containerRect.top;
+      const x2 = toRect.left + toRect.width / 2 - containerRect.left;
+      const y2 = toRect.top + toRect.height / 2 - containerRect.top;
 
-    return () => {
-      window.removeEventListener('resize', updateLines);
-    };
+      line.setAttribute('x1', x1.toString());
+      line.setAttribute('y1', y1.toString());
+      line.setAttribute('x2', x2.toString());
+      line.setAttribute('y2', y2.toString());
+
+      // Basic line style
+      line.setAttribute('stroke', 'rgba(0, 0, 0, 1)');
+      line.setAttribute('stroke-width', '2');
+      line.setAttribute('stroke-dasharray', '4 2');
+
+      svg.appendChild(line);
+      newLines.push(line);
+    });
+
+    setLineElements(newLines);
   }, []);
+
+  // Animate lines and avatars once we have lineElements
+  useEffect(() => {
+    if (lineElements.length === 0) return;
+
+    lineElements.forEach((line, i) => {
+      // 1) Calculate length
+      const x1 = parseFloat(line.getAttribute('x1') || '0');
+      const y1 = parseFloat(line.getAttribute('y1') || '0');
+      const x2 = parseFloat(line.getAttribute('x2') || '0');
+      const y2 = parseFloat(line.getAttribute('y2') || '0');
+      const length = Math.hypot(x2 - x1, y2 - y1);
+
+      // 2) Set dash properties
+      line.style.strokeDasharray = String(length);
+      line.style.strokeDashoffset = String(length);
+
+      // 3) Animate strokeDashoffset -> 0
+      // We'll use CSS keyframes "drawLine" from the snippet in our CSS.
+      // If you prefer inline animation, you can do:
+      line.style.animationName = 'drawLine';
+      line.style.animationDuration = '1s';
+      line.style.animationTimingFunction = 'ease';
+      line.style.animationFillMode = 'forwards';
+      // Stagger them slightly by index
+      line.style.animationDelay = `${0.3 * i}s`;
+
+      // 4) Once the line is about halfway drawn, reveal the target avatar
+      const { to } = connections[i];
+      setTimeout(
+        () => {
+          const toEl = avatarRefs.current[to];
+          // Fade in the 'to' avatar if it exists
+          if (toEl) {
+            toEl.style.animationName = 'fadeIn';
+            toEl.style.animationDuration = '0.6s';
+            toEl.style.animationFillMode = 'forwards';
+          }
+        },
+        (0.3 * i + 0.5) * 1000
+      );
+
+      // Optionally also reveal the from-avatar right when the line starts
+      const { from } = connections[i];
+      const fromEl = avatarRefs.current[from];
+      if (fromEl) {
+        fromEl.style.animationName = 'fadeIn';
+        fromEl.style.animationDuration = '0.6s';
+        fromEl.style.animationFillMode = 'forwards';
+      }
+    });
+  }, [lineElements]);
 
   return (
     <div className='relative flex h-[40vh] w-full items-center justify-center'>
@@ -113,13 +164,17 @@ export default function NetworkVisualization() {
         ref={containerRef}
         className='relative h-full w-full max-w-5xl'
       >
+        {/* The SVG for our lines */}
         <svg className='absolute inset-0 h-full w-full'>
-          {/* Lines dynamically drawn */}
+          {/* Lines are dynamically created in useEffect */}
         </svg>
+
+        {/* Avatars: initially hidden (opacity: 0 via Tailwind or your own CSS) */}
         {avatarPositions.map((position, index) => (
           <div
             key={index}
-            className='avatar-container absolute'
+            ref={(el) => (avatarRefs.current[index] = el)}
+            className='avatar-container absolute opacity-0'
             style={{
               left: `${position.x}%`,
               top: `${position.y}%`,
