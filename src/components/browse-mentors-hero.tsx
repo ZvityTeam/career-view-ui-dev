@@ -13,14 +13,14 @@ export const BrowseMentorsHero = () => {
       <img
         src={bg1}
         alt={''}
-        className={'absolute left-0 top-0'}
+        className={'pointer-events-none absolute left-0 top-0 z-10'}
       />
       <img
         src={bg2}
         alt={''}
-        className={'absolute right-0 top-0'}
+        className={'pointer-events-none absolute right-0 top-0 z-10'}
       />
-      <div className='mt-24 space-y-16 text-center'>
+      <div className='z-20 mt-24 space-y-16 text-center'>
         <h1 className='text-8xl font-bold text-white'>
           Mentor <span className={'text-yellow-500'}>Network</span>{' '}
         </h1>
