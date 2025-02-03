@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from '../ui/Button.tsx';
 import { Spacer } from '../spacer';
+import { cn } from '../../utils/cn.ts';
 
 export interface MentorProfileProps {
   name: string;
@@ -15,6 +16,7 @@ export interface MentorProfileProps {
   sideHustles: string;
   onAddToMentorList?: () => void;
   onClick?: () => void;
+  isAdded: boolean;
 }
 
 export const MentorProfileCard: React.FC<MentorProfileProps> = ({
@@ -30,6 +32,7 @@ export const MentorProfileCard: React.FC<MentorProfileProps> = ({
   sideHustles,
   onAddToMentorList,
   onClick,
+  isAdded,
 }) => {
   return (
     <div
@@ -68,9 +71,14 @@ export const MentorProfileCard: React.FC<MentorProfileProps> = ({
                 e.stopPropagation();
                 onAddToMentorList();
               }}
-              className='rounded-full border border-blue-500 px-4 py-2 text-blue-500 hover:bg-blue-100'
+              className={cn(
+                `rounded-full border border-blue-500 px-4 py-2 text-blue-500 hover:bg-blue-100`,
+                isAdded
+                  ? 'scale-110 bg-green-500 text-white hover:bg-green-600'
+                  : 'scale-100 bg-blue-500 text-white hover:bg-blue-600'
+              )}
             >
-              + Add to Mentor List
+              {isAdded ? `✓ Added` : `+ Add to Mentor Lis`}
             </button>
           )}
         </div>

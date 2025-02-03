@@ -75,22 +75,32 @@ export const MentorsList = () => {
     [] as typeof mentorData
   );
 
-  const handleAddToMentorList = (mentor: (typeof mentorData)[0]) => {
-    if (!savedMentors.some((m: { name: string }) => m.name === mentor.name)) {
+  const toggleMentorInList = (mentor: (typeof mentorData)[0]) => {
+    const isAlreadyAdded = savedMentors.some((m) => m.name === mentor.name);
+
+    if (isAlreadyAdded) {
+      // Remove from saved list
+      setSavedMentors(savedMentors.filter((m) => m.name !== mentor.name));
+    } else {
+      // Add to saved list
       setSavedMentors([...savedMentors, mentor]);
     }
   };
 
   return (
     <Section className='gap-8'>
-      {mentorData.map((item, index) => (
-        <MentorProfileCard
-          onClick={() => navigate(`/browse-mentors/${index}`)}
-          {...item}
-          key={index}
-          onAddToMentorList={() => handleAddToMentorList(item)}
-        />
-      ))}
+      {mentorData.map((item, index) => {
+        const isAdded = savedMentors.some((m) => m.name === item.name);
+        return (
+          <MentorProfileCard
+            onClick={() => navigate(`/browse-mentors/${index}`)}
+            {...item}
+            key={index}
+            isAdded={isAdded}
+            onAddToMentorList={() => toggleMentorInList(item)}
+          />
+        );
+      })}
     </Section>
   );
 };
