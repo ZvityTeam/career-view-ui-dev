@@ -4,14 +4,31 @@ import { Podcast } from '../rotating-items/podcast.tsx';
 import { Ebook } from '../rotating-items/ebook.tsx';
 import { LiveStream } from '../rotating-items/live-stream.tsx';
 import { OrbitingCircles } from '../ui/orbiting-circles.tsx';
+import bg1 from '../svgs/bg-1.svg';
+import bg2 from '../svgs/bg-2.svg';
 
 const flipWords = ['Opportunities', 'Pathways', 'Connections'];
 export const Hero = () => {
   return (
-    <section className='z-10 flex min-h-screen flex-col items-center justify-center gap-52 space-y-32 bg-gradient-to-b from-slate-900 via-slate-800 to-yellow-100 py-16 pt-32 text-center'>
+    <section
+      className='z-10 flex min-h-screen flex-col items-center justify-center gap-52 space-y-32 py-16 pt-32 text-center'
+      style={{
+        background: `linear-gradient(351deg, #FFFBF0, #F1CE7E, #767676, #000000)`,
+      }}
+    >
+      <img
+        src={bg1}
+        alt={''}
+        className={'pointer-events-none absolute left-0 top-0 z-10'}
+      />
+      <img
+        src={bg2}
+        alt={''}
+        className={'pointer-events-none absolute right-0 top-0 z-10'}
+      />
       {/* Heading */}
-      <div className='space-y-24'>
-        <h1 className='text-8xl font-bold text-white'>
+      <div className='space-y-18'>
+        <h1 className='text-[100px] text-white'>
           Unlock{' '}
           <FlipWords
             duration={1500}

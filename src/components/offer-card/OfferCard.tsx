@@ -30,9 +30,11 @@ export const OfferCard = ({
 
       {/* Content Section */}
       <div className='grid h-[40%] scale-110 place-items-center px-12'>
-        <div className='text-left'>
-          <p className='text-lg font-semibold text-gray-800'>{title}</p>
-          <p className='text-sm text-gray-600'>{description}</p>
+        <div className='flex flex-col gap-3 text-left'>
+          <p className='text-2xl font-semibold text-gray-800'>{title}</p>
+          <p className='font-avenir text-lg leading-normal text-gray-600'>
+            {description}
+          </p>
         </div>
       </div>
     </div>

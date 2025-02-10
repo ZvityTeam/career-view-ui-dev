@@ -30,34 +30,34 @@ const MENTORS: MentorCardProps[] = [
 
 export const MeetOutMentors = () => {
   return (
-    <Section className={'flex flex-col gap-12'}>
+    <Section className={'flex flex-col gap-16'}>
       <SectionHeader
         title={'Meet out Mentors'}
         subtitle={
           'Get a look at our mentors. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor.Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor'
         }
       />
-      <div className='flex items-center justify-between gap-12'>
+      <div className='flex items-center justify-between gap-28'>
         <Stat
           num={100}
           suffix={'+'}
           subheading={'Young Professionals'}
-          icon={<Award className='scale-125 text-secondary' />}
+          icon={Award}
         />
         <Stat
           num={32}
           suffix={'+'}
           subheading={'Career Options'}
-          icon={<ShoppingBag className='scale-125 text-secondary' />}
+          icon={ShoppingBag}
         />
         <Stat
           num={10}
           suffix={'+'}
           subheading={'Cultural Backgrounds'}
-          icon={<Users className='scale-125 text-secondary' />}
+          icon={Users}
         />
       </div>
-      <div className='flex h-[80vh] w-full gap-6 bg-slate-800 p-12'>
+      <div className='flex w-full gap-10 bg-[#272727] p-12'>
         {MENTORS.map((value, index) => (
           <MentorCard
             {...value}

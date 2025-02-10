@@ -11,7 +11,7 @@ export const FaqItem = ({ question, answer }: FaqItemProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className='border-b border-gray-200 py-4'>
+    <div className='border-b border-[#aaaaaa] py-8'>
       {/* Question Row */}
       <div
         className='flex cursor-pointer items-center justify-between'

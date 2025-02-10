@@ -15,8 +15,11 @@ export const SchoolConnectCTA = () => {
       <p></p>
       <div className='flex gap-6'>
         <Button
-          variant={'secondary'}
+          variant={'outline'}
           size={'lg'}
+          className={
+            'border-[#272727] text-[#272727] hover:border-black hover:text-black'
+          }
         >
           Request a Demo
         </Button>

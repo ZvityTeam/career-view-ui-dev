@@ -33,7 +33,7 @@ export const WhyChooseUsCard: React.FC<WhyChooseCardProps> = ({
   // so center card (pos=0) is in the middle, others offset.
   return (
     <motion.div
-      className={`absolute flex cursor-pointer flex-col overflow-hidden rounded-xl bg-white shadow-lg ${isActive ? 'z-10' : 'z-0'}`}
+      className={`absolute flex cursor-pointer flex-col overflow-hidden rounded-[30px] bg-white shadow-lg ${isActive ? 'z-10' : 'z-0'}`}
       style={{
         width: CARD_WIDTH,
         height: CARD_HEIGHT,

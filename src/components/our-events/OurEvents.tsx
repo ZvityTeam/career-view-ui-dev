@@ -1,10 +1,11 @@
 import { Section } from '../container/Section.tsx';
 import { SectionHeader } from '../section-header/SectionHeader.tsx';
 import { OurEventCard, OurEventCardProps } from './OurEventCard.tsx';
+import img from '../../assets/event1.jpg';
 
 const OUR_EVENTS: OurEventCardProps[] = [
   {
-    imgSrc: 'https://placehold.co/300x450', // Placeholder for "Midwife Session" image
+    imgSrc: img, // Placeholder for "Midwife Session" image
     title: 'Midwife Session',
   },
   {
@@ -23,14 +24,14 @@ const OUR_EVENTS: OurEventCardProps[] = [
 
 export const OurEvents = () => {
   return (
-    <Section className={'flex flex-col gap-12 p-24'}>
+    <Section className={'flex flex-col gap-20 bg-white p-24'}>
       <SectionHeader
         title={'Our Event & News'}
         subtitle={
           '    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias architecto assumenda, eaque fuga illo labore minus non perferendis quam reiciendis vitae voluptatem!\n'
         }
       />
-      <div className={'flex gap-8'}>
+      <div className={'flex gap-12'}>
         {OUR_EVENTS.map((value, index) => (
           <OurEventCard
             key={index}

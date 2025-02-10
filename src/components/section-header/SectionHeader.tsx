@@ -28,9 +28,16 @@ export const SectionHeader: React.FC<SectionHeadersProps> = ({
         className
       )}
     >
-      <h2 className='text-4xl font-bold'>{title}</h2>
+      <h2 className='text-5xl'>{title}</h2>
       {subtitle && (
-        <p className={cn('text-lg', subTitleClassName)}>{subtitle}</p>
+        <p
+          className={cn(
+            'max-w-[70%] text-lg font-light leading-normal',
+            subTitleClassName
+          )}
+        >
+          {subtitle}
+        </p>
       )}
     </div>
   );

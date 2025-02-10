@@ -11,7 +11,7 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = () => {
   return (
-    <footer className='w-full bg-gradient-to-br from-black to-slate-700 text-white'>
+    <footer className='w-full bg-[linear-gradient(165deg,_#000000,_#272727,_#6E6E6E)] text-white'>
       <div className='flex min-h-screen justify-between px-44'>
         <div className='flex max-w-2xl flex-col gap-7 p-24'>
           {/* Multiline heading */}
