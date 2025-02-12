@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import {
-  CardData,
-  WhyChooseUsCard,
-} from '../why-choose-us-card/WhyChooseUsCard.tsx';
-import { StepBack, StepForward } from 'lucide-react';
+import { CardData } from '../why-choose-us-card/WhyChooseUsCard.tsx';
 import { SectionHeader } from '../section-header/SectionHeader.tsx';
+import NetworkVisualization from '../network-visualization.tsx';
 
 /** Example data. Replace with your actual content & images. */
 const WHY_CHOOSE_US_DATA: CardData[] = [
@@ -89,48 +86,49 @@ export const WhyChooseUs: React.FC = () => {
 
           {/* The carousel container (relative) for stacking motion cards */}
           <div className='relative mx-auto h-[400px] w-full overflow-hidden'>
-            {cards.map((card, index) => {
-              // We'll place the middle card (position=0) in the center,
-              // the next/prev around it, etc.
-              const middleIndex = Math.floor(cards.length / 2);
-              const position = index - middleIndex;
-              // E.g., if we have 5 cards, indexes are 0..4, middleIndex=2,
-              // positions => -2, -1, 0, +1, +2
-              const zIndex = 10 - Math.abs(position);
+            <NetworkVisualization />
+            {/*{cards.map((card, index) => {*/}
+            {/*  // We'll place the middle card (position=0) in the center,*/}
+            {/*  // the next/prev around it, etc.*/}
+            {/*  const middleIndex = Math.floor(cards.length / 2);*/}
+            {/*  const position = index - middleIndex;*/}
+            {/*  // E.g., if we have 5 cards, indexes are 0..4, middleIndex=2,*/}
+            {/*  // positions => -2, -1, 0, +1, +2*/}
+            {/*  const zIndex = 10 - Math.abs(position);*/}
 
-              // The "active" card is the center one (position === 0)
-              const isActive = position === 0;
+            {/*  // The "active" card is the center one (position === 0)*/}
+            {/*  const isActive = position === 0;*/}
 
-              return (
-                <WhyChooseUsCard
-                  key={card.id}
-                  card={card}
-                  zIndex={zIndex}
-                  position={position}
-                  isActive={isActive}
-                  onClick={() => handleMove(position)}
-                />
-              );
-            })}
+            {/*  return (*/}
+            {/*    <WhyChooseUsCard*/}
+            {/*      key={card.id}*/}
+            {/*      card={card}*/}
+            {/*      zIndex={zIndex}*/}
+            {/*      position={position}*/}
+            {/*      isActive={isActive}*/}
+            {/*      onClick={() => handleMove(position)}*/}
+            {/*    />*/}
+            {/*  );*/}
+            {/*})}*/}
           </div>
 
-          {/* Left/right arrow buttons */}
-          <div className='absolute inset-y-0 left-10 flex items-center'>
-            <button
-              onClick={() => handleMove(-1)}
-              className='ml-2 grid h-12 w-12 place-content-center rounded-full border text-2xl transition hover:bg-black hover:text-white'
-            >
-              <StepBack />
-            </button>
-          </div>
-          <div className='absolute inset-y-0 right-10 flex items-center'>
-            <button
-              onClick={() => handleMove(1)}
-              className='mr-2 grid h-12 w-12 place-content-center rounded-full border text-2xl transition hover:bg-black hover:text-white'
-            >
-              <StepForward />
-            </button>
-          </div>
+          {/*/!* Left/right arrow buttons *!/*/}
+          {/*<div className='absolute inset-y-0 left-10 flex items-center'>*/}
+          {/*  <button*/}
+          {/*    onClick={() => handleMove(-1)}*/}
+          {/*    className='ml-2 grid h-12 w-12 place-content-center rounded-full border text-2xl transition hover:bg-black hover:text-white'*/}
+          {/*  >*/}
+          {/*    <StepBack />*/}
+          {/*  </button>*/}
+          {/*</div>*/}
+          {/*<div className='absolute inset-y-0 right-10 flex items-center'>*/}
+          {/*  <button*/}
+          {/*    onClick={() => handleMove(1)}*/}
+          {/*    className='mr-2 grid h-12 w-12 place-content-center rounded-full border text-2xl transition hover:bg-black hover:text-white'*/}
+          {/*  >*/}
+          {/*    <StepForward />*/}
+          {/*  </button>*/}
+          {/*</div>*/}
         </section>
       </div>
     </div>
