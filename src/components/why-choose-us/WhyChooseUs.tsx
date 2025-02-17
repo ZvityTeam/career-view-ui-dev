@@ -57,19 +57,19 @@ export const WhyChooseUs: React.FC = () => {
    * Move the array left (direction < 0) or right (direction > 0).
    * This rotates the items so we can keep the "center" card in front.
    */
-  const handleMove = (direction: number) => {
-    const newArr = [...cards];
-    if (direction > 0) {
-      // Move the first item to the end
-      const first = newArr.shift();
-      if (first) newArr.push(first);
-    } else {
-      // Move the last item to the front
-      const last = newArr.pop();
-      if (last) newArr.unshift(last);
-    }
-    setCards(newArr);
-  };
+  // const handleMove = (direction: number) => {
+  //   const newArr = [...cards];
+  //   if (direction > 0) {
+  //     // Move the first item to the end
+  //     const first = newArr.shift();
+  //     if (first) newArr.push(first);
+  //   } else {
+  //     // Move the last item to the front
+  //     const last = newArr.pop();
+  //     if (last) newArr.unshift(last);
+  //   }
+  //   setCards(newArr);
+  // };
 
   return (
     <div className='relative mt-44 grid h-[55vh] place-items-center'>
