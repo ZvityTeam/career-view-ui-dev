@@ -51,7 +51,7 @@ const WHY_CHOOSE_US_DATA: CardData[] = [
  * Main carousel component
  */
 export const WhyChooseUs: React.FC = () => {
-  const [cards, setCards] = useState(WHY_CHOOSE_US_DATA);
+  // const [cards, setCards] = useState(WHY_CHOOSE_US_DATA);
 
   /**
    * Move the array left (direction < 0) or right (direction > 0).
