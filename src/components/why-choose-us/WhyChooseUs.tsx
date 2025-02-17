@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardData } from '../why-choose-us-card/WhyChooseUsCard.tsx';
+// import { CardData } from '../why-choose-us-card/WhyChooseUsCard.tsx';
 import { SectionHeader } from '../section-header/SectionHeader.tsx';
 import NetworkVisualization from '../network-visualization.tsx';
 
