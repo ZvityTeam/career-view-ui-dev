@@ -31,7 +31,7 @@ interface CurvedWrapperProps {
  * keeping the content centered.
  *
  * @param {CurvedWrapperProps} props - The props for the component.
- * @returns {JSX.Element} The rendered CurvedWrapper component.
+ * @returns {React.ReactNode} The rendered CurvedWrapper component.
  *
  * @example
  * <CurvedWrapper curve="top" className="my-custom-class">
@@ -42,7 +42,7 @@ export const CurvedWrapper: React.FC<CurvedWrapperProps> = ({
   curve = 'both',
   className = '',
   children,
-}) => {
+}: CurvedWrapperProps): React.ReactNode => {
   // Outer container that centers content and provides a base min-height.
   const outerClasses = cn(
     'relative grid place-items-center min-h-[60vh]',
@@ -53,7 +53,7 @@ export const CurvedWrapper: React.FC<CurvedWrapperProps> = ({
     return (
       <div className={outerClasses}>
         <section
-          className='absolute -top-16 z-10 flex w-full flex-col items-center justify-center space-y-24 rounded-t-[80px] bg-white px-12 py-24'
+          className='absolute -top-16 z-10 flex w-full flex-col items-center justify-center space-y-24 rounded-t-[80px] bg-white px-12 py-36'
           style={{ minHeight: '80vh' }}
         >
           {children}
@@ -64,7 +64,7 @@ export const CurvedWrapper: React.FC<CurvedWrapperProps> = ({
     return (
       <div className={outerClasses}>
         <section
-          className='absolute -bottom-16 z-10 flex w-full flex-col items-center justify-center space-y-24 rounded-b-[80px] bg-white px-12 py-24'
+          className='absolute -bottom-16 z-10 flex w-full flex-col items-center justify-center space-y-24 rounded-b-[80px] bg-white px-12 py-36'
           style={{ minHeight: '80vh' }}
         >
           {children}
@@ -76,7 +76,7 @@ export const CurvedWrapper: React.FC<CurvedWrapperProps> = ({
     return (
       <div className={outerClasses}>
         <section
-          className='absolute -bottom-16 -top-16 z-10 flex w-full flex-col items-center justify-center space-y-24 rounded-[80px] bg-white px-12 py-24'
+          className='absolute -bottom-16 -top-16 z-10 flex w-full flex-col items-center justify-center space-y-24 rounded-[80px] bg-white px-12 py-36'
           style={{ minHeight: '80vh' }}
         >
           {children}
