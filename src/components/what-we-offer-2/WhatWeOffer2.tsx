@@ -13,8 +13,8 @@ const fadeInUp = {
 
 export default function WhatWeOffer2() {
   return (
-    <section className='mt-36 min-h-screen w-full bg-white py-16'>
-      <div className='mx-auto flex max-w-[1200px] flex-col gap-6 px-6'>
+    <section className='mt-36 min-h-screen w-full'>
+      <div className='mx-auto flex flex-col gap-6 px-6'>
         {/* Title */}
         <SectionHeader title={'What we Offer'} />
 
@@ -23,7 +23,7 @@ export default function WhatWeOffer2() {
           {/* ---------------- ROW 1 ---------------- */}
           {/* 1) Feedback Statistics */}
           <motion.div
-            className='col-span-12 rounded-[24px] bg-white p-6 shadow-sm md:col-span-3'
+            className='col-span-12 h-[370px] w-[370px] rounded-[24px] bg-white p-6 shadow-sm md:col-span-3'
             {...fadeInUp}
           >
             <h3 className='mb-8 text-xl font-medium'>Feedback Statistics</h3>
@@ -98,8 +98,12 @@ export default function WhatWeOffer2() {
 
           {/* 3) Unlock Potential */}
           <motion.div
-            className='relative col-span-12 rounded-[24px] bg-gradient-to-br from-blue-100 to-blue-200 p-6 shadow-sm md:col-span-5'
+            className='relative col-span-12 rounded-[24px] p-6 shadow-sm md:col-span-5'
             {...fadeInUp}
+            style={{
+              background:
+                'radial-gradient(circle at bottom left, #FFFFFF, #FFFFFF, #6B8FF2)',
+            }}
           >
             <div className='flex items-start justify-between'>
               <div>

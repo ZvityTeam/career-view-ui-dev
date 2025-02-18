@@ -78,7 +78,7 @@ export const MentorProfileCard: React.FC<MentorProfileProps> = ({
                   : 'scale-100 bg-blue-500 text-white hover:bg-blue-600'
               )}
             >
-              {isAdded ? `✓ Added` : `+ Add to Mentor Lis`}
+              {isAdded ? `✓ Added` : `+ Add to Mentor List`}
             </button>
           )}
         </div>
