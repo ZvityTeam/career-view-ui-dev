@@ -1,75 +1,75 @@
-import React, { useState } from 'react';
-import { CardData } from '../why-choose-us-card/WhyChooseUsCard.tsx';
+import React from 'react';
+// import { CardData } from '../why-choose-us-card/WhyChooseUsCard.tsx';
 import { SectionHeader } from '../section-header/SectionHeader.tsx';
 import NetworkVisualization from '../network-visualization.tsx';
 
 /** Example data. Replace with your actual content & images. */
-const WHY_CHOOSE_US_DATA: CardData[] = [
-  {
-    id: 1,
-    title: 'Gain Valuable Insights',
-    description:
-      'Our Young Professional network provide valuable insights and perspective on...',
-    imageUrl:
-      'https://images.pexels.com/photos/19376809/pexels-photo-19376809/free-photo-of-pigeons-sitting-on-the-exterior-of-a-residential-building-in-city.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-  },
-  {
-    id: 2,
-    title: 'Develop Key Skills',
-    description:
-      'Our Young Professional network provide valuable insights and perspective on...',
-    imageUrl:
-      'https://images.pexels.com/photos/29823044/pexels-photo-29823044/free-photo-of-reindeer-herd-crossing-snowy-norwegian-landscape.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-  },
-  {
-    id: 3,
-    title: 'Expand Network',
-    description:
-      'Our Young Professional network provide valuable insights and perspective on...',
-    imageUrl:
-      'https://images.pexels.com/photos/28277464/pexels-photo-28277464/free-photo-of-a-mountain-covered-in-snow-and-clouds-at-sunset.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-  },
-  {
-    id: 4,
-    title: 'Get Support & Guidance',
-    description:
-      'Our Young Professional network provide valuable insights and perspective...',
-    imageUrl:
-      'https://images.pexels.com/photos/29713560/pexels-photo-29713560/free-photo-of-vibrant-cherry-blossoms-against-blue-sky.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-  },
-  {
-    id: 5,
-    title: 'Enhance Confidence',
-    description:
-      'Our Young Professional network provide valuable insights and perspective...',
-    imageUrl:
-      'https://images.pexels.com/photos/26926276/pexels-photo-26926276/free-photo-of-elephant-on-savanna-with-kilimanjaro-behind.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-  },
-];
+// const WHY_CHOOSE_US_DATA: CardData[] = [
+//   {
+//     id: 1,
+//     title: 'Gain Valuable Insights',
+//     description:
+//       'Our Young Professional network provide valuable insights and perspective on...',
+//     imageUrl:
+//       'https://images.pexels.com/photos/19376809/pexels-photo-19376809/free-photo-of-pigeons-sitting-on-the-exterior-of-a-residential-building-in-city.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+//   },
+//   {
+//     id: 2,
+//     title: 'Develop Key Skills',
+//     description:
+//       'Our Young Professional network provide valuable insights and perspective on...',
+//     imageUrl:
+//       'https://images.pexels.com/photos/29823044/pexels-photo-29823044/free-photo-of-reindeer-herd-crossing-snowy-norwegian-landscape.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+//   },
+//   {
+//     id: 3,
+//     title: 'Expand Network',
+//     description:
+//       'Our Young Professional network provide valuable insights and perspective on...',
+//     imageUrl:
+//       'https://images.pexels.com/photos/28277464/pexels-photo-28277464/free-photo-of-a-mountain-covered-in-snow-and-clouds-at-sunset.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+//   },
+//   {
+//     id: 4,
+//     title: 'Get Support & Guidance',
+//     description:
+//       'Our Young Professional network provide valuable insights and perspective...',
+//     imageUrl:
+//       'https://images.pexels.com/photos/29713560/pexels-photo-29713560/free-photo-of-vibrant-cherry-blossoms-against-blue-sky.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+//   },
+//   {
+//     id: 5,
+//     title: 'Enhance Confidence',
+//     description:
+//       'Our Young Professional network provide valuable insights and perspective...',
+//     imageUrl:
+//       'https://images.pexels.com/photos/26926276/pexels-photo-26926276/free-photo-of-elephant-on-savanna-with-kilimanjaro-behind.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+//   },
+// ];
 
 /**
  * Main carousel component
  */
 export const WhyChooseUs: React.FC = () => {
-  const [cards, setCards] = useState(WHY_CHOOSE_US_DATA);
+  // const [cards, setCards] = useState(WHY_CHOOSE_US_DATA);
 
   /**
    * Move the array left (direction < 0) or right (direction > 0).
    * This rotates the items so we can keep the "center" card in front.
    */
-  const handleMove = (direction: number) => {
-    const newArr = [...cards];
-    if (direction > 0) {
-      // Move the first item to the end
-      const first = newArr.shift();
-      if (first) newArr.push(first);
-    } else {
-      // Move the last item to the front
-      const last = newArr.pop();
-      if (last) newArr.unshift(last);
-    }
-    setCards(newArr);
-  };
+  // const handleMove = (direction: number) => {
+  //   const newArr = [...cards];
+  //   if (direction > 0) {
+  //     // Move the first item to the end
+  //     const first = newArr.shift();
+  //     if (first) newArr.push(first);
+  //   } else {
+  //     // Move the last item to the front
+  //     const last = newArr.pop();
+  //     if (last) newArr.unshift(last);
+  //   }
+  //   setCards(newArr);
+  // };
 
   return (
     <div className='relative mt-44 grid h-[55vh] place-items-center'>
