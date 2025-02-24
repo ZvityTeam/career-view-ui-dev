@@ -7,9 +7,9 @@ export const Testimonials = () => {
   return (
     <Section className={'mx-auto max-w-full gap-6'}>
       <SectionHeader
-        title={'Testimonials'}
+        title={'Student & Mentor Stories'}
         subtitle={
-          'Are you representing a school, looking to connect? Request a Demo or Call Back to…'
+          'Real voices, real results. Learn how CareerView has made a difference for students, mentors, and schools through their shared experiences.'
         }
       />
       <div className='flex flex-col gap-2'>
