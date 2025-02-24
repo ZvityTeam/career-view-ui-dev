@@ -5,20 +5,10 @@ import {
   SiAdobe,
   SiAirtable,
   SiAmazon,
-  SiBmw,
   SiBox,
-  SiBuildkite,
-  SiBurton,
   SiBytedance,
   SiChase,
   SiCloudbees,
-  SiCouchbase,
-  SiDailymotion,
-  SiDeliveroo,
-  SiEpicgames,
-  SiGenius,
-  SiGodaddy,
-  SiHeroku,
   SiNike,
 } from 'react-icons/si';
 import { IconType } from 'react-icons';
@@ -35,17 +25,6 @@ const DoubleScrollingLogos = () => {
         </TranslateWrapper>
         <TranslateWrapper>
           <LogoItemsTop />
-        </TranslateWrapper>
-      </div>
-      <div className='mt-4 flex overflow-hidden'>
-        <TranslateWrapper reverse>
-          <LogoItemsBottom />
-        </TranslateWrapper>
-        <TranslateWrapper reverse>
-          <LogoItemsBottom />
-        </TranslateWrapper>
-        <TranslateWrapper reverse>
-          <LogoItemsBottom />
         </TranslateWrapper>
       </div>
     </section>
@@ -96,21 +75,6 @@ const LogoItemsTop = () => (
     <LogoItem Icon={SiBytedance} />
     <LogoItem Icon={SiChase} />
     <LogoItem Icon={SiCloudbees} />
-  </>
-);
-
-const LogoItemsBottom = () => (
-  <>
-    <LogoItem Icon={SiBmw} />
-    <LogoItem Icon={SiBurton} />
-    <LogoItem Icon={SiBuildkite} />
-    <LogoItem Icon={SiCouchbase} />
-    <LogoItem Icon={SiDailymotion} />
-    <LogoItem Icon={SiDeliveroo} />
-    <LogoItem Icon={SiEpicgames} />
-    <LogoItem Icon={SiGenius} />
-    <LogoItem Icon={SiGodaddy} />
-    <LogoItem Icon={SiHeroku} />
   </>
 );
 
