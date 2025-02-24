@@ -7,7 +7,7 @@ import { OrbitingCircles } from '../ui/orbiting-circles.tsx';
 import bg1 from '../svgs/bg-1.svg';
 import bg2 from '../svgs/bg-2.svg';
 
-const flipWords = ['Opportunities', 'Pathways', 'Connections'];
+const flipWords = ['Opportunities', 'Pathways', 'Connections', 'Potential'];
 export const Hero = () => {
   return (
     <section
@@ -39,9 +39,9 @@ export const Hero = () => {
 
         {/* Subheading */}
         <p className='mt-4 max-w-5xl text-xl text-gray-300'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam
-          nonumy eirmod tempor Lorem ipsum dolor sit amet, consectetur
-          adipiscing elit, sed diam nonumy eirmod tempor.
+          CareerView helps students connect with industry mentors to gain
+          practical, relatable and honest career insights to make more informed
+          decisions about their future careers
         </p>
       </div>
 
