@@ -8,9 +8,9 @@ interface CardProps {
 
 export const Card = ({ icon: Icon, title, description }: CardProps) => {
   return (
-    <div className='flex w-full max-w-[550px] items-center gap-6 space-x-6'>
+    <div className='flex w-full max-w-[650px] items-center gap-6 space-x-2'>
       {/* Icon Container */}
-      <div className='flex aspect-square min-h-full items-center justify-center rounded-lg bg-[#272727] shadow-[inset_5px_5px_15px_#000000]'>
+      <div className='flex aspect-square min-h-full items-center justify-center rounded-[20px] bg-[#272727] shadow-[inset_5px_5px_15px_#000000]'>
         <Icon className='h-14 w-14 text-white' />
       </div>
 

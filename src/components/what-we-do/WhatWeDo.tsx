@@ -1,5 +1,5 @@
 import React from 'react';
-import { MessageCircle, Mic, Radio, Users } from 'lucide-react';
+import { BookOpen, School, UserCheck } from 'lucide-react';
 import { Card } from '../card/Card';
 import { SectionHeader } from '../section-header/SectionHeader';
 import { CurvedWrapper } from '../CurvedWrapper.tsx';
@@ -7,28 +7,22 @@ import { CurvedWrapper } from '../CurvedWrapper.tsx';
 export const WhatWeDo: React.FC = () => {
   const cards = [
     {
-      icon: MessageCircle,
-      title: 'CareerTalk',
+      icon: UserCheck,
+      title: 'Personalized Mentorship',
       description:
-        'Lorem ipsum dolor sit amet, consectetur sadipscing elitr, sed diam nonumy eirmod tempor.',
+        'Guiding students through career decisions by connecting them with mentors who share practical, real-world insights.',
     },
     {
-      icon: Mic,
-      title: 'Podcasts & Events',
+      icon: School,
+      title: 'Tailored School Programs',
       description:
-        'Lorem ipsum dolor sit amet, consectetur sadipscing elitr, sed diam nonumy eirmod tempor.',
+        'Partnering with schools to provide engaging, career-focused programs that help students navigate their future paths.',
     },
     {
-      icon: Radio,
-      title: 'Livestreams & Networking',
+      icon: BookOpen,
+      title: 'Valuable Career Insights',
       description:
-        'Lorem ipsum dolor sit amet, consectetur sadipscing elitr, sed diam nonumy eirmod tempor.',
-    },
-    {
-      icon: Users,
-      title: 'Live Q&A',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur sadipscing elitr, sed diam nonumy eirmod tempor.',
+        'Delivering career resources like podcasts, e-books, and live Q&A sessions to support students at every step of their journey.',
     },
   ];
 
@@ -39,7 +33,7 @@ export const WhatWeDo: React.FC = () => {
         <SectionHeader
           title='What we do?'
           subtitle={
-            'Lorem ipsum dolor sit amet, consectetur sadipscing elitr, sed diam\nnonumy eirmod tempor Lorem ipsum dolor sit amet.'
+            'We make career exploration simple and meaningful by connecting students with industry mentors and schools with valuable career resources.'
           }
           className='gap-4'
         />
