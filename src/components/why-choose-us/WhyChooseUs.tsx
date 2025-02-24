@@ -77,9 +77,9 @@ export const WhyChooseUs: React.FC = () => {
         <section className='relative w-full py-10'>
           {/* Section heading */}
           <SectionHeader
-            title={'Why Choose Us'}
+            title={'What makes career view unique'}
             subtitle={
-              'A small description of why students should choose your platform instead of other competitors. This has a horizontal animation on a loop.'
+              'Home to a community of Young Professionals (ages 21-29) across different career paths, industries, and cultural backgrounds—who share their real experiences of schooling and early professional life. With over 100 young professionals across various career roles and representing 10 different cultural backgrounds, students will have an opportunity to learn from diverse experiences.'
             }
             className={'mb-16'}
           />
