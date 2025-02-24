@@ -24,7 +24,7 @@ const OUR_EVENTS: OurEventCardProps[] = [
 
 export const OurEvents = () => {
   return (
-    <Section className={'flex flex-col gap-20 bg-white p-24'}>
+    <Section className={'flex flex-col gap-20 p-24'}>
       <SectionHeader
         title={'Our Event & News'}
         subtitle={
