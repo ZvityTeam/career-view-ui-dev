@@ -33,7 +33,7 @@ export const WhatWeOffer = () => {
       {/* Heading */}
       <div className='mb-12 text-center'>
         <SectionHeader
-          title={'What we Offer'}
+          title={'What we Offer ( TBD - CONTENT )'}
           subtitle={
             'All that CareerView has to offer, including their Student-Mentor\n' +
             "          Connect, Young mentors signing up and School's involvement."
