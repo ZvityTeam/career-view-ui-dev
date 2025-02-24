@@ -6,10 +6,9 @@ export const SchoolConnectCTA = () => {
   return (
     <Section className={'gap-4'}>
       <SectionHeader
-        title={'School Connect'}
+        title={'Empower Your Students with School Connect'}
         subtitle={
-          'Are you representing a school, looking to connect? Request a Demo or\n' +
-          '        Call Back to…'
+          'Are you a school representative looking to provide students with meaningful career guidance? Discover how CareerView can support your institution with tailored programs and resources. Request a demo or schedule a call to learn more!'
         }
       />
       <p></p>
