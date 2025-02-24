@@ -11,7 +11,7 @@ const flipWords = ['Opportunities', 'Pathways', 'Connections'];
 export const Hero = () => {
   return (
     <section
-      className='z-10 flex min-h-screen flex-col items-center justify-center gap-52 space-y-32 py-16 pt-32 text-center'
+      className='z-10 flex h-screen flex-col items-center justify-center gap-52 space-y-32 py-16 pt-32 text-center'
       style={{
         background: `linear-gradient(351deg, #FFFBF0, #F1CE7E, #767676, #000000)`,
       }}
@@ -45,18 +45,14 @@ export const Hero = () => {
         </p>
       </div>
 
-      <div className='relative grid place-items-center'>
-        <OrbitingCircles
-          iconSize={40}
-          path={true}
-        >
+      <div className='relative flex h-[400px] w-full items-center justify-center'>
+        <OrbitingCircles iconSize={40}>
           <Ebook />
           <Podcast />
         </OrbitingCircles>
         <OrbitingCircles
           iconSize={30}
           radius={100}
-          path={true}
           reverse
           speed={2}
         >
