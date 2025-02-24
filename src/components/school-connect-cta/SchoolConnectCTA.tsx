@@ -20,9 +20,9 @@ export const SchoolConnectCTA = () => {
             'border-[#272727] text-[#272727] hover:border-black hover:text-black'
           }
         >
-          Request a Demo
+          See It in Action
         </Button>
-        <Button size={'lg'}>Get a Callback</Button>
+        <Button size={'lg'}>Contact Us</Button>
       </div>
     </Section>
   );
