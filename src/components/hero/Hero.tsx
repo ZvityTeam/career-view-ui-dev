@@ -19,15 +19,15 @@ export const Hero = () => {
       <img
         src={bg1}
         alt={''}
-        className={'pointer-events-none absolute left-0 top-0 z-10'}
+        className={'pointer-events-none absolute -left-[10%] top-1/3 z-10'}
       />
       <img
         src={bg2}
         alt={''}
-        className={'pointer-events-none absolute right-0 top-0 z-10'}
+        className={'pointer-events-none absolute -top-1/3 right-0 z-10'}
       />
       {/* Heading */}
-      <div className='space-y-18'>
+      <div className='space-y-18 z-30'>
         <h1 className='text-[100px] text-white'>
           Unlock{' '}
           <FlipWords
