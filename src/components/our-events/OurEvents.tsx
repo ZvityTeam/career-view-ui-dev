@@ -2,6 +2,7 @@ import { Section } from '../container/Section.tsx';
 import { SectionHeader } from '../section-header/SectionHeader.tsx';
 import { OurEventCard, OurEventCardProps } from './OurEventCard.tsx';
 import img from '../../assets/event1.jpg';
+import { Button } from '../ui/Button.tsx';
 
 const OUR_EVENTS: OurEventCardProps[] = [
   {
@@ -25,12 +26,16 @@ const OUR_EVENTS: OurEventCardProps[] = [
 export const OurEvents = () => {
   return (
     <Section className={'flex flex-col gap-20 p-24'}>
-      <SectionHeader
-        title={'Our Event & News'}
-        subtitle={
-          '    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias architecto assumenda, eaque fuga illo labore minus non perferendis quam reiciendis vitae voluptatem!\n'
-        }
-      />
+      <div className={'flex flex-col items-center justify-center gap-6'}>
+        <SectionHeader
+          title={'Stay in the Loop'}
+          subtitle={
+            'Stay informed about exciting events, career tips, and the latest updates to fuel your success.'
+          }
+        />
+        <Button>CTA</Button>
+      </div>
+
       <div className={'flex gap-12'}>
         {OUR_EVENTS.map((value, index) => (
           <OurEventCard
