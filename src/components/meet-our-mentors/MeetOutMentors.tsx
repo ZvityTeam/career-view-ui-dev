@@ -34,7 +34,7 @@ export const MeetOutMentors = () => {
       <SectionHeader
         title={'Meet out Mentors'}
         subtitle={
-          'Get a look at our mentors. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor.Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor'
+          'Our mentors are passionate professionals from diverse industries, ready to share their expertise and help students shape their future'
         }
       />
       <div className='flex items-center justify-between gap-28'>
