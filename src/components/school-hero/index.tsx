@@ -1,6 +1,14 @@
 import { Button } from '../ui/Button.tsx';
+import { useNavbarContext } from '../../context/navbar-context/NavbarContext.tsx';
+import { useEffect } from 'react';
 
 export const SchoolHero = () => {
+  const { setBgBlur } = useNavbarContext();
+  useEffect(() => {
+    setBgBlur(true);
+
+    return () => setBgBlur(false);
+  }, [setBgBlur]);
   return (
     <section
       className='relative min-h-screen bg-cover bg-center bg-no-repeat pt-32'

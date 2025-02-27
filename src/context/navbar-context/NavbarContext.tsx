@@ -1,31 +1,34 @@
 import React, { createContext, useContext, useState } from 'react';
 
-// Define the context
 interface NavbarContextProps {
   isDark: boolean; // True for dark navbar, false for light
+  bgBlur: boolean; // True if blurred background should be applied
   setNavbarTheme: (isDark: boolean) => void; // Function to toggle navbar theme
+  setBgBlur: (bgBlur: boolean) => void; // Function to toggle navbar background blur
 }
 
 const NavbarContext = createContext<NavbarContextProps | undefined>(undefined);
 
-// Create provider
 export const NavbarProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [isDark, setIsDark] = useState(false); // Default theme is light
+  const [bgBlur, setBgBlur] = useState(false); // Default no blur
 
   const setNavbarTheme = (isDark: boolean) => {
     setIsDark(isDark);
   };
 
   return (
-    <NavbarContext.Provider value={{ isDark, setNavbarTheme }}>
+    <NavbarContext.Provider
+      value={{ isDark, bgBlur, setNavbarTheme, setBgBlur }}
+    >
       {children}
     </NavbarContext.Provider>
   );
 };
 
-// Custom hook to use the context
+// eslint-disable-next-line react-refresh/only-export-components
 export const useNavbarContext = () => {
   const context = useContext(NavbarContext);
   if (!context) {

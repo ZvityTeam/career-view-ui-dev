@@ -2,19 +2,26 @@ import { Home as HomeIcon } from 'lucide-react';
 import { NAV_ITEMS } from './NavbarConfig';
 import { Link } from 'react-router-dom';
 import { AppLogo } from '../../assets';
-import { NavIcon } from '../nav-icon/NavIcon.tsx';
-import { Button } from '../ui/Button.tsx';
-import { useNavbarContext } from '../../context/navbar-context/NavbarContext.tsx';
+import { NavIcon } from '../nav-icon/NavIcon';
+import { Button } from '../ui/Button';
+import { useNavbarContext } from '../../context/navbar-context/NavbarContext';
+import { cn } from '../../utils/cn.ts';
 
 export const Navbar = () => {
-  const { isDark } = useNavbarContext(); // Get theme from context
+  const { isDark, bgBlur } = useNavbarContext();
 
   return (
-    <nav className='absolute top-0 z-30 w-full px-20 pt-12'>
+    <nav
+      className={cn(
+        'absolute top-0 z-30 w-full px-20 pt-12',
+        bgBlur && 'backdrop-blur-3xl'
+      )}
+    >
       <div
-        className={`flex items-center justify-between border-b-[1px] pb-8 ${
+        className={cn(
+          'flex items-center justify-between border-b-[1px] pb-8',
           isDark ? 'border-gray-800' : 'border-white'
-        }`}
+        )}
       >
         {/* Left Side */}
         <div className='flex space-x-14'>
