@@ -1,13 +1,15 @@
-import { Section } from '../container/Section.tsx';
+import { Section } from '../container/Section';
 import { MentorProfileCard } from '../mentor-profile-card';
 import { useNavigate } from 'react-router-dom';
-import useLocalStorageState from '../../hooks/useLocalStorageState.ts';
-import { useMentorStore } from '../../store/useMentorStore.ts';
+import useLocalStorageState from '../../hooks/useLocalStorageState';
+import { useMentorStore } from '../../store/useMentorStore';
+import { Button } from '../ui/Button';
+import ListWrapper from '../list-wrapper.tsx';
+import { ArrowDown } from 'lucide-react';
 
 export const MentorsList = () => {
   const mentorData = useMentorStore((state) => state.mentors);
-  const navigate = useNavigate(); // ✅ Initialize navigation
-
+  const navigate = useNavigate();
   const [savedMentors, setSavedMentors] = useLocalStorageState(
     'savedMentors',
     [] as typeof mentorData
@@ -15,30 +17,46 @@ export const MentorsList = () => {
 
   const toggleMentorInList = (mentor: (typeof mentorData)[0]) => {
     const isAlreadyAdded = savedMentors.some((m) => m.name === mentor.name);
-
     if (isAlreadyAdded) {
-      // Remove from saved list
       setSavedMentors(savedMentors.filter((m) => m.name !== mentor.name));
     } else {
-      // Add to saved list
       setSavedMentors([...savedMentors, mentor]);
     }
   };
 
   return (
-    <Section className='mt-44 gap-8'>
-      {mentorData.map((item, index) => {
-        const isAdded = savedMentors.some((m) => m.name === item.name);
-        return (
-          <MentorProfileCard
-            {...item}
-            key={index}
-            isAdded={isAdded}
-            onSeeProfile={() => navigate(`/browse-mentors/${index}`)}
-            onAddToMentorList={() => toggleMentorInList(item)}
-          />
-        );
-      })}
-    </Section>
+    <ListWrapper
+      data={mentorData}
+      pageSize={10}
+      // optional: perform any additional logic when loading next page
+      next={() => {}}
+      viewMoreButton={
+        <div className={'flex justify-center'}>
+          <Button
+            variant='outline'
+            className='mx-auto border-black text-black hover:bg-black hover:text-white'
+          >
+            View More <ArrowDown />
+          </Button>
+        </div>
+      }
+    >
+      {(items) => (
+        <Section className='mt-44 gap-8'>
+          {items.map((item, index) => {
+            const isAdded = savedMentors.some((m) => m.name === item.name);
+            return (
+              <MentorProfileCard
+                {...item}
+                key={index}
+                isAdded={isAdded}
+                onSeeProfile={() => navigate(`/browse-mentors/${index}`)}
+                onAddToMentorList={() => toggleMentorInList(item)}
+              />
+            );
+          })}
+        </Section>
+      )}
+    </ListWrapper>
   );
 };

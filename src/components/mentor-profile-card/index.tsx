@@ -53,7 +53,7 @@ export const MentorProfileCard: React.FC<MentorProfileCardProps> = ({
       {/* Profile Image */}
       <div className='flex flex-col items-center'>
         <img
-          src={profileImage}
+          src={profileImage || 'https://www.gravatar.com/avatar/?d=mp'}
           alt={`${name}'s profile`}
           className='h-40 w-40 rounded-full border border-gray-300 object-cover'
         />
