@@ -13,7 +13,10 @@ export const Testimonials = () => {
         }
       />
       <div className='flex flex-col gap-2'>
-        <Marquee className={'[--duration:20s]'}>
+        <Marquee
+          pauseOnHover
+          className={'[--duration:20s]'}
+        >
           <ProfileCard
             defaultImage='https://placehold.co/400'
             hoverImage='https://placehold.co/600x400'
@@ -29,6 +32,7 @@ export const Testimonials = () => {
         <Marquee
           className={'[--duration:10s]'}
           reverse
+          pauseOnHover
         >
           <ProfileCard
             defaultImage='https://placehold.co/400'
