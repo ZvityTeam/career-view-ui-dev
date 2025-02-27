@@ -2,7 +2,7 @@ import React from 'react';
 // import { CardData } from '../why-choose-us-card/WhyChooseUsCard.tsx';
 import { SectionHeader } from '../section-header/SectionHeader.tsx';
 import NetworkVisualization from '../network-visualization.tsx';
-
+import curved from '../svgs/curved.svg';
 /** Example data. Replace with your actual content & images. */
 // const WHY_CHOOSE_US_DATA: CardData[] = [
 //   {
@@ -73,8 +73,13 @@ export const WhyChooseUs: React.FC = () => {
 
   return (
     <div className='relative mt-44 grid h-[55vh] place-items-center'>
-      <div className='absolute h-[72vh] w-full rounded-[80px] bg-white'>
-        <section className='relative w-full py-10'>
+      <div className='absolute h-[82vh] w-full rounded-[80px] bg-white'>
+        <img
+          className='absolute left-0 top-0 h-full w-full rounded-[80px] object-cover'
+          src={curved}
+          alt={''}
+        />
+        <section className='relative w-full py-24'>
           {/* Section heading */}
           <SectionHeader
             title={'What makes career view unique'}
