@@ -26,7 +26,7 @@ export const MentorsList = () => {
   };
 
   return (
-    <Section className='gap-8'>
+    <Section className='mt-44 gap-8'>
       {mentorData.map((item, index) => {
         const isAdded = savedMentors.some((m) => m.name === item.name);
         return (
