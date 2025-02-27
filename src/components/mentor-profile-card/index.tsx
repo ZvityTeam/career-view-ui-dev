@@ -85,7 +85,15 @@ export const MentorProfileCard: React.FC<MentorProfileCardProps> = ({
 
         <Spacer size={16} />
 
-        <p className='mt-2 text-gray-600'>
+        <p
+          className='mt-2 text-gray-600'
+          style={{
+            display: '-webkit-box',
+            WebkitLineClamp: 3,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+          }}
+        >
           {bio} | <span className='font-semibold'>Available:</span>{' '}
           {availableHours}
         </p>
