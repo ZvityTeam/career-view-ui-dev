@@ -4,6 +4,8 @@ import { Marquee } from '../marquee/Marquee.tsx';
 import ProfileCard from '../profile-card/ProfileCard.tsx';
 
 export const Testimonials = () => {
+  return null;
+
   return (
     <Section className={'mx-auto max-w-full gap-6'}>
       <SectionHeader
