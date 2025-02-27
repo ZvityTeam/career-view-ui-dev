@@ -1,41 +1,32 @@
 import React from 'react';
-import { Button } from '../ui/Button.tsx';
+import { Mentor } from '../../types/types'; // adjust the import path as needed
+import { Button } from '../ui/Button';
 import { Spacer } from '../spacer';
 import { Trash2, UserPlus } from 'lucide-react';
 import bag from '../svgs/bag.svg';
 import heart from '../svgs/heart.svg';
 import analytics from '../svgs/analytics.svg';
 
-export interface MentorProfileProps {
-  name: string;
-  role: string;
-  company: string;
-  university: string;
-  bio: string;
-  availableHours: string;
-  profileImage: string;
-  hobbies: string;
-  interests: string;
-  sideHustles: string;
-  onAddToMentorList?: () => void;
+export interface MentorProfileCardProps extends Mentor {
   onClick?: () => void;
-  isAdded: boolean;
+  onAddToMentorList?: () => void;
+  isAdded?: boolean;
 }
 
-export const MentorProfileCard: React.FC<MentorProfileProps> = ({
-  name,
-  role,
-  company,
-  university,
-  bio,
-  availableHours,
-  profileImage,
-  hobbies,
-  interests,
-  sideHustles,
-  onAddToMentorList,
+export const MentorProfileCard: React.FC<MentorProfileCardProps> = ({
+  name = '',
+  role = '',
+  company = '',
+  university = '',
+  bio = '',
+  availableHours = '',
+  profileImage = '',
+  hobbies = '',
+  interests = '',
+  sideHustles = '',
   onClick,
-  isAdded,
+  onAddToMentorList,
+  isAdded = false,
 }) => {
   return (
     <div
@@ -70,10 +61,8 @@ export const MentorProfileCard: React.FC<MentorProfileProps> = ({
           <p className='font-avenir text-3xl font-semibold'>{name}</p>
           {!!onAddToMentorList && (
             <Button
-              variant={'outline'}
-              className={
-                'flex items-center justify-between border-[#6B8FF2] text-[#6B8FF2] hover:bg-[#6B8FF2] hover:text-white'
-              }
+              variant='outline'
+              className='flex items-center justify-between border-[#6B8FF2] text-[#6B8FF2] hover:bg-[#6B8FF2] hover:text-white'
               onClick={(e) => {
                 e.stopPropagation();
                 onAddToMentorList();
@@ -95,12 +84,14 @@ export const MentorProfileCard: React.FC<MentorProfileProps> = ({
         </p>
 
         <Spacer size={16} />
+
         <p className='mt-2 text-gray-600'>
           {bio} | <span className='font-semibold'>Available:</span>{' '}
           {availableHours}
         </p>
 
         <Spacer size={16} />
+
         {/* Interests, Hobbies, and Side Hustles */}
         <div className='flex gap-8'>
           <div>
@@ -108,8 +99,8 @@ export const MentorProfileCard: React.FC<MentorProfileProps> = ({
               Hobbies
               <img
                 src={analytics}
-                alt={''}
-                className={'h-4 w-4'}
+                alt=''
+                className='h-4 w-4'
               />
             </p>
             <p className='italic text-gray-500'>{hobbies}</p>
@@ -120,8 +111,8 @@ export const MentorProfileCard: React.FC<MentorProfileProps> = ({
               Interests
               <img
                 src={heart}
-                alt={''}
-                className={'h-4 w-4'}
+                alt=''
+                className='h-4 w-4'
               />
             </p>
             <p className='italic text-gray-500'>{interests}</p>
@@ -132,8 +123,8 @@ export const MentorProfileCard: React.FC<MentorProfileProps> = ({
               Side Hustles{' '}
               <img
                 src={bag}
-                alt={''}
-                className={'h-4 w-4'}
+                alt=''
+                className='h-4 w-4'
               />
             </p>
             <p className='italic text-gray-500'>{sideHustles}</p>
