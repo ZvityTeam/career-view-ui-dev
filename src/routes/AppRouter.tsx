@@ -2,6 +2,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import { ROUTES } from './RouteConfig.ts';
 import { Helmet } from 'react-helmet-async';
 import { useEffect, useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
 
 export const AppRouter = () => {
   const location = useLocation(); // ✅ Get current location reactively
@@ -28,15 +29,20 @@ export const AppRouter = () => {
           )}
         </Helmet>
       )}
-      <Routes>
-        {ROUTES.map((route) => (
-          <Route
-            key={route.path}
-            path={route.path}
-            element={<route.component />}
-          />
-        ))}
-      </Routes>
+      <AnimatePresence mode='wait'>
+        <Routes
+          location={location}
+          key={location.pathname}
+        >
+          {ROUTES.map((route) => (
+            <Route
+              key={route.path}
+              path={route.path}
+              element={<route.component />}
+            />
+          ))}
+        </Routes>
+      </AnimatePresence>
     </>
   );
 };

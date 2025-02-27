@@ -7,6 +7,7 @@ import { VerticalTimelineComponent } from '../../components/vertical-timeline.ts
 import LogoScroll from '../../components/logo-scroll.tsx';
 import { useNavbarContext } from '../../context/navbar-context/NavbarContext.tsx';
 import { useEffect } from 'react';
+import { AnimatedPageWrapper } from '../../components/PageWrapper.tsx';
 
 export const Mentors = () => {
   const { setBgBlur } = useNavbarContext();
@@ -16,14 +17,16 @@ export const Mentors = () => {
     return () => setBgBlur(false);
   }, [setBgBlur]);
   return (
-    <main>
-      <MentorHero />
-      <WhatToExpect />
-      <LogoScroll />
-      <VerticalTimelineComponent />
-      <SchoolConnectCTA />
-      <Testimonials />
-      <FaqSection />
-    </main>
+    <AnimatedPageWrapper>
+      <main>
+        <MentorHero />
+        <WhatToExpect />
+        <LogoScroll />
+        <VerticalTimelineComponent />
+        <SchoolConnectCTA />
+        <Testimonials />
+        <FaqSection />
+      </main>
+    </AnimatedPageWrapper>
   );
 };

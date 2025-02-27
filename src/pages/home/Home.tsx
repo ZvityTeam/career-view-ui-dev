@@ -9,21 +9,24 @@ import { StudentMentorConnect } from '../../components/student-mentor-connect/St
 import { FaqSection } from '../../components/faqsection/FaqSection.tsx';
 import { OurEvents } from '../../components/our-events/OurEvents.tsx';
 import LogoScroll from '../../components/logo-scroll.tsx';
+import { AnimatedPageWrapper } from '../../components/PageWrapper.tsx';
 
 export const Home = () => {
   return (
-    <main className='mb-24'>
-      <Hero />
-      <WhatWeDo />
-      <WhatWeOffer />
-      <WhyChooseUs />
-      <StudentMentorConnect />
-      <OurEvents />
-      <SchoolConnectCTA />
-      <LogoScroll />
-      <MeetOutMentors />
-      <Testimonials />
-      <FaqSection />
-    </main>
+    <AnimatedPageWrapper>
+      <main className='mb-24'>
+        <Hero />
+        <WhatWeDo />
+        <WhatWeOffer />
+        <WhyChooseUs />
+        <StudentMentorConnect />
+        <OurEvents />
+        <SchoolConnectCTA />
+        <LogoScroll />
+        <MeetOutMentors />
+        <Testimonials />
+        <FaqSection />
+      </main>
+    </AnimatedPageWrapper>
   );
 };

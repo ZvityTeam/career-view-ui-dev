@@ -5,6 +5,7 @@ import { Header } from './Header';
 import { MentorProfileSection } from './MentorProfileSection';
 import { useMentorStore } from '../../store/useMentorStore';
 import { Mentor } from '../../types/types';
+import { AnimatedPageWrapper } from '../../components/PageWrapper';
 
 export const MentorDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -24,30 +25,32 @@ export const MentorDetails = () => {
   }
 
   return (
-    <main className='m-32'>
-      <Header
-        name={mentor.name}
-        profileImage={mentor.profileImage}
-        bio={mentor.bio}
-      />
-      <MentorProfileSection
-        name={mentor.name}
-        role={mentor.role}
-        company={mentor.company}
-        university={mentor.university}
-        bio={mentor.bio}
-        availableHours={mentor.availableHours}
-        profileImage={mentor.profileImage}
-        hobbies={mentor.hobbies}
-        interests={mentor.interests}
-        sideHustles={mentor.sideHustles}
-        location={mentor.location}
-        industries={mentor.industries}
-        questions={mentor.questions}
-        socialLinks={mentor.socialLinks}
-        onAskQuestion={() => {}}
-        onAddToMentorList={() => {}}
-      />
-    </main>
+    <AnimatedPageWrapper>
+      <main className='m-32'>
+        <Header
+          name={mentor.name}
+          profileImage={mentor.profileImage}
+          bio={mentor.bio}
+        />
+        <MentorProfileSection
+          name={mentor.name}
+          role={mentor.role}
+          company={mentor.company}
+          university={mentor.university}
+          bio={mentor.bio}
+          availableHours={mentor.availableHours}
+          profileImage={mentor.profileImage}
+          hobbies={mentor.hobbies}
+          interests={mentor.interests}
+          sideHustles={mentor.sideHustles}
+          location={mentor.location}
+          industries={mentor.industries}
+          questions={mentor.questions}
+          socialLinks={mentor.socialLinks}
+          onAskQuestion={() => {}}
+          onAddToMentorList={() => {}}
+        />
+      </main>
+    </AnimatedPageWrapper>
   );
 };
