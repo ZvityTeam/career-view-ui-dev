@@ -26,7 +26,6 @@ export const Testimonials = () => {
             mentorTitle='Elena Williams (Mentor)'
             mentorSubtitle='Psychologist, 15 yrs experience'
             mentorHighlight='300+ Students Mentored'
-            hoverHighlight='20+ Questions Asked'
           />
         </Marquee>
         <Marquee
@@ -43,7 +42,6 @@ export const Testimonials = () => {
             mentorTitle='Elena Williams (Mentor)'
             mentorSubtitle='Psychologist, 15 yrs experience'
             mentorHighlight='300+ Students Mentored'
-            hoverHighlight='20+ Questions Asked'
           />
         </Marquee>
       </div>

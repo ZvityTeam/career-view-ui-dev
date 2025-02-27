@@ -10,7 +10,6 @@ interface ProfileCardProps {
   mentorTitle: string;
   mentorSubtitle: string;
   mentorHighlight: string;
-  hoverHighlight: string;
 }
 
 const ProfileCard: React.FC<ProfileCardProps> = ({
@@ -21,7 +20,6 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
   description,
   mentorTitle,
   mentorSubtitle,
-  hoverHighlight,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -52,9 +50,9 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
           ) : (
             <motion.div
               key='default'
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              initial={{ opacity: 0, x: -50, y: 50 }} // starts at bottom left
+              animate={{ opacity: 1, x: 0, y: 0 }} // animates to its final position
+              exit={{ opacity: 0, x: -50, y: 50 }} // exits back to bottom left
               transition={{ duration: 0.2 }}
               className='p-6'
             >
@@ -80,13 +78,29 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
           )}
         </AnimatePresence>
 
-        {/* Bottom Black Bar (always visible) */}
-        <div className='flex h-[30%] items-center rounded-[30px] bg-[#272727] p-[38px] text-white'>
-          <div>
-            <p className='font-semibold'>{mentorTitle}</p>
-            <p className='text-sm font-light'>{mentorSubtitle}</p>
-          </div>
-        </div>
+        <AnimatePresence>
+          {isHovered ? (
+            <motion.div
+              key='hovered'
+              className='flex h-[30%] items-center rounded-[30px] bg-[#272727] p-[38px] text-white'
+            >
+              <div>
+                <p className='font-semibold'>{mentorTitle}</p>
+                <p className='text-sm font-light'>{mentorSubtitle}</p>
+              </div>
+            </motion.div>
+          ) : (
+            <motion.div
+              key={'by-default'}
+              className='flex h-[30%] items-center rounded-[30px] bg-[#272727] p-[38px] text-white'
+            >
+              <div>
+                <p className='font-semibold'>{mentorTitle}</p>
+                <p className='text-sm font-light'>{mentorSubtitle}</p>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.div>
   );
