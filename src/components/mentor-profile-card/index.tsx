@@ -30,9 +30,29 @@ export const MentorProfileCard: React.FC<MentorProfileCardProps> = ({
 }) => {
   return (
     <div
-      className='mx-auto flex w-full max-w-6xl cursor-pointer items-center gap-12 rounded-xl border bg-white px-12 py-8 shadow-md'
+      className='relative mx-auto flex w-full max-w-6xl cursor-pointer items-center gap-12 rounded-xl border bg-white px-12 py-8 shadow-md'
       onClick={onClick}
     >
+      {/* Top Right Absolute Button */}
+      {!!onAddToMentorList && (
+        <Button
+          variant='outline'
+          className='absolute right-4 top-4 flex items-center justify-between border-[#6B8FF2] text-[#6B8FF2] hover:bg-[#6B8FF2] hover:text-white'
+          onClick={(e) => {
+            e.stopPropagation();
+            onAddToMentorList();
+          }}
+        >
+          {isAdded ? (
+            <Trash2 />
+          ) : (
+            <>
+              <UserPlus /> Add to Mentor List
+            </>
+          )}
+        </Button>
+      )}
+
       {/* Profile Image */}
       <div className='flex flex-col items-center'>
         <img
@@ -59,24 +79,6 @@ export const MentorProfileCard: React.FC<MentorProfileCardProps> = ({
       <div className='flex-1'>
         <div className='flex items-center justify-between'>
           <p className='font-avenir text-3xl font-semibold'>{name}</p>
-          {!!onAddToMentorList && (
-            <Button
-              variant='outline'
-              className='flex items-center justify-between border-[#6B8FF2] text-[#6B8FF2] hover:bg-[#6B8FF2] hover:text-white'
-              onClick={(e) => {
-                e.stopPropagation();
-                onAddToMentorList();
-              }}
-            >
-              {isAdded ? (
-                <Trash2 />
-              ) : (
-                <>
-                  <UserPlus /> Add to Mentor List
-                </>
-              )}
-            </Button>
-          )}
         </div>
 
         <p className='italic text-gray-500'>
