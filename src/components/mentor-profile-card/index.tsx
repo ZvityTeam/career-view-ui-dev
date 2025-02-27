@@ -1,7 +1,10 @@
 import React from 'react';
 import { Button } from '../ui/Button.tsx';
 import { Spacer } from '../spacer';
-import { cn } from '../../utils/cn.ts';
+import { Trash2, UserPlus } from 'lucide-react';
+import bag from '../svgs/bag.svg';
+import heart from '../svgs/heart.svg';
+import analytics from '../svgs/analytics.svg';
 
 export interface MentorProfileProps {
   name: string;
@@ -36,7 +39,7 @@ export const MentorProfileCard: React.FC<MentorProfileProps> = ({
 }) => {
   return (
     <div
-      className='mx-auto flex w-full max-w-6xl cursor-pointer items-center gap-6 rounded-xl border bg-white p-12 shadow-md'
+      className='mx-auto flex w-full max-w-6xl cursor-pointer items-center gap-12 rounded-xl border bg-white px-12 py-8 shadow-md'
       onClick={onClick}
     >
       {/* Profile Image */}
@@ -44,12 +47,12 @@ export const MentorProfileCard: React.FC<MentorProfileProps> = ({
         <img
           src={profileImage}
           alt={`${name}'s profile`}
-          className='h-24 w-24 rounded-full border border-gray-300 object-cover'
+          className='h-40 w-40 rounded-full border border-gray-300 object-cover'
         />
         <Button
-          variant='secondary'
+          variant='outline'
           size='lg'
-          className='mt-4'
+          className='mt-4 w-full text-black'
         >
           See Profile
         </Button>
@@ -64,22 +67,26 @@ export const MentorProfileCard: React.FC<MentorProfileProps> = ({
       {/* Mentor Details */}
       <div className='flex-1'>
         <div className='flex items-center justify-between'>
-          <p className='text-2xl font-semibold'>{name}</p>
+          <p className='font-avenir text-3xl font-semibold'>{name}</p>
           {!!onAddToMentorList && (
-            <button
+            <Button
+              variant={'outline'}
+              className={
+                'flex items-center justify-between border-[#6B8FF2] text-[#6B8FF2] hover:bg-[#6B8FF2] hover:text-white'
+              }
               onClick={(e) => {
                 e.stopPropagation();
                 onAddToMentorList();
               }}
-              className={cn(
-                `rounded-full border border-blue-500 px-4 py-2 text-blue-500 hover:bg-blue-100`,
-                isAdded
-                  ? 'scale-110 bg-green-500 text-white hover:bg-green-600'
-                  : 'scale-100 bg-blue-500 text-white hover:bg-blue-600'
-              )}
             >
-              {isAdded ? `✓ Added` : `+ Add to Mentor List`}
-            </button>
+              {isAdded ? (
+                <Trash2 />
+              ) : (
+                <>
+                  <UserPlus /> Add to Mentor List
+                </>
+              )}
+            </Button>
           )}
         </div>
 
@@ -87,31 +94,47 @@ export const MentorProfileCard: React.FC<MentorProfileProps> = ({
           {role}, at {company} | Studied at {university}
         </p>
 
-        <Spacer />
+        <Spacer size={16} />
         <p className='mt-2 text-gray-600'>
           {bio} | <span className='font-semibold'>Available:</span>{' '}
           {availableHours}
         </p>
 
+        <Spacer size={16} />
         {/* Interests, Hobbies, and Side Hustles */}
-        <div className='mt-4 flex gap-8'>
+        <div className='flex gap-8'>
           <div>
             <p className='flex items-center gap-1 font-semibold'>
-              Hobbies <span className='text-blue-500'>🔗</span>
+              Hobbies
+              <img
+                src={analytics}
+                alt={''}
+                className={'h-4 w-4'}
+              />
             </p>
             <p className='italic text-gray-500'>{hobbies}</p>
           </div>
 
           <div>
             <p className='flex items-center gap-1 font-semibold'>
-              Interests <span className='text-red-500'>❤️</span>
+              Interests
+              <img
+                src={heart}
+                alt={''}
+                className={'h-4 w-4'}
+              />
             </p>
             <p className='italic text-gray-500'>{interests}</p>
           </div>
 
           <div>
             <p className='flex items-center gap-1 font-semibold'>
-              Side Hustles <span className='text-green-500'>💼</span>
+              Side Hustles{' '}
+              <img
+                src={bag}
+                alt={''}
+                className={'h-4 w-4'}
+              />
             </p>
             <p className='italic text-gray-500'>{sideHustles}</p>
           </div>
