@@ -11,7 +11,6 @@ interface Connection {
   to: number;
 }
 
-// Adjusted positions to spread the network across the full width
 const avatarPositions: Point[] = [
   { x: 1, y: 35, size: 80 }, // Larger, leftmost
   { x: 15, y: 20, size: 50 },
@@ -123,8 +122,6 @@ export default function NetworkVisualization() {
       line.style.strokeDashoffset = String(length);
 
       // 3) Animate strokeDashoffset -> 0
-      // We'll use CSS keyframes "drawLine" from the snippet in our CSS.
-      // If you prefer inline animation, you can do:
       line.style.animationName = 'drawLine';
       line.style.animationDuration = '1s';
       line.style.animationTimingFunction = 'ease';
@@ -137,7 +134,6 @@ export default function NetworkVisualization() {
       setTimeout(
         () => {
           const toEl = avatarRefs.current[to];
-          // Fade in the 'to' avatar if it exists
           if (toEl) {
             toEl.style.animationName = 'fadeIn';
             toEl.style.animationDuration = '0.6s';
@@ -159,10 +155,10 @@ export default function NetworkVisualization() {
   }, [lineElements]);
 
   return (
-    <div className='relative flex h-[40vh] w-full items-center justify-center'>
+    <div className='relative flex h-[60vh] w-full items-center justify-center'>
       <div
         ref={containerRef}
-        className='relative h-full w-full max-w-5xl'
+        className='relative h-full w-full max-w-7xl'
       >
         {/* The SVG for our lines */}
         <svg className='absolute inset-0 h-full w-full'>
