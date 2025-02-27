@@ -31,10 +31,10 @@ export const MentorsList = () => {
         const isAdded = savedMentors.some((m) => m.name === item.name);
         return (
           <MentorProfileCard
-            onClick={() => navigate(`/browse-mentors/${index}`)}
             {...item}
             key={index}
             isAdded={isAdded}
+            onSeeProfile={() => navigate(`/browse-mentors/${index}`)}
             onAddToMentorList={() => toggleMentorInList(item)}
           />
         );

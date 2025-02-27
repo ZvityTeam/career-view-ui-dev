@@ -20,3 +20,10 @@ export interface Mentor {
     github?: string;
   };
 }
+
+export type HeaderProps =  Pick<Mentor, 'name' | 'profileImage' | 'bio'>;
+
+export interface MentorProfileProps extends Mentor {
+  onAskQuestion?: () => void;
+  onAddToMentorList?: () => void;
+}

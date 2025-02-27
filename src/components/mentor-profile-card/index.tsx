@@ -8,9 +8,9 @@ import heart from '../svgs/heart.svg';
 import analytics from '../svgs/analytics.svg';
 
 export interface MentorProfileCardProps extends Mentor {
-  onClick?: () => void;
   onAddToMentorList?: () => void;
   isAdded?: boolean;
+  onSeeProfile: () => void;
 }
 
 export const MentorProfileCard: React.FC<MentorProfileCardProps> = ({
@@ -24,15 +24,12 @@ export const MentorProfileCard: React.FC<MentorProfileCardProps> = ({
   hobbies = '',
   interests = '',
   sideHustles = '',
-  onClick,
   onAddToMentorList,
   isAdded = false,
+  onSeeProfile,
 }) => {
   return (
-    <div
-      className='relative mx-auto flex w-full max-w-6xl cursor-pointer items-center gap-12 rounded-xl border bg-white px-12 py-8 shadow-md'
-      onClick={onClick}
-    >
+    <div className='relative mx-auto flex w-full max-w-6xl items-center gap-12 rounded-xl border bg-white px-12 py-8 shadow-md'>
       {/* Top Right Absolute Button */}
       {!!onAddToMentorList && (
         <Button
@@ -63,7 +60,8 @@ export const MentorProfileCard: React.FC<MentorProfileCardProps> = ({
         <Button
           variant='outline'
           size='lg'
-          className='mt-4 w-full text-black'
+          className='mt-4 w-full text-black hover:bg-[#6B8FF2] hover:text-white'
+          onClick={onSeeProfile}
         >
           See Profile
         </Button>

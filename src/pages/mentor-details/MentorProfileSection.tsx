@@ -1,8 +1,8 @@
 import React from 'react';
-import { MentorProfileProps } from './MentorDetails.types.ts';
 import { Github, Globe, Linkedin, X } from 'lucide-react';
 import { Spacer } from '../../components/spacer';
-import { Button } from '../../components/ui/Button.tsx';
+import { Button } from '../../components/ui/Button';
+import { MentorProfileProps } from '../../types/types';
 
 export const MentorProfileSection: React.FC<MentorProfileProps> = ({
   name,
@@ -29,7 +29,7 @@ export const MentorProfileSection: React.FC<MentorProfileProps> = ({
         {/* Left Panel - Mentor Profile */}
         <div className='w-1/3 rounded-lg bg-gray-100 p-6 shadow'>
           <img
-            src={profileImage}
+            src={profileImage || 'https://www.gravatar.com/avatar/?d=mp'}
             alt={`${name}'s profile`}
             className='h-24 w-24 rounded-full border border-gray-300 object-cover'
           />
@@ -43,7 +43,7 @@ export const MentorProfileSection: React.FC<MentorProfileProps> = ({
 
           {/* Social Links */}
           <div className='mt-3 flex gap-3 text-gray-500'>
-            {socialLinks.linkedin && (
+            {socialLinks?.linkedin && (
               <a
                 href={socialLinks.linkedin}
                 target='_blank'
@@ -52,7 +52,7 @@ export const MentorProfileSection: React.FC<MentorProfileProps> = ({
                 <Linkedin className='h-5 w-5' />
               </a>
             )}
-            {socialLinks.twitter && (
+            {socialLinks?.twitter && (
               <a
                 href={socialLinks.twitter}
                 target='_blank'
@@ -61,7 +61,7 @@ export const MentorProfileSection: React.FC<MentorProfileProps> = ({
                 <X className='h-5 w-5' />
               </a>
             )}
-            {socialLinks.github && (
+            {socialLinks?.github && (
               <a
                 href={socialLinks.github}
                 target='_blank'
@@ -77,16 +77,16 @@ export const MentorProfileSection: React.FC<MentorProfileProps> = ({
           {/* Industry Expertise */}
           <h3 className='text-lg font-semibold'>Industry</h3>
           <div className='mt-2'>
-            {industries.map((industry, index) => (
+            {industries?.map((industry, index) => (
               <div
                 key={index}
                 className='flex items-center gap-2 py-1'
               >
                 <Globe className='h-5 w-5 text-gray-500' />
                 <p className='cursor-pointer text-blue-500 underline'>
-                  {industry.name}
+                  {industry}
                 </p>
-                <p className='text-gray-500'>{industry.description}</p>
+                <p className='text-gray-500'>{industry}</p>
               </div>
             ))}
           </div>
@@ -96,7 +96,7 @@ export const MentorProfileSection: React.FC<MentorProfileProps> = ({
           {/* Ask Questions */}
           <h3 className='text-lg font-semibold'>What you can ask?</h3>
           <ul className='list-inside list-disc text-gray-600'>
-            {questions.map((question, index) => (
+            {questions?.map((question, index) => (
               <li
                 key={index}
                 className='py-1'
