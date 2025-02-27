@@ -1,6 +1,7 @@
 import { SectionHeader } from '../section-header/SectionHeader.tsx';
 import { Section } from '../container/Section.tsx';
 import { FaqItem } from './faqitems/FaqItem.tsx';
+import { memo } from 'react';
 
 const FAQ_DATA = [
   {
@@ -20,7 +21,7 @@ const FAQ_DATA = [
   },
 ];
 
-export const FaqSection = () => {
+const FaqSectionComponent = () => {
   return (
     <Section className={'flex flex-col gap-6'}>
       <SectionHeader title={'Frequently Asked Questions'} />
@@ -35,3 +36,5 @@ export const FaqSection = () => {
     </Section>
   );
 };
+
+export const FaqSection = memo(FaqSectionComponent);
