@@ -102,41 +102,47 @@ export const MentorProfileCard: React.FC<MentorProfileCardProps> = ({
 
         {/* Interests, Hobbies, and Side Hustles */}
         <div className='flex gap-8'>
-          <div>
-            <p className='flex items-center gap-1 font-semibold'>
-              Hobbies
-              <img
-                src={analytics}
-                alt=''
-                className='h-4 w-4'
-              />
-            </p>
-            <p className='italic text-gray-500'>{hobbies}</p>
-          </div>
+          {hobbies && (
+            <div>
+              <p className='flex items-center gap-1 font-semibold'>
+                Hobbies
+                <img
+                  src={analytics}
+                  alt=''
+                  className='h-4 w-4'
+                />
+              </p>
+              <p className='italic text-gray-500'>{hobbies}</p>
+            </div>
+          )}
 
-          <div>
-            <p className='flex items-center gap-1 font-semibold'>
-              Interests
-              <img
-                src={heart}
-                alt=''
-                className='h-4 w-4'
-              />
-            </p>
-            <p className='italic text-gray-500'>{interests}</p>
-          </div>
+          {interests && (
+            <div>
+              <p className='flex items-center gap-1 font-semibold'>
+                Interests
+                <img
+                  src={heart}
+                  alt=''
+                  className='h-4 w-4'
+                />
+              </p>
+              <p className='italic text-gray-500'>{interests}</p>
+            </div>
+          )}
 
-          <div>
-            <p className='flex items-center gap-1 font-semibold'>
-              Side Hustles{' '}
-              <img
-                src={bag}
-                alt=''
-                className='h-4 w-4'
-              />
-            </p>
-            <p className='italic text-gray-500'>{sideHustles}</p>
-          </div>
+          {sideHustles && (
+            <div>
+              <p className='flex items-center gap-1 font-semibold'>
+                Side Hustles
+                <img
+                  src={bag}
+                  alt=''
+                  className='h-4 w-4'
+                />
+              </p>
+              <p className='italic text-gray-500'>{sideHustles}</p>
+            </div>
+          )}
         </div>
       </div>
     </div>
