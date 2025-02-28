@@ -118,6 +118,34 @@ export const MentorProfileSection: React.FC<MentorProfileProps> = ({
 
         {/* Right Panel - Bio and Details */}
         <div className='w-2/3'>
+          <div className='mt-4 flex gap-8'>
+            {hobbies && (
+              <div>
+                <p className='flex items-center gap-1 font-semibold'>
+                  Hobbies <span className='text-blue-500'>🔗</span>
+                </p>
+                <p className='italic text-gray-500'>{hobbies}</p>
+              </div>
+            )}
+
+            {interests && (
+              <div>
+                <p className='flex items-center gap-1 font-semibold'>
+                  Interests <span className='text-red-500'>🔥</span>
+                </p>
+                <p className='italic text-gray-500'>{interests}</p>
+              </div>
+            )}
+
+            {sideHustles && (
+              <div>
+                <p className='flex items-center gap-1 font-semibold'>
+                  Side Hustles <span className='text-green-500'>💼</span>
+                </p>
+                <p className='italic text-gray-500'>{sideHustles}</p>
+              </div>
+            )}
+          </div>
           <div className='mb-6'>
             <h2 className='text-3xl font-bold'>Bio</h2>
             <p className='mt-2 text-gray-600'>{bio}</p>
@@ -127,28 +155,6 @@ export const MentorProfileSection: React.FC<MentorProfileProps> = ({
           </div>
 
           {/* Interests, Hobbies, and Side Hustles */}
-          <div className='mt-4 flex gap-8'>
-            <div>
-              <p className='flex items-center gap-1 font-semibold'>
-                Hobbies <span className='text-blue-500'>🔗</span>
-              </p>
-              <p className='italic text-gray-500'>{hobbies}</p>
-            </div>
-
-            <div>
-              <p className='flex items-center gap-1 font-semibold'>
-                Interests <span className='text-red-500'>❤️</span>
-              </p>
-              <p className='italic text-gray-500'>{interests}</p>
-            </div>
-
-            <div>
-              <p className='flex items-center gap-1 font-semibold'>
-                Side Hustles <span className='text-green-500'>💼</span>
-              </p>
-              <p className='italic text-gray-500'>{sideHustles}</p>
-            </div>
-          </div>
 
           <Spacer size={30} />
 
