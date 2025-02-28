@@ -6,17 +6,25 @@ import { MentorProfileSection } from './MentorProfileSection';
 import { useMentorStore } from '../../store/useMentorStore';
 import { Mentor } from '../../types/types';
 import { AnimatedPageWrapper } from '../../components/PageWrapper';
+import { data as mentorsData } from '../../content/mentors';
 
 export const MentorDetails = () => {
   const { id } = useParams<{ id: string }>();
   const { setNavbarTheme } = useNavbarContext();
+  const mentors = useMentorStore((state) => state.mentors);
+  const setMentors = useMentorStore((state) => state.setMentors);
 
   useEffect(() => {
     setNavbarTheme(true);
     return () => setNavbarTheme(false);
   }, [setNavbarTheme]);
 
-  const mentors = useMentorStore((state) => state.mentors);
+  useEffect(() => {
+    if (mentors.length === 0) {
+      setMentors(mentorsData);
+    }
+  }, [mentors, setMentors]);
+
   const mentorIndex = Number(id);
   const mentor: Mentor | undefined = mentors[mentorIndex];
 
