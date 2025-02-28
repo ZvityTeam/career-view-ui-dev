@@ -38,7 +38,7 @@ export const MentorDetails = () => {
         <Header
           name={mentor.name}
           profileImage={mentor.profileImage}
-          bio={mentor.bio}
+          bio={mentor.shortDesc}
         />
         <MentorProfileSection
           name={mentor.name}

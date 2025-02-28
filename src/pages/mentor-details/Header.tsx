@@ -18,7 +18,7 @@ export const Header = ({ name, profileImage, bio }: HeaderProps) => {
       </div>
       <div className='flex flex-col items-center gap-2'>
         <p className='text-4xl font-bold'>{name}</p>
-        <p className='text-2xl font-[100] italic'>{bio}</p>
+        <p className='max-w-3xl text-xl font-[100] italic'>{bio}</p>
       </div>
     </Section>
   );
