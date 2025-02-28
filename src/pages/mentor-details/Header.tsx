@@ -4,7 +4,7 @@ import { HeaderProps } from '../../types/types';
 export const Header = ({ name, profileImage, bio }: HeaderProps) => {
   return (
     <Section className='flex min-h-72 w-screen flex-col gap-20'>
-      <div className='relative w-full'>
+      <div className='relative z-10 w-full'>
         <img
           src='https://placehold.co/600x50'
           className='w-full object-contain'
@@ -12,7 +12,7 @@ export const Header = ({ name, profileImage, bio }: HeaderProps) => {
         />
         <img
           src={profileImage || 'https://www.gravatar.com/avatar/?d=mp'}
-          className='absolute -bottom-1/2 left-1/2 -translate-x-1/2 rounded-full border-2 border-white'
+          className='absolute -bottom-1/2 left-1/2 z-20 h-40 w-40 -translate-x-1/2 rounded-full border-2 border-white bg-white'
           alt={name}
         />
       </div>
