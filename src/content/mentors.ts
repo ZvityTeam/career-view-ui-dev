@@ -1,4 +1,5 @@
 import { Mentor } from '../types/types';
+import { andrew_korol } from '../assets/mentor_images';
 
 export const data = [
   {
@@ -11,7 +12,7 @@ export const data = [
       '-\tRoyal Aero Club of WA (CPL)\n-\tBunbury Flying School (MEIR)\n-\tCurtin University (BEng)\n-\tAll Saints\u2019 College\n',
     bio: 'Flying for Skippers Aviation operating out of their Broome base, Andrew conducts a mix of private charters, inmate transfer and also a regular public transport operation to Fitzroy Crossing and Halls Creek. His favourite aspects of the job include flying at night to remote locations and the air conditioning system the conquest has!\n\nAlso a qualified Mechanical Engineer, he decided after 2 years the profession and FIFO lifestyle didn\u2019t quite suit him before career swapping to aviation.\n\nIn his spare time he plays cricket and AFL in the local Broome competition, enjoys spearfishing, diving, wakeboard, camping, and long distance running. The community in Broome is very social and welcoming as the town is somewhat transient making it an ideal place to gain experience as a young pilot.',
     availableHours: 'Flexible',
-    profileImage: '',
+    profileImage: andrew_korol,
     hobbies: '',
     interests: '',
     sideHustles: '',
