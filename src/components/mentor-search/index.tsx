@@ -3,10 +3,38 @@
 import { CurvedWrapper } from '../CurvedWrapper.tsx';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 import { ListFilter } from 'lucide-react';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
+import { useMentorStore } from '../../store/useMentorStore.ts';
+import { Mentor } from '../../types/types';
 
 export default function MentorSearch() {
   const [showFilter, setShowFilter] = useState(true);
+  const mentors = useMentorStore((state) => state.mentors);
+
+  // Extract unique values dynamically from the mentors list
+  const uniqueValues = (key: keyof Mentor) => {
+    return [...new Set(mentors.map((mentor) => mentor[key]).filter(Boolean))];
+  };
+
+  const uniqueIndustries = useMemo(() => {
+    return [...new Set(mentors.flatMap((mentor) => mentor.industries || []))];
+  }, [mentors]);
+
+  // Define filter state
+  const [filters, setFilters] = useState({
+    role: '',
+    university: '',
+    company: '',
+    availableHours: '',
+    location: '',
+    industry: '',
+  });
+
+  // Handle filter change
+  const handleFilterChange = (key: keyof typeof filters, value: string) => {
+    const newFilters = { ...filters, [key]: value };
+    setFilters(newFilters);
+  };
 
   return (
     <CurvedWrapper>
@@ -41,7 +69,41 @@ export default function MentorSearch() {
               <h3 className={'max-w-44 font-britania text-3xl font-medium'}>
                 Filter your search
               </h3>
-              <div className={'w-full'}>Filter</div>
+              <div className={'flex w-full flex-wrap gap-4'}>
+                {[
+                  { key: 'role', label: 'Role' },
+                  { key: 'university', label: 'University' },
+                  { key: 'company', label: 'Company' },
+                  { key: 'availableHours', label: 'Availability' },
+                  { key: 'location', label: 'Location' },
+                  { key: 'industry', label: 'Industry' },
+                ].map(({ key, label }) => (
+                  <select
+                    key={key}
+                    className='h-12 w-44 rounded-md border px-4 py-2'
+                    value={filters[key as keyof typeof filters]}
+                    onChange={(e) =>
+                      handleFilterChange(
+                        key as keyof typeof filters,
+                        e.target.value
+                      )
+                    }
+                  >
+                    <option value=''>{label}</option>
+                    {(key === 'industry'
+                      ? uniqueIndustries
+                      : uniqueValues(key as keyof Mentor)
+                    ).map((option) => (
+                      <option
+                        key={option}
+                        value={option}
+                      >
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                ))}
+              </div>
             </div>
           )}
         </div>
