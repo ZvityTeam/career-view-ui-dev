@@ -41,7 +41,9 @@ export const MentorProfileCard: React.FC<MentorProfileCardProps> = ({
           }}
         >
           {isAdded ? (
-            <Trash2 />
+            <>
+              <Trash2 /> Remove from Mentor List
+            </>
           ) : (
             <>
               <UserPlus /> Add to Mentor List

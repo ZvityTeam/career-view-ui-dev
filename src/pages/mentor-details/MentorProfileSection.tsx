@@ -1,5 +1,5 @@
 import React from 'react';
-import { Github, Globe, Linkedin, X } from 'lucide-react';
+import { Github, Globe, Linkedin, Trash2, UserPlus, X } from 'lucide-react';
 import { Spacer } from '../../components/spacer';
 import { Button } from '../../components/ui/Button';
 import { MentorProfileProps } from '../../types/types';
@@ -21,13 +21,14 @@ export const MentorProfileSection: React.FC<MentorProfileProps> = ({
   socialLinks,
   onAskQuestion,
   onAddToMentorList,
+  isAdded,
 }) => {
   return (
-    <div className='mx-auto max-w-6xl rounded-lg bg-white p-8 shadow-lg'>
+    <div className='mx-auto max-w-7xl rounded-lg p-8'>
       {/* Mentor Header */}
-      <div className='flex items-start gap-6'>
+      <div className='flex items-start gap-16'>
         {/* Left Panel - Mentor Profile */}
-        <div className='w-1/3 rounded-lg bg-gray-100 p-6 shadow'>
+        <div className='w-1/3 rounded-[70px] bg-white p-6 shadow'>
           <img
             src={profileImage || 'https://www.gravatar.com/avatar/?d=mp'}
             alt={`${name}'s profile`}
@@ -107,13 +108,6 @@ export const MentorProfileSection: React.FC<MentorProfileProps> = ({
           </ul>
 
           <Spacer size={20} />
-          <Button
-            variant='secondary'
-            size='lg'
-            onClick={onAskQuestion}
-          >
-            Ask a Question
-          </Button>
         </div>
 
         {/* Right Panel - Bio and Details */}
@@ -147,8 +141,8 @@ export const MentorProfileSection: React.FC<MentorProfileProps> = ({
             )}
           </div>
           <div className='mb-6'>
-            <h2 className='text-3xl font-bold'>Bio</h2>
-            <p className='mt-2 text-gray-600'>{bio}</p>
+            <h2 className='font-avenir text-3xl font-bold'>Bio</h2>
+            <p className='mt-2 font-light leading-7 text-gray-600'>{bio}</p>
             <p className='mt-2 font-semibold text-gray-600'>
               Available: {availableHours}
             </p>
@@ -159,12 +153,30 @@ export const MentorProfileSection: React.FC<MentorProfileProps> = ({
           <Spacer size={30} />
 
           {/* Add Mentor Button */}
-          <Button
-            size='lg'
-            onClick={onAddToMentorList}
-          >
-            + Add Mentor to List
-          </Button>
+          <div className={`flex gap-8`}>
+            <Button
+              size='lg'
+              onClick={onAddToMentorList}
+            >
+              {isAdded ? (
+                <>
+                  <Trash2 /> Remove from Mentor List
+                </>
+              ) : (
+                <>
+                  <UserPlus /> Add to Mentor List
+                </>
+              )}
+            </Button>
+            <Button
+              variant='outline'
+              size='lg'
+              className={`border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white`}
+              onClick={onAskQuestion}
+            >
+              Ask a Question
+            </Button>
+          </div>
         </div>
       </div>
     </div>
