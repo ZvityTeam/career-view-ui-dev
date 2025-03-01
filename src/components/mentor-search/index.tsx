@@ -1,15 +1,23 @@
-'use client';
-
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { CurvedWrapper } from '../CurvedWrapper.tsx';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 import { ListFilter } from 'lucide-react';
-import { useMemo, useState } from 'react';
 import { useMentorStore } from '../../store/useMentorStore.ts';
 import { Mentor } from '../../types/types';
 
 export default function MentorSearch() {
   const [showFilter, setShowFilter] = useState(true);
   const mentors = useMentorStore((state) => state.mentors);
+  const setMentors = useMentorStore((state) => state.setMentors);
+
+  // Save the original list of mentors in a ref
+  const originalMentorsRef = useRef<Mentor[]>([]);
+  useEffect(() => {
+    // On first load or if the store updates with a new list, capture the original mentors
+    if (mentors.length > 0 && originalMentorsRef.current.length === 0) {
+      originalMentorsRef.current = mentors;
+    }
+  }, [mentors]);
 
   // Extract unique values dynamically from the mentors list
   const uniqueValues = (key: keyof Mentor) => {
@@ -30,10 +38,48 @@ export default function MentorSearch() {
     industry: '',
   });
 
-  // Handle filter change
+  // Function to filter mentors from the original list based on current filters
+  const filterMentors = (activeFilters: typeof filters) => {
+    const filtered = originalMentorsRef.current.filter((mentor) => {
+      // For each filter, if the filter is non-empty, check if the mentor value matches.
+      const matchesRole = activeFilters.role
+        ? mentor.role === activeFilters.role
+        : true;
+      const matchesUniversity = activeFilters.university
+        ? mentor.university === activeFilters.university
+        : true;
+      const matchesCompany = activeFilters.company
+        ? mentor.company === activeFilters.company
+        : true;
+      const matchesAvailableHours = activeFilters.availableHours
+        ? mentor.availableHours === activeFilters.availableHours
+        : true;
+      const matchesLocation = activeFilters.location
+        ? mentor.location === activeFilters.location
+        : true;
+      // For industry, mentor.industries is an array.
+      const matchesIndustry = activeFilters.industry
+        ? mentor.industries &&
+          mentor.industries.includes(activeFilters.industry)
+        : true;
+
+      return (
+        matchesRole &&
+        matchesUniversity &&
+        matchesCompany &&
+        matchesAvailableHours &&
+        matchesLocation &&
+        matchesIndustry
+      );
+    });
+    setMentors(filtered);
+  };
+
+  // Handle filter change: update state and filter mentors
   const handleFilterChange = (key: keyof typeof filters, value: string) => {
     const newFilters = { ...filters, [key]: value };
     setFilters(newFilters);
+    filterMentors(newFilters);
   };
 
   return (
