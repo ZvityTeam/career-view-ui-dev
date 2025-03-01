@@ -157,6 +157,11 @@ export const MentorProfileSection: React.FC<MentorProfileProps> = ({
             <Button
               size='lg'
               onClick={onAddToMentorList}
+              className={`${
+                isAdded
+                  ? 'bg-red-500 text-white hover:bg-red-600'
+                  : 'bg-blue-500 text-white hover:bg-blue-600'
+              }`}
             >
               {isAdded ? (
                 <>
