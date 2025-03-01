@@ -1,103 +1,49 @@
 'use client';
 
-import { ChevronDown, Search } from 'lucide-react';
-import { Button } from '../ui/Button';
 import { CurvedWrapper } from '../CurvedWrapper.tsx';
+import { FaMagnifyingGlass } from 'react-icons/fa6';
+import { ListFilter } from 'lucide-react';
+import { useState } from 'react';
 
 export default function MentorSearch() {
-  const categories = [
-    'All',
-    'Psychology',
-    'Engineering',
-    'General',
-    'Doctor',
-    'Actor',
-  ];
-
-  const filters = [
-    { name: 'Software, UX..', hasChevron: true },
-    { name: 'Experience', hasChevron: true },
-    { name: 'Software', hasChevron: true },
-    { name: 'Skills', hasChevron: true },
-    { name: 'City', hasChevron: true },
-    { name: 'Free', hasChevron: true },
-    { name: 'Country', hasChevron: true },
-    { name: 'Company', hasChevron: true },
-    { name: 'Availability', hasChevron: true },
-  ];
+  const [showFilter, setShowFilter] = useState(true);
 
   return (
     <CurvedWrapper>
       <div className='w-full rounded-[40px] bg-white p-6'>
-        <div className='container mx-auto max-w-6xl px-4'>
-          {/* Search Bar */}
-          <div className='relative mb-8'>
-            <div className='relative flex items-center rounded-full bg-gray-100 px-4 py-3'>
-              <Search className='h-6 w-6 text-gray-500' />
-              <input
-                type='text'
-                placeholder='Search Mentors'
-                className='w-full border-none bg-transparent pl-3 pr-4 text-base focus:outline-none focus:ring-0'
-              />
-              <Button
-                variant='ghost'
-                className='ml-auto'
-              >
-                <div className='flex h-6 w-6 items-center justify-center'>
-                  <div className='space-y-1.5'>
-                    <div className='h-0.5 w-5 rounded-full bg-gray-500'></div>
-                    <div className='ml-2 h-0.5 w-3 rounded-full bg-gray-500'></div>
-                    <div className='h-0.5 w-5 rounded-full bg-gray-500'></div>
-                  </div>
-                </div>
-              </Button>
+        <div className='container mx-auto flex max-w-6xl flex-col items-center justify-center gap-8 px-4'>
+          <div className={'text-center'}>
+            <h1 className='text-4xl font-semibold'>Mentors</h1>
+            <p className='mt-2 text-gray-500'>
+              Search for mentors based on your interests and needs
+            </p>
+          </div>
+
+          {/*Search bar and filter*/}
+          <div className='relative w-full'>
+            <FaMagnifyingGlass className='absolute left-4 top-1/2 h-8 w-8 -translate-y-1/2 text-lg text-gray-500' />
+            <input
+              type='text'
+              placeholder='Search for mentors'
+              className='h-16 w-full rounded-full bg-slate-200 py-4 pl-16 pr-16 text-xl outline-none ring-0'
+            />
+            <ListFilter
+              onClick={() => setShowFilter((prev) => !prev)}
+              className='absolute right-4 top-1/2 h-8 w-8 -translate-y-1/2 cursor-pointer text-lg text-black'
+            />
+          </div>
+          {showFilter && (
+            <div
+              className={
+                'flex h-36 w-full items-center justify-center gap-16 rounded-xl bg-slate-200 px-16 py-6'
+              }
+            >
+              <h3 className={'max-w-44 font-britania text-3xl font-medium'}>
+                Filter your search
+              </h3>
+              <div className={'w-full'}>Filter</div>
             </div>
-          </div>
-
-          {/* Filter Section */}
-          <div className='mb-8 rounded-3xl bg-gray-100 p-6'>
-            <h2 className='mb-6 text-2xl font-bold text-gray-800'>
-              Filter your Search
-            </h2>
-
-            <div className='flex flex-wrap gap-3'>
-              <Button
-                variant='outline'
-                className='rounded-full bg-white px-4 py-2 font-medium'
-              >
-                #All
-              </Button>
-
-              {filters.map((filter, index) => (
-                <Button
-                  key={index}
-                  variant='outline'
-                  className='flex items-center gap-2 rounded-full bg-white px-4 py-2 font-medium'
-                >
-                  {filter.name}
-                  {filter.hasChevron && <ChevronDown className='h-4 w-4' />}
-                </Button>
-              ))}
-            </div>
-          </div>
-
-          {/* Categories */}
-          <div className='flex flex-wrap gap-3'>
-            {categories.map((category) => (
-              <Button
-                key={category}
-                variant='outline'
-                className='rounded-full bg-gray-100 px-4 py-2 font-medium hover:bg-gray-200'
-              >
-                #{category}
-              </Button>
-            ))}
-          </div>
-
-          {/* Pagination Indicator */}
-          <div className='mt-8 flex justify-center'>
-            <div className='h-3 w-20 rounded-full bg-gradient-to-r from-gray-300 to-gray-500'></div>
-          </div>
+          )}
         </div>
       </div>
     </CurvedWrapper>

@@ -38,7 +38,7 @@ export const MentorProfileCard: React.FC<MentorProfileCardProps> = ({
           onClick={(e) => {
             e.stopPropagation();
             onAddToMentorList();
-          }}
+          }}x
         >
           {isAdded ? (
             <>
