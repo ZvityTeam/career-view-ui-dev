@@ -1,11 +1,11 @@
+import { Trash2, UserPlus } from 'lucide-react';
 import React from 'react';
 import { Mentor } from '../../types/types'; // adjust the import path as needed
-import { Button } from '../ui/Button';
 import { Spacer } from '../spacer';
-import { Trash2, UserPlus } from 'lucide-react';
+import analytics from '../svgs/analytics.svg';
 import bag from '../svgs/bag.svg';
 import heart from '../svgs/heart.svg';
-import analytics from '../svgs/analytics.svg';
+import { Button } from '../ui/Button';
 
 export interface MentorProfileCardProps extends Mentor {
   onAddToMentorList?: () => void;
@@ -38,7 +38,7 @@ export const MentorProfileCard: React.FC<MentorProfileCardProps> = ({
           onClick={(e) => {
             e.stopPropagation();
             onAddToMentorList();
-          }}x
+          }}
         >
           {isAdded ? (
             <>
