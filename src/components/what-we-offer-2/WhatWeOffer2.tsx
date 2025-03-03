@@ -2,8 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { Headphones, Layers, Link2, Lock, PlaySquare } from 'lucide-react';
-import { Button } from '../ui/Button.tsx';
 import { SectionHeader } from '../section-header/SectionHeader.tsx';
+import { Button } from '../ui/Button.tsx';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -14,19 +14,21 @@ const fadeInUp = {
 export default function WhatWeOffer2() {
   return (
     <section className='mt-36 min-h-screen w-full'>
-      <div className='mx-auto flex flex-col gap-6 px-6'>
+      <div className='mx-auto flex max-w-[90rem] flex-col gap-8 px-6 lg:px-12'>
         {/* Title */}
         <SectionHeader title={'What we Offer'} />
 
         {/* GRID CONTAINER */}
-        <div className='grid grid-cols-12 gap-6'>
+        <div className='grid grid-cols-12 gap-6 lg:gap-8'>
           {/* ---------------- ROW 1 ---------------- */}
           {/* 1) Feedback Statistics */}
           <motion.div
-            className='col-span-12 h-[370px] w-[370px] rounded-[24px] bg-white p-6 shadow-sm md:col-span-3'
+            className='col-span-12 h-auto rounded-[24px] bg-white p-6 shadow-sm md:col-span-3 lg:p-8 xl:col-span-3'
             {...fadeInUp}
           >
-            <h3 className='mb-8 text-xl font-medium'>Feedback Statistics</h3>
+            <h3 className='mb-8 text-xl font-medium lg:text-2xl'>
+              Feedback Statistics
+            </h3>
             <div className='space-y-6'>
               <div>
                 <div className='relative mb-2 h-2 rounded-full bg-gray-200'>
@@ -55,19 +57,21 @@ export default function WhatWeOffer2() {
             </div>
           </motion.div>
 
-          <div className='col-span-12 flex flex-col justify-around p-6 text-white md:col-span-4'>
+          <div className='col-span-12 flex flex-col justify-around gap-6 md:col-span-4 xl:col-span-4'>
             {/* 2) 120+ Career */}
             <motion.div
-              className='rounded-[24px] bg-[#1C1C1C] p-6 text-white shadow-sm'
+              className='rounded-[24px] bg-[#1C1C1C] p-6 text-white shadow-sm lg:p-8'
               {...fadeInUp}
             >
               <div className='flex items-center gap-4'>
                 <div className='rounded-2xl bg-[#F5F5F0] p-4'>
-                  <Layers className='h-6 w-6 text-black' />
+                  <Layers className='h-6 w-6 text-black lg:h-7 lg:w-7' />
                 </div>
                 <div>
-                  <h3 className='text-2xl font-semibold'>120+ Career</h3>
-                  <p className='mt-1 text-sm text-gray-300'>
+                  <h3 className='text-2xl font-semibold lg:text-3xl'>
+                    120+ Career
+                  </h3>
+                  <p className='mt-1 text-sm text-gray-300 lg:text-base'>
                     Guidance Options Available
                   </p>
                 </div>
@@ -75,21 +79,23 @@ export default function WhatWeOffer2() {
             </motion.div>
             {/* 4) Live Streaming (centered under 120+ Career) */}
             <motion.div
-              className='rounded-[24px] bg-white p-6 shadow-sm'
+              className='rounded-[24px] bg-white p-6 shadow-sm lg:p-8'
               {...fadeInUp}
             >
               <div className='flex items-center justify-between text-slate-950'>
                 <div>
-                  <h3 className='text-2xl font-bold'>Live-streaming</h3>
-                  <p className='text-gray-600'>
+                  <h3 className='text-2xl font-bold lg:text-3xl'>
+                    Live-streaming
+                  </h3>
+                  <p className='text-sm text-gray-600 lg:text-base'>
                     &amp; Career Talk with Live Q&amp;A
                   </p>
                 </div>
                 <div className='relative'>
-                  <div className='absolute -right-2 -top-2 h-12 w-12 -rotate-6 rounded-2xl bg-blue-100' />
-                  <div className='absolute -right-1 -top-1 h-12 w-12 rotate-3 rounded-2xl bg-yellow-100' />
-                  <div className='relative rounded-2xl bg-[#1C1C1C] p-3'>
-                    <PlaySquare className='h-6 w-6 text-white' />
+                  <div className='absolute -right-2 -top-2 h-12 w-12 -rotate-6 rounded-2xl bg-blue-100 lg:h-14 lg:w-14' />
+                  <div className='absolute -right-1 -top-1 h-12 w-12 rotate-3 rounded-2xl bg-yellow-100 lg:h-14 lg:w-14' />
+                  <div className='relative rounded-2xl bg-[#1C1C1C] p-3 lg:p-4'>
+                    <PlaySquare className='h-6 w-6 text-white lg:h-7 lg:w-7' />
                   </div>
                 </div>
               </div>
@@ -98,7 +104,7 @@ export default function WhatWeOffer2() {
 
           {/* 3) Unlock Potential */}
           <motion.div
-            className='relative col-span-12 rounded-[24px] p-6 shadow-sm md:col-span-5'
+            className='relative col-span-12 rounded-[24px] p-6 shadow-sm md:col-span-5 lg:p-8 xl:col-span-5'
             {...fadeInUp}
             style={{
               background:
@@ -113,23 +119,25 @@ export default function WhatWeOffer2() {
                       key={i}
                       src='https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-G9rFTZppVkvPcSDZilcUcpp1350YQ9.png'
                       alt='Student avatar'
-                      className='h-8 w-8 rounded-full border-2 border-white'
+                      className='h-8 w-8 rounded-full border-2 border-white lg:h-10 lg:w-10'
                     />
                   ))}
                 </div>
-                <p className='text-sm text-gray-600'>12k+ Students satisfied</p>
+                <p className='text-sm text-gray-600 lg:text-base'>
+                  12k+ Students satisfied
+                </p>
               </div>
-              <Lock className='h-6 w-6 text-blue-500' />
+              <Lock className='h-6 w-6 text-blue-500 lg:h-7 lg:w-7' />
             </div>
-            <div className='mt-8'>
-              <h3 className='mb-4 text-2xl font-bold leading-snug'>
+            <div className='mt-8 lg:mt-12'>
+              <h3 className='mb-4 text-2xl font-bold leading-snug lg:text-3xl'>
                 Unlock Your
                 <br />
                 Full Potential
               </h3>
               <Button
                 variant='outline'
-                className='rounded-full px-6'
+                className='rounded-full px-6 text-sm lg:text-base'
               >
                 Sign Up
               </Button>
@@ -139,16 +147,18 @@ export default function WhatWeOffer2() {
           {/* ---------------- ROW 3 ---------------- */}
           {/* 5) Network with Peers */}
           <motion.div
-            className='col-span-12 rounded-[24px] bg-gradient-to-br from-yellow-50 to-yellow-100 p-6 shadow-sm md:col-span-4'
+            className='col-span-12 rounded-[24px] bg-gradient-to-br from-yellow-50 to-yellow-100 p-6 shadow-sm md:col-span-4 lg:p-8 xl:col-span-4'
             {...fadeInUp}
           >
             <div className='mb-6 flex items-center justify-between'>
-              <h3 className='text-2xl font-bold'>Network with Peers</h3>
-              <div className='rounded-full bg-white p-3 shadow-sm'>
-                <Link2 className='h-6 w-6 text-black' />
+              <h3 className='text-2xl font-bold lg:text-3xl'>
+                Network with Peers
+              </h3>
+              <div className='rounded-full bg-white p-3 shadow-sm lg:p-4'>
+                <Link2 className='h-6 w-6 text-black lg:h-7 lg:w-7' />
               </div>
             </div>
-            <p className='mb-6 text-sm leading-relaxed text-gray-600'>
+            <p className='mb-6 text-sm leading-relaxed text-gray-600 lg:text-base'>
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
               nonumy eirmod tempor
             </p>
@@ -159,30 +169,32 @@ export default function WhatWeOffer2() {
                     key={i}
                     src='https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-G9rFTZppVkvPcSDZilcUcpp1350YQ9.png'
                     alt='Connected student'
-                    className='h-8 w-8 rounded-full border-2 border-white'
+                    className='h-8 w-8 rounded-full border-2 border-white lg:h-10 lg:w-10'
                   />
                 ))}
               </div>
-              <p className='text-sm text-gray-600'>12k+ Students connected</p>
+              <p className='text-sm text-gray-600 lg:text-base'>
+                12k+ Students connected
+              </p>
             </div>
           </motion.div>
 
           {/* 6) Podcast */}
           <motion.div
-            className='col-span-12 flex justify-center md:col-span-2'
+            className='col-span-12 flex justify-center md:col-span-2 xl:col-span-2'
             {...fadeInUp}
           >
             {/* Outer black container */}
-            <div className='flex w-full flex-col items-center justify-around rounded-[24px] bg-[#1C1C1C] p-6 shadow-sm'>
+            <div className='flex w-full flex-col items-center justify-around rounded-[24px] bg-[#1C1C1C] p-6 shadow-sm lg:p-8'>
               {/* Cream icon box at the top */}
-              <div className='mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#F5F5F0]'>
-                <Headphones className='h-6 w-6 text-black' />
+              <div className='mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#F5F5F0] lg:h-20 lg:w-20'>
+                <Headphones className='h-6 w-6 text-black lg:h-8 lg:w-8' />
               </div>
 
               {/* Vertical “PODCAST” text, centered on the black shape’s right edge */}
-              <div className='flex flex-col items-center justify-center font-mono text-xs text-white'>
-                {'PODCAST'.split('').map((value) => (
-                  <span>{value}</span>
+              <div className='flex flex-col items-center justify-center font-mono text-xs text-white lg:text-sm'>
+                {'PODCAST'.split('').map((value, index) => (
+                  <span key={index}>{value}</span>
                 ))}
               </div>
             </div>
@@ -190,31 +202,33 @@ export default function WhatWeOffer2() {
 
           {/* 7) Top Mentors */}
           <motion.div
-            className='col-span-12 rounded-[24px] bg-gradient-to-br from-gray-100 to-gray-200 p-6 shadow-sm md:col-span-6'
+            className='col-span-12 rounded-[24px] bg-gradient-to-br from-gray-100 to-gray-200 p-6 shadow-sm md:col-span-6 lg:p-8 xl:col-span-6'
             {...fadeInUp}
           >
             <div className='mb-6 flex items-start justify-between'>
               <div>
-                <h3 className='mb-2 text-2xl font-bold'>Top Mentors</h3>
-                <p className='mb-4 text-sm leading-relaxed text-gray-600'>
+                <h3 className='mb-2 text-2xl font-bold lg:text-3xl'>
+                  Top Mentors
+                </h3>
+                <p className='mb-4 text-sm leading-relaxed text-gray-600 lg:text-base'>
                   Receive guidance from the pool of best professionals out in
                   the industry
                 </p>
                 <Button
                   variant='secondary'
-                  className='rounded-full bg-black text-white hover:bg-black/90'
+                  className='rounded-full bg-black text-sm text-white hover:bg-black/90 lg:text-base'
                 >
                   Browse Mentors
                 </Button>
               </div>
             </div>
-            <div className='mt-6 grid grid-cols-3 gap-2'>
+            <div className='mt-6 grid grid-cols-3 gap-2 lg:mt-8 lg:gap-4'>
               {[...Array(6)].map((_, i) => (
                 <img
                   key={i}
                   src='https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-G9rFTZppVkvPcSDZilcUcpp1350YQ9.png'
                   alt='Mentor'
-                  className='h-16 w-16 rounded-xl object-cover'
+                  className='h-16 w-16 rounded-xl object-cover lg:h-20 lg:w-20'
                 />
               ))}
             </div>
