@@ -19,6 +19,7 @@ export interface Mentor {
     twitter?: string;
     github?: string;
   };
+  email?: string;
 }
 
 export type HeaderProps =  Pick<Mentor, 'name' | 'profileImage' | 'bio'>;

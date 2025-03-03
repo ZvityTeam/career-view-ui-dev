@@ -1,12 +1,13 @@
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Send } from 'lucide-react';
+import { useRef, useState } from 'react';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { useMentorStore } from '../store/useMentorStore.ts'; // adjust path if needed
+import { Mentor } from '../types/types';
+import { OutlinedInputWithButton } from './input-box/InputBox.tsx';
 import { Button } from './ui/Button.tsx';
 import { Textarea } from './ui/test-area.tsx';
-import { Send } from 'lucide-react';
-import { OutlinedInputWithButton } from './input-box/InputBox.tsx';
-import { useRef, useState } from 'react';
-import { useMentorStore } from '../store/useMentorStore.ts'; // adjust path if needed
 
 // ------------------------------
 // Schema & Types
@@ -20,13 +21,6 @@ const formSchema = z.object({
 });
 
 type FormSchema = z.infer<typeof formSchema>;
-
-interface Mentor {
-  name: string;
-  email: string;
-  role: string;
-  profileImage: string;
-}
 
 // ------------------------------
 // Main Form Component
@@ -221,12 +215,14 @@ const MentorMultiSelect: React.FC<MentorMultiSelectProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Filter mentors by name
-  const filteredMentors = mentors.filter((mentor) =>
-    mentor.name.toLowerCase().includes(query.toLowerCase())
-  );
+  const filteredMentors = mentors.filter((mentor) => {
+    if (mentor.name)
+      return mentor.name.toLowerCase().includes(query.toLowerCase());
+  });
 
   // Handle adding a mentor
-  const handleSelectMentor = (email: string) => {
+  const handleSelectMentor = (email: string | undefined) => {
+    if (!email) return;
     if (!selectedMentors.includes(email)) {
       setSelectedMentors([...selectedMentors, email]);
     }
@@ -281,7 +277,7 @@ const MentorMultiSelect: React.FC<MentorMultiSelectProps> = ({
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => setFocused(true)}
-          onBlur={(e) => {
+          onBlur={() => {
             // If the blur event goes to the dropdown, keep it open
             // We'll detect if user clicked on the dropdown using onMouseDown
             // so let's do a small timeout to allow the click to happen first.

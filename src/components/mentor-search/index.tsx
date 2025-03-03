@@ -1,9 +1,9 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { CurvedWrapper } from '../CurvedWrapper.tsx';
-import { FaMagnifyingGlass } from 'react-icons/fa6';
 import { ListFilter } from 'lucide-react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { FaMagnifyingGlass } from 'react-icons/fa6';
 import { useMentorStore } from '../../store/useMentorStore.ts';
 import { Mentor } from '../../types/types';
+import { CurvedWrapper } from '../CurvedWrapper.tsx';
 
 export default function MentorSearch() {
   const [showFilter, setShowFilter] = useState(true);
@@ -139,14 +139,25 @@ export default function MentorSearch() {
                     {(key === 'industry'
                       ? uniqueIndustries
                       : uniqueValues(key as keyof Mentor)
-                    ).map((option) => (
-                      <option
-                        key={option}
-                        value={option}
-                      >
-                        {option}
-                      </option>
-                    ))}
+                    ).map((option) => {
+                      const optionValue =
+                        typeof option === 'string'
+                          ? option
+                          : Array.isArray(option)
+                            ? option.join(', ') // Convert array to a string
+                            : typeof option === 'object' && option !== null
+                              ? JSON.stringify(option) // Convert object to a JSON string
+                              : String(option); // Ensure it's a string
+
+                      return (
+                        <option
+                          key={optionValue}
+                          value={optionValue}
+                        >
+                          {optionValue}
+                        </option>
+                      );
+                    })}
                   </select>
                 ))}
               </div>
