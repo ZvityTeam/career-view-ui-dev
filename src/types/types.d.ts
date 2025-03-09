@@ -14,7 +14,7 @@ export interface Mentor {
   location?: string;
   industries?: string[];
   questions?: string[];
-  socialLinks?: {
+  socialLinks?: {r
     linkedin?: string;
     twitter?: string;
     github?: string;

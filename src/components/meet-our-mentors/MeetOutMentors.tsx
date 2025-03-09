@@ -2,37 +2,17 @@ import { Award, ShoppingBag, Users } from 'lucide-react';
 import { SectionHeader } from '../section-header/SectionHeader.tsx';
 import { Stat } from '../stat/Stat.tsx';
 import { Section } from '../container/Section.tsx';
-import { MentorCard, MentorCardProps } from './mentorcard/MentorCard.tsx';
-
-const MENTORS: MentorCardProps[] = [
-  {
-    name: 'Mark Johnson',
-    designation: 'Psychologist, 15 yrs EXP',
-    bio: 'Helps in career decisions | Highly qualified | Studied at Loren Epsom',
-    showActionButton: true,
-    imageUrl: 'https://placehold.co/350?text=1',
-  },
-  {
-    name: 'Sarah Williams',
-    designation: 'Career Coach, 10 yrs EXP',
-    bio: 'Specializes in interview preparation and career planning',
-    showActionButton: true,
-    imageUrl: 'https://placehold.co/350?text=2',
-  },
-  {
-    name: 'Daniel Thompson',
-    designation: 'Software Engineer, 8 yrs EXP',
-    bio: 'Full-stack developer with expertise in modern web frameworks',
-    showActionButton: true,
-    imageUrl: 'https://placehold.co/350?text=3',
-  },
-];
+import { MentorCard } from './mentorcard/MentorCard.tsx';
+import { useMentorStore } from '../../store/useMentorStore.ts';
 
 export const MeetOutMentors = () => {
+  const { getRandomMentors } = useMentorStore();
+  const randomThree = getRandomMentors(3);
+
   return (
     <Section className={'flex flex-col gap-16'}>
       <SectionHeader
-        title={'Meet out Mentors'}
+        title={'Meet our Mentors'}
         subtitle={
           'Our mentors are passionate professionals from diverse industries, ready to share their expertise and help students shape their future'
         }
@@ -58,9 +38,9 @@ export const MeetOutMentors = () => {
         />
       </div>
       <div className='flex w-full gap-10 bg-[#272727] p-12'>
-        {MENTORS.map((value, index) => (
+        {randomThree.map((mentor, index) => (
           <MentorCard
-            {...value}
+            {...mentor}
             key={index}
           />
         ))}

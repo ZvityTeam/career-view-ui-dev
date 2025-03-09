@@ -5,6 +5,7 @@ interface MentorState {
   mentors: Mentor[];
   setMentors: (mentors: Mentor[]) => void;
   getRandomMentorProfiles: (count: number) => string[];
+  getRandomMentors: (count: number) => Mentor[];
 }
 
 export const useMentorStore = create<MentorState>((set, get) => ({
@@ -32,5 +33,42 @@ export const useMentorStore = create<MentorState>((set, get) => ({
       .sort((a, b) => a.sort - b.sort)
       .slice(0, count)
       .map(({ profileImage }) => profileImage);
+  },
+  getRandomMentors: (count: number) => {
+    const { mentors } = get();
+
+    // Filter mentors with valid profile images and non-null required fields
+    const validMentors = mentors.filter(
+      (mentor) =>
+        typeof mentor.name === 'string' &&
+        mentor.name.trim() !== '' &&
+        typeof mentor.role === 'string' &&
+        mentor.role.trim() !== '' &&
+        typeof mentor.bio === 'string' &&
+        mentor.bio.trim() !== '' &&
+        typeof mentor.profileImage === 'string' &&
+        mentor.profileImage.trim() !== ''
+    );
+
+    if (validMentors.length <= count) {
+      return validMentors.map((m) => ({
+        name: m.name,
+        role: m.role,
+        bio: m.bio,
+        profileImage: m.profileImage,
+      }));
+    }
+
+    return validMentors
+      .map((m) => ({
+        name: m.name,
+        role: m.role,
+        bio: m.bio,
+        profileImage: m.profileImage,
+        sort: Math.random(),
+      }))
+      .sort((a, b) => a.sort - b.sort)
+      .slice(0, count)
+      .map(({ sort, ...mentor }) => mentor); // Remove the sort key before returning
   },
 }));
