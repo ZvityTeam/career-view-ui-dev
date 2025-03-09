@@ -7,7 +7,7 @@ export interface QuestionCardProps {
 
 export const QuestionCard = ({ question, answer }: QuestionCardProps) => {
   return (
-    <div className='relative rounded-lg border border-gray-200 bg-gradient-to-t from-yellow-50 to-slate-50 p-6 shadow-md'>
+    <div className='relative rounded-xl bg-gradient-to-t from-yellow-50 to-slate-50 p-6'>
       <div className='mt-4'>
         <p className='text-lg font-bold'>{`Q. ${question}`}</p>
         <p className='mt-2 text-sm text-gray-700'>{`Answer: ${answer}`}</p>
