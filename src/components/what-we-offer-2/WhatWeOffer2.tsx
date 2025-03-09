@@ -13,7 +13,7 @@ const fadeInUp = {
 
 export default function WhatWeOffer2() {
   return (
-    <section className='mt-36 min-h-screen w-full'>
+    <section className='mt-36 min-h-screen w-full pt-12'>
       <div className='mx-auto flex max-w-[90rem] flex-col gap-8 px-6 lg:px-12'>
         {/* Title */}
         <SectionHeader title={'What we Offer'} />
