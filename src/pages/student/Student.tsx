@@ -1,7 +1,6 @@
 import { QuestionsWeGet } from '../../components/questions-we-get/QuestionsWeGet.tsx';
 import { StudentHero } from '../../components/student-hero/StudentHero.tsx';
 import { WhatWeDo } from '../../components/what-we-do/WhatWeDo.tsx';
-import { WhyChooseUs } from '../../components/why-choose-us/WhyChooseUs.tsx';
 import { StudentMentorConnect } from '../../components/student-mentor-connect/StudentMentorConnect.tsx';
 import { OurEvents } from '../../components/our-events/OurEvents.tsx';
 import { Testimonials } from '../../components/testimonials/Testimonials.tsx';
@@ -16,7 +15,6 @@ export const Student = () => {
         <StudentHero />
         <WhatWeDo />
         <WhatWeOffer2 />
-        <WhyChooseUs />
         <StudentMentorConnect />
         <QuestionsWeGet />
         <OurEvents />

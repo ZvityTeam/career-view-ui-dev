@@ -33,7 +33,7 @@ export const WhatWeDo: React.FC = () => {
         <SectionHeader
           title='What we do?'
           subtitle={
-            'We make career exploration simple and meaningful by connecting students with industry mentors and schools with valuable career resources.'
+            'We’re here to help you discover your strengths, gain real-world insights, and confidently navigate your career journey.'
           }
           className='gap-4'
         />

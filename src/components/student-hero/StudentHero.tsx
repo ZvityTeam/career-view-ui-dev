@@ -47,10 +47,11 @@ export const StudentHero = () => {
     <div className='min-h-screen bg-gradient-to-r from-slate-50 via-yellow-100 to-slate-50 pt-32'>
       <Section className='flex h-[80vh] flex-col justify-between'>
         <div className='flex flex-col items-center gap-8'>
-          <h1 className='text-7xl'>Heading</h1>
+          <h1 className='text-7xl'>Career Questions? We've Got Answers!</h1>
           <p className='text-xl'>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt
-            eaque perferendis vel?
+            CareerView connects you with real-world mentors, offering
+            personalized guidance and tools to explore career paths and achieve
+            your goals.
           </p>
           <Button>Ask a Question</Button>
         </div>
