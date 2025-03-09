@@ -3,7 +3,9 @@ import { SectionHeader } from '../section-header/SectionHeader.tsx';
 import { QuestionCard, QuestionCardProps } from './QuestionCard.tsx';
 import { QuestionCategory } from './QuestionCategory.tsx';
 import { useState } from 'react';
-import Masonry from 'react-responsive-masonry';
+import ListWrapper from '../list-wrapper.tsx';
+import { Button } from '../ui/Button.tsx';
+import { ArrowDown } from 'lucide-react';
 
 const QUESTIONS_WE_GET: {
   category: string;
@@ -189,36 +191,58 @@ const ALL_CATEGORIES = [
 ];
 
 export const QuestionsWeGet = () => {
-  const [currentCategory, setCurrentCategory] = useState('#All'); // Default to #All
+  const [currentCategory, setCurrentCategory] = useState('#All');
+
+  // Get filtered questions based on category
+  const filteredQuestions =
+    ALL_CATEGORIES.find((cat) => cat.category === currentCategory)?.items || [];
 
   return (
-    <Section className={'flex flex-col gap-8'}>
+    <Section className='flex flex-col gap-8'>
       <SectionHeader
         title='Questions we get from our Students'
-        subtitle='Here are the examples of what students ask...'
+        subtitle='Here are examples of what students ask...'
       />
-      {/* Categories */}
-      <div className={'flex max-w-7xl flex-wrap gap-4'}>
+
+      {/* Category Selection */}
+      <div className='flex max-w-7xl flex-wrap gap-4'>
         {ALL_CATEGORIES.map((value, index) => (
           <QuestionCategory
             key={index}
             category={value.category}
             onClick={setCurrentCategory}
-            isSelected={currentCategory === value.category} // Highlight selected category
+            isSelected={currentCategory === value.category}
           />
         ))}
       </div>
-      <Masonry gutter={'20px'}>
-        {currentCategory &&
-          ALL_CATEGORIES.find(
-            (cat) => cat.category === currentCategory
-          )?.items.map((value, index) => (
-            <QuestionCard
-              key={index}
-              {...value}
-            />
-          ))}
-      </Masonry>
+
+      {/* Paginated List using ListWrapper */}
+      <ListWrapper
+        data={filteredQuestions}
+        pageSize={5} // Set a reasonable page size
+        next={() => {}} // Optional: Add logic for fetching more data if needed
+        viewMoreButton={
+          <div className='flex justify-center'>
+            <Button
+              variant='outline'
+              className='mx-auto mt-6 border-black text-black hover:bg-black hover:text-white'
+            >
+              View More <ArrowDown />
+            </Button>
+          </div>
+        }
+      >
+        {(items) => (
+          <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3'>
+            {items.map((value, index) => (
+              <QuestionCard
+                key={index}
+                {...value}
+              />
+            ))}
+          </div>
+        )}
+      </ListWrapper>
     </Section>
   );
 };
