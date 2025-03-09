@@ -2,6 +2,9 @@ import { Section } from '../container/Section.tsx';
 import { SectionHeader } from '../section-header/SectionHeader.tsx';
 import { OurEventCard, OurEventCardProps } from './OurEventCard.tsx';
 import img from '../../assets/event1.jpg';
+import img4 from '../../assets/event4.png';
+import img3 from '../../assets/event3.jpg';
+import img2 from '../../assets/event2.jpg';
 import { Button } from '../ui/Button.tsx';
 
 const OUR_EVENTS: OurEventCardProps[] = [
@@ -10,15 +13,15 @@ const OUR_EVENTS: OurEventCardProps[] = [
     title: 'Midwife Session',
   },
   {
-    imgSrc: 'https://placehold.co/300x450', // Placeholder for "Networking Event" image
+    imgSrc: img2, // Placeholder for "Networking Event" image
     title: 'Networking Event',
   },
   {
-    imgSrc: 'https://placehold.co/300x450', // Placeholder for "Youtube Podcast" image
+    imgSrc: img3, // Placeholder for "Youtube Podcast" image
     title: 'Youtube Podcast',
   },
   {
-    imgSrc: 'https://placehold.co/300x450', // Placeholder for "Team Get Together" image
+    imgSrc: img4, // Placeholder for "Team Get Together" image
     title: 'Team Get Together',
   },
 ];

@@ -193,7 +193,7 @@ const ALL_CATEGORIES = [
 export const QuestionsWeGet = () => {
   const [currentCategory, setCurrentCategory] = useState('#All');
 
-  // Get filtered questions based on category
+  // Filter questions based on selected category
   const filteredQuestions =
     ALL_CATEGORIES.find((cat) => cat.category === currentCategory)?.items || [];
 
@@ -217,32 +217,42 @@ export const QuestionsWeGet = () => {
       </div>
 
       {/* Paginated List using ListWrapper */}
-      <ListWrapper
-        data={filteredQuestions}
-        pageSize={5} // Set a reasonable page size
-        next={() => {}} // Optional: Add logic for fetching more data if needed
-        viewMoreButton={
-          <div className='flex justify-center'>
-            <Button
-              variant='outline'
-              className='mx-auto mt-6 border-black text-black hover:bg-black hover:text-white'
-            >
-              View More <ArrowDown />
-            </Button>
-          </div>
-        }
-      >
-        {(items) => (
-          <div className='grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3'>
-            {items.map((value, index) => (
-              <QuestionCard
-                key={index}
-                {...value}
-              />
-            ))}
-          </div>
-        )}
-      </ListWrapper>
+      <div className='rounded-2xl bg-white p-4'>
+        <ListWrapper
+          data={filteredQuestions}
+          pageSize={5} // Set a reasonable page size
+          next={() => {}}
+          viewMoreButton={
+            <div className='flex justify-center'>
+              <Button
+                variant='outline'
+                className='mx-auto mt-6 border-black text-black hover:bg-black hover:text-white'
+              >
+                View More <ArrowDown />
+              </Button>
+            </div>
+          }
+        >
+          {(items) => (
+            <div className='grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3'>
+              {items.map((value, index) => {
+                // On md and above (3-column layout), treat the middle column (index mod 3 === 1) with a bluish gradient.
+                const isCenter = index % 3 === 1;
+                const bgClass = isCenter
+                  ? 'bg-gradient-to-br from-white via-white to-blue-100'
+                  : 'bg-gradient-to-br from-white via-white to-yellow-100';
+                return (
+                  <QuestionCard
+                    key={index}
+                    {...value}
+                    bgClass={bgClass}
+                  />
+                );
+              })}
+            </div>
+          )}
+        </ListWrapper>
+      </div>
     </Section>
   );
 };

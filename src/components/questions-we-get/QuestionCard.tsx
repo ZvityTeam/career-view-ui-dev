@@ -3,11 +3,19 @@ import { ThumbsUp } from 'lucide-react';
 export interface QuestionCardProps {
   question: string;
   answer: string;
+  // Optional prop to override background classes
+  bgClass?: string;
 }
 
-export const QuestionCard = ({ question, answer }: QuestionCardProps) => {
+export const QuestionCard = ({
+  question,
+  answer,
+  bgClass,
+}: QuestionCardProps) => {
   return (
-    <div className='relative rounded-xl bg-gradient-to-t from-yellow-50 to-slate-50 p-6'>
+    <div
+      className={`relative rounded-xl p-6 ${bgClass || 'bg-gradient-to-t from-yellow-50 to-slate-50'}`}
+    >
       <div className='mt-4'>
         <p className='text-lg font-bold'>{`Q. ${question}`}</p>
         <p className='mt-2 text-sm text-gray-700'>{`Answer: ${answer}`}</p>
