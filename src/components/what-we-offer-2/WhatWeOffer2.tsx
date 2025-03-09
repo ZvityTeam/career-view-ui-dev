@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Headphones, Layers, Link2, Lock, PlaySquare } from 'lucide-react';
 import { SectionHeader } from '../section-header/SectionHeader.tsx';
 import { Button } from '../ui/Button.tsx';
+import { useMentorStore } from '../../store/useMentorStore.ts';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -12,6 +13,10 @@ const fadeInUp = {
 };
 
 export default function WhatWeOffer2() {
+  const { getRandomMentorProfiles } = useMentorStore();
+  const randomMentorProfiles1 = getRandomMentorProfiles(6);
+  const randomMentorProfiles2 = getRandomMentorProfiles(4);
+  const randomMentorProfiles3 = getRandomMentorProfiles(4);
   return (
     <section className='mt-36 min-h-screen w-full pt-12'>
       <div className='mx-auto flex max-w-[90rem] flex-col gap-8 px-6 lg:px-12'>
@@ -114,10 +119,10 @@ export default function WhatWeOffer2() {
             <div className='flex items-start justify-between'>
               <div>
                 <div className='mb-2 flex -space-x-2'>
-                  {[...Array(4)].map((_, i) => (
+                  {randomMentorProfiles3.map((profile, i) => (
                     <img
                       key={i}
-                      src='https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-G9rFTZppVkvPcSDZilcUcpp1350YQ9.png'
+                      src={profile}
                       alt='Student avatar'
                       className='h-8 w-8 rounded-full border-2 border-white lg:h-10 lg:w-10'
                     />
@@ -164,10 +169,10 @@ export default function WhatWeOffer2() {
             </p>
             <div className='flex items-center gap-2'>
               <div className='flex -space-x-2'>
-                {[...Array(4)].map((_, i) => (
+                {randomMentorProfiles2.map((profile, i) => (
                   <img
                     key={i}
-                    src='https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-G9rFTZppVkvPcSDZilcUcpp1350YQ9.png'
+                    src={profile}
                     alt='Connected student'
                     className='h-8 w-8 rounded-full border-2 border-white lg:h-10 lg:w-10'
                   />
@@ -223,10 +228,10 @@ export default function WhatWeOffer2() {
               </div>
             </div>
             <div className='mt-6 grid grid-cols-3 gap-2 lg:mt-8 lg:gap-4'>
-              {[...Array(6)].map((_, i) => (
+              {randomMentorProfiles1.map((profile, i) => (
                 <img
                   key={i}
-                  src='https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-G9rFTZppVkvPcSDZilcUcpp1350YQ9.png'
+                  src={profile}
                   alt='Mentor'
                   className='h-16 w-16 rounded-xl object-cover lg:h-20 lg:w-20'
                 />
