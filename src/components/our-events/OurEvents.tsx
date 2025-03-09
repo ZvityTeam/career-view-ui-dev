@@ -6,6 +6,7 @@ import img4 from '../../assets/event4.png';
 import img3 from '../../assets/event3.jpg';
 import img2 from '../../assets/event2.jpg';
 import { Button } from '../ui/Button.tsx';
+import { Link } from 'react-router-dom';
 
 const OUR_EVENTS: OurEventCardProps[] = [
   {
@@ -36,7 +37,9 @@ export const OurEvents = () => {
             'Stay informed about exciting events, career tips, and the latest updates to fuel your success.'
           }
         />
-        <Button>CTA</Button>
+        <Link to={'/resources'}>
+          <Button>Resources</Button>
+        </Link>
       </div>
 
       <div className={'flex gap-12'}>

@@ -6,6 +6,7 @@ import { BrowseMentors } from '../pages/browse-mentors/BrowseMentors.tsx';
 import { MentorDetails } from '../pages/mentor-details/MentorDetails.tsx';
 import { AskAQuestion } from '../pages/ask-a-question/AskAQuestion.tsx';
 import { Mentors } from '../pages/mentors/mentors.tsx';
+import { Resources } from '../pages/resources/resources.tsx';
 
 export const ROUTES: Route[] = [
   {
@@ -62,6 +63,14 @@ export const ROUTES: Route[] = [
     secured: false,
     metaData: {
       title: 'Career View - Ask a question',
+    },
+  },
+  {
+    path: '/resources',
+    component: Resources,
+    secured: false,
+    metaData: {
+      title: 'Career View - E books',
     },
   },
 ];
