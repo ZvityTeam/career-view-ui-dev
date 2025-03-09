@@ -36,7 +36,7 @@ const logos = [
 
 const DoubleScrollingLogos = () => {
   return (
-    <section className='bg-white py-4'>
+    <section className='bg-slate-100 py-4'>
       <div className='flex overflow-hidden'>
         <TranslateWrapper>
           <LogoItems />
