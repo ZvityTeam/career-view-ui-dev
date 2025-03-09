@@ -1,8 +1,13 @@
 import { Mail, Star } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Avatar } from './avatar.tsx';
+import { Mentor } from '../../../types/types';
 
-export function AvatarProfileCard() {
+interface AvatarProfileCardProps {
+  mentor: Mentor;
+}
+
+export function AvatarProfileCard({ mentor }: AvatarProfileCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -19,14 +24,14 @@ export function AvatarProfileCard() {
           }
         >
           <Avatar
-            image='https://placehold.co/400'
-            alt='Profile Avatar'
+            image={mentor.profileImage || 'https://placehold.co/400'}
+            alt={mentor.name || 'Mentor Avatar'}
             isActive
-            size='sm' // or "default" if you want the bigger version
+            size='sm'
           />
         </div>
 
-        {/* Rating (e.g., 4.9) */}
+        {/* Rating (Static for now, replace with dynamic rating if available) */}
         <div className='ml-2 flex items-center space-x-1'>
           <Star className='h-5 w-5 text-yellow-400' />
           <span className='font-medium text-black'>4.9</span>
@@ -34,20 +39,27 @@ export function AvatarProfileCard() {
       </div>
 
       {/* Name + Title */}
-      <h2 className='mt-3 text-xl font-bold'>Mark Johnson</h2>
-      <p className='text-sm text-gray-600'>Psychologist, 15 yrs EXP</p>
+      <h2 className='mt-3 text-xl font-bold'>
+        {mentor.name || 'Unknown Mentor'}
+      </h2>
+      <p className='text-sm text-gray-600'>
+        {mentor.role ? `${mentor.role}, ` : ''}{' '}
+        {mentor.company || mentor.university || ''}
+      </p>
 
       {/* Short Info / Bio */}
-      <div className='mt-3 text-sm leading-relaxed text-gray-600'>
-        Helps in Lorem Epsom <span className='mx-2 text-gray-400'>|</span>{' '}
-        Highly qualified <span className='mx-2 text-gray-400'>|</span> Studied
-        at Loren Epsom <span className='mx-2 text-gray-400'>|</span> Available
-        9-5pm on weekdays
+      <div className='mt-3 truncate text-sm leading-relaxed text-gray-600'>
+        {mentor.bio || 'No bio available'}{' '}
+        <span className='mx-2 text-gray-400'>|</span>
+        {mentor.industries?.join(', ') || 'Industry Unknown'}{' '}
+        <span className='mx-2 text-gray-400'>|</span>
+        {mentor.availableHours
+          ? `Available ${mentor.availableHours}`
+          : 'Availability not specified'}
       </div>
 
-      {/* Availability Section */}
+      {/* Availability Section (Static placeholder for now, update when real data exists) */}
       <div className='mt-4 flex items-center space-x-4'>
-        {/* Day Box */}
         <div className='flex flex-col items-center'>
           <div className='mb-1 flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-xs font-bold text-gray-700'>
             SAT
@@ -55,7 +67,7 @@ export function AvatarProfileCard() {
           <span className='text-xl font-bold'>20</span>
         </div>
 
-        {/* Next available date/time */}
+        {/* Next available date/time (Placeholder) */}
         <div className='text-sm text-gray-600'>
           <p>Next available on</p>
           <p className='font-medium'>Wed, 2 Feb, 10AM</p>

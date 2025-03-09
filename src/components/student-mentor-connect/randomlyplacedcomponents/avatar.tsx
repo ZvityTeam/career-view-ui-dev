@@ -9,7 +9,7 @@ interface AvatarProps extends VariantProps<typeof avatarVariants> {
 // Define the main container styles with variants
 const avatarVariants = cva(
   // Base classes
-  'relative overflow-visible rounded-full border-white',
+  'relative overflow-visible rounded-full border-slate-200 bg-white',
   {
     variants: {
       size: {

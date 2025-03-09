@@ -1,15 +1,21 @@
 import { motion } from 'framer-motion';
 import { Avatar } from './avatar';
 import { Star } from 'lucide-react';
+import { Mentor } from '../../../types/types';
 
-// Optional animation variants:
+interface QACardProps {
+  mentor: Mentor;
+}
+
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
   transition: { duration: 0.6 },
 };
 
-export function QACard() {
+export function QACard({ mentor }: QACardProps) {
+  const { name, role, profileImage, questions } = mentor;
+
   return (
     <motion.div
       {...fadeInUp}
@@ -19,8 +25,8 @@ export function QACard() {
       <div className='flex items-start'>
         {/* Avatar on the left */}
         <Avatar
-          image='https://placehold.co/400'
-          alt='Mark Johnson'
+          image={profileImage || 'https://placehold.co/400'}
+          alt={name || 'Mentor'}
           isActive
           size='sm'
         />
@@ -28,23 +34,36 @@ export function QACard() {
         {/* Name + Star Rating + Job on the right */}
         <div className='ml-3'>
           <div className='flex items-center space-x-1'>
-            <h2 className='text-base font-bold text-black'>Mark Johnson</h2>
+            <h2 className='text-base font-bold text-black'>
+              {name || 'Unknown Mentor'}
+            </h2>
             <Star className='h-4 w-4 text-yellow-400' />
             <span className='text-sm text-gray-600'>4.9</span>
           </div>
-          <p className='mt-1 text-sm text-gray-500'>Psychologist, 15 yrs EXP</p>
+          <p className='mt-1 text-sm text-gray-500'>
+            {role || 'No role specified'}
+          </p>
         </div>
       </div>
 
       {/* Q & A Section */}
-      <div className='mt-4 rounded-xl bg-gray-50 p-4'>
-        <p className='mb-2 font-medium text-gray-700'>
-          Q. Which major is best for flexible employability?
-        </p>
-        <p className='text-sm text-gray-600'>
-          Ans. Lorem ipsum dolor sit amet elitr, sed diam nonumy eirmod tempor.
-        </p>
-      </div>
+      {questions && questions.length > 0 ? (
+        <div className='mt-4 rounded-xl bg-gray-50 p-4'>
+          <p className='mb-2 font-medium text-gray-700'>Q. {questions[0]}</p>
+          <p className='text-sm text-gray-600'>
+            Ans. This mentor will provide a detailed answer during the session.
+          </p>
+        </div>
+      ) : (
+        <div className='mt-4 rounded-xl bg-gray-50 p-4'>
+          <p className='mb-2 font-medium text-gray-700'>
+            Q. No questions available
+          </p>
+          <p className='text-sm text-gray-600'>
+            Ans. This mentor has not provided answers yet.
+          </p>
+        </div>
+      )}
     </motion.div>
   );
 }
