@@ -1,30 +1,51 @@
 import { motion } from 'framer-motion';
-import {
-  Si3M,
-  SiAbstract,
-  SiAdobe,
-  SiAirtable,
-  SiAmazon,
-  SiBox,
-  SiBytedance,
-  SiChase,
-  SiCloudbees,
-  SiNike,
-} from 'react-icons/si';
-import { IconType } from 'react-icons';
+
+// Importing images with correct extensions
+import logo2 from '../assets/schools/image2.png';
+import logo3 from '../assets/schools/image3.png';
+import logo4 from '../assets/schools/image4.png';
+import logo7 from '../assets/schools/image7.png';
+import logo10 from '../assets/schools/image10.png';
+import logo14 from '../assets/schools/image14.png';
+import logo18 from '../assets/schools/image18.png';
+import logo21 from '../assets/schools/image21.png';
+import logo24 from '../assets/schools/image24.png';
+import logo25 from '../assets/schools/image25.png';
+import logo26 from '../assets/schools/image26.png';
+import logo28 from '../assets/schools/image28.png';
+import logo30 from '../assets/schools/image30.png';
+import logo31 from '../assets/schools/image31.png';
+
+// Array of logos for easy mapping
+const logos = [
+  logo2,
+  logo3,
+  logo4,
+  logo7,
+  logo10,
+  logo14,
+  logo18,
+  logo21,
+  logo24,
+  logo25,
+  logo26,
+  logo28,
+  logo30,
+  logo31,
+];
 
 const DoubleScrollingLogos = () => {
   return (
     <section className='bg-white py-4'>
       <div className='flex overflow-hidden'>
         <TranslateWrapper>
-          <LogoItemsTop />
+          <LogoItems />
         </TranslateWrapper>
         <TranslateWrapper>
-          <LogoItemsTop />
+          <LogoItems />
         </TranslateWrapper>
         <TranslateWrapper>
-          <LogoItemsTop />
+          <LogoItems />
         </TranslateWrapper>
       </div>
     </section>
@@ -50,7 +71,19 @@ const TranslateWrapper = ({
   );
 };
 
-const LogoItem = ({ Icon }: { Icon: IconType }) => {
+// LogoItems maps through the array of image sources and renders them
+const LogoItems = () => (
+  <>
+    {logos.map((src, index) => (
+      <LogoItem
+        key={index}
+        src={src}
+      />
+    ))}
+  </>
+);
+
+const LogoItem = ({ src }: { src: string }) => {
   return (
     <a
       href='#'
@@ -58,24 +91,13 @@ const LogoItem = ({ Icon }: { Icon: IconType }) => {
       target='_blank'
       className='flex h-16 w-16 items-center justify-center text-black transition-colors hover:bg-slate-200 md:h-24 md:w-24'
     >
-      <Icon className='text-4xl md:text-5xl' />
+      <img
+        src={src}
+        alt='logo'
+        className='h-auto max-w-full'
+      />
     </a>
   );
 };
-
-const LogoItemsTop = () => (
-  <>
-    <LogoItem Icon={SiNike} />
-    <LogoItem Icon={Si3M} />
-    <LogoItem Icon={SiAbstract} />
-    <LogoItem Icon={SiAdobe} />
-    <LogoItem Icon={SiAirtable} />
-    <LogoItem Icon={SiAmazon} />
-    <LogoItem Icon={SiBox} />
-    <LogoItem Icon={SiBytedance} />
-    <LogoItem Icon={SiChase} />
-    <LogoItem Icon={SiCloudbees} />
-  </>
-);
 
 export default DoubleScrollingLogos;
