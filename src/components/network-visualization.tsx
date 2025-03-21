@@ -13,18 +13,18 @@ interface Connection {
 }
 
 const avatarPositions: Point[] = [
-  { x: 1, y: 35, size: 80 }, // Larger, leftmost
-  { x: 15, y: 20, size: 50 },
-  { x: 30, y: 30, size: 60 },
-  { x: 45, y: 15, size: 50 },
-  { x: 60, y: 25, size: 70 }, // Bigger to make hierarchy clearer
-  { x: 75, y: 20, size: 50 },
-  { x: 95, y: 35, size: 80 }, // Larger, rightmost
-  { x: 20, y: 60, size: 60 },
-  { x: 38, y: 65, size: 50 },
-  { x: 55, y: 58, size: 70 }, // More prominence
-  { x: 72, y: 65, size: 50 },
-  { x: 88, y: 55, size: 60 },
+  { x: 1, y: 35, size: 120 }, // Larger, leftmost
+  { x: 15, y: 20, size: 80 },
+  { x: 30, y: 30, size: 90 },
+  { x: 45, y: 15, size: 80 },
+  { x: 60, y: 25, size: 100 }, // Bigger to make hierarchy clearer
+  { x: 75, y: 20, size: 80 },
+  { x: 95, y: 35, size: 110 }, // Larger, rightmost
+  { x: 20, y: 60, size: 90 },
+  { x: 38, y: 65, size: 80 },
+  { x: 55, y: 58, size: 100 }, // More prominence
+  { x: 72, y: 65, size: 80 },
+  { x: 88, y: 55, size: 90 },
 ];
 
 const connections: Connection[] = [

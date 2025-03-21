@@ -72,7 +72,7 @@ export const WhyChooseUs: React.FC = () => {
   // };
 
   return (
-    <div className='relative mt-44 grid h-[55vh] place-items-center'>
+    <div className='relative mt-44 grid h-[65vh] place-items-center'>
       <div className='absolute h-[82vh] w-full rounded-[80px] bg-white'>
         <img
           className='absolute left-0 top-0 h-full w-full rounded-[80px] object-cover'
@@ -90,7 +90,7 @@ export const WhyChooseUs: React.FC = () => {
           />
 
           {/* The carousel container (relative) for stacking motion cards */}
-          <div className='relative mx-auto h-[400px] w-full overflow-hidden'>
+          <div className='relative mx-auto h-[500px] w-full overflow-hidden'>
             <NetworkVisualization />
             {/*{cards.map((card, index) => {*/}
             {/*  // We'll place the middle card (position=0) in the center,*/}
