@@ -307,7 +307,6 @@ export const BecomeAMentorForm = () => {
                 control={control}
                 render={({ field }) => (
                   <OutlinedInputWithButton
-                    type='number'
                     value={field.value || ''} // Convert number to string as per previous fix
                     onChange={(e) => field.onChange(e ? Number(e) : undefined)}
                     placeholder='1'

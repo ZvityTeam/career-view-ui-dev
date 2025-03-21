@@ -12,7 +12,6 @@ export interface MentorProfileCardProps extends Mentor {
   onAddToMentorList?: () => void;
   isAdded?: boolean;
   onSeeProfile: () => void;
-  podcastLink: string; // e.g., https://www.youtube.com/watch?v=VIDEO_ID
 }
 
 export const MentorProfileCard: React.FC<MentorProfileCardProps> = ({

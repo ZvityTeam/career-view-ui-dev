@@ -7,14 +7,15 @@ export interface Mentor {
   university?: string;
   bio?: string;
   availableHours?: string;
-  profileImage?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  profileImage?: any;
   hobbies?: string;
   interests?: string;
   sideHustles?: string;
   location?: string;
   industries?: string[];
   questions?: string[];
-  socialLinks?: {r
+  socialLinks?: {
     linkedin?: string;
     twitter?: string;
     github?: string;

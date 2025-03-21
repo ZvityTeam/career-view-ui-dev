@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { ChevronUp, Trash2 } from 'lucide-react';
-import { MentorCardProps } from '../meet-our-mentors/mentorcard/MentorCard.tsx';
-import { Button } from '../ui/Button.tsx';
-import { useNavigate } from 'react-router-dom';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { AnimatePresence, motion } from 'framer-motion';
+import { ChevronUp, Trash2 } from 'lucide-react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import useLocalStorageState from '../../hooks/useLocalStorageState.ts';
+import { Button } from '../ui/Button.tsx';
 
 // Variants for the entire collapsible section
 const containerVariants = {
@@ -29,9 +29,10 @@ const itemVariants = {
 };
 
 export const SavedMentors = () => {
-  const [savedMentors, setSavedMentors] = useLocalStorageState<
-    MentorCardProps[]
-  >('savedMentors', []);
+  const [savedMentors, setSavedMentors] = useLocalStorageState<any[]>(
+    'savedMentors',
+    []
+  );
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
