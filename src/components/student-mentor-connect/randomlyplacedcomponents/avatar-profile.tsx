@@ -1,11 +1,23 @@
-import { Mail, Star } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { Avatar } from './avatar.tsx';
+import { Mail } from 'lucide-react';
 import { Mentor } from '../../../types/types';
+import { Avatar } from './avatar.tsx';
 
 interface AvatarProfileCardProps {
   mentor: Mentor;
 }
+
+// Define the pulsing animation variant
+const pulseVariants = {
+  pulse: {
+    scale: [1, 1.05, 1], // Subtle scale change
+    transition: {
+      duration: 1.5, // Smooth duration
+      repeat: Infinity, // Loops continuously
+      ease: 'easeInOut', // Smooth easing
+    },
+  },
+};
 
 export function AvatarProfileCard({ mentor }: AvatarProfileCardProps) {
   return (
@@ -33,8 +45,8 @@ export function AvatarProfileCard({ mentor }: AvatarProfileCardProps) {
 
         {/* Rating (Static for now, replace with dynamic rating if available) */}
         <div className='ml-2 flex items-center space-x-1'>
-          <Star className='h-5 w-5 text-yellow-400' />
-          <span className='font-medium text-black'>4.9</span>
+          <div className='h-5 w-5 text-yellow-400' />
+          {/* <span className='font-medium text-black'>4.9</span> */}
         </div>
       </div>
 
@@ -58,12 +70,16 @@ export function AvatarProfileCard({ mentor }: AvatarProfileCardProps) {
           : 'Availability not specified'}
       </div>
 
-      {/* Availability Section (Static placeholder for now, update when real data exists) */}
+      {/* Availability Section with pulsing animation */}
       <div className='mt-4 flex items-center space-x-4'>
         <div className='flex flex-col items-center'>
-          <div className='mb-1 flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-xs font-bold text-gray-700'>
+          <motion.div
+            variants={pulseVariants}
+            animate='pulse'
+            className='mb-1 flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-xs font-bold text-gray-700'
+          >
             SAT
-          </div>
+          </motion.div>
           <span className='text-xl font-bold'>20</span>
         </div>
 

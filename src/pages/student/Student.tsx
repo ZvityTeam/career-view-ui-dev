@@ -14,7 +14,7 @@ export const Student = () => {
         <StudentHero />
         <WhatWeDo />
         <WhatWeOffer2 />
-        <StudentMentorConnect />
+        {/* <StudentMentorConnect /> */}
         <QuestionsWeGet />
         <Testimonials />
         <FaqSection />

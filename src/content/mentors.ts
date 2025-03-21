@@ -1,4 +1,3 @@
-import { Mentor } from '../types/types';
 import {
   alex_mirco,
   ali_nasiriy,
@@ -78,6 +77,7 @@ import {
   zach_werner,
   zubair_shariff,
 } from '../assets/mentor_images';
+import { Mentor } from '../types/types';
 
 export const data = [
   {
@@ -102,6 +102,7 @@ export const data = [
       twitter: '',
       github: '',
     },
+    podcastLink: 'https://www.youtube.com/watch?v=z0uuDeOetcs',
   },
   {
     name: 'Edward Sawle',
@@ -124,6 +125,7 @@ export const data = [
       twitter: '',
       github: '',
     },
+    podcastLink: 'https://www.youtube.com/watch?v=rZRieFSKN-k',
   },
   {
     name: 'Stephanie Di Giovanni ',
@@ -498,6 +500,7 @@ export const data = [
       twitter: '',
       github: '',
     },
+    podcastLink: 'https://www.youtube.com/watch?v=nWB2Pncif_Y',
   },
   {
     name: 'Paris Ward',
@@ -1305,6 +1308,7 @@ export const data = [
       twitter: '',
       github: '',
     },
+    podcastLink: 'https://www.youtube.com/watch?v=FUCWAmQv-Iw',
   },
   {
     name: 'Jack Seprarovic',
@@ -1415,6 +1419,7 @@ export const data = [
       twitter: '',
       github: '',
     },
+    podcastLink: 'https://www.youtube.com/watch?v=-Q7wCiYI8Pc',
   },
   {
     name: 'Megan Aspinall ',

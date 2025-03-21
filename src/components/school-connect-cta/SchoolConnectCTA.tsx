@@ -1,8 +1,11 @@
-import { Button } from '../ui/Button.tsx';
-import { SectionHeader } from '../section-header/SectionHeader.tsx';
+import { useNavigate } from 'react-router-dom';
 import { Section } from '../container/Section.tsx';
+import { SectionHeader } from '../section-header/SectionHeader.tsx';
+import { Button } from '../ui/Button.tsx';
 
 export const SchoolConnectCTA = () => {
+  const navigate = useNavigate();
+
   return (
     <Section className={'gap-4'}>
       <SectionHeader
@@ -22,7 +25,12 @@ export const SchoolConnectCTA = () => {
         >
           See It in Action
         </Button>
-        <Button size={'lg'}>Contact Us</Button>
+        <Button
+          size={'lg'}
+          onClick={() => navigate(`/contact-us`)}
+        >
+          Contact Us
+        </Button>
       </div>
     </Section>
   );

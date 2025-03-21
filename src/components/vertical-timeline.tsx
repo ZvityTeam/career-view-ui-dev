@@ -1,9 +1,9 @@
-import {
-  VerticalTimeline,
-  VerticalTimelineElement,
-} from 'react-vertical-timeline-component';
-import 'react-vertical-timeline-component/style.min.css';
-import { Briefcase, GraduationCap } from 'lucide-react';
+import { motion, useAnimation } from 'framer-motion';
+import type React from 'react';
+import { useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
+import placeholderImg from '../assets/event2.jpg';
+import { SectionHeader } from './section-header/SectionHeader';
 
 interface TimelineItem {
   id: number;
@@ -12,62 +12,218 @@ interface TimelineItem {
   description: string;
   date: string;
   type: 'work' | 'education';
+  imageUrl?: string;
+  component?: React.ReactNode;
 }
 
 const timelineData: TimelineItem[] = [
   {
     id: 1,
-    title: 'Reason 1',
-    subtitle: '',
+    title: 'Be the Mentor You Needed',
+    subtitle: 'Reason 1',
     description:
-      'Helps in Lorem Epsom | Highly qualified | Studied at Loren Epsom | Available 9-5pm on weekdays, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor',
+      'Guide students with practical advice and invaluable insights, helping them navigate their career paths with confidence.',
     date: 'Step 1',
     type: 'work',
   },
   {
     id: 2,
-    title: 'Reason 2',
+    title: 'Build New Connections',
     subtitle: '',
     description:
-      'Helps in Lorem Epsom | Highly qualified | Studied at Loren Epsom | Available 9-5pm on weekdays, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor',
+      'Join a network of passionate mentors, build relationships, and create opportunities for mutual support and growth.',
     date: 'Step 2',
     type: 'work',
   },
   {
     id: 3,
-    title: 'Reason 3',
+    title: 'Showcase Your Leadership',
     subtitle: '',
     description:
-      'Helps in Lorem Epsom | Highly qualified | Studied at Loren Epsom | Available 9-5pm on weekdays, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor',
+      'Use our platform to highlight your expertise, grow your personal brand, and expand your professional reach.',
     date: 'Step 3',
     type: 'work',
   },
 ];
 
-export const VerticalTimelineComponent = () => {
+interface AlternatingTimelineProps {
+  items?: TimelineItem[];
+  title?: string;
+  subtitle?: string;
+  className?: string;
+}
+
+// Animation variants
+const leftItemVariants = {
+  hidden: {
+    x: -100,
+    opacity: 0,
+  },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.6,
+      ease: 'easeOut',
+    },
+  },
+};
+
+const rightItemVariants = {
+  hidden: {
+    x: 100,
+    opacity: 0,
+  },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.6,
+      ease: 'easeOut',
+    },
+  },
+};
+
+const circleVariants = {
+  hidden: {
+    scale: 0,
+    opacity: 0,
+  },
+  visible: {
+    scale: 1,
+    opacity: 1,
+    transition: {
+      duration: 0.4,
+      delay: 0.3,
+      ease: 'easeOut',
+    },
+  },
+};
+
+const TimelineItem: React.FC<{
+  item: TimelineItem;
+  isEven: boolean;
+}> = ({ item, isEven }) => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible');
+    }
+  }, [controls, inView]);
+
+  // Format description by splitting on pipe characters
+  const descriptionParts = item.description
+    .split('|')
+    .map((part) => part.trim());
+
   return (
-    <VerticalTimeline lineColor='rgb(107, 114, 128)'>
-      {' '}
-      {/* Slate color */}
-      {timelineData.map((item) => (
-        <VerticalTimelineElement
-          key={item.id}
-          className={`vertical-timeline-element--${item.type}`}
-          contentStyle={{ background: 'rgb(107, 114, 128)', color: '#fff' }}
-          contentArrowStyle={{ borderRight: '7px solid  rgb(107, 114, 128)' }}
-          date={item.date}
-          iconStyle={{ background: 'rgb(107, 114, 128)', color: '#fff' }}
-          icon={item.type === 'work' ? <Briefcase /> : <GraduationCap />}
+    <div
+      ref={ref}
+      className='relative mb-20 flex items-center'
+    >
+      {/* Timeline marker */}
+      <motion.div
+        className='absolute left-[31.55rem] z-10 -translate-x-1/2'
+        initial='hidden'
+        animate={controls}
+        variants={circleVariants}
+      >
+        <div className='flex h-14 w-14 items-center justify-center rounded-full bg-gray-800 font-semibold text-white'>
+          {item.id}
+        </div>
+      </motion.div>
+
+      {/* Content - alternating left and right */}
+      <div
+        className={`flex w-full gap-28 ${isEven ? 'flex-row' : 'flex-row-reverse'}`}
+      >
+        {/* Left/right empty space (45%) */}
+        {/* <div className='w-[%]' /> */}
+
+        {/* Content area (55%) */}
+        <motion.div
+          className='w-[65%]'
+          initial='hidden'
+          animate={controls}
+          variants={!isEven ? leftItemVariants : rightItemVariants}
         >
-          <h3 className='vertical-timeline-element-title'>{item.title}</h3>
-          {item.subtitle && (
-            <h4 className='vertical-timeline-element-subtitle'>
-              {item.subtitle}
-            </h4>
-          )}
-          <p>{item.description}</p>
-        </VerticalTimelineElement>
-      ))}
-    </VerticalTimeline>
+          <div
+            className={`flex flex-col ${!isEven ? 'items-start pl-10' : 'items-end'}`}
+          >
+            {item.imageUrl ? (
+              <div className='mb-4 w-full max-w-md rotate-3 transform overflow-hidden rounded-xl shadow-lg'>
+                <img
+                  src={item.imageUrl || placeholderImg}
+                  alt={item.title}
+                  className='h-auto w-full object-cover'
+                />
+              </div>
+            ) : (
+              item.component
+            )}
+            {/* Image */}
+          </div>
+        </motion.div>
+        <motion.div
+          className='my-auto w-[55%] px-8'
+          initial='hidden'
+          animate={controls}
+          variants={isEven ? leftItemVariants : rightItemVariants}
+        >
+          <div
+            className={`flex flex-col items-center justify-center ${!isEven ? 'pr-16' : 'pl-16'}`}
+          >
+            {/* Text content */}
+            <div
+              className={`w-full max-w-md ${isEven ? 'text-left' : 'text-right'} `}
+            >
+              <h3 className='mb-2 text-lg font-bold'>{item.title}</h3>
+              <div className='space-y-1 text-sm text-gray-600'>
+                {descriptionParts.map((part, i) => (
+                  <p key={i}>{part}</p>
+                ))}
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  );
+};
+
+export const VerticalTimelineComponent: React.FC<AlternatingTimelineProps> = ({
+  items = timelineData,
+  title = 'Why Join as a Mentor?',
+  subtitle = 'Shape future journeys with real-world insights. Give students the career advice you wish you had growing up, empower their paths.',
+  className,
+}) => {
+  return (
+    <>
+      {' '}
+      <div className='my-20 text-center'>
+        <SectionHeader
+          title={title}
+          subtitle={subtitle}
+          className='gap-4'
+        />
+      </div>
+      <div className={'relative mx-auto w-full max-w-5xl py-12' + className}>
+        {/* Center line */}
+        <div className='absolute bottom-0 left-[33.3rem] top-0 z-0 w-px -translate-x-1/2 border-l-2 border-dashed border-gray-300' />
+
+        {items.map((item, index) => (
+          <TimelineItem
+            key={item.id}
+            item={item}
+            isEven={index % 2 === 0}
+          />
+        ))}
+      </div>
+    </>
   );
 };

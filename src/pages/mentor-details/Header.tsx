@@ -1,3 +1,4 @@
+import placeholderImg from '../../assets/CAREERVIEW-32721.jpg';
 import { Section } from '../../components/container/Section';
 import { HeaderProps } from '../../types/types';
 
@@ -6,13 +7,15 @@ export const Header = ({ name, profileImage, bio }: HeaderProps) => {
     <Section className='flex min-h-72 w-screen flex-col gap-20'>
       <div className='relative z-10 w-full'>
         <img
-          src='https://placehold.co/600x50'
+          src={placeholderImg}
           className='w-full object-contain'
+          height={50}
+          width={600}
           alt={name}
         />
         <img
           src={profileImage || 'https://www.gravatar.com/avatar/?d=mp'}
-          className='absolute -bottom-1/2 left-1/2 z-20 h-40 w-40 -translate-x-1/2 rounded-full border-2 border-white bg-white'
+          className='absolute -bottom-1/4 left-1/2 z-20 h-40 w-40 -translate-x-1/2 rounded-full border-2 border-white bg-white'
           alt={name}
         />
       </div>

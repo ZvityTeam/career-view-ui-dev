@@ -2,9 +2,9 @@
 
 import { motion } from 'framer-motion';
 import { Headphones, Layers, Link2, Lock, PlaySquare } from 'lucide-react';
+import { useMentorStore } from '../../store/useMentorStore.ts';
 import { SectionHeader } from '../section-header/SectionHeader.tsx';
 import { Button } from '../ui/Button.tsx';
-import { useMentorStore } from '../../store/useMentorStore.ts';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -157,15 +157,15 @@ export default function WhatWeOffer2() {
           >
             <div className='mb-6 flex items-center justify-between'>
               <h3 className='text-2xl font-bold lg:text-3xl'>
-                Network with Peers
+                Discover Opportunities
               </h3>
               <div className='rounded-full bg-white p-3 shadow-sm lg:p-4'>
                 <Link2 className='h-6 w-6 text-black lg:h-7 lg:w-7' />
               </div>
             </div>
             <p className='mb-6 text-sm leading-relaxed text-gray-600 lg:text-base'>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor
+              Explore diverse industries and understand the paths available to
+              you with guidance from CareerView.
             </p>
             <div className='flex items-center gap-2'>
               <div className='flex -space-x-2'>

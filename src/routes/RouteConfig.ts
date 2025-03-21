@@ -1,12 +1,14 @@
-import { Home } from '../pages/home/Home.tsx';
-import { Student } from '../pages/student/Student.tsx';
-import { Route } from './types.ts';
-import { School } from '../pages/school/School.tsx';
-import { BrowseMentors } from '../pages/browse-mentors/BrowseMentors.tsx';
-import { MentorDetails } from '../pages/mentor-details/MentorDetails.tsx';
 import { AskAQuestion } from '../pages/ask-a-question/AskAQuestion.tsx';
+import { BecomeAMentor } from '../pages/become-a-mentor/BecomeAMentor.tsx';
+import { BrowseMentors } from '../pages/browse-mentors/BrowseMentors.tsx';
+import { ContactUs } from '../pages/contact-us/ContactUs.tsx';
+import { Home } from '../pages/home/Home.tsx';
+import { MentorDetails } from '../pages/mentor-details/MentorDetails.tsx';
 import { Mentors } from '../pages/mentors/mentors.tsx';
 import { Resources } from '../pages/resources/resources.tsx';
+import { School } from '../pages/school/School.tsx';
+import { Student } from '../pages/student/Student.tsx';
+import { Route } from './types.ts';
 
 export const ROUTES: Route[] = [
   {
@@ -63,6 +65,22 @@ export const ROUTES: Route[] = [
     secured: false,
     metaData: {
       title: 'Career View - Ask a question',
+    },
+  },
+  {
+    path: '/contact-us',
+    component: ContactUs,
+    secured: false,
+    metaData: {
+      title: 'Career View - Contact Us',
+    },
+  },
+  {
+    path: '/become-a-mentor',
+    component: BecomeAMentor,
+    secured: false,
+    metaData: {
+      title: 'Career View - Become a Mentor',
     },
   },
   {

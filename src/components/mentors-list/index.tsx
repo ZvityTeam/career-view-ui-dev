@@ -1,14 +1,15 @@
-import { Section } from '../container/Section';
-import { MentorProfileCard } from '../mentor-profile-card';
+import { ArrowDown } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import useLocalStorageState from '../../hooks/useLocalStorageState';
 import { useMentorStore } from '../../store/useMentorStore';
-import { Button } from '../ui/Button';
+import { Section } from '../container/Section';
 import ListWrapper from '../list-wrapper.tsx';
-import { ArrowDown } from 'lucide-react';
+import { MentorProfileCard } from '../mentor-profile-card';
+import { Button } from '../ui/Button';
 
 export const MentorsList = () => {
   const mentorData = useMentorStore((state) => state.mentors);
+  console.log(mentorData);
   const navigate = useNavigate();
   const [savedMentors, setSavedMentors] = useLocalStorageState(
     'savedMentors',

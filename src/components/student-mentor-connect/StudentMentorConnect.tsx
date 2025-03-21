@@ -1,12 +1,14 @@
+import { useNavigate } from 'react-router-dom';
+import { useMentorStore } from '../../store/useMentorStore.ts';
 import { Button } from '../ui/Button.tsx';
-import { Avatar } from './randomlyplacedcomponents/avatar.tsx';
 import { AvatarProfileCard } from './randomlyplacedcomponents/avatar-profile.tsx';
+import { Avatar } from './randomlyplacedcomponents/avatar.tsx';
 import { QACard } from './randomlyplacedcomponents/qa-card.tsx';
 import SearchFieldComponent from './randomlyplacedcomponents/search-field.tsx';
-import { useMentorStore } from '../../store/useMentorStore.ts';
 
 export const StudentMentorConnect = () => {
   const mentors = useMentorStore((state) => state.mentors);
+  const navigate = useNavigate();
   const firstMentor = mentors[0];
   const secondMentor = mentors[1];
   const fifthMentor = mentors[4];
@@ -51,9 +53,9 @@ export const StudentMentorConnect = () => {
             <h3 className='text-6xl'>Your Career Compass</h3>
             <div className='my-6 h-0.5 w-[95%] bg-white' />
             <p className='text-xl'>
-              {firstMentor?.name
-                ? `${firstMentor.name} is a ${firstMentor.role} at ${firstMentor.company}.`
-                : 'CareerView’s Student-Mentor Connect brings students and mentors together on an interactive platform. Students gain real-world insights, while mentors share their expertise through 1:1 mentoring.'}
+              {
+                'CareerView’s Student-Mentor Connect brings students and mentors together on an interactive platform. Students gain real-world insights, while mentors share their expertise through 1:1 mentoring.'
+              }
             </p>
             {firstMentor?.email && (
               <p className='text-lg'>Contact: {firstMentor.email}</p>
@@ -94,7 +96,12 @@ export const StudentMentorConnect = () => {
             )}
             <div className='flex gap-6'>
               <Button>Browse Mentors</Button>
-              <Button variant='secondary'>Become Mentor</Button>
+              <Button
+                variant='outline'
+                onClick={() => navigate(`/become-a-mentor`)}
+              >
+                Become Mentor
+              </Button>
             </div>
           </div>
         </div>

@@ -1,38 +1,120 @@
-import { Section } from '../container/Section.tsx';
-import { SectionHeader } from '../section-header/SectionHeader.tsx';
+import { useEffect, useState } from 'react';
+import image1 from '../../assets/schoolPageIllustrations/Screenshot_2025-03-21_064941-removebg-preview.png';
+import illstration2 from '../../assets/schoolPageIllustrations/undraw_career-development_f0n6.svg';
+import illstration3 from '../../assets/schoolPageIllustrations/undraw_instant-analysis_idb3.svg';
+import illstration1 from '../../assets/schoolPageIllustrations/undraw_time-management_fedt.svg';
+import { CurvedWrapper } from '../CurvedWrapper.tsx';
 import { Button } from '../ui/Button.tsx';
-import { ImageCarousel } from '../ui/image-carousel.tsx';
+
+// Define slide content type
+type SlideContent = {
+  image: string;
+  title: string;
+  subtitle: string;
+  buttonText: string;
+};
 
 export const WhatToExpect = () => {
+  // Sample slide data - replace with your actual content
+  const slides: SlideContent[] = [
+    {
+      image: image1,
+      title: 'What to expect?',
+      subtitle:
+        'Expect real, measurable improvements. We address the common pain points in career exploration and deliver a valuable experience.',
+      buttonText: 'Watch Now',
+    },
+    {
+      image: illstration1,
+      title: 'Reduce Time',
+      subtitle:
+        'Expect faster results, saving 6-8 weeks. We address time-consuming searches and deliver efficient career exploration. ',
+      buttonText: 'Watch Now',
+    },
+    {
+      image: illstration2,
+      title: 'Easy Industry Access',
+      subtitle:
+        'Expect direct access to 12 industries. We address limited exposure and deliver a broader career understanding.',
+      buttonText: 'Watch Now',
+    },
+    {
+      image: illstration3,
+      title: 'Uncover Insights',
+      subtitle:
+        'Expect data-driven clarity. We address vague options and deliver actionable insights for informed decisions.',
+      buttonText: 'Watch Now',
+    },
+  ];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Auto-advance slides
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [slides.length]);
+
   return (
-    <Section className={'my-24 flex h-[70dvh] flex-row gap-12'}>
-      <div className={'grid h-[80%] w-2/3 place-items-center'}>
-        <div className='h-full w-full rounded-3xl'>
-          <ImageCarousel
-            className={'overflow-hidden rounded-3xl'}
-            showControls
-            autoPlay={true}
-            images={[
-              'https://images.pexels.com/photos/29823044/pexels-photo-29823044/free-photo-of-reindeer-herd-crossing-snowy-norwegian-landscape.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-              'https://images.pexels.com/photos/19376809/pexels-photo-19376809/free-photo-of-pigeons-sitting-on-the-exterior-of-a-residential-building-in-city.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-              'https://images.pexels.com/photos/28277464/pexels-photo-28277464/free-photo-of-a-mountain-covered-in-snow-and-clouds-at-sunset.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-              'https://images.pexels.com/photos/29713560/pexels-photo-29713560/free-photo-of-vibrant-cherry-blossoms-against-blue-sky.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-              'https://images.pexels.com/photos/26926276/pexels-photo-26926276/free-photo-of-elephant-on-savanna-with-kilimanjaro-behind.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-            ]}
-          />
+    <CurvedWrapper className='mb-36'>
+      <div className='relative flex h-[50dvh] flex-row gap-12'>
+        {/* Left side - Image carousel */}
+        <div className='relative w-1/2 overflow-hidden rounded-3xl'>
+          <div
+            className='flex h-full w-full transition-transform duration-500 ease-in-out'
+            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+          >
+            {slides.map((slide, idx) => (
+              <div
+                key={idx}
+                className='h-full w-full flex-shrink-0'
+              >
+                <img
+                  src={slide.image}
+                  alt={`Slide ${idx + 1}`}
+                  className='h-full w-full rounded-2xl object-contain'
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+        {/* Dots navigation - centered at bottom of image area */}
+        <div className='absolute -bottom-3 left-0 right-0 flex justify-center space-x-2'>
+          {slides.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentIndex(idx)}
+              className={`h-3 w-3 rounded-full transition-colors ${
+                idx === currentIndex ? 'bg-gray-800' : 'bg-gray-300'
+              }`}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
+          ))}
+        </div>
+
+        {/* Right side - Content that changes with slides */}
+        <div className='flex w-1/3 flex-col justify-center'>
+          <div className='relative h-[250px]'>
+            {slides.map((slide, idx) => (
+              <div
+                key={idx}
+                className={`absolute left-0 top-0 flex h-full w-full flex-col justify-center transition-opacity duration-500 ${
+                  idx === currentIndex ? 'z-10 opacity-100' : 'z-0 opacity-0'
+                }`}
+              >
+                <h2 className='mb-4 text-4xl font-bold'>{slide.title}</h2>
+                <p className='mb-6 text-gray-600'>{slide.subtitle}</p>
+                <Button className='w-fit rounded-full bg-gray-800 px-8 py-3 text-white'>
+                  {slide.buttonText}
+                </Button>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-      <div className={'flex w-1/3 flex-col items-start gap-6 text-left'}>
-        <SectionHeader
-          title={'What to Expect'}
-          subtitle={
-            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quae quis vero!\n'
-          }
-          className={'max-w-2xl items-start'}
-          subTitleClassName={'text-left'}
-        />
-        <Button>Watch Now</Button>
-      </div>
-    </Section>
+    </CurvedWrapper>
   );
 };

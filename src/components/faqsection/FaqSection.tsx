@@ -22,7 +22,7 @@ const FAQ_DATA = [
 ];
 
 const FaqSectionComponent = () => {
-  return null;
+  // return null;
   return (
     <Section className={'flex flex-col gap-6'}>
       <SectionHeader title={'Frequently Asked Questions'} />

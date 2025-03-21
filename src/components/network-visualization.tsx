@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useMentorStore } from '../store/useMentorStore';
 
 interface Point {
   x: number;
@@ -45,6 +46,8 @@ const connections: Connection[] = [
 
 export default function NetworkVisualization() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { getRandomMentors } = useMentorStore();
+  const mentors = getRandomMentors(avatarPositions.length);
 
   // Keep track of avatar refs
   const avatarRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -181,9 +184,9 @@ export default function NetworkVisualization() {
           >
             <div className='relative h-full w-full overflow-hidden rounded-full border-4 border-white shadow-lg'>
               <img
-                src='https://i.pravatar.cc/100'
+                src={mentors[index]?.profileImage}
                 alt={`Avatar ${index + 1}`}
-                className='h-full w-full object-cover'
+                className='h-full w-full bg-white object-cover'
               />
             </div>
           </div>

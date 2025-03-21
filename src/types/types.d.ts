@@ -20,6 +20,7 @@ export interface Mentor {
     github?: string;
   };
   email?: string;
+  podcastLink?: string;
 }
 
 export type HeaderProps =  Pick<Mentor, 'name' | 'profileImage' | 'bio'>;

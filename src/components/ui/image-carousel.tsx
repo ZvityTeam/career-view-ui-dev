@@ -99,16 +99,18 @@ export function ImageCarousel({
           }}
         >
           {images.map((src, idx) => (
-            <div
-              key={idx}
-              className='h-full w-full flex-shrink-0'
-            >
-              <img
-                src={src}
-                alt={`Slide ${idx + 1}`}
-                className='h-full w-full object-cover'
-              />
-            </div>
+            <>
+              <div
+                key={idx}
+                className='h-full w-full flex-shrink-0'
+              >
+                <img
+                  src={src}
+                  alt={`Slide ${idx + 1}`}
+                  className='h-full w-full object-cover'
+                />
+              </div>
+            </>
           ))}
         </div>
       </div>

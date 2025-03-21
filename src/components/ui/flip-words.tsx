@@ -1,6 +1,6 @@
 'use client';
-import { useCallback, useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useCallback, useEffect, useState } from 'react';
 import { cn } from '../../utils/cn.ts';
 
 export const FlipWords = ({
@@ -50,10 +50,8 @@ export const FlipWords = ({
         }}
         exit={{
           opacity: 0,
-          y: -40,
-          x: 40,
           filter: 'blur(8px)',
-          scale: 2,
+          scale: 0.1,
           position: 'absolute',
         }}
         className={cn(

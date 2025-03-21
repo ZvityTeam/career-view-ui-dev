@@ -1,6 +1,7 @@
 import { Trash2, UserPlus } from 'lucide-react';
-import React from 'react';
-import { Mentor } from '../../types/types'; // adjust the import path as needed
+import React, { useState } from 'react';
+import YouTube from 'react-youtube';
+import { Mentor } from '../../types/types'; // Adjust path as needed
 import { Spacer } from '../spacer';
 import analytics from '../svgs/analytics.svg';
 import bag from '../svgs/bag.svg';
@@ -11,6 +12,7 @@ export interface MentorProfileCardProps extends Mentor {
   onAddToMentorList?: () => void;
   isAdded?: boolean;
   onSeeProfile: () => void;
+  podcastLink: string; // e.g., https://www.youtube.com/watch?v=VIDEO_ID
 }
 
 export const MentorProfileCard: React.FC<MentorProfileCardProps> = ({
@@ -24,13 +26,29 @@ export const MentorProfileCard: React.FC<MentorProfileCardProps> = ({
   hobbies = '',
   interests = '',
   sideHustles = '',
+  podcastLink,
   onAddToMentorList,
   isAdded = false,
   onSeeProfile,
 }) => {
+  // State to track hover
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Extract video ID from YouTube URL
+  const getVideoId = (url: string) => {
+    const match = url.match(/v=([^&]+)/);
+    return match ? match[1] : null;
+  };
+
+  const videoId = podcastLink ? getVideoId(podcastLink) : null;
+
   return (
-    <div className='relative mx-auto flex w-full max-w-6xl items-center gap-12 rounded-xl border bg-white px-12 py-8 shadow-md'>
-      {/* Top Right Absolute Button */}
+    <div
+      className='relative mx-auto flex w-full max-w-6xl items-center gap-12 rounded-xl border bg-white px-12 py-8 shadow-md'
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Add/Remove Button */}
       {!!onAddToMentorList && (
         <Button
           variant='outline'
@@ -52,7 +70,7 @@ export const MentorProfileCard: React.FC<MentorProfileCardProps> = ({
         </Button>
       )}
 
-      {/* Profile Image */}
+      {/* Profile Image Section */}
       <div className='flex flex-col items-center'>
         <img
           src={profileImage || 'https://www.gravatar.com/avatar/?d=mp'}
@@ -75,77 +93,93 @@ export const MentorProfileCard: React.FC<MentorProfileCardProps> = ({
         </Button>
       </div>
 
-      {/* Mentor Details */}
+      {/* Mentor Details or Video Player */}
       <div className='flex-1'>
-        <div className='flex items-center justify-between'>
-          <p className='font-avenir text-3xl font-semibold'>{name}</p>
-        </div>
-
-        <p className='italic text-gray-500'>
-          {role}, at {company} | Studied at {university}
-        </p>
-
-        <Spacer size={16} />
-
-        <p
-          className='mt-2 text-gray-600'
-          style={{
-            display: '-webkit-box',
-            WebkitLineClamp: 3,
-            WebkitBoxOrient: 'vertical',
-            overflow: 'hidden',
-          }}
-        >
-          {bio} | <span className='font-semibold'>Available:</span>{' '}
-          {availableHours}
-        </p>
-
-        <Spacer size={16} />
-
-        {/* Interests, Hobbies, and Side Hustles */}
-        <div className='flex gap-8'>
-          {hobbies && (
-            <div>
-              <p className='flex items-center gap-1 font-semibold'>
-                Hobbies
-                <img
-                  src={analytics}
-                  alt=''
-                  className='h-4 w-4'
-                />
-              </p>
-              <p className='italic text-gray-500'>{hobbies}</p>
+        {videoId && isHovered ? (
+          <div className='mt-6 flex flex-col justify-end'>
+            <YouTube
+              videoId={videoId}
+              opts={{
+                width: '100%',
+                height: '315', // Fixed height
+                playerVars: {
+                  autoplay: 1, // Autoplay on hover
+                  mute: 0, // Muted for autoplay compliance
+                },
+              }}
+            />
+            <a
+              href={podcastLink}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='mt-2 text-blue-500'
+            >
+              Watch on YouTube
+            </a>
+          </div>
+        ) : (
+          <>
+            <p className='font-avenir text-3xl font-semibold'>{name}</p>
+            <p className='italic text-gray-500'>
+              {role}, at {company} | Studied at {university}
+            </p>
+            <Spacer size={16} />
+            <p
+              className='mt-2 text-gray-600'
+              style={{
+                display: '-webkit-box',
+                WebkitLineClamp: 3,
+                WebkitBoxOrient: 'vertical',
+                overflow: 'hidden',
+              }}
+            >
+              {bio} | <span className='font-semibold'>Available:</span>{' '}
+              {availableHours}
+            </p>
+            <Spacer size={16} />
+            <div className='flex gap-8'>
+              {hobbies && (
+                <div>
+                  <p className='flex items-center gap-1 font-semibold'>
+                    Hobbies
+                    <img
+                      src={analytics}
+                      alt=''
+                      className='h-4 w-4'
+                    />
+                  </p>
+                  <p className='italic text-gray-500'>{hobbies}</p>
+                </div>
+              )}
+              {interests && (
+                <div>
+                  <p className='flex items-center gap-1 font-semibold'>
+                    Interests
+                    <img
+                      src={heart}
+                      alt=''
+                      className='h-4 w-4'
+                    />
+                  </p>
+                  <p className='italic text-gray-500'>{interests}</p>
+                </div>
+              )}
+              {sideHustles && (
+                <div>
+                  <p className='flex items-center gap-1 font-semibold'>
+                    Side Hustles
+                    <img
+                      src={bag}
+                      alt=''
+                      className='h-4 w-4'
+                    />
+                  </p>
+                  <p className='italic text-gray-500'>{sideHustles}</p>
+                </div>
+              )}
             </div>
-          )}
-
-          {interests && (
-            <div>
-              <p className='flex items-center gap-1 font-semibold'>
-                Interests
-                <img
-                  src={heart}
-                  alt=''
-                  className='h-4 w-4'
-                />
-              </p>
-              <p className='italic text-gray-500'>{interests}</p>
-            </div>
-          )}
-
-          {sideHustles && (
-            <div>
-              <p className='flex items-center gap-1 font-semibold'>
-                Side Hustles
-                <img
-                  src={bag}
-                  alt=''
-                  className='h-4 w-4'
-                />
-              </p>
-              <p className='italic text-gray-500'>{sideHustles}</p>
-            </div>
-          )}
-        </div>
+          </>
+        )}
       </div>
     </div>
   );

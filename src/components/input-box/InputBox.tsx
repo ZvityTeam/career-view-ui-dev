@@ -1,5 +1,5 @@
-import { ChangeEvent, FC, FormEvent, ReactNode, useState } from 'react';
 import { motion } from 'framer-motion';
+import { ChangeEvent, FC, FormEvent, ReactNode, useState } from 'react';
 
 export interface OutlinedInputWithButtonProps {
   /**
@@ -36,7 +36,7 @@ export interface OutlinedInputWithButtonProps {
    * If provided, the input is considered "controlled":
    * The parent must manage the value and call onChange to update.
    */
-  value?: string;
+  value?: string | number;
 
   /**
    * Default input value (for uncontrolled usage). Ignored if `value` is set.
