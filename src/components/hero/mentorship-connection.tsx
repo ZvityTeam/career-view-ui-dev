@@ -66,12 +66,6 @@ export default function MentorshipConnection() {
     'https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60', // Student portrait
   ];
 
-  const professionalImages = [
-    'https://images.unsplash.com/photo-1557426272-fc759fdf7a8d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60', // Young professional at desk
-    'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60', // Professional in a meeting
-    'https://images.unsplash.com/photo-1537511446984-935f663eb1f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60', // Professional portrait
-  ];
-
   return (
     <div
       className='relative flex h-[50vh] w-full items-center justify-center overflow-hidden p-8'
