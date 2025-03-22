@@ -155,7 +155,7 @@ const TimelineItem: React.FC<{
           <div
             className={`flex flex-col ${!isEven ? 'items-start pl-10' : 'items-end'}`}
           >
-            {item.imageUrl ? (
+            {!item.component ? (
               <div className='mb-4 w-full max-w-md rotate-3 transform overflow-hidden rounded-xl shadow-lg'>
                 <img
                   src={item.imageUrl || placeholderImg}

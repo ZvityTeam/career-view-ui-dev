@@ -21,7 +21,7 @@ export const Mentors = () => {
       <main>
         <MentorHero />
         <WhatToExpect />
-        <LogoScroll />
+        {/* <LogoScroll /> */}
         <VerticalTimelineComponent />
         <SchoolConnectCTA />
         <Testimonials />

@@ -96,17 +96,20 @@ export const MentorProfileCard: React.FC<MentorProfileCardProps> = ({
       <div className='flex-1'>
         {videoId && isHovered ? (
           <div className='mt-6 flex flex-col justify-end'>
-            <YouTube
-              videoId={videoId}
-              opts={{
-                width: '100%',
-                height: '315', // Fixed height
-                playerVars: {
-                  autoplay: 1, // Autoplay on hover
-                  mute: 0, // Muted for autoplay compliance
-                },
-              }}
-            />
+            <div className='overflow-hidden rounded-lg'>
+              <YouTube
+                videoId={videoId}
+                className='rounded-lg'
+                opts={{
+                  width: '100%',
+                  height: '315', // Fixed height
+                  playerVars: {
+                    autoplay: 1, // Autoplay on hover
+                    mute: 0, // Muted for autoplay compliance
+                  },
+                }}
+              />
+            </div>
             <a
               href={podcastLink}
               target='_blank'

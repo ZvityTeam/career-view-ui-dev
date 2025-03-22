@@ -1,33 +1,25 @@
-import { Ebook } from '../rotating-items/ebook.tsx';
-import { LiveStream } from '../rotating-items/live-stream.tsx';
-import { Podcast } from '../rotating-items/podcast.tsx';
-import bg1 from '../svgs/bg-1.svg';
-import bg2 from '../svgs/bg-2.svg';
-import { Button } from '../ui/Button.tsx';
 import { FlipWords } from '../ui/flip-words.tsx';
-import { OrbitingCircles } from '../ui/orbiting-circles.tsx';
+import MentorshipConnection from './mentorship-connection.tsx';
 
 const flipWords = ['Opportunities', 'Pathways', 'Connections', 'Potential'];
 export const Hero = () => {
   return (
     <section
-      className='z-10 flex h-screen flex-row items-center justify-center gap-5 py-16 pt-32 text-center'
+      className='z-10 flex h-screen flex-col items-center justify-center gap-5 py-16 pt-32 text-center'
       style={{
-        background: `linear-gradient(351deg, #FFFBF0, #F1CE7E, #767676, #000000)`,
+        background: `linear-gradient(351deg,rgb(196, 192, 182),rgb(225, 193, 117), #767676, #000000)`,
       }}
     >
-      <img
+      {/* <img
         src={bg1}
         alt={''}
-        className={
-          'pointer-events-none absolute -left-[10%] top-1/3 z-10'
-        }
+        className={'pointer-events-none absolute -left-[10%] top-1/3 z-10'}
       />
       <img
         src={bg2}
         alt={''}
         className={'pointer-events-none absolute -top-1/3 right-0 z-10'}
-      />
+      /> */}
       {/* Heading */}
       <div className='z-30'>
         <h1 className='text-[100px] text-white'>
@@ -46,8 +38,9 @@ export const Hero = () => {
           decisions about their future careers
         </p>
       </div>
+      <MentorshipConnection />
 
-      <div className='relative z-10 flex h-[601vh] w-full items-center justify-center'>
+      {/* <div className='relative z-10 flex h-[601vh] w-full items-center justify-center'>
         <OrbitingCircles iconSize={40}>
           <Ebook />
           <Podcast />
@@ -62,7 +55,7 @@ export const Hero = () => {
           <LiveStream />
         </OrbitingCircles>
         <Button className='scale-125'>Browse Mentors</Button>
-      </div>
+      </div> */}
     </section>
   );
 };

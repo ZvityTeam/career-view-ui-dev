@@ -1,4 +1,4 @@
-import { FaqSection } from '../../components/faqsection/FaqSection.tsx';
+import { MeetOutMentors } from '../../components/meet-our-mentors/MeetOutMentors.tsx';
 import { AnimatedPageWrapper } from '../../components/PageWrapper.tsx';
 import { QuestionsWeGet } from '../../components/questions-we-get/QuestionsWeGet.tsx';
 import { StudentHero } from '../../components/student-hero/StudentHero.tsx';
@@ -13,10 +13,11 @@ export const Student = () => {
         <StudentHero />
         <WhatWeDo />
         <WhatWeOffer2 />
+        <MeetOutMentors />
         {/* <StudentMentorConnect /> */}
         <QuestionsWeGet />
         <Testimonials />
-        <FaqSection />
+        {/* <FaqSection /> */}
       </main>
     </AnimatedPageWrapper>
   );

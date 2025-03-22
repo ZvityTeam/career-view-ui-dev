@@ -1,7 +1,7 @@
 import React from 'react';
 // import { CardData } from '../why-choose-us-card/WhyChooseUsCard.tsx';
-import { SectionHeader } from '../section-header/SectionHeader.tsx';
 import NetworkVisualization from '../network-visualization.tsx';
+import { SectionHeader } from '../section-header/SectionHeader.tsx';
 import curved from '../svgs/curved.svg';
 /** Example data. Replace with your actual content & images. */
 // const WHY_CHOOSE_US_DATA: CardData[] = [
@@ -82,16 +82,17 @@ export const WhyChooseUs: React.FC = () => {
         <section className='relative w-full py-24'>
           {/* Section heading */}
           <SectionHeader
-            title={'What makes career view unique'}
+            title={'Why CareerView?'}
             subtitle={
               'Home to a community of Young Professionals (ages 21-29) across different career paths, industries, and cultural backgrounds—who share their real experiences of schooling and early professional life. With over 100 young professionals across various career roles and representing 10 different cultural backgrounds, students will have an opportunity to learn from diverse experiences.'
             }
-            className={'mb-16'}
+            className={'mb-16 text-7xl'}
           />
 
           {/* The carousel container (relative) for stacking motion cards */}
-          <div className='relative mx-auto h-[500px] w-full overflow-hidden'>
+          <div className='relative mx-auto h-[700px] w-full overflow-hidden'>
             <NetworkVisualization />
+            {/* <MentorNetwork /> */}
             {/*{cards.map((card, index) => {*/}
             {/*  // We'll place the middle card (position=0) in the center,*/}
             {/*  // the next/prev around it, etc.*/}

@@ -1,33 +1,36 @@
-import React from 'react';
 import { BookOpen, School, UserCheck } from 'lucide-react';
+import React from 'react';
 import { Card } from '../card/Card';
-import { SectionHeader } from '../section-header/SectionHeader';
 import { CurvedWrapper } from '../CurvedWrapper.tsx';
+import { SectionHeader } from '../section-header/SectionHeader';
 
 export const WhatWeDo: React.FC = () => {
   const cards = [
     {
-      icon: UserCheck,
-      title: 'Personalized Mentorship',
-      description:
-        'Guiding students through career decisions by connecting them with mentors who share practical, real-world insights.',
-    },
-    {
       icon: School,
-      title: 'Tailored School Programs',
+      title: 'Educational Podcast',
       description:
-        'Partnering with schools to provide engaging, career-focused programs that help students navigate their future paths.',
+        'Listen to Young Professionals share their personal experiences and advice to questions asked by students.',
     },
     {
       icon: BookOpen,
-      title: 'Valuable Career Insights',
+      title: 'Career E-Books',
       description:
-        'Delivering career resources like podcasts, e-books, and live Q&A sessions to support students at every step of their journey.',
+        'Access best tipe and insights provided by Young Professionals on how to navigate through life after school.',
+    },
+    {
+      icon: UserCheck,
+      title: 'Livestream Events',
+      description:
+        'Meet the CareerView Young Professional community! Where students can have the opportunity to connect in person.',
     },
   ];
 
   return (
-    <CurvedWrapper curve='both'>
+    <CurvedWrapper
+      curve='both'
+      className='flex flex-col items-center'
+    >
       {/* Heading */}
       <div className='text-center'>
         <SectionHeader
@@ -40,7 +43,7 @@ export const WhatWeDo: React.FC = () => {
       </div>
 
       {/* Cards */}
-      <div className='grid scale-110 grid-cols-1 gap-20 sm:grid-cols-2 lg:gap-x-24'>
+      <div className='mx-auto grid grid-cols-1 gap-10 sm:grid-cols-3 lg:gap-x-24'>
         {cards.map((card, index) => (
           <Card
             key={index}

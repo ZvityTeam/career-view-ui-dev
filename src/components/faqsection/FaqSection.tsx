@@ -1,13 +1,13 @@
-import { SectionHeader } from '../section-header/SectionHeader.tsx';
-import { Section } from '../container/Section.tsx';
-import { FaqItem } from './faqitems/FaqItem.tsx';
 import { memo } from 'react';
+import { Section } from '../container/Section.tsx';
+import { SectionHeader } from '../section-header/SectionHeader.tsx';
+import { FaqItem } from './faqitems/FaqItem.tsx';
 
 const FAQ_DATA = [
   {
-    question: 'Get a look at our mentors. What makes us different?',
+    question: 'Who are the mentors on CareerView?',
     answer:
-      'Our platform connects students with highly experienced mentors who provide personalized guidance.',
+      'Our mentors are young professionals from diverse industries who provide firsthand knowledge and guidance about their careers. They share real experiences, industry insights, and practical advice to help students make informed career decisions.',
   },
   {
     question: 'How do I become a browse-mentors?',

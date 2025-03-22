@@ -13,18 +13,18 @@ interface Connection {
 }
 
 const avatarPositions: Point[] = [
-  { x: 1, y: 35, size: 120 }, // Larger, leftmost
-  { x: 15, y: 20, size: 80 },
-  { x: 30, y: 30, size: 90 },
-  { x: 45, y: 15, size: 80 },
-  { x: 60, y: 25, size: 100 }, // Bigger to make hierarchy clearer
-  { x: 75, y: 20, size: 80 },
-  { x: 95, y: 35, size: 110 }, // Larger, rightmost
-  { x: 20, y: 60, size: 90 },
-  { x: 38, y: 65, size: 80 },
-  { x: 55, y: 58, size: 100 }, // More prominence
-  { x: 72, y: 65, size: 80 },
-  { x: 88, y: 55, size: 90 },
+  { x: 1, y: 35, size: 150 }, // Larger, leftmost
+  { x: 15, y: 20, size: 90 },
+  { x: 30, y: 30, size: 100 },
+  { x: 45, y: 15, size: 90 },
+  { x: 60, y: 25, size: 110 }, // Bigger to make hierarchy clearer
+  { x: 75, y: 20, size: 90 },
+  { x: 95, y: 35, size: 120 }, // Larger, rightmost
+  { x: 20, y: 60, size: 100 },
+  { x: 38, y: 65, size: 90 },
+  { x: 55, y: 58, size: 110 }, // More prominence
+  { x: 72, y: 65, size: 90 },
+  { x: 88, y: 55, size: 100 },
 ];
 
 const connections: Connection[] = [
@@ -182,12 +182,15 @@ export default function NetworkVisualization() {
               height: `${position.size}px`,
             }}
           >
-            <div className='relative h-full w-full overflow-hidden rounded-full border-4 border-white shadow-lg'>
+            <div className='group relative h-full w-full overflow-hidden rounded-full border-4 border-white shadow-lg'>
               <img
                 src={mentors[index]?.profileImage}
                 alt={`Avatar ${index + 1}`}
                 className='h-full w-full bg-white object-cover'
               />
+              <div className='absolute inset-0 mx-auto flex items-center justify-center bg-black bg-opacity-50 text-sm text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100'>
+                {mentors[index]?.role}
+              </div>
             </div>
           </div>
         ))}
