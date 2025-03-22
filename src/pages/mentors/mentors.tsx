@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { FaqSection } from '../../components/faqsection/FaqSection.tsx';
-import LogoScroll from '../../components/logo-scroll.tsx';
 import { MentorHero } from '../../components/mentor-hero.tsx';
 import { AnimatedPageWrapper } from '../../components/PageWrapper.tsx';
 import { SchoolConnectCTA } from '../../components/school-connect-cta/SchoolConnectCTA.tsx';
