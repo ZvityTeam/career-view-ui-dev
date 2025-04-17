@@ -13,7 +13,7 @@ export const BrowseMentors = () => {
         <MentorSearch />
         <MentorsList />
         <Testimonials />
-        <FaqSection />
+        <FaqSection page='browseMentors'/>
       </main>
     </AnimatedPageWrapper>
   );
