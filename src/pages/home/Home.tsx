@@ -1,7 +1,7 @@
 import { FaqSection } from '../../components/faqsection/FaqSection.tsx';
-import { Hero } from '../../components/hero/Hero.tsx';
 import LogoScroll from '../../components/logo-scroll.tsx';
 import { MeetOutMentors } from '../../components/meet-our-mentors/MeetOutMentors.tsx';
+import MeetingsHero from '../../components/MeetingsHero/MeetingsHero.tsx';
 import { AnimatedPageWrapper } from '../../components/PageWrapper.tsx';
 import { SchoolConnectCTA } from '../../components/school-connect-cta/SchoolConnectCTA.tsx';
 import { StudentMentorConnect } from '../../components/student-mentor-connect/StudentMentorConnect.tsx';
@@ -13,7 +13,8 @@ export const Home = () => {
   return (
     <AnimatedPageWrapper>
       <main className='mb-24'>
-        <Hero />
+        {/* <Hero /> */}
+        <MeetingsHero />
         <WhatWeDo />
         {/* <WhatWeOffer /> */}
         <WhyChooseUs />
@@ -23,7 +24,7 @@ export const Home = () => {
         <LogoScroll />
         <MeetOutMentors />
         <Testimonials />
-        <FaqSection />
+        <FaqSection page='home' />
       </main>
     </AnimatedPageWrapper>
   );

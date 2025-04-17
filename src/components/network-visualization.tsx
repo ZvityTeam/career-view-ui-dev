@@ -97,9 +97,10 @@ export default function NetworkVisualization() {
       line.setAttribute('y2', y2.toString());
 
       // Basic line style
-      line.setAttribute('stroke', 'rgba(0, 0, 0, 1)');
-      line.setAttribute('stroke-width', '2');
+      line.setAttribute('stroke', 'rgb(0, 0, 0)');
+      line.setAttribute('stroke-width', '1');
       line.setAttribute('stroke-dasharray', '4 2');
+      line.style.strokeLinecap = 'round';
 
       svg.appendChild(line);
       newLines.push(line);
@@ -154,6 +155,13 @@ export default function NetworkVisualization() {
         fromEl.style.animationDuration = '0.6s';
         fromEl.style.animationFillMode = 'forwards';
       }
+      setTimeout(
+        () => {
+          line.style.strokeDasharray = '4 2';
+          line.style.strokeDashoffset = '0';
+        },
+        (0.3 * i + 1) * 1000
+      );
     });
   }, [lineElements]);
 
@@ -182,16 +190,20 @@ export default function NetworkVisualization() {
               height: `${position.size}px`,
             }}
           >
-            <div className='group relative h-full w-full overflow-hidden rounded-full border-4 border-white shadow-lg'>
+            <div className='group relative h-full w-full overflow-hidden rounded-3xl border-4 border-white shadow-lg'>
               <img
                 src={mentors[index]?.profileImage}
                 alt={`Avatar ${index + 1}`}
                 className='h-full w-full bg-white object-cover'
               />
-              <div className='absolute inset-0 mx-auto flex items-center justify-center bg-black bg-opacity-50 text-sm text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100'>
+              <div
+                className='overflow-truncate absolute inset-0 mx-auto flex items-end justify-center bg-gradient-to-b from-black/0 via-black/10 to-yellow-400/80 text-center font-semibold italic leading-tight tracking-tight text-white opacity-0 drop-shadow-md transition-opacity duration-300 group-hover:opacity-100'
+                style={{ fontSize: `${position.size * 0.12}px` }}
+              >
                 {mentors[index]?.role}
               </div>
             </div>
+            {/* {mentors[index]?.role} */}
           </div>
         ))}
       </div>

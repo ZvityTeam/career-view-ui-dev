@@ -35,60 +35,28 @@ export const FlipWords = ({
       }}
     >
       <motion.div
-        initial={{
-          opacity: 0,
-          y: 10,
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-        }}
+        initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
+        animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
         transition={{
           type: 'spring',
-          stiffness: 100,
-          damping: 10,
+          stiffness: 120,
+          damping: 15,
+          duration: 0.8,
         }}
         exit={{
           opacity: 0,
-          filter: 'blur(8px)',
-          scale: 0.1,
+          y: -20,
+          filter: 'blur(4px)',
+          scale: 0.9,
           position: 'absolute',
         }}
         className={cn(
-          'relative z-10 inline-block px-2 text-left text-neutral-900',
+          'relative z-10 inline-block px-2 text-left font-bold',
           className
         )}
         key={currentWord}
       >
-        {/* edit suggested by Sajal: https://x.com/DewanganSajal */}
-        {currentWord.split(' ').map((word, wordIndex) => (
-          <motion.span
-            key={word + wordIndex}
-            initial={{ opacity: 0, y: 10, filter: 'blur(8px)' }}
-            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            transition={{
-              delay: wordIndex * 0.3,
-              duration: 0.3,
-            }}
-            className='inline-block whitespace-nowrap'
-          >
-            {word.split('').map((letter, letterIndex) => (
-              <motion.span
-                key={word + letterIndex}
-                initial={{ opacity: 0, y: 10, filter: 'blur(8px)' }}
-                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                transition={{
-                  delay: wordIndex * 0.3 + letterIndex * 0.05,
-                  duration: 0.2,
-                }}
-                className='inline-block'
-              >
-                {letter}
-              </motion.span>
-            ))}
-            <span className='inline-block'>&nbsp;</span>
-          </motion.span>
-        ))}
+        {currentWord}
       </motion.div>
     </AnimatePresence>
   );

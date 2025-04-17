@@ -5,7 +5,7 @@ import { AnimatedPageWrapper } from '../../components/PageWrapper.tsx';
 import { SchoolConnectCTA } from '../../components/school-connect-cta/SchoolConnectCTA.tsx';
 import { Testimonials } from '../../components/testimonials/Testimonials.tsx';
 import { VerticalTimelineComponent } from '../../components/vertical-timeline.tsx';
-import { WhatToExpect } from '../../components/what-to-expect';
+import { WhyBecomeAMentor } from '../../components/what-to-expect';
 import { useNavbarContext } from '../../context/navbar-context/NavbarContext.tsx';
 
 export const Mentors = () => {
@@ -19,12 +19,12 @@ export const Mentors = () => {
     <AnimatedPageWrapper>
       <main>
         <MentorHero />
-        <WhatToExpect />
+        <WhyBecomeAMentor />
         {/* <LogoScroll /> */}
         <VerticalTimelineComponent />
         <SchoolConnectCTA />
         <Testimonials />
-        <FaqSection />
+        <FaqSection page='mentor' />
       </main>
     </AnimatedPageWrapper>
   );

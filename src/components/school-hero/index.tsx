@@ -1,6 +1,7 @@
-import { Button } from '../ui/Button.tsx';
-import { useNavbarContext } from '../../context/navbar-context/NavbarContext.tsx';
 import { useEffect } from 'react';
+import schoolHero from '../../assets/schoolHreroBg.png';
+import { useNavbarContext } from '../../context/navbar-context/NavbarContext.tsx';
+import { Button } from '../ui/Button.tsx';
 
 export const SchoolHero = () => {
   const { setBgBlur } = useNavbarContext();
@@ -13,8 +14,7 @@ export const SchoolHero = () => {
     <section
       className='relative min-h-screen bg-cover bg-center bg-no-repeat pt-32'
       style={{
-        backgroundImage:
-          "url('https://images.pexels.com/photos/2833037/pexels-photo-2833037.jpeg')",
+        backgroundImage: `url(${schoolHero})`,
       }}
     >
       <div
@@ -24,12 +24,13 @@ export const SchoolHero = () => {
       >
         <h1 className='text-8xl'>School x Connect</h1>
         <p className='max-w-2xl text-2xl'>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos
-          explicabo itaque necessitatibus. Lorem ipsum dolor sit amet,
-          consectetur adipisicing elit. Aspernatur, ex expedita illum laboriosam
-          mollitia optio perferendis quod? Officiis.
+          Struggling to find industry speakers for your students? Save time and
+          effort—connect with our network of Young Professionals who can deliver
+          insightful talks to your school via livestream!
         </p>
-        <Button className='w-36 border-white text-white'>Get a Callback</Button>
+        <Button className='w-36 border-white text-white'>
+          Schedule a Session
+        </Button>
       </div>
     </section>
   );

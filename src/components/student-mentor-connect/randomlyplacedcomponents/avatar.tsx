@@ -13,8 +13,8 @@ const avatarVariants = cva(
   {
     variants: {
       size: {
-        sm: 'h-24 w-24 border-4', // Small
-        default: 'h-36 w-36 border-8', // Default
+        sm: 'h-24 w-24 border-8', // Small
+        default: 'h-36 w-36 border-[12px]', // Default
       },
     },
     defaultVariants: {
@@ -40,7 +40,7 @@ export const Avatar = ({
 
       {/* Green dot if active */}
       {isActive && (
-        <div className='absolute right-2 top-2 z-20 h-4 w-4 rounded-full border-2 border-white bg-green-500' />
+        <div className='absolute right-0 top-0 z-20 h-6 w-6 rounded-full border-4 border-white bg-green-500' />
       )}
     </div>
   );

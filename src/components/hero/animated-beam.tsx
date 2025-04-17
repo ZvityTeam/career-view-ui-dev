@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import type React from 'react';
 import { type RefObject, useEffect, useId, useState } from 'react';
 import { cn } from '../../utils/cn';
 
@@ -25,13 +24,13 @@ export interface AnimatedBeamProps {
   endYOffset?: number;
 }
 
-export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
+export const AnimatedBeam = ({
   className,
   containerRef,
   fromRef,
   toRef,
   curvature = 0,
-  reverse = false, // Include the reverse prop
+  reverse = false,
   duration = Math.random() * 3 + 4,
   delay = 0,
   pathColor = 'white',
@@ -43,7 +42,7 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
   startYOffset = 0,
   endXOffset = 0,
   endYOffset = 0,
-}) => {
+}: AnimatedBeamProps) => {
   const id = useId();
   const [pathD, setPathD] = useState('');
   const [svgDimensions, setSvgDimensions] = useState({ width: 0, height: 0 });
@@ -90,12 +89,8 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
     };
 
     // Initialize ResizeObserver
-    const resizeObserver = new ResizeObserver((entries) => {
-      // For all entries, recalculate the path
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      for (const _entry of entries) {
-        updatePath();
-      }
+    const resizeObserver = new ResizeObserver(() => {
+      updatePath();
     });
 
     // Observe the container element
@@ -151,7 +146,7 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
         <motion.linearGradient
           className='transform-gpu'
           id={id}
-          gradientUnits={'userSpaceOnUse'}
+          gradientUnits='userSpaceOnUse'
           initial={{
             x1: '0%',
             x2: '0%',
@@ -167,7 +162,7 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
           transition={{
             delay,
             duration,
-            ease: [0.16, 1, 0.3, 1], // https://easings.net/#easeOutExpo
+            ease: [0.16, 1, 0.3, 1], // easeOutExpo
             repeat: Number.POSITIVE_INFINITY,
             repeatDelay: 0,
           }}

@@ -1,4 +1,6 @@
 import { useNavigate } from 'react-router-dom';
+import BgEllipse from '../../assets/Ellipse 10@2x.png';
+import screenShotImg from '../../assets/Group 318@2x.png';
 import { useMentorStore } from '../../store/useMentorStore.ts';
 import { Button } from '../ui/Button.tsx';
 import { AvatarProfileCard } from './randomlyplacedcomponents/avatar-profile.tsx';
@@ -15,38 +17,75 @@ export const StudentMentorConnect = () => {
   const fourthMentor = mentors[3];
 
   return (
-    <section className='grid min-h-[120vh] place-items-center bg-gradient-to-tr from-yellow-500 via-gray-700 to-black pt-44'>
-      <div className='flex min-h-screen w-full gap-20 p-32'>
+    <section
+      className='grid min-h-[100vh] place-items-center pt-44'
+      style={{
+        background:
+          'linear-gradient(220deg, #000000 0%, #767676 33%, #F1CE7E 71%, #FFFBF0 100%)',
+      }}
+    >
+      <div className='flex min-h-screen w-full gap-20 p-32 pb-14'>
+        {/* Left Side: Floating Elements */}
         <div className='relative flex-1 pr-20'>
-          <div className={'float-animation absolute right-0 -translate-y-1/2'}>
+          {/* Background Ellipses */}
+          <div className='float-animation absolute left-[-5%] top-[-30%] z-0 mix-blend-overlay'>
+            <img
+              src={BgEllipse}
+              alt='Bg Ellipse Top'
+              className='h-[500px] w-[500px]'
+            />
+          </div>
+          <div className='float-animation absolute bottom-[-35%] right-[-25%] z-0 mix-blend-overlay'>
+            <img
+              src={BgEllipse}
+              alt='Bg Ellipse Bottom'
+              className='h-[450px] w-[450px]'
+            />
+          </div>
+
+          {/* Screenshot Image */}
+          <div className='float-animation absolute left-[55%] top-[20%] z-10'>
+            <img
+              src={screenShotImg}
+              alt='Student-Mentor interactions'
+              className='h-full w-[1000px]'
+            />
+          </div>
+
+          {/* Avatar Profile Card */}
+          <div className='float-animation absolute left-[15%] top-[-15%] z-20'>
+            <AvatarProfileCard mentor={fourthMentor || {}} />
+          </div>
+
+          {/* Avatars */}
+          <div className='float-animation absolute right-[15%] top-[-5%] z-30'>
             <Avatar
               image={firstMentor?.profileImage || 'https://placehold.co/400'}
               alt={firstMentor?.name || 'Mentor Image'}
               isActive={true}
             />
           </div>
-          <div className={'float-animation absolute left-0 top-[10%]'}>
+          <div className='float-animation absolute left-[0%] top-[15%] z-30'>
             <Avatar
-              size={'sm'}
+              size='sm'
               image={secondMentor?.profileImage || 'https://placehold.co/400'}
               alt={firstMentor?.name || 'Mentor Image'}
               isActive={true}
             />
           </div>
-          <div className={'float-animation absolute -top-[20%] right-[30%]'}>
-            <AvatarProfileCard mentor={fourthMentor || {}} />
-          </div>{' '}
-          <div
-            className={
-              'float-animation absolute -left-[10%] bottom-[25%] scale-75'
-            }
-          >
+
+          {/* QA Card */}
+          <div className='float-animation absolute bottom-[32%] left-[-5%] z-40 scale-75'>
             <QACard mentor={fifthMentor || {}} />
-          </div>{' '}
-          <div className={'float-animation absolute bottom-[10%] right-0'}>
+          </div>
+
+          {/* Search Field */}
+          <div className='float-animation absolute left-[5%] top-[70%] z-50'>
             <SearchFieldComponent />
           </div>
         </div>
+
+        {/* Right Side: Text and Buttons */}
         <div className='flex-1 text-white'>
           <div className='flex flex-col gap-5'>
             <p className='text-4xl italic'>Student-Mentor Connect:</p>

@@ -3,6 +3,9 @@ import type React from 'react';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import placeholderImg from '../assets/event2.jpg';
+import timeline_img1 from '../assets/mentors_page/timeline_img1.png';
+import timeline_img2 from '../assets/mentors_page/timeline_img2.png';
+import timeline_img3 from '../assets/mentors_page/timeline_img3.png';
 import { SectionHeader } from './section-header/SectionHeader';
 
 interface TimelineItem {
@@ -22,27 +25,30 @@ const timelineData: TimelineItem[] = [
     title: 'Be the Mentor You Needed',
     subtitle: 'Reason 1',
     description:
-      'Guide students with practical advice and invaluable insights, helping them navigate their career paths with confidence.',
+      'Give students honest advice based on your experience—no fluff, just the truth! Share what you wish you had known back then and pay it forward.',
     date: 'Step 1',
     type: 'work',
+    imageUrl: timeline_img1,
   },
   {
     id: 2,
     title: 'Build New Connections',
     subtitle: '',
     description:
-      'Join a network of passionate mentors, build relationships, and create opportunities for mutual support and growth.',
+      'Get exclusive access to a large community of professionals for your networking and get invited to exclusive events for schools!',
     date: 'Step 2',
     type: 'work',
+    imageUrl: timeline_img2,
   },
   {
     id: 3,
-    title: 'Showcase Your Leadership',
+    title: 'Promote your brand',
     subtitle: '',
     description:
-      'Use our platform to highlight your expertise, grow your personal brand, and expand your professional reach.',
+      'Promote your company, business, or personal brand to showcase what you do across our extensive network of schools nationwide.',
     date: 'Step 3',
     type: 'work',
+    imageUrl: timeline_img3,
   },
 ];
 

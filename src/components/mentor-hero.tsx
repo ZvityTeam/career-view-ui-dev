@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import mentorHeroBg from '../assets/CareerView -3137.jpg';
 import { Button } from './ui/Button.tsx';
 
 export const MentorHero = () => {
@@ -7,8 +8,7 @@ export const MentorHero = () => {
     <section
       className='relative min-h-screen bg-cover bg-center bg-no-repeat pt-32'
       style={{
-        backgroundImage:
-          "url('https://images.pexels.com/photos/6954162/pexels-photo-6954162.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')",
+        backgroundImage: `url(${mentorHeroBg})`,
       }}
     >
       <div

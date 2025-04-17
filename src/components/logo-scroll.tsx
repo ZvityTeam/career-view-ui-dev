@@ -1,89 +1,75 @@
-import { motion } from 'framer-motion';
-
-// Importing images with correct extensions
-import logo2 from '../assets/schools/image2.png';
-import logo3 from '../assets/schools/image3.png';
-import logo4 from '../assets/schools/image4.png';
-import logo7 from '../assets/schools/image7.png';
-import logo10 from '../assets/schools/image10.png';
-import logo14 from '../assets/schools/image14.png';
-import logo18 from '../assets/schools/image18.png';
-import logo21 from '../assets/schools/image21.png';
-import logo24 from '../assets/schools/image24.png';
-import logo25 from '../assets/schools/image25.png';
-import logo26 from '../assets/schools/image26.png';
-import logo28 from '../assets/schools/image28.png';
-import logo30 from '../assets/schools/image30.png';
-import logo31 from '../assets/schools/image31.png';
-
-// Array of logos for easy mapping
-const logos = [
-  logo2,
-  logo3,
-  logo4,
-  logo7,
-  logo10,
-  logo14,
-  logo18,
-  logo21,
-  logo24,
-  logo25,
-  logo26,
-  logo28,
-  logo30,
-  logo31,
-];
+import logo2 from '../assets/schools/image2.jpeg'; // ED CONNECT Australia
+import logo3 from '../assets/schools/image3.jpg'; // ARC
+import logo4 from '../assets/schools/image4.jpg'; // Csmith
+import logo5 from '../assets/schools/image5.jpg'; // Fertility North
+import logo6 from '../assets/schools/image6.png'; // GIORGI
+import logo7 from '../assets/schools/image7.png'; // 3W Physio (Csmith)
+import logo8 from '../assets/schools/image8.png'; // St Andrews
+import logo9 from '../assets/schools/image9.png'; // Ursula Frayne
 
 const DoubleScrollingLogos = () => {
   return (
     <section className='bg-slate-100 py-4'>
-      <div className='flex overflow-hidden'>
-        <TranslateWrapper>
-          <LogoItems />
-        </TranslateWrapper>
-        <TranslateWrapper>
-          <LogoItems />
-        </TranslateWrapper>
-        <TranslateWrapper>
-          <LogoItems />
-        </TranslateWrapper>
+      <div className='flex justify-around'>
+        {/* Non For Profits Section */}
+        <div className='flex flex-col items-center'>
+          <h3 className='mb-4 text-lg font-bold'>Non For Profits</h3>
+          <div className='flex flex-row gap-4'>
+            <LogoItem
+              src={logo5}
+              alt='Ed Connect'
+            />
+            <LogoItem
+              src={logo2}
+              alt='ED CONNECT Australia'
+            />
+          </div>
+        </div>
+
+        {/* Commercial Companies Section */}
+        <div className='flex max-w-xl flex-col items-center'>
+          <h3 className='mb-4 text-lg font-bold'>Commercial Companies</h3>
+          <div className='flex flex-row gap-4'>
+            <LogoItem
+              src={logo3}
+              alt='ARC'
+            />
+            <LogoItem
+              src={logo4}
+              alt='Csmith'
+            />
+
+            <LogoItem
+              src={logo6}
+              alt='GIORGI'
+            />
+            <LogoItem
+              src={logo7}
+              alt='3W Physio'
+            />
+          </div>
+        </div>
+
+        {/* Schools Section */}
+        <div className='flex flex-col items-center'>
+          <h3 className='mb-4 text-lg font-bold'>Schools</h3>
+          <div className='flex flex-row gap-4'>
+            <LogoItem
+              src={logo8}
+              alt='St Andrews'
+            />
+            <LogoItem
+              src={logo9}
+              alt='Ursula Frayne'
+            />
+          </div>
+        </div>
       </div>
     </section>
   );
 };
 
-const TranslateWrapper = ({
-  children,
-  reverse,
-}: {
-  children: JSX.Element;
-  reverse?: boolean;
-}) => {
-  return (
-    <motion.div
-      initial={{ translateX: reverse ? '-100%' : '0%' }}
-      animate={{ translateX: reverse ? '0%' : '-100%' }}
-      transition={{ duration: 50, repeat: Infinity, ease: 'linear' }}
-      className='flex gap-4 px-2'
-    >
-      {children}
-    </motion.div>
-  );
-};
-
-// LogoItems maps through the array of image sources and renders them
-const LogoItems = () => (
-  <>
-    {logos.map((src, index) => (
-      <LogoItem
-        key={index}
-        src={src}
-      />
-    ))}
-  </>
-);
-
-const LogoItem = ({ src }: { src: string }) => {
+const LogoItem = ({ src, alt }: { src: string; alt: string }) => {
   return (
     <a
       href='#'
@@ -93,7 +79,7 @@ const LogoItem = ({ src }: { src: string }) => {
     >
       <img
         src={src}
-        alt='logo'
+        alt={alt}
         className='h-auto max-w-full'
       />
     </a>

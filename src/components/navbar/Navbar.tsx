@@ -1,20 +1,21 @@
 import { Home as HomeIcon } from 'lucide-react';
-import { NAV_ITEMS } from './NavbarConfig';
 import { Link } from 'react-router-dom';
 import { AppLogo } from '../../assets';
-import { NavIcon } from '../nav-icon/NavIcon';
-import { Button } from '../ui/Button';
+import AppLogoDark from '../../assets/CareerViewLogo_black (Custom).png';
 import { useNavbarContext } from '../../context/navbar-context/NavbarContext';
 import { cn } from '../../utils/cn.ts';
+import { NavIcon } from '../nav-icon/NavIcon';
+import { Button } from '../ui/Button';
+import { NAV_ITEMS } from './NavbarConfig';
 
 export const Navbar = () => {
-  const { isDark, bgBlur } = useNavbarContext();
+  const { isDark } = useNavbarContext();
 
   return (
     <nav
       className={cn(
         'absolute top-0 z-30 w-full px-20 pt-12',
-        bgBlur && 'backdrop-blur-3xl'
+        'backdrop-blur-3xl'
       )}
     >
       <div
@@ -31,12 +32,11 @@ export const Navbar = () => {
             className='flex items-center space-x-2'
           >
             <img
-              src={AppLogo}
+              src={isDark ? AppLogoDark : AppLogo}
               alt='CareerViewLogo'
-              className={`h-10 ${isDark && 'invert'}`}
+              className={`h-10`}
             />
           </Link>
-
           {/* Navigation Links */}
           <div className='flex items-center space-x-10 text-xl'>
             {NAV_ITEMS.map((item) => (

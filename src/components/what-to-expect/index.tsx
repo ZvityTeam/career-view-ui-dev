@@ -1,49 +1,32 @@
 import { useEffect, useState } from 'react';
-import image1 from '../../assets/schoolPageIllustrations/Screenshot_2025-03-21_064941-removebg-preview.png';
-import illstration2 from '../../assets/schoolPageIllustrations/undraw_career-development_f0n6.svg';
-import illstration3 from '../../assets/schoolPageIllustrations/undraw_instant-analysis_idb3.svg';
-import illstration1 from '../../assets/schoolPageIllustrations/undraw_time-management_fedt.svg';
-import { CurvedWrapper } from '../CurvedWrapper.tsx';
+import { Section } from '../container/Section.tsx';
+import { SectionHeader } from '../section-header/SectionHeader.tsx';
 import { Button } from '../ui/Button.tsx';
 
-// Define slide content type
-type SlideContent = {
-  image: string;
-  title: string;
-  subtitle: string;
-  buttonText: string;
-};
+export const WhyBecomeAMentor = () => {
+  // Define content type for each slide
+  type SlideContent = {
+    image: string;
+    title: string;
+    subtitle: string;
+    buttonText: string;
+  };
 
-export const WhatToExpect = () => {
-  // Sample slide data - replace with your actual content
   const slides: SlideContent[] = [
     {
-      image: image1,
-      title: 'What to expect?',
+      image:
+        'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg', // Placeholder mentor image
+      title: 'Why Become a Mentor?',
       subtitle:
-        'Expect real, measurable improvements. We address the common pain points in career exploration and deliver a valuable experience.',
-      buttonText: 'Watch Now',
+        'Students continue to face challenges when deciding on their careers during and after school. This happens because they lack honest and relatable guidance. CareerView offers you a dedicated platform for sharing your career journey and providing authentic advice to help students in making well-informed career choices.',
+      buttonText: 'Learn More',
     },
     {
-      image: illstration1,
-      title: 'Reduce Time',
+      image: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg', // Placeholder student image
+      title: 'Support Student Growth',
       subtitle:
-        'Expect faster results, saving 6-8 weeks. We address time-consuming searches and deliver efficient career exploration. ',
-      buttonText: 'Watch Now',
-    },
-    {
-      image: illstration2,
-      title: 'Easy Industry Access',
-      subtitle:
-        'Expect direct access to 12 industries. We address limited exposure and deliver a broader career understanding.',
-      buttonText: 'Watch Now',
-    },
-    {
-      image: illstration3,
-      title: 'Uncover Insights',
-      subtitle:
-        'Expect data-driven clarity. We address vague options and deliver actionable insights for informed decisions.',
-      buttonText: 'Watch Now',
+        'Many of today’s Young Professionals have joined CareerView due to the lack of guidance they experienced in their own youth – they view their contribution as a way to give back! To share advice they wish they had in school!!',
+      buttonText: 'Get Started',
     },
   ];
 
@@ -59,30 +42,41 @@ export const WhatToExpect = () => {
   }, [slides.length]);
 
   return (
-    <CurvedWrapper className='mb-36'>
-      <div className='relative flex h-[50dvh] flex-row gap-12'>
-        {/* Left side - Image carousel */}
-        <div className='relative w-1/2 overflow-hidden rounded-3xl'>
-          <div
-            className='flex h-full w-full transition-transform duration-500 ease-in-out'
-            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-          >
-            {slides.map((slide, idx) => (
-              <div
-                key={idx}
-                className='h-full w-full flex-shrink-0'
-              >
+    <Section className='my-24 h-[70dvh] overflow-hidden'>
+      <div className='relative h-full'>
+        <div
+          className='flex h-full w-full transition-transform duration-500 ease-in-out'
+          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+        >
+          {slides.map((slide, idx) => (
+            <div
+              key={idx}
+              className='h-full w-full flex-shrink-0 flex-row gap-12'
+            >
+              <div className='h-full w-1/3'>
                 <img
                   src={slide.image}
-                  alt={`Slide ${idx + 1}`}
-                  className='h-full w-full rounded-2xl object-contain'
+                  alt={`${slide.title} Image`}
+                  className='h-full w-full rounded-3xl object-cover'
                 />
               </div>
-            ))}
-          </div>
+              <div className='flex w-1/3 flex-col items-start justify-center gap-6 p-6 text-left'>
+                <SectionHeader
+                  title={slide.title}
+                  subtitle={slide.subtitle}
+                  className='max-w-xl items-start'
+                  subTitleClassName='text-left'
+                />
+                <Button className='rounded-full bg-gray-800 px-8 py-3 text-white'>
+                  {slide.buttonText}
+                </Button>
+              </div>
+            </div>
+          ))}
         </div>
-        {/* Dots navigation - centered at bottom of image area */}
-        <div className='absolute -bottom-3 left-0 right-0 flex justify-center space-x-2'>
+
+        {/* Dots navigation */}
+        <div className='absolute -bottom-6 left-0 right-0 flex justify-center space-x-2'>
           {slides.map((_, idx) => (
             <button
               key={idx}
@@ -94,27 +88,7 @@ export const WhatToExpect = () => {
             />
           ))}
         </div>
-
-        {/* Right side - Content that changes with slides */}
-        <div className='flex w-1/3 flex-col justify-center'>
-          <div className='relative h-[250px]'>
-            {slides.map((slide, idx) => (
-              <div
-                key={idx}
-                className={`absolute left-0 top-0 flex h-full w-full flex-col justify-center transition-opacity duration-500 ${
-                  idx === currentIndex ? 'z-10 opacity-100' : 'z-0 opacity-0'
-                }`}
-              >
-                <h2 className='mb-4 text-4xl font-bold'>{slide.title}</h2>
-                <p className='mb-6 text-gray-600'>{slide.subtitle}</p>
-                <Button className='w-fit rounded-full bg-gray-800 px-8 py-3 text-white'>
-                  {slide.buttonText}
-                </Button>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
-    </CurvedWrapper>
+    </Section>
   );
 };
