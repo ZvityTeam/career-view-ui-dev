@@ -1,5 +1,5 @@
-import React from 'react';
 import { Github, Globe, Linkedin, Trash2, UserPlus, X } from 'lucide-react';
+import React from 'react';
 import { Spacer } from '../../components/spacer';
 import { Button } from '../../components/ui/Button';
 import { MentorProfileProps } from '../../types/types';
@@ -159,8 +159,8 @@ export const MentorProfileSection: React.FC<MentorProfileProps> = ({
               onClick={onAddToMentorList}
               className={`${
                 isAdded
-                  ? 'bg-red-500 text-white hover:bg-red-600'
-                  : 'bg-blue-500 text-white hover:bg-blue-600'
+                  ? 'hover:#272727 bg-red-500 text-white'
+                  : 'hover:#272727 bg-blue-500 text-white'
               }`}
             >
               {isAdded ? (
@@ -176,7 +176,7 @@ export const MentorProfileSection: React.FC<MentorProfileProps> = ({
             <Button
               variant='outline'
               size='lg'
-              className={`border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white`}
+              className={`hover:272727 border-[#272727] text-[#272727] hover:text-black`}
               onClick={onAskQuestion}
             >
               Ask a Question

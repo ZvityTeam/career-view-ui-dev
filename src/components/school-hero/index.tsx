@@ -22,7 +22,7 @@ export const SchoolHero = () => {
           'absolute left-0 top-20 flex h-96 flex-col justify-center gap-6 rounded-br-full px-24 pb-60 pt-72 text-white backdrop-blur-3xl'
         }
       >
-        <h1 className='text-8xl'>School x Connect</h1>
+        <h1 className='pr-60 text-8xl'>CareerTalks</h1>
         <p className='max-w-2xl text-2xl'>
           Struggling to find industry speakers for your students? Save time and
           effort—connect with our network of Young Professionals who can deliver

@@ -9,7 +9,7 @@ import logo9 from '../assets/schools/image9.png'; // Ursula Frayne
 
 const DoubleScrollingLogos = () => {
   return (
-    <section className='bg-slate-100 py-4'>
+    <section className='py-4'>
       <div className='flex justify-around'>
         {/* Non For Profits Section */}
         <div className='flex flex-col items-center'>
@@ -71,18 +71,13 @@ const DoubleScrollingLogos = () => {
 
 const LogoItem = ({ src, alt }: { src: string; alt: string }) => {
   return (
-    <a
-      href='#'
-      rel='nofollow'
-      target='_blank'
-      className='flex h-16 w-16 items-center justify-center text-black transition-colors hover:bg-slate-200 md:h-24 md:w-24'
-    >
+    <div className='flex h-16 w-16 items-center justify-center text-black transition-colors md:h-24 md:w-24'>
       <img
         src={src}
         alt={alt}
         className='h-auto max-w-full'
       />
-    </a>
+    </div>
   );
 };
 

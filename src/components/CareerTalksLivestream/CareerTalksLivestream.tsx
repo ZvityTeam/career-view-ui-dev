@@ -1,6 +1,5 @@
 import { Hourglass, Network, Search } from 'lucide-react';
 import { CurvedWrapper } from '../CurvedWrapper.tsx';
-import { Button } from '../ui/Button.tsx';
 
 export const CareerTalksLivestream = () => {
   // Heading and top text
@@ -13,17 +12,17 @@ export const CareerTalksLivestream = () => {
   // Three items with icons
   const items = [
     {
-      icon: <Hourglass size={100} />,
+      icon: <Hourglass size={120} />,
       title: 'Reduce Time!',
       subtitle: 'On average 6-8 weeks',
     },
     {
-      icon: <Network size={100} />,
+      icon: <Network size={120} />,
       title: 'Easy Industry Access',
       subtitle: '12 Different industries',
     },
     {
-      icon: <Search size={100} />,
+      icon: <Search size={120} />,
       title: 'Uncover Insights',
       subtitle: 'Actionable Data',
     },
@@ -34,26 +33,31 @@ export const CareerTalksLivestream = () => {
       <div className='flex max-w-5xl flex-col items-center justify-center gap-12'>
         {/* Heading and top text */}
         <div className='text-center'>
-          <h1 className='mb-4 text-4xl font-bold'>{heading.title}</h1>
-          <p className='mb-6 text-gray-600'>{heading.subtitle}</p>
+          <h1 className='mb-6 text-5xl font-extrabold text-black'>
+            {heading.title}
+          </h1>
+          <p className='mb-8 text-xl text-black'>{heading.subtitle}</p>
         </div>
 
         {/* Three items with icons and text */}
-        <div className='flex flex-col gap-12 md:flex-row md:justify-between'>
+        <div className='flex flex-col gap-16 md:flex-row md:justify-between'>
           {items.map((item, idx) => (
             <div
               key={idx}
               className='text-center md:w-1/3'
             >
-              <div className='mb-4 flex justify-center'>{item.icon}</div>
-              <h2 className='mb-2 text-2xl font-bold'>{item.title}</h2>
-              <p className='text-gray-600'>{item.subtitle}</p>
+              <div className='mb-6 flex justify-center'>
+                <div className='rounded-full bg-lightYellow p-4'>
+                  {item.icon}
+                </div>
+              </div>
+              <h2 className='mb-4 text-3xl font-extrabold text-black'>
+                {item.title}
+              </h2>
+              <p className='text-xl text-black'>{item.subtitle}</p>
             </div>
           ))}
         </div>
-        <Button className='mt-4 w-fit rounded-full bg-gray-800 px-6 py-2 text-white'>
-          Learn More
-        </Button>
       </div>
     </CurvedWrapper>
   );

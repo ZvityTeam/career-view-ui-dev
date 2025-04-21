@@ -1,4 +1,4 @@
-import { BookOpen, School, UserCheck } from 'lucide-react';
+import { BookOpen, School, UserCheck, Users } from 'lucide-react';
 import React from 'react';
 import { Card } from '../card/Card';
 import { CurvedWrapper } from '../CurvedWrapper.tsx';
@@ -16,13 +16,19 @@ export const WhatWeDo: React.FC = () => {
       icon: BookOpen,
       title: 'Career E-Books',
       description:
-        'Access best tipe and insights provided by Young Professionals on how to navigate through life after school.',
+        'Access best tips and insights provided by Young Professionals on how to navigate through life after school.',
     },
     {
       icon: UserCheck,
       title: 'Livestream Events',
       description:
         'Meet the CareerView Young Professional community! Where students can have the opportunity to connect in person.',
+    },
+    {
+      icon: Users,
+      title: '1-on-1 Mentoring',
+      description:
+        'Connect with Young Professionals for personalized guidance to help students navigate their career paths.',
     },
   ];
 
@@ -43,7 +49,7 @@ export const WhatWeDo: React.FC = () => {
       </div>
 
       {/* Cards */}
-      <div className='mx-[5dvw] grid grid-cols-2 gap-10 sm:grid-cols-3 md:grid-cols-1 lg:gap-x-24'>
+      <div className='mx-[5dvw] grid grid-cols-2 gap-10'>
         {cards.map((card, index) => (
           <Card
             key={index}

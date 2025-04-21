@@ -1,94 +1,94 @@
 import { useEffect, useState } from 'react';
-import { Section } from '../container/Section.tsx';
+import { CurvedWrapper } from '../CurvedWrapper.tsx';
 import { SectionHeader } from '../section-header/SectionHeader.tsx';
 import { Button } from '../ui/Button.tsx';
 
 export const WhyBecomeAMentor = () => {
-  // Define content type for each slide
-  type SlideContent = {
-    image: string;
-    title: string;
-    subtitle: string;
-    buttonText: string;
-  };
+  const [animate, setAnimate] = useState(true);
 
-  const slides: SlideContent[] = [
-    {
-      image:
-        'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg', // Placeholder mentor image
-      title: 'Why Become a Mentor?',
-      subtitle:
-        'Students continue to face challenges when deciding on their careers during and after school. This happens because they lack honest and relatable guidance. CareerView offers you a dedicated platform for sharing your career journey and providing authentic advice to help students in making well-informed career choices.',
-      buttonText: 'Learn More',
-    },
-    {
-      image: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg', // Placeholder student image
-      title: 'Support Student Growth',
-      subtitle:
-        'Many of today’s Young Professionals have joined CareerView due to the lack of guidance they experienced in their own youth – they view their contribution as a way to give back! To share advice they wish they had in school!!',
-      buttonText: 'Get Started',
-    },
-  ];
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  // Auto-advance slides
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [slides.length]);
+    const timer = setTimeout(() => setAnimate(false), 2000); // Stop animation after 2 seconds
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <Section className='my-24 h-[70dvh] overflow-hidden'>
-      <div className='relative h-full'>
-        <div
-          className='flex h-full w-full transition-transform duration-500 ease-in-out'
-          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-        >
-          {slides.map((slide, idx) => (
-            <div
-              key={idx}
-              className='h-full w-full flex-shrink-0 flex-row gap-12'
-            >
-              <div className='h-full w-1/3'>
-                <img
-                  src={slide.image}
-                  alt={`${slide.title} Image`}
-                  className='h-full w-full rounded-3xl object-cover'
-                />
+    <CurvedWrapper
+      minHeight='70vh'
+      className='bg-gray-50 py-16'
+    >
+      <div className='container mx-auto px-6'>
+        <div className='grid grid-cols-1 items-center gap-12 lg:grid-cols-2'>
+          {/* Text Content */}
+          <div className='space-y-6 lg:order-2'>
+            <SectionHeader
+              title='Become a CareerView Mentor'
+              subtitle='Share the guidance you wish you’d received. Students seek relatable career advice—join CareerView to shape their futures with your insights.'
+              className='max-w-md text-left'
+              subTitleClassName='text-gray-600 text-sm leading-relaxed'
+            />
+            <div className='space-y-4'>
+              <p className='text-base text-gray-800'>
+                Inspired by my own lack of direction, I mentor to give back.
+                "Mentoring on CareerView lets me share the advice I wish I had
+                when I was starting out." - Alex, CareerView Mentor
+              </p>
+              <p className='text-base text-gray-800'>
+                It’s a chance to inspire. "I mentor to offer the support I never
+                had, helping students navigate their career paths." - Jamal,
+                CareerView Mentor
+              </p>
+            </div>
+            <div className='mt-8'>
+              <Button
+                variant='default'
+                size='lg'
+              >
+                Start Mentoring
+              </Button>
+              <Button
+                variant='outline'
+                size='lg'
+                className='ml-6'
+              >
+                Discover More
+              </Button>
+            </div>
+          </div>
+
+          {/* Image Content */}
+          <div className='relative flex justify-center lg:order-1'>
+            <div className='relative w-full max-w-3xl'>
+              <img
+                src='https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg'
+                alt='Mentor sharing wisdom'
+                className='h-auto w-full rounded-3xl object-cover shadow-2xl'
+              />
+              <div
+                className={`absolute -left-12 -top-8 w-64 rounded-2xl border border-gray-200 bg-white p-4 shadow-2xl ${animate ? 'animate-bounce' : ''}`}
+              >
+                <p className='text-sm italic text-gray-600'>
+                  "Mentoring on CareerView lets me share the advice I wish I had
+                  when I was starting out."
+                </p>
+                <p className='mt-2 text-sm font-medium text-gray-800'>
+                  - Alex, CareerView Mentor
+                </p>
               </div>
-              <div className='flex w-1/3 flex-col items-start justify-center gap-6 p-6 text-left'>
-                <SectionHeader
-                  title={slide.title}
-                  subtitle={slide.subtitle}
-                  className='max-w-xl items-start'
-                  subTitleClassName='text-left'
-                />
-                <Button className='rounded-full bg-gray-800 px-8 py-3 text-white'>
-                  {slide.buttonText}
-                </Button>
+              <div
+                className={`absolute -bottom-12 -right-12 w-64 rounded-2xl border border-gray-200 bg-white p-4 shadow-2xl ${animate ? 'animate-bounce' : ''}`}
+              >
+                <p className='text-sm italic text-gray-600'>
+                  "Through CareerView, I guide students with the wisdom I lacked
+                  early on."
+                </p>
+                <p className='mt-2 text-sm font-medium text-gray-800'>
+                  - Maria, CareerView Mentor
+                </p>
               </div>
             </div>
-          ))}
-        </div>
-
-        {/* Dots navigation */}
-        <div className='absolute -bottom-6 left-0 right-0 flex justify-center space-x-2'>
-          {slides.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setCurrentIndex(idx)}
-              className={`h-3 w-3 rounded-full transition-colors ${
-                idx === currentIndex ? 'bg-gray-800' : 'bg-gray-300'
-              }`}
-              aria-label={`Go to slide ${idx + 1}`}
-            />
-          ))}
+          </div>
         </div>
       </div>
-    </Section>
+    </CurvedWrapper>
   );
 };

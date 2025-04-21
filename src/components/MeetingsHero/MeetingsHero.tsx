@@ -1,4 +1,3 @@
-import { MessageSquareQuote } from 'lucide-react';
 import { useMentorStore } from '../../store/useMentorStore';
 import { Mentor } from '../../types/types';
 import { Marquee } from '../marquee/Marquee';
@@ -47,31 +46,31 @@ export default function MeetingsHero() {
             ))}
           </div>
         </div>
-
         <div className='max-w-xl space-y-6'>
           <h1 className='font-serif text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl'>
-            Great Meetings Are Just The Beginning
+            Explore and connect with a young professional
           </h1>
           <p className='font-avenir text-lg text-muted-foreground text-slate-300 md:text-xl'>
-            We help your team build great meeting habits through collaborative
-            agendas and easy-to-schedule meetings.
+            CareerView helps students connect with industry mentors to gain
+            practical, relatable, and honest career insights to make more
+            informed decisions about their future careers.
           </p>
           <div className='flex flex-wrap gap-4 pt-4'>
-            <Button variant={'secondary'}>Start Today!</Button>
-            <Button variant={'outline'}>Registration</Button>
-          </div>
-        </div>
-        <div className='absolute bottom-12 left-12 flex items-center space-x-3'>
-          <div className='rounded-full bg-card p-3'>
-            <MessageSquareQuote className='h-6 w-6 text-[#34A853]' />
-          </div>
-          <div className='font-avenir text-muted-foreground'>
-            <p className='text-sm'>Join On</p>
-            <p className='text-sm font-medium'>Google Meets</p>
+            <Button
+              variant={'default'}
+              className='hover:bg-[#ffffff] hover:text-black'
+            >
+              Start Today!
+            </Button>
+            <Button
+              variant={'outline'}
+              className='hover:bg-[#ffffff]'
+            >
+              Registration
+            </Button>
           </div>
         </div>
       </div>
-
       {/* Right Section - Marquee */}
       <div className='h-screen w-full overflow-hidden md:w-1/2'>
         <div className='flex h-full space-x-2 px-2'>

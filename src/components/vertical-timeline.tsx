@@ -38,7 +38,7 @@ const timelineData: TimelineItem[] = [
       'Get exclusive access to a large community of professionals for your networking and get invited to exclusive events for schools!',
     date: 'Step 2',
     type: 'work',
-    imageUrl: timeline_img2,
+    imageUrl: timeline_img3,
   },
   {
     id: 3,
@@ -48,7 +48,7 @@ const timelineData: TimelineItem[] = [
       'Promote your company, business, or personal brand to showcase what you do across our extensive network of schools nationwide.',
     date: 'Step 3',
     type: 'work',
-    imageUrl: timeline_img3,
+    imageUrl: timeline_img2,
   },
 ];
 

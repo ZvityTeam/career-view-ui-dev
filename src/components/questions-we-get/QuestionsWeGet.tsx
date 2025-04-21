@@ -220,7 +220,7 @@ export const QuestionsWeGet = () => {
       <div className='rounded-2xl bg-white p-4'>
         <ListWrapper
           data={filteredQuestions}
-          pageSize={5} // Set a reasonable page size
+          pageSize={9} // Set a reasonable page size
           next={() => {}}
           viewMoreButton={
             <div className='flex justify-center'>

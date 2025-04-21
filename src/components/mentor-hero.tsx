@@ -13,7 +13,7 @@ export const MentorHero = () => {
     >
       <div
         className={
-          'absolute left-0 top-20 flex h-96 flex-col justify-center gap-6 rounded-br-full px-24 pb-60 pt-72 text-white backdrop-blur-3xl'
+          'absolute left-0 top-20 flex h-96 flex-col justify-center gap-6 rounded-br-full bg-black/10 px-24 pb-60 pt-72 text-white backdrop-blur-3xl'
         }
       >
         <h1 className='text-8xl'>Share Your Journey</h1>

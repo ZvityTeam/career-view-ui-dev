@@ -32,4 +32,12 @@ export const FOOTER_NAV_ITEMS: NavbarItem[] = [
     label: 'Ask a Question',
     link: '/ask-a-question',
   },
+  {
+    label: 'Become a Mentor',
+    link: '/become-a-mentor',
+  },
+  {
+    label: 'Schedule a Livestream Event',
+    link: '/contact-us',
+  },
 ];

@@ -51,7 +51,7 @@ export const MentorProfileCard: React.FC<MentorProfileCardProps> = ({
       {!!onAddToMentorList && (
         <Button
           variant='outline'
-          className='absolute right-4 top-4 flex items-center justify-between border-[#6B8FF2] text-[#6B8FF2] hover:bg-[#6B8FF2] hover:text-white'
+          className='absolute right-4 top-4 flex items-center justify-between border-[#6B8FF2] text-[#272727] hover:bg-[#272727] hover:text-white'
           onClick={(e) => {
             e.stopPropagation();
             onAddToMentorList();
@@ -79,7 +79,7 @@ export const MentorProfileCard: React.FC<MentorProfileCardProps> = ({
         <Button
           variant='outline'
           size='lg'
-          className='mt-4 w-full text-black hover:bg-[#6B8FF2] hover:text-white'
+          className='mt-4 w-full text-black hover:bg-[#272727] hover:text-white'
           onClick={onSeeProfile}
         >
           See Profile

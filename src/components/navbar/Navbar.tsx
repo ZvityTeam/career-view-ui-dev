@@ -15,7 +15,7 @@ export const Navbar = () => {
     <nav
       className={cn(
         'absolute top-0 z-30 w-full px-20 pt-12',
-        'backdrop-blur-3xl'
+        'bg-black/10 backdrop-blur-3xl'
       )}
     >
       <div
@@ -29,12 +29,12 @@ export const Navbar = () => {
           {/* Logo */}
           <Link
             to='/'
-            className='flex items-center space-x-2'
+            className='bg-blur-3xl flex items-center space-x-2'
           >
             <img
               src={isDark ? AppLogoDark : AppLogo}
               alt='CareerViewLogo'
-              className={`h-10`}
+              className={`w-48`}
             />
           </Link>
           {/* Navigation Links */}
@@ -71,7 +71,7 @@ export const Navbar = () => {
             />
           </Link>
           <Link to='/browse-mentors'>
-            <Button>{isDark ? 'Browse Mentors' : 'Browse Mentors'}</Button>
+            <Button>{'Browse Mentors'}</Button>
           </Link>
         </div>
       </div>
