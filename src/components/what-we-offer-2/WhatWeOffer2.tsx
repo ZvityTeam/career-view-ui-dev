@@ -1,26 +1,44 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Headphones, Layers, Link2, PlaySquare } from 'lucide-react';
-import { useState } from 'react';
+import { Briefcase, Pause, Play, Star, Users } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
-import pdf from '../../assets/ebooks/How to build your network.pdf';
+import YouTube, { YouTubeProps } from 'react-youtube';
+
+// Sample imports for assets (adjust paths as per your project structure)
+import {
+  default as pdf,
+  default as pdfBuildNetwork,
+} from '../../assets/ebooks/How to build your network.pdf';
+import thumbBuildNetwork from '../../assets/ebooks/How to build your network.png';
+import pdfWorkLifeBalance from '../../assets/ebooks/How to maintain a good work-life balance.pdf';
+import thumbWorkLifeBalance from '../../assets/ebooks/How to maintain a good work-life balance.png';
+import pdfNailInterview from '../../assets/ebooks/How to nail a job interview.pdf';
+import thumbNailInterview from '../../assets/ebooks/How to nail a job interview.png';
+import pdfStayMotivated from '../../assets/ebooks/How to stay motivated during school.pdf';
+import thumbStayMotivated from '../../assets/ebooks/How to Stay Motivated During School.png';
+import pdfWriteResume from '../../assets/ebooks/How to write a good resume.pdf';
+import thumbWriteResume from '../../assets/ebooks/How to write a good resume.png';
 import { useMentorStore } from '../../store/useMentorStore';
+import { Marquee } from '../marquee/Marquee';
 import { SectionHeader } from '../section-header/SectionHeader';
 import { Button } from '../ui/Button';
 
 // Set up pdfjs worker
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
+// Animation variant
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
   transition: { duration: 0.6 },
 };
 
-const PDFReader = () => {
+// PDF Reader Component
+const PDFReader: React.FC = () => {
   const [numPages, setNumPages] = useState<number | null>(null);
   const [pageNumber, setPageNumber] = useState(1);
   const [error, setError] = useState<string | null>(null);
@@ -46,15 +64,17 @@ const PDFReader = () => {
   };
 
   return (
-    <div className='flex h-full max-h-[80%] flex-col items-center'>
-      <h3 className='mb-4 text-2xl font-bold lg:text-3xl'>Mentor Guide</h3>
-      <p className='mb-6 text-sm leading-relaxed text-gray-600 lg:text-base'>
+    <div className='flex h-full flex-col items-center'>
+      <h3 className='mb-4 text-xl font-bold text-black lg:text-2xl'>
+        Mentor Guide
+      </h3>
+      <p className='mb-4 text-xs leading-relaxed text-gray-600 lg:text-sm'>
         Explore our comprehensive mentor guide in PDF format
       </p>
       {error ? (
         <p className='text-sm text-red-500'>{error}</p>
       ) : (
-        <div className='mb-6 w-full max-w-lg flex-grow overflow-hidden rounded-xl bg-white shadow-sm'>
+        <div className='mb-2 w-full max-w-xl overflow-hidden rounded-xl bg-black/10 shadow-sm'>
           <Document
             file={pdf}
             onLoadSuccess={onDocumentLoadSuccess}
@@ -65,8 +85,8 @@ const PDFReader = () => {
               renderAnnotationLayer={false}
               renderTextLayer={true}
               className='flex justify-center'
-              width={Math.min(500, window.innerWidth - 40)}
-              scale={1.2}
+              width={Math.min(400, window.innerWidth - 40)}
+              scale={1.0}
             />
           </Document>
         </div>
@@ -74,18 +94,18 @@ const PDFReader = () => {
       <div className='flex items-center gap-4'>
         <Button
           variant='secondary'
-          className='rounded-full bg-black text-sm text-white hover:bg-black/90 lg:text-base'
+          className='rounded-full bg-gray-300 px-4 py-1 text-xs text-black hover:bg-gray-400 lg:text-sm'
           onClick={goToPreviousPage}
           disabled={pageNumber <= 1}
         >
           Previous
         </Button>
-        <p className='text-sm text-gray-600 lg:text-base'>
+        <p className='text-xs text-gray-600 lg:text-sm'>
           Page {pageNumber} of {numPages || '--'}
         </p>
         <Button
           variant='secondary'
-          className='rounded-full bg-black text-sm text-white hover:bg-black/90 lg:text-base'
+          className='rounded-full bg-black px-4 py-1 text-xs text-white hover:bg-black/90 lg:text-sm'
           onClick={goToNextPage}
           disabled={pageNumber >= (numPages || 1)}
         >
@@ -96,121 +116,294 @@ const PDFReader = () => {
   );
 };
 
-export default function WhatWeOffer2() {
-  const { getRandomMentorProfiles } = useMentorStore();
-  const randomMentorProfiles2 = getRandomMentorProfiles(4);
+// Helper function to format seconds into min:sec
+const formatTime = (seconds: number): string => {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = Math.floor(seconds % 60);
+  return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+};
+
+// YouTube Audio Player Component
+const YouTubeAudioPlayer: React.FC = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [player, setPlayer] = useState<any>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+
+  const onReady: YouTubeProps['onReady'] = (event) => {
+    setPlayer(event.target);
+    setDuration(event.target.getDuration());
+  };
+
+  const togglePlayPause = () => {
+    if (player) {
+      const playerState = player.getPlayerState();
+      if (playerState === YouTube.PlayerState.PLAYING) {
+        player.pauseVideo();
+        setIsPlaying(false);
+      } else {
+        player.playVideo();
+        setIsPlaying(true);
+      }
+    }
+  };
+
+  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (player) {
+      const newTime = Number(e.target.value);
+      player.seekTo(newTime, true);
+      setCurrentTime(newTime);
+    }
+  };
+
+  useEffect(() => {
+    let interval: number;
+    if (isPlaying && player) {
+      interval = setInterval(() => {
+        setCurrentTime(player.getCurrentTime());
+      }, 1000);
+    }
+    return () => clearInterval(interval);
+  }, [isPlaying, player]);
+
+  const onStateChange: YouTubeProps['onStateChange'] = (event) => {
+    if (event.data === YouTube.PlayerState.PLAYING) {
+      setIsPlaying(true);
+    } else if (
+      event.data === YouTube.PlayerState.PAUSED ||
+      event.data === YouTube.PlayerState.ENDED
+    ) {
+      setIsPlaying(false);
+    }
+  };
+
+  const opts: YouTubeProps['opts'] = {
+    height: '0', // Hide video, focus on audio
+    width: '0',
+    playerVars: {
+      autoplay: 0,
+      controls: 0, // Hide default controls
+    },
+  };
 
   return (
+    <motion.div
+      className='h-34 w-full rounded-[24px] bg-gradient-to-r from-[#1a1a1a] to-[#333333] p-6 shadow-sm lg:p-8'
+      {...fadeInUp}
+    >
+      <div className='mb-4 flex items-center gap-4'>
+        <div>
+          <h3 className='text-lg font-semibold text-white lg:text-xl'>
+            Career Insights Podcast
+          </h3>
+          <p className='text-xs text-gray-300 lg:text-sm'>
+            Listen to tips from industry experts
+          </p>
+        </div>
+      </div>
+      <YouTube
+        videoId='nWB2Pncif_Y' // Replace with your video ID
+        opts={opts}
+        onReady={onReady}
+        onStateChange={onStateChange}
+      />
+      <div className='flex items-center gap-4'>
+        <button
+          onClick={togglePlayPause}
+          className='bg-pastel-blue-100 hover:bg-pastel-blue-200 rounded-full p-2'
+        >
+          {isPlaying ? (
+            <div className='rounded-xl bg-gray-200 p-2'>
+              <Pause className='h-4 w-4 text-black lg:h-5 lg:w-5' />
+            </div>
+          ) : (
+            <div className='rounded-xl bg-gray-200 p-2'>
+              <Play className='h-4 w-4 text-black lg:h-5 lg:w-5' />
+            </div>
+          )}
+        </button>
+        <input
+          type='range'
+          min={0}
+          max={duration || 100}
+          value={currentTime}
+          onChange={handleSeek}
+          className='h-1 w-[83%] cursor-pointer appearance-none rounded-lg bg-gray-200'
+        />
+        <span className='text-xs text-gray-300'>
+          {formatTime(currentTime)} / {formatTime(duration)}
+        </span>
+      </div>
+    </motion.div>
+  );
+};
+
+// Resources for Marquee
+const resources = [
+  {
+    title: 'How to build your network',
+    pdf: pdfBuildNetwork,
+    thumbnail: thumbBuildNetwork,
+  },
+  {
+    title: 'How to maintain a good work-life balance',
+    pdf: pdfWorkLifeBalance,
+    thumbnail: thumbWorkLifeBalance,
+  },
+  {
+    title: 'How to nail a job interview',
+    pdf: pdfNailInterview,
+    thumbnail: thumbNailInterview,
+  },
+  {
+    title: 'How to stay motivated during school',
+    pdf: pdfStayMotivated,
+    thumbnail: thumbStayMotivated,
+  },
+  {
+    title: 'How to write a good resume',
+    pdf: pdfWriteResume,
+    thumbnail: thumbWriteResume,
+  },
+];
+
+// Main Component
+export default function WhatWeOffer2() {
+  const { getRandomMentors } = useMentorStore();
+  const mentors = getRandomMentors(3);
+  return (
     <section className='mt-36 min-h-screen w-full pt-12'>
-      <div className='mx-auto px-6 lg:px-12'>
+      <div className='mx-20 px-6 lg:px-12'>
         {/* Title */}
-        <SectionHeader title={'What we Offer'} />
+        <SectionHeader
+          title={'What We Offer'}
+          className='mb-10'
+        />
 
-        {/* MAIN GRID CONTAINER: Two columns */}
-        <div className='grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8'>
-          {/* LEFT COLUMN: Other Sections */}
-          <div className='grid-cols-14 grid gap-6 lg:gap-8'>
-            {/* 2) 120+ Career */}
-            <motion.div
-              className='col-span-12 row-span-1 rounded-[24px] bg-[#1C1C1C] p-6 text-white shadow-sm md:col-span-6 lg:p-8'
-              {...fadeInUp}
-            >
-              <div className='flex items-center gap-4'>
-                <div className='rounded-2xl bg-[#F5F5F0] p-4'>
-                  <Layers className='h-6 w-6 text-black lg:h-7 lg:w-7' />
-                </div>
-                <div>
-                  <h3 className='text-2xl font-semibold lg:text-3xl'>
-                    120+ Career
-                  </h3>
-                  <p className='mt-1 text-sm text-gray-300 lg:text-base'>
-                    Guidance Options Available
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* 3) Live Streaming */}
-            <motion.div
-              className='col-span-12 row-span-1 rounded-[24px] bg-white p-6 shadow-sm md:col-span-6 lg:p-8'
-              {...fadeInUp}
-            >
-              <div className='flex items-center justify-between text-slate-950'>
-                <div>
-                  <h3 className='text-2xl font-bold lg:text-3xl'>
-                    Live-streaming
-                  </h3>
-                  <p className='text-sm text-gray-600 lg:text-base'>
-                    & Career Talk with Live Q&A
-                  </p>
-                </div>
-                <div className='relative'>
-                  <div className='absolute -right-2 -top-2 h-12 w-12 -rotate-6 rounded-2xl bg-blue-100 lg:h-14 lg:w-14' />
-                  <div className='absolute -right-1 -top-1 h-12 w-12 rotate-3 rounded-2xl bg-yellow-100 lg:h-14 lg:w-14' />
-                  <div className='relative rounded-2xl bg-[#1C1C1C] p-3 lg:p-4'>
-                    <PlaySquare className='h-6 w-6 text-white lg:h-7 lg:w-7' />
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-            {/* 5) Podcast */}
-            <motion.div
-              className='col-span-12 flex justify-center md:col-span-3'
-              {...fadeInUp}
-            >
-              <div className='flex w-full flex-col items-center justify-around rounded-[24px] bg-[#1C1C1C] p-6 shadow-sm lg:p-8'>
-                <div className='mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#F5F5F0] lg:h-20 lg:w-20'>
-                  <Headphones className='h-6 w-6 text-black lg:h-8 lg:w-8' />
-                </div>
-                <div className='flex flex-col items-center justify-center font-mono text-xs text-white lg:text-sm'>
-                  {'PODCAST'.split('').map((value, index) => (
-                    <span key={index}>{value}</span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-            {/* 4) Network with Peers */}
-            <motion.div
-              className='col-span-12 rounded-[24px] bg-gradient-to-br from-yellow-50 to-yellow-100 p-6 shadow-sm md:col-span-3 lg:p-8'
-              {...fadeInUp}
-            >
-              <div className='mb-6 flex items-center justify-between'>
-                <h3 className='text-2xl font-bold lg:text-3xl'>
-                  Discover Opportunities
+        {/* MAIN FLEX CONTAINER: Two columns */}
+        <div className='flex w-full flex-col gap-4 md:flex-row lg:gap-6'>
+          {/* LEFT COLUMN: Multiple Sections */}
+          <div className='flex max-w-5xl flex-1 flex-col gap-4 md:flex-[2] lg:gap-6'>
+            {/* Row 1: 1-on-1 Mentoring and Quick Links */}
+            <div className='flex flex-col gap-4 md:flex-row'>
+              {/* Quick Links */}
+              <motion.div
+                className='h-42 w-full rounded-[24px] bg-gradient-to-r from-[#e6f0fa] to-[#ffffff] p-6 shadow-sm md:w-1/3 lg:p-8'
+                {...fadeInUp}
+              >
+                <h3 className='mb-4 text-lg font-bold text-black lg:text-xl'>
+                  Quick Links
                 </h3>
-                <div className='rounded-full bg-white p-3 shadow-sm lg:p-4'>
-                  <Link2 className='h-6 w-6 text-black lg:h-7 lg:w-7' />
+                <div className='flex flex-col gap-4'>
+                  <Button className='flex items-center gap-3 rounded-full bg-black px-4 py-1 text-xs text-white hover:bg-black/90 lg:text-sm'>
+                    <Briefcase className='h-4 w-4' />
+                    Explore Careers
+                  </Button>
+                  <Button className='flex items-center gap-3 rounded-full bg-black px-4 py-1 text-xs text-white hover:bg-black/90 lg:text-sm'>
+                    <Star className='h-4 w-4' />
+                    Join a Workshop
+                  </Button>
                 </div>
-              </div>
-              <p className='mb-6 text-sm leading-relaxed text-gray-600 lg:text-base'>
-                Explore diverse industries and understand the paths available to
-                you with guidance from CareerView.
-              </p>
-              <div className='flex items-center gap-2'>
-                <div className='flex -space-x-2'>
-                  {randomMentorProfiles2.map((profile, i) => (
-                    <img
-                      key={i}
-                      src={profile}
-                      alt='Connected student'
-                      className='h-8 w-8 rounded-full border-2 border-white lg:h-10 lg:w-10'
-                    />
+              </motion.div>
+              {/* 1-on-1 Mentoring Text */}
+              <motion.div
+                className='h-42 w-full rounded-[24px] bg-gradient-to-br from-[#f5f5dc] to-[#ffffff] p-6 shadow-sm md:flex-1 lg:p-8'
+                {...fadeInUp}
+              >
+                <div className='mb-4 flex items-center gap-4'>
+                  <div className='rounded-xl bg-black p-2'>
+                    <Users className='h-4 w-4 text-white lg:h-5 lg:w-5' />
+                  </div>
+                  <h3 className='text-lg font-bold text-black lg:text-xl'>
+                    1-on-1 Mentoring
+                  </h3>
+                </div>
+                <p className='text-xs leading-relaxed text-gray-600 lg:text-sm'>
+                  Connect with experienced professionals for personalized
+                  guidance. Our 1-on-1 mentoring sessions are tailored to help
+                  students aged 14-22 explore career paths, set goals, and build
+                  confidence for their future.
+                </p>
+              </motion.div>
+            </div>
+            {/* Row 2: YouTube Audio Player */}
+            <YouTubeAudioPlayer />
+            {/* Row 3: Marquee and Featured Mentors */}
+            <div className='flex flex-col gap-4 md:flex-row'>
+              {/* Autoscrolling Marquee */}
+              <motion.div
+                className='h-76 w-full overflow-x-hidden rounded-[24px] bg-gradient-to-br from-[#ffffff] to-[#f5f5f5] p-6 shadow-sm md:flex-1 lg:p-8'
+                {...fadeInUp}
+              >
+                <div className='mb-2 flex items-center justify-between'>
+                  <h3 className='text-xl font-bold text-black lg:text-2xl'>
+                    Explore Our eBooks
+                  </h3>
+                  <Button className='rounded-full bg-black px-4 py-1 text-xs text-white hover:bg-black/90 lg:text-sm'>
+                    View All Resources
+                  </Button>
+                </div>
+                <Marquee
+                  pauseOnHover
+                  className='h-48'
+                >
+                  {resources.map((resource, index) => (
+                    <a
+                      key={index}
+                      href={resource.pdf}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className='mx-3 flex flex-shrink-0 flex-col items-center'
+                    >
+                      <img
+                        src={resource.thumbnail}
+                        alt={resource.title}
+                        className='h-28 w-20 rounded-lg object-cover shadow-sm'
+                      />
+                      <p className='overflow-wrap mt-2 max-w-[100px] text-center text-sm text-gray-600'>
+                        {resource.title}
+                      </p>
+                    </a>
+                  ))}
+                </Marquee>
+              </motion.div>
+              {/* Featured Mentors */}
+              <motion.div
+                className='h-76 w-full rounded-[24px] bg-gradient-to-br from-[#ffffff] to-[#f5f5dc] p-6 shadow-sm md:w-1/3 lg:p-8'
+                {...fadeInUp}
+              >
+                <h3 className='mb-4 text-lg font-bold text-black lg:text-xl'>
+                  Meet Our Mentors
+                </h3>
+                <div className='flex flex-col gap-4'>
+                  {mentors.map((mentor, index) => (
+                    <div
+                      key={index}
+                      className='flex items-center gap-4'
+                    >
+                      <img
+                        src={mentor.profileImage}
+                        alt={mentor.name}
+                        className='border-pastel-yellow-100 h-12 w-12 rounded-full border-2 object-cover'
+                      />
+                      <div>
+                        <p className='text-sm font-semibold text-black'>
+                          {mentor.name}
+                        </p>
+                        <p className='text-xs text-gray-600'>{mentor.role}</p>
+                      </div>
+                    </div>
                   ))}
                 </div>
-                <p className='text-sm text-gray-600 lg:text-base'>
-                  12k+ Students connected
-                </p>
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
           </div>
 
           {/* RIGHT COLUMN: PDF Reader */}
-          <motion.div
-            className='col-span-1 rounded-[24px] bg-gradient-to-br from-gray-100 to-gray-200 p-6 shadow-sm lg:p-8'
-            {...fadeInUp}
-          >
+          <div className='flex-1 rounded-[24px] bg-gradient-to-br from-[#e6f0fa] to-[#ffffff] p-6 shadow-sm md:flex-[1] lg:p-8'>
             <PDFReader />
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

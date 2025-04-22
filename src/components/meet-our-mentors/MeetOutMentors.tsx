@@ -1,9 +1,15 @@
 import { Award, ShoppingBag, Users } from 'lucide-react';
-import { Mentor } from '../../types/types';
 import { Section } from '../container/Section.tsx';
 import { SectionHeader } from '../section-header/SectionHeader.tsx';
 import { Stat } from '../stat/Stat.tsx';
 import { MentorCard } from './mentorcard/MentorCard.tsx';
+
+interface Mentor {
+  name: string;
+  role: string;
+  bio: string;
+  profileVideo: string; // Changed from profileImage to profileVideo
+}
 
 export const MeetOutMentors = () => {
   const mentorList: Mentor[] = [
@@ -11,19 +17,19 @@ export const MeetOutMentors = () => {
       name: 'Andrew Korol',
       role: 'Training Captain (Conquest Fleet)',
       bio: "Andrew flies for Skippers Aviation from Broome, handling charters, inmate transfers, and public routes. He loves night flights and his plane's AC. Previously, he was a Mechanical Engineer.",
-      profileImage: '/src/assets/mentor_images/mishna_nagda.png',
+      profileVideo: '/src/assets/video/6.mp4',
     },
     {
       name: 'Anesu Dumba',
       role: 'Competitive Bodybuilder',
       bio: "Anesu, men's physique competitor for 5 yrs, trains 6-7 days/wk, tracks nutrition, and emphasizes discipline, consistency, patience, mental toughness, and passion for bodybuilding.",
-      profileImage: '/src/assets/mentor_images/mishna_nagda.png',
+      profileVideo: '/src/assets/video/anesu.mp4',
     },
     {
       name: 'Peter Wu',
       role: 'Marketing Specialist',
       bio: 'Peter works in the  Marketing team at Collaborative Solutions. He he has experience in managing and executing a range of  marketing programs across on demand generation and contact acquisition.',
-      profileImage: '/src/assets/mentor_images/mishna_nagda.png',
+      profileVideo: '/src/assets/video/10.mp4',
     },
   ];
 
