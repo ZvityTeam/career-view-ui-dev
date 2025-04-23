@@ -37,7 +37,7 @@ export const SchoolConnectCTA = () => {
 
   return (
     <CurvedWrapper
-      className={'h-[80dvh] mb-32 space-y-10 bg-white pt-5 text-[#272727]'}
+      className={'mb-32 h-[80dvh] space-y-10 bg-white pt-5 text-[#272727]'}
       innerClassName=' space-y-10'
     >
       <div>
@@ -99,8 +99,10 @@ export const SchoolConnectCTA = () => {
           dragElastic={0.2}
           onDragEnd={(e, { offset }) => {
             if (offset.x > 50 && activeTab > 0) {
+              console.log(e);
               setActiveTab(activeTab - 1); // Swipe right
             } else if (offset.x < -50 && activeTab < videos.length - 1) {
+              console.log(e);
               setActiveTab(activeTab + 1); // Swipe left
             }
           }}

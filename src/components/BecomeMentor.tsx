@@ -1,364 +1,601 @@
-import React, { useState } from 'react';
-import YouTube from 'react-youtube';
-import { CurvedWrapper } from './CurvedWrapper'; // Adjust path as needed
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Send } from 'lucide-react';
+import { useRef, useState } from 'react';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { useMentorStore } from '../store/useMentorStore.ts';
+import { Mentor } from '../types/types';
+import { OutlinedInputWithButton } from './input-box/InputBox.tsx';
+import { Button } from './ui/Button.tsx';
+import { Textarea } from './ui/test-area.tsx';
 
-interface MentorFormData {
-  fullName: string;
-  dob: string;
-  email: string;
-  mobile: string;
-  state: string;
-  profession: string;
-  jobTitle: string;
-  organization: string;
-  industry: string;
-  qualification: string;
-  university: string;
-  highSchool: string;
-  highSchoolSubjects: string;
-  hobbies: string;
-  sideHustles: string;
-  profilePicture: File | null;
-}
+// Schema & Types
+const formSchema = z.object({
+  fullName: z.string().min(3, 'Full Name must be at least 3 characters'),
+  dateOfBirth: z
+    .string()
+    .regex(
+      /^\d{2}\/\d{2}\/\d{4}$/,
+      'Date of birth must be in DD/MM/YYYY format'
+    )
+    .refine((date) => {
+      const [day, month, year] = date.split('/').map(Number);
+      const parsedDate = new Date(year, month - 1, day);
+      return (
+        parsedDate.getDate() === day &&
+        parsedDate.getMonth() === month - 1 &&
+        parsedDate.getFullYear() === year &&
+        year >= 1900 &&
+        year <= new Date().getFullYear()
+      );
+    }, 'Please enter a valid date of birth'),
+  email: z.string().email('Invalid email address'),
+  mobileNumber: z
+    .string()
+    .regex(/^\d{10}$/, 'Mobile number must be exactly 10 digits'),
+  state: z.string().min(2, 'State must be at least 2 characters'),
+  professionAndJobTitle: z
+    .string()
+    .min(3, 'Please enter a valid profession and job title'),
+  organisation: z.string().optional(),
+  qualification: z.string().optional(),
+  yearsOfExperience: z
+    .number()
+    .min(0, 'Years of experience must be a positive number')
+    .optional(),
+  schoolName: z.string().min(3, 'School name must be at least 3 characters'),
+  bio: z
+    .string()
+    .min(1, 'Bio is required')
+    .refine((value) => {
+      const wordCount = value.trim().split(/\s+/).length;
+      return wordCount >= 150 && wordCount <= 200;
+    }, 'Bio must be between 150 and 200 words'),
+  profilePicture: z
+    .instanceof(File, { message: 'Profile picture is required' })
+    .refine(
+      (file) => ['image/jpeg', 'image/png'].includes(file.type),
+      'Only JPEG or PNG files are allowed'
+    )
+    .refine(
+      (file) => file.size <= 5 * 1024 * 1024,
+      'File size must be less than 5MB'
+    ),
+  myQuestions: z.string().min(5, 'Please enter at least 5 characters'),
+  termsAndConditions: z
+    .boolean()
+    .refine(
+      (val) => val === true,
+      'You must agree to the terms and conditions'
+    ),
+});
 
-const BecomeMentor: React.FC = () => {
-  const [formData, setFormData] = useState<MentorFormData>({
-    fullName: '',
-    dob: '',
-    email: '',
-    mobile: '',
-    state: '',
-    profession: '',
-    jobTitle: '',
-    organization: '',
-    industry: '',
-    qualification: '',
-    university: '',
-    highSchool: '',
-    highSchoolSubjects: '',
-    hobbies: '',
-    sideHustles: '',
-    profilePicture: null,
+type FormSchema = z.infer<typeof formSchema>;
+
+// Main Form Component
+export const BecomeAMentorForm = () => {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormSchema>({
+    resolver: zodResolver(formSchema),
   });
-  const [step, setStep] = useState(1);
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  const mentors = useMentorStore((state) => state.mentors);
+  const [selectedMentors, setSelectedMentors] = useState<string[]>([]);
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0] || null;
-    setFormData((prev) => ({ ...prev, profilePicture: file }));
-  };
-
-  const nextStep = () => setStep((prev) => prev + 1);
-  const prevStep = () => setStep((prev) => prev - 1);
-
-  const renderStep = () => {
-    switch (step) {
-      case 1:
-        return (
-          <div className='space-y-6 text-lg'>
-            <h2 className='mb-6 text-center text-2xl font-bold'>
-              Personal Information
-            </h2>
-            <p className='mb-8 text-center text-gray-600'>
-              <span>
-                Your email, phone, and date of birth will not be shared
-                publicly.
-              </span>
-            </p>
-            <p>
-              I am{' '}
-              <input
-                type='text'
-                name='fullName'
-                value={formData.fullName}
-                onChange={handleInputChange}
-                placeholder='e.g. Jane Doe'
-                className='inline w-56 border-b-2 border-gray-300 bg-transparent p-1 text-black focus:border-black focus:outline-none'
-              />
-              , a dynamic young professional eager to inspire the next
-              generation, born on{' '}
-              <input
-                type='date'
-                name='dob'
-                value={formData.dob}
-                onChange={handleInputChange}
-                className='inline w-28 border-b-2 border-gray-300 bg-transparent p-1 text-black focus:border-black focus:outline-none'
-              />{' '}
-              (private). You can reach me at{' '}
-              <input
-                type='email'
-                name='email'
-                value={formData.email}
-                onChange={handleInputChange}
-                placeholder='e.g. jane.doe@example.com'
-                className='inline w-64 border-b-2 border-gray-300 bg-transparent p-1 text-black focus:border-black focus:outline-none'
-              />{' '}
-              and{' '}
-              <input
-                type='tel'
-                name='mobile'
-                value={formData.mobile}
-                onChange={handleInputChange}
-                placeholder='e.g. +61 123 456 789'
-                className='inline w-32 border-b-2 border-gray-300 bg-transparent p-1 text-black focus:border-black focus:outline-none'
-              />{' '}
-              (private). I am based out of{' '}
-              <input
-                type='text'
-                name='state'
-                value={formData.state}
-                onChange={handleInputChange}
-                placeholder='e.g. Victoria'
-                className='inline w-32 border-b-2 border-gray-300 bg-transparent p-1 text-black focus:border-black focus:outline-none'
-              />
-              , ready to connect with students and share my journey.
-            </p>
-            <div className='mt-8 flex justify-end'>
-              <button
-                className='rounded bg-black px-4 py-2 font-semibold text-white transition hover:bg-gray-800'
-                onClick={nextStep}
-              >
-                Next
-              </button>
-            </div>
-          </div>
-        );
-      case 2:
-        return (
-          <div className='space-y-6 text-lg'>
-            <h2 className='mb-6 text-center text-2xl font-bold'>
-              Professional & Education Details
-            </h2>
-            <p>
-              I am a{' '}
-              <input
-                type='text'
-                name='jobTitle'
-                value={formData.jobTitle}
-                onChange={handleInputChange}
-                placeholder='e.g. Movie Director'
-                className='inline w-48 border-b-2 border-gray-300 bg-transparent p-1 text-black focus:border-black focus:outline-none'
-              />{' '}
-              in{' '}
-              <input
-                type='text'
-                name='profession'
-                value={formData.profession}
-                onChange={handleInputChange}
-                placeholder='e.g. Film Making'
-                className='inline w-48 border-b-2 border-gray-300 bg-transparent p-1 text-black focus:border-black focus:outline-none'
-              />{' '}
-              at{' '}
-              <input
-                type='text'
-                name='organization'
-                value={formData.organization}
-                onChange={handleInputChange}
-                placeholder='e.g. DreamWorks'
-                className='inline w-48 border-b-2 border-gray-300 bg-transparent p-1 text-black focus:border-black focus:outline-none'
-              />
-              , a role that allows me to innovate and lead in my field. I work
-              in the{' '}
-              <input
-                type='text'
-                name='industry'
-                value={formData.industry}
-                onChange={handleInputChange}
-                placeholder='e.g. Arts'
-                className='inline w-32 border-b-2 border-gray-300 bg-transparent p-1 text-black focus:border-black focus:outline-none'
-              />{' '}
-              industry, where I thrive on creativity and growth. My highest
-              qualification is a{' '}
-              <input
-                type='text'
-                name='qualification'
-                value={formData.qualification}
-                onChange={handleInputChange}
-                placeholder='e.g. Bachelor’s'
-                className='inline w-32 border-b-2 border-gray-300 bg-transparent p-1 text-black focus:border-black focus:outline-none'
-              />{' '}
-              from{' '}
-              <input
-                type='text'
-                name='university'
-                value={formData.university}
-                onChange={handleInputChange}
-                placeholder='e.g. University of Melbourne'
-                className='inline w-64 border-b-2 border-gray-300 bg-transparent p-1 text-black focus:border-black focus:outline-none'
-              />
-              , which shaped my career path. I attended{' '}
-              <input
-                type='text'
-                name='highSchool'
-                value={formData.highSchool}
-                onChange={handleInputChange}
-                placeholder='e.g. Melbourne High School'
-                className='inline w-64 border-b-2 border-gray-300 bg-transparent p-1 text-black focus:border-black focus:outline-none'
-              />{' '}
-              for high school, where I studied{' '}
-              <input
-                type='text'
-                name='highSchoolSubjects'
-                value={formData.highSchoolSubjects}
-                onChange={handleInputChange}
-                placeholder='e.g. ATAR Maths, Physics, Drama'
-                className='inline w-64 border-b-2 border-gray-300 bg-transparent p-1 text-black focus:border-black focus:outline-none'
-              />
-              , building a strong foundation for my future success.
-            </p>
-            <div className='mt-8 flex justify-between'>
-              <button
-                className='rounded bg-gray-300 px-4 py-2 font-semibold text-black transition hover:bg-gray-400'
-                onClick={prevStep}
-              >
-                Back
-              </button>
-              <button
-                className='rounded bg-black px-4 py-2 font-semibold text-white transition hover:bg-gray-800'
-                onClick={nextStep}
-              >
-                Next
-              </button>
-            </div>
-          </div>
-        );
-      case 3:
-        return (
-          <div className='space-y-6 text-lg'>
-            <h2 className='mb-6 text-center text-2xl font-bold'>
-              Additional Information
-            </h2>
-            <p>
-              My hobbies include{' '}
-              <input
-                type='text'
-                name='hobbies'
-                value={formData.hobbies}
-                onChange={handleInputChange}
-                placeholder='e.g. hiking, photography'
-                className='inline w-64 border-b-2 border-gray-300 bg-transparent p-1 text-black focus:border-black focus:outline-none'
-              />
-              , activities that keep me energized and inspired as a young
-              professional.
-            </p>
-            <p>
-              I have a side hustle{' '}
-              <input
-                type='text'
-                name='sideHustles'
-                value={formData.sideHustles}
-                onChange={handleInputChange}
-                placeholder='e.g. freelance graphic design'
-                className='inline w-64 border-b-2 border-gray-300 bg-transparent p-1 text-black focus:border-black focus:outline-none'
-              />{' '}
-              (or type "none" if none), which allows me to explore my passions
-              and build extra skills outside my main career.
-            </p>
-            <p>
-              Upload a profile picture (portrait, in work attire, facing
-              forward):
-              <input
-                type='file'
-                accept='image/*'
-                onChange={handleFileChange}
-                className='mt-2 block text-gray-600'
-              />
-              <span className='text-sm text-gray-500'>
-                See examples at{' '}
-                <a
-                  href='https://www.careerview.com.au/network'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='text-black hover:underline'
-                >
-                  careerview.com.au/network
-                </a>
-              </span>
-            </p>
-            <div className='mt-8 flex justify-between'>
-              <button
-                className='rounded bg-gray-300 px-4 py-2 font-semibold text-black transition hover:bg-gray-400'
-                onClick={prevStep}
-              >
-                Back
-              </button>
-              <button
-                className='rounded bg-black px-4 py-2 font-semibold text-white transition hover:bg-gray-800'
-                onClick={() =>
-                  alert('Form submitted! (Placeholder for submission logic)')
-                }
-              >
-                Submit My Mentor Profile
-              </button>
-            </div>
-          </div>
-        );
-      default:
-        return null;
-    }
+  const onSubmit: SubmitHandler<FormSchema> = (data) => {
+    console.log('Form Submitted', data, selectedMentors);
   };
 
   return (
-    <CurvedWrapper
-      curve='both'
-      className='mb-32 bg-gray-100'
-      minHeight='80vh'
-    >
-      <div className='container mx-auto px-6 py-12'>
-        <h1 className='mb-8 text-center text-4xl font-bold text-black'>
-          Become a CareerView Mentor
-        </h1>
-        <p className='mb-12 text-center text-gray-600'>
-          Share the guidance you wish you'd received. Students seek relatable
-          career advice—join CareerView to shape their futures with your
-          insights.
-        </p>
-        <div className='grid grid-cols-1 items-start gap-12 lg:grid-cols-2'>
-          {/* Info Column */}
-          <div className='info-column rounded-lg bg-white p-6'>
-            <YouTube
-              videoId='l_ofR0v0pjY'
-              className='mb-6 rounded-lg'
-              opts={{
-                width: '100%',
-                height: '378px',
-                playerVars: {
-                  autoplay: 1,
-                  mute: 1,
-                },
-              }}
-            />
-          </div>
-          {/* Form Column */}
-          <div className='form-column'>
-            <div className='mb-6 flex items-center justify-center'>
-              <div className='flex items-center'>
-                {[1, 2, 3].map((s) => (
-                  <React.Fragment key={s}>
-                    {s > 1 && (
-                      <div
-                        className={`h-0.5 w-12 ${step >= s ? 'bg-black' : 'bg-gray-300'}`}
-                      />
-                    )}
-                    <div
-                      className={`h-3 w-3 rounded-full ${step >= s ? 'bg-black' : 'bg-gray-300'}`}
-                    />
-                  </React.Fragment>
-                ))}
-              </div>
+    <section className='mx-auto max-w-4xl rounded-2xl bg-white p-8 shadow-xl ring-1 ring-black/5'>
+      <h2 className='mb-4 text-center text-3xl font-bold text-gray-800'>
+        Want to give back to the community and share your story?
+      </h2>
+      <p className='mb-6 text-center text-base text-gray-500'>
+        Fill in the form below and we will get back to you as soon as possible!
+        For more information download the CareerView starter guide for Young
+        Professionals.
+      </p>
+
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className='space-y-5'
+      >
+        {/* Two-Column Layout for Contact and Career Info */}
+        <div className='-mx-2 flex flex-wrap'>
+          {/* Left Column: Contact Info */}
+          <div className='w-full px-2 md:w-1/2'>
+            <h3 className='mb-4 text-xl font-semibold'>Contact Info</h3>
+
+            <div className='mb-5'>
+              <label className='mb-1 block text-sm font-medium text-gray-700'>
+                Full Name *
+              </label>
+              <Controller
+                name='fullName'
+                control={control}
+                render={({ field }) => (
+                  <OutlinedInputWithButton
+                    value={field.value || ''}
+                    onChange={field.onChange}
+                    placeholder='Enter your full name'
+                    showButton={false}
+                    containerClassName='w-full'
+                  />
+                )}
+              />
+              {errors.fullName && (
+                <p className='mt-1 text-sm text-red-500'>
+                  {errors.fullName.message}
+                </p>
+              )}
             </div>
-            {renderStep()}
+
+            <div className='mb-5'>
+              <label className='mb-1 block text-sm font-medium text-gray-700'>
+                Date of Birth *
+              </label>
+              <Controller
+                name='dateOfBirth'
+                control={control}
+                render={({ field }) => (
+                  <OutlinedInputWithButton
+                    value={field.value || ''}
+                    onChange={field.onChange}
+                    placeholder='Enter your date of birth (DD/MM/YYYY)'
+                    showButton={false}
+                    containerClassName='w-full'
+                  />
+                )}
+              />
+              {errors.dateOfBirth && (
+                <p className='mt-1 text-sm text-red-500'>
+                  {errors.dateOfBirth.message}
+                </p>
+              )}
+            </div>
+
+            <div className='mb-5'>
+              <label className='mb-1 block text-sm font-medium text-gray-700'>
+                Email *
+              </label>
+              <Controller
+                name='email'
+                control={control}
+                render={({ field }) => (
+                  <OutlinedInputWithButton
+                    value={field.value || ''}
+                    onChange={field.onChange}
+                    placeholder='Enter your email'
+                    showButton={true}
+                    icon={<Send className='h-4 w-4' />}
+                    containerClassName='w-full'
+                  />
+                )}
+              />
+              {errors.email && (
+                <p className='mt-1 text-sm text-red-500'>
+                  {errors.email.message}
+                </p>
+              )}
+            </div>
+
+            <div className='mb-5'>
+              <label className='mb-1 block text-sm font-medium text-gray-700'>
+                Mobile Number *
+              </label>
+              <Controller
+                name='mobileNumber'
+                control={control}
+                render={({ field }) => (
+                  <OutlinedInputWithButton
+                    value={field.value || ''}
+                    onChange={field.onChange}
+                    placeholder='Enter your mobile number'
+                    showButton={false}
+                    containerClassName='w-full'
+                  />
+                )}
+              />
+              {errors.mobileNumber && (
+                <p className='mt-1 text-sm text-red-500'>
+                  {errors.mobileNumber.message}
+                </p>
+              )}
+            </div>
+
+            <div className='mb-5'>
+              <label className='mb-1 block text-sm font-medium text-gray-700'>
+                State *
+              </label>
+              <Controller
+                name='state'
+                control={control}
+                render={({ field }) => (
+                  <OutlinedInputWithButton
+                    value={field.value || ''}
+                    onChange={field.onChange}
+                    placeholder='Enter your state'
+                    showButton={false}
+                    containerClassName='w-full'
+                  />
+                )}
+              />
+              {errors.state && (
+                <p className='mt-1 text-sm text-red-500'>
+                  {errors.state.message}
+                </p>
+              )}
+            </div>
+          </div>
+
+          {/* Right Column: Career Info */}
+          <div className='w-full px-2 md:w-1/2'>
+            <h3 className='mb-4 text-xl font-semibold'>Career Info</h3>
+
+            <div className='mb-5'>
+              <label className='mb-1 block text-sm font-medium text-gray-700'>
+                What is your profession and job title? *
+              </label>
+              <Controller
+                name='professionAndJobTitle'
+                control={control}
+                render={({ field }) => (
+                  <OutlinedInputWithButton
+                    value={field.value || ''}
+                    onChange={field.onChange}
+                    placeholder='e.g Film making - Movie director'
+                    showButton={false}
+                    containerClassName='w-full'
+                  />
+                )}
+              />
+              {errors.professionAndJobTitle && (
+                <p className='mt-1 text-sm text-red-500'>
+                  {errors.professionAndJobTitle.message}
+                </p>
+              )}
+            </div>
+
+            <div className='mb-5'>
+              <label className='mb-1 block text-sm font-medium text-gray-700'>
+                Which organisation do you work for?
+              </label>
+              <Controller
+                name='organisation'
+                control={control}
+                render={({ field }) => (
+                  <OutlinedInputWithButton
+                    value={field.value || ''}
+                    onChange={field.onChange}
+                    placeholder='Enter workplace name'
+                    showButton={false}
+                    containerClassName='w-full'
+                  />
+                )}
+              />
+            </div>
+
+            <div className='mb-5'>
+              <label className='mb-1 block text-sm font-medium text-gray-700'>
+                What qualification or certification do you have?
+              </label>
+              <Controller
+                name='qualification'
+                control={control}
+                render={({ field }) => (
+                  <OutlinedInputWithButton
+                    value={field.value || ''}
+                    onChange={field.onChange}
+                    placeholder='e.g Masters, PHD, bachelors, diploma, highschool, apprenticeship'
+                    showButton={false}
+                    containerClassName='w-full'
+                  />
+                )}
+              />
+            </div>
+
+            <div className='mb-5'>
+              <label className='mb-1 block text-sm font-medium text-gray-700'>
+                How many years of experience?
+              </label>
+              <Controller
+                name='yearsOfExperience'
+                control={control}
+                render={({ field }) => (
+                  <OutlinedInputWithButton
+                    value={field.value || ''} // Convert number to string as per previous fix
+                    onChange={(e) => field.onChange(e ? Number(e) : undefined)}
+                    placeholder='1'
+                    showButton={false}
+                    containerClassName='w-full'
+                  />
+                )}
+              />
+              {errors.yearsOfExperience && (
+                <p className='mt-1 text-sm text-red-500'>
+                  {errors.yearsOfExperience.message}
+                </p>
+              )}
+            </div>
+
+            <div className='mb-5'>
+              <label className='mb-1 block text-sm font-medium text-gray-700'>
+                Which school did you attend? *
+              </label>
+              <Controller
+                name='schoolName'
+                control={control}
+                render={({ field }) => (
+                  <OutlinedInputWithButton
+                    value={field.value || ''}
+                    onChange={field.onChange}
+                    placeholder='Please include secondary and tertiary level'
+                    showButton={false}
+                    containerClassName='w-full'
+                  />
+                )}
+              />
+              {errors.schoolName && (
+                <p className='mt-1 text-sm text-red-500'>
+                  {errors.schoolName.message}
+                </p>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </CurvedWrapper>
+
+        {/* Full-Width Bio Info */}
+        <div>
+          <h3 className='mb-4 text-xl font-semibold'>Bio Info</h3>
+
+          <div className='mb-5'>
+            <label className='mb-1 block text-sm font-medium text-gray-700'>
+              Please provide a short bio about yourself and your career *
+            </label>
+            <p className='mb-2 text-sm text-gray-500'>
+              Write in the 3rd person and aim for 150-200 words. We encourage
+              including hobbies and interests outside your main occupation. For
+              examples, please download the PDF above or look at other profiles
+              on our website.
+            </p>
+            <Controller
+              name='bio'
+              control={control}
+              render={({ field }) => (
+                <Textarea
+                  value={field.value || ''}
+                  onChange={field.onChange}
+                  placeholder='Write your bio here...'
+                  className='w-full rounded-md border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#F1CE7E]'
+                />
+              )}
+            />
+            {errors.bio && (
+              <p className='mt-1 text-sm text-red-500'>{errors.bio.message}</p>
+            )}
+          </div>
+
+          <div className='mb-5'>
+            <label className='mb-1 block text-sm font-medium text-gray-700'>
+              Upload profile picture *
+            </label>
+            <Controller
+              name='profilePicture'
+              control={control}
+              render={({ field }) => (
+                <input
+                  type='file'
+                  accept='image/jpeg,image/png'
+                  onChange={(e) => field.onChange(e.target.files?.[0])}
+                  className='w-full rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#F1CE7E]'
+                />
+              )}
+            />
+            {errors.profilePicture && (
+              <p className='mt-1 text-sm text-red-500'>
+                {errors.profilePicture.message}
+              </p>
+            )}
+          </div>
+        </div>
+
+        {/* Full-Width Additional Fields */}
+        <div>
+          <h3 className='mb-4 text-xl font-semibold'>Additional Info</h3>
+
+          <div className='mb-5'>
+            <label className='mb-1 block text-sm font-medium text-gray-700'>
+              My Questions *
+            </label>
+            <Controller
+              name='myQuestions'
+              control={control}
+              render={({ field }) => (
+                <Textarea
+                  value={field.value || ''}
+                  onChange={field.onChange}
+                  placeholder='Enter your questions here'
+                  className='w-full rounded-md border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#F1CE7E]'
+                />
+              )}
+            />
+            {errors.myQuestions && (
+              <p className='mt-1 text-sm text-red-500'>
+                {errors.myQuestions.message}
+              </p>
+            )}
+          </div>
+
+          <div className='mb-5'>
+            <label className='mb-1 block text-sm font-medium text-gray-700'>
+              Select Mentors
+            </label>
+            <MentorMultiSelect
+              mentors={mentors}
+              selectedMentors={selectedMentors}
+              setSelectedMentors={setSelectedMentors}
+            />
+          </div>
+        </div>
+
+        {/* Full-Width Submit Section */}
+        <div>
+          <h3 className='mb-4 text-xl font-semibold'>Submit Application</h3>
+
+          <div className='mb-5'>
+            <div className='flex items-center'>
+              <Controller
+                name='termsAndConditions'
+                control={control}
+                render={({ field }) => (
+                  <input
+                    type='checkbox'
+                    checked={field.value || false}
+                    onChange={field.onChange}
+                    className='h-4 w-4 rounded border-gray-300 text-[#F1CE7E] focus:ring-[#F1CE7E]'
+                  />
+                )}
+              />
+              <label className='ml-2 text-sm font-medium text-gray-700'>
+                I agree to the terms & conditions.{' '}
+                <a
+                  href='#'
+                  className='text-blue-500 underline'
+                >
+                  View terms of use
+                </a>
+              </label>
+            </div>
+            {errors.termsAndConditions && (
+              <p className='mt-1 text-sm text-red-500'>
+                {errors.termsAndConditions.message}
+              </p>
+            )}
+          </div>
+
+          <p className='mb-4 text-center text-sm text-gray-500'>
+            Please confirm that all information is correct before submitting.
+            Don’t worry, we can update your profile information upon request. We
+            will get back to you within 48 hours.
+          </p>
+
+          <Button
+            type='submit'
+            className='w-full rounded-md bg-gray-200 px-5 py-3 font-medium text-black transition hover:bg-gray-300'
+          >
+            Submit
+          </Button>
+        </div>
+      </form>
+    </section>
   );
 };
 
-export default BecomeMentor;
+// MentorMultiSelect Component (Unchanged)
+interface MentorMultiSelectProps {
+  mentors: Mentor[];
+  selectedMentors: string[];
+  setSelectedMentors: (emails: string[]) => void;
+}
+
+const MentorMultiSelect: React.FC<MentorMultiSelectProps> = ({
+  mentors,
+  selectedMentors,
+  setSelectedMentors,
+}) => {
+  const [query, setQuery] = useState('');
+  const [focused, setFocused] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const filteredMentors = mentors.filter((mentor) => {
+    if (mentor.name)
+      return mentor.name.toLowerCase().includes(query.toLowerCase());
+  });
+
+  const handleSelectMentor = (email: string | undefined) => {
+    if (!email) return;
+    if (!selectedMentors.includes(email)) {
+      setSelectedMentors([...selectedMentors, email]);
+    }
+    setQuery('');
+  };
+
+  const handleRemoveMentor = (email: string) => {
+    setSelectedMentors(selectedMentors.filter((m) => m !== email));
+  };
+
+  return (
+    <div
+      className='relative'
+      ref={containerRef}
+    >
+      <div
+        className={`flex min-h-[44px] w-full flex-wrap items-center gap-2 rounded-md border border-gray-300 bg-white px-2 py-2 shadow-sm focus-within:ring-2 focus-within:ring-[#F1CE7E] ${focused ? 'ring-2 ring-[#F1CE7E]' : ''}`}
+      >
+        {selectedMentors.map((email) => {
+          const mentor = mentors.find((m) => m.email === email);
+          if (!mentor) return null;
+          return (
+            <div
+              key={email}
+              className='flex items-center gap-1 rounded-full bg-gray-200 px-3 py-1'
+            >
+              <img
+                src={mentor.profileImage}
+                alt={mentor.name}
+                className='h-5 w-5 rounded-full object-cover'
+              />
+              <span className='text-sm text-gray-700'>{mentor.name}</span>
+              <button
+                type='button'
+                onClick={() => handleRemoveMentor(email)}
+                className='text-sm font-semibold text-red-500'
+              >
+                ×
+              </button>
+            </div>
+          );
+        })}
+        <input
+          type='text'
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          onFocus={() => setFocused(true)}
+          onBlur={() => setTimeout(() => setFocused(false), 150)}
+          placeholder={selectedMentors.length === 0 ? 'Search mentors...' : ''}
+          className='min-w-[80px] flex-1 border-none bg-transparent p-0 text-sm placeholder-gray-400 focus:outline-none'
+        />
+      </div>
+      {focused && query && (
+        <div className='absolute left-0 top-full z-10 mt-1 max-h-60 w-full overflow-auto rounded-md border border-gray-200 bg-white shadow-lg'>
+          {filteredMentors.length === 0 ? (
+            <div className='p-2 text-sm text-gray-500'>No mentors found.</div>
+          ) : (
+            filteredMentors.map((mentor) => (
+              <div
+                key={mentor.email}
+                className='flex cursor-pointer items-center gap-2 p-2 hover:bg-gray-100'
+                onMouseDown={(e) => e.preventDefault()}
+                onClick={() => handleSelectMentor(mentor.email)}
+              >
+                <img
+                  src={mentor.profileImage}
+                  alt={mentor.name}
+                  className='h-8 w-8 rounded-full object-cover'
+                />
+                <div>
+                  <div className='font-medium text-gray-800'>{mentor.name}</div>
+                  <div className='text-sm text-gray-500'>{mentor.role}</div>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
