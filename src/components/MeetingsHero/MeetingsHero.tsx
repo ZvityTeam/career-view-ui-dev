@@ -48,7 +48,7 @@ export default function MeetingsHero() {
         </div>
         <div className='max-w-xl space-y-6'>
           <h1 className='font-serif text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl'>
-            Explore and connect with a young professional
+            Explore Career Paths with Real Mentors
           </h1>
           <p className='font-avenir text-lg text-muted-foreground text-slate-300 md:text-xl'>
             CareerView helps students connect with industry mentors to gain

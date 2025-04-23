@@ -1,4 +1,4 @@
-import { BookOpen, School, UserCheck, Users } from 'lucide-react';
+import { BookOpen, PodcastIcon, RadioIcon, Users } from 'lucide-react';
 import React from 'react';
 import { Card } from '../card/Card';
 import { CurvedWrapper } from '../CurvedWrapper.tsx';
@@ -7,7 +7,7 @@ import { SectionHeader } from '../section-header/SectionHeader';
 export const WhatWeDo: React.FC = () => {
   const cards = [
     {
-      icon: School,
+      icon: PodcastIcon,
       title: 'Educational Podcast',
       description:
         'Listen to Young Professionals share their personal experiences and advice to questions asked by students.',
@@ -19,7 +19,7 @@ export const WhatWeDo: React.FC = () => {
         'Access best tips and insights provided by Young Professionals on how to navigate through life after school.',
     },
     {
-      icon: UserCheck,
+      icon: RadioIcon,
       title: 'Livestream Events',
       description:
         'Meet the CareerView Young Professional community! Where students can have the opportunity to connect in person.',
@@ -49,7 +49,7 @@ export const WhatWeDo: React.FC = () => {
       </div>
 
       {/* Cards */}
-      <div className='mx-[5dvw] grid grid-cols-2 gap-10'>
+      <div className='ml-[10dvw] mr-[5dvw] grid grid-cols-2 gap-10'>
         {cards.map((card, index) => (
           <Card
             key={index}

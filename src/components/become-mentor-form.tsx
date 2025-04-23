@@ -350,34 +350,7 @@ export const BecomeAMentorForm = () => {
 
         {/* Full-Width Bio Info */}
         <div>
-          <h3 className='mb-4 text-xl font-semibold'>Bio Info</h3>
-
-          <div className='mb-5'>
-            <label className='mb-1 block text-sm font-medium text-gray-700'>
-              Please provide a short bio about yourself and your career *
-            </label>
-            <p className='mb-2 text-sm text-gray-500'>
-              Write in the 3rd person and aim for 150-200 words. We encourage
-              including hobbies and interests outside your main occupation. For
-              examples, please download the PDF above or look at other profiles
-              on our website.
-            </p>
-            <Controller
-              name='bio'
-              control={control}
-              render={({ field }) => (
-                <Textarea
-                  value={field.value || ''}
-                  onChange={field.onChange}
-                  placeholder='Write your bio here...'
-                  className='w-full rounded-md border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#F1CE7E]'
-                />
-              )}
-            />
-            {errors.bio && (
-              <p className='mt-1 text-sm text-red-500'>{errors.bio.message}</p>
-            )}
-          </div>
+      
 
           <div className='mb-5'>
             <label className='mb-1 block text-sm font-medium text-gray-700'>
@@ -400,45 +373,6 @@ export const BecomeAMentorForm = () => {
                 {errors.profilePicture.message}
               </p>
             )}
-          </div>
-        </div>
-
-        {/* Full-Width Additional Fields */}
-        <div>
-          <h3 className='mb-4 text-xl font-semibold'>Additional Info</h3>
-
-          <div className='mb-5'>
-            <label className='mb-1 block text-sm font-medium text-gray-700'>
-              My Questions *
-            </label>
-            <Controller
-              name='myQuestions'
-              control={control}
-              render={({ field }) => (
-                <Textarea
-                  value={field.value || ''}
-                  onChange={field.onChange}
-                  placeholder='Enter your questions here'
-                  className='w-full rounded-md border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#F1CE7E]'
-                />
-              )}
-            />
-            {errors.myQuestions && (
-              <p className='mt-1 text-sm text-red-500'>
-                {errors.myQuestions.message}
-              </p>
-            )}
-          </div>
-
-          <div className='mb-5'>
-            <label className='mb-1 block text-sm font-medium text-gray-700'>
-              Select Mentors
-            </label>
-            <MentorMultiSelect
-              mentors={mentors}
-              selectedMentors={selectedMentors}
-              setSelectedMentors={setSelectedMentors}
-            />
           </div>
         </div>
 

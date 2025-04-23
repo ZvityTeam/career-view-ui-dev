@@ -16,12 +16,12 @@ export const Home = () => {
         {/* <Hero /> */}
         <MeetingsHero />
         <WhatWeDo />
+        <LogoScroll />
         {/* <WhatWeOffer /> */}
         <WhyChooseUs />
         <StudentMentorConnect />
         {/* <OurEvents /> */}
         <SchoolConnectCTA />
-        <LogoScroll />
         <MeetOutMentors />
         <Testimonials />
         <FaqSection page='home' />

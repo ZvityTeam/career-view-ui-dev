@@ -50,7 +50,7 @@ const StudentHero1 = () => {
             transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}
           >
             <h1 className='text-5xl font-extrabold leading-tight tracking-tight text-white drop-shadow-xl md:text-7xl lg:text-8xl'>
-              Shape Your <span className='text-yellow-500'>Epic</span> Future
+              Shape Your <span className='text-yellow-500'>Future</span>
             </h1>
           </motion.div>
           <VisionNote

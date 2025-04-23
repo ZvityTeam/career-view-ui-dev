@@ -162,7 +162,7 @@ const TimelineItem: React.FC<{
             className={`flex flex-col ${!isEven ? 'items-start pl-10' : 'items-end'}`}
           >
             {!item.component ? (
-              <div className='mb-4 w-full max-w-md rotate-3 transform overflow-hidden rounded-xl shadow-lg'>
+              <div className='mb-4 w-[30rem] rotate-3 transform overflow-hidden rounded-xl shadow-lg'>
                 <img
                   src={item.imageUrl || placeholderImg}
                   alt={item.title}
@@ -188,8 +188,8 @@ const TimelineItem: React.FC<{
             <div
               className={`w-full max-w-md ${isEven ? 'text-left' : 'text-right'} `}
             >
-              <h3 className='mb-2 text-lg font-bold'>{item.title}</h3>
-              <div className='space-y-1 text-sm text-gray-600'>
+              <h3 className='mb-2 text-2xl font-bold'>{item.title}</h3>
+              <div className='space-y-1 text-lg text-gray-600'>
                 {descriptionParts.map((part, i) => (
                   <p key={i}>{part}</p>
                 ))}

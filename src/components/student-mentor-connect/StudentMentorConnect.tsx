@@ -89,7 +89,7 @@ export const StudentMentorConnect = () => {
         <div className='flex-1 text-white'>
           <div className='flex flex-col gap-5'>
             <p className='text-4xl italic'>Student-Mentor Connect:</p>
-            <h3 className='text-6xl'>Your Career Compass</h3>
+            <h3 className='text-6xl'>1:1 Online Mentoring </h3>
             <div className='my-6 h-0.5 w-[95%] bg-white' />
             <p className='text-xl'>
               {

@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Briefcase, Pause, Play, Star, Users } from 'lucide-react';
+import { Pause, Play, PodcastIcon, YoutubeIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
@@ -124,16 +124,32 @@ const formatTime = (seconds: number): string => {
 };
 
 // YouTube Audio Player Component
-const YouTubeAudioPlayer: React.FC = () => {
+const YouTubeAudioPlayer = ({
+  videoId,
+  title,
+}: {
+  videoId: string;
+  title: string;
+}) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [player, setPlayer] = useState<any>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    // Reset states when videoId changes
+    setPlayer(null);
+    setIsPlaying(false);
+    setCurrentTime(0);
+    setDuration(0);
+  }, [videoId]);
 
   const onReady: YouTubeProps['onReady'] = (event) => {
     setPlayer(event.target);
     setDuration(event.target.getDuration());
+    setIsLoading(false);
   };
 
   const togglePlayPause = () => {
@@ -179,12 +195,19 @@ const YouTubeAudioPlayer: React.FC = () => {
   };
 
   const opts: YouTubeProps['opts'] = {
-    height: '0', // Hide video, focus on audio
+    height: '0',
     width: '0',
     playerVars: {
       autoplay: 0,
-      controls: 0, // Hide default controls
+      controls: 0,
+      start: 0, // Ensure video starts from beginning
     },
+  };
+
+  const fadeInUp = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.5 },
   };
 
   return (
@@ -195,46 +218,55 @@ const YouTubeAudioPlayer: React.FC = () => {
       <div className='mb-4 flex items-center gap-4'>
         <div>
           <h3 className='text-lg font-semibold text-white lg:text-xl'>
-            Career Insights Podcast
+            {title}
           </h3>
           <p className='text-xs text-gray-300 lg:text-sm'>
             Listen to tips from industry experts
           </p>
         </div>
       </div>
-      <YouTube
-        videoId='nWB2Pncif_Y' // Replace with your video ID
-        opts={opts}
-        onReady={onReady}
-        onStateChange={onStateChange}
-      />
-      <div className='flex items-center gap-4'>
-        <button
-          onClick={togglePlayPause}
-          className='bg-pastel-blue-100 hover:bg-pastel-blue-200 rounded-full p-2'
-        >
-          {isPlaying ? (
-            <div className='rounded-xl bg-gray-200 p-2'>
-              <Pause className='h-4 w-4 text-black lg:h-5 lg:w-5' />
-            </div>
-          ) : (
-            <div className='rounded-xl bg-gray-200 p-2'>
-              <Play className='h-4 w-4 text-black lg:h-5 lg:w-5' />
-            </div>
-          )}
-        </button>
-        <input
-          type='range'
-          min={0}
-          max={duration || 100}
-          value={currentTime}
-          onChange={handleSeek}
-          className='h-1 w-[83%] cursor-pointer appearance-none rounded-lg bg-gray-200'
-        />
-        <span className='text-xs text-gray-300'>
-          {formatTime(currentTime)} / {formatTime(duration)}
-        </span>
-      </div>
+      {isLoading ? (
+        <div className='flex h-10 items-center justify-center'>
+          <div className='h-6 w-6 animate-spin rounded-full border-b-2 border-t-2 border-gray-300'></div>
+        </div>
+      ) : (
+        <>
+          <YouTube
+            key={videoId} // Force re-render on videoId change
+            videoId={videoId || 'nWB2Pncif_Y'}
+            opts={opts}
+            onReady={onReady}
+            onStateChange={onStateChange}
+          />
+          <div className='flex items-center gap-4'>
+            <button
+              onClick={togglePlayPause}
+              className='bg-pastel-blue-100 hover:bg-pastel-blue-200 rounded-full p-2'
+            >
+              {isPlaying ? (
+                <div className='rounded-xl bg-gray-200 p-2'>
+                  <Pause className='h-4 w-4 text-black lg:h-5 lg:w-5' />
+                </div>
+              ) : (
+                <div className='rounded-xl bg-gray-200 p-2'>
+                  <Play className='h-4 w-4 text-black lg:h-5 lg:w-5' />
+                </div>
+              )}
+            </button>
+            <input
+              type='range'
+              min={0}
+              max={duration || 100}
+              value={currentTime}
+              onChange={handleSeek}
+              className='h-1 w-[83%] cursor-pointer appearance-none rounded-lg bg-gray-200'
+            />
+            <span className='text-xs text-gray-300'>
+              {formatTime(currentTime)} / {formatTime(duration)}
+            </span>
+          </div>
+        </>
+      )}
     </motion.div>
   );
 };
@@ -267,11 +299,38 @@ const resources = [
     thumbnail: thumbWriteResume,
   },
 ];
+// Resources for Marquee
+const Podcasts = [
+  {
+    title: 'Veterinary Industry',
+    videoId: 'nWB2Pncif_Y',
+  },
+  {
+    title: 'Radiographer',
+    videoId: '-Q7wCiYI8Pc',
+  },
+  {
+    title: 'Commercial Pilot',
+    videoId: 'FUCWAmQv-Iw',
+  },
+  {
+    title: 'Production / Medical Scientist',
+    videoId: 'x6wjiXSuvPs',
+  },
+  {
+    title: 'Marketing Media',
+    videoId: 'NCSE_c_t0iw',
+  },
+];
 
 // Main Component
 export default function WhatWeOffer2() {
   const { getRandomMentors } = useMentorStore();
   const mentors = getRandomMentors(3);
+  const [selectedVideoId, setSelectedVideoId] = useState<string>('nWB2Pncif_Y');
+  const [selectedVideoTitle, setSelectedVideoTitle] = useState<string>(
+    Podcasts[0].title
+  );
   return (
     <section className='mt-36 min-h-screen w-full pt-12'>
       <div className='mx-20 px-6 lg:px-12'>
@@ -296,39 +355,87 @@ export default function WhatWeOffer2() {
                   Quick Links
                 </h3>
                 <div className='flex flex-col gap-4'>
-                  <Button className='flex items-center gap-3 rounded-full bg-black px-4 py-1 text-xs text-white hover:bg-black/90 lg:text-sm'>
-                    <Briefcase className='h-4 w-4' />
-                    Explore Careers
+                  <Button
+                    className='flex items-center gap-3 rounded-full bg-red-600 px-4 py-10 text-lg font-bold text-white hover:bg-red-600/80 lg:text-xl'
+                    onClick={() =>
+                      window.open(
+                        'https://www.youtube.com/@CareerView-Podcast',
+                        '_blank'
+                      )
+                    }
+                  >
+                    <YoutubeIcon style={{ width: '32px', height: '32px' }} />
+                    YouTube Channel
                   </Button>
-                  <Button className='flex items-center gap-3 rounded-full bg-black px-4 py-1 text-xs text-white hover:bg-black/90 lg:text-sm'>
-                    <Star className='h-4 w-4' />
-                    Join a Workshop
+                  <Button
+                    className='flex items-center gap-3 rounded-full bg-green-500 px-4 py-10 text-lg font-bold text-black hover:bg-green-500/80 lg:text-xl'
+                    onClick={() =>
+                      window.open(
+                        'https://open.spotify.com/show/1VYkSWt8KZLi0AGJfN3qWT',
+                        '_blank'
+                      )
+                    }
+                  >
+                    <PodcastIcon
+                      className='h-14 w-14'
+                      style={{ width: '32px', height: '32px' }}
+                    />
+                    Spotify Podcast
                   </Button>
                 </div>
               </motion.div>
               {/* 1-on-1 Mentoring Text */}
               <motion.div
-                className='h-42 w-full rounded-[24px] bg-gradient-to-br from-[#f5f5dc] to-[#ffffff] p-6 shadow-sm md:flex-1 lg:p-8'
+                className='h-42 w-full overflow-x-hidden rounded-[24px] bg-gradient-to-br from-[#f5f5dc] to-[#ffffff] p-6 shadow-sm md:flex-1 lg:p-8'
                 {...fadeInUp}
               >
-                <div className='mb-4 flex items-center gap-4'>
-                  <div className='rounded-xl bg-black p-2'>
-                    <Users className='h-4 w-4 text-white lg:h-5 lg:w-5' />
-                  </div>
-                  <h3 className='text-lg font-bold text-black lg:text-xl'>
-                    1-on-1 Mentoring
+                <div className='mb-2 flex items-center justify-between'>
+                  <h3 className='text-xl font-bold text-black lg:text-2xl'>
+                    Explore Our Podcasts
                   </h3>
+                  <Button
+                    onClick={() =>
+                      window.open(
+                        'https://www.youtube.com/@CareerView-Podcast/videos',
+                        '_blank'
+                      )
+                    }
+                    className='rounded-full bg-black px-4 py-1 text-xs text-white hover:bg-black/90 lg:text-sm'
+                  >
+                    View All Podcasts
+                  </Button>
                 </div>
-                <p className='text-xs leading-relaxed text-gray-600 lg:text-sm'>
-                  Connect with experienced professionals for personalized
-                  guidance. Our 1-on-1 mentoring sessions are tailored to help
-                  students aged 14-22 explore career paths, set goals, and build
-                  confidence for their future.
-                </p>
+                <Marquee
+                  pauseOnHover
+                  className='h-48'
+                >
+                  {Podcasts.map((resource, index) => (
+                    <div
+                      key={index}
+                      className='mx-3 flex flex-shrink-0 flex-col items-center'
+                      onClick={() => {
+                        setSelectedVideoId(resource.videoId);
+                        setSelectedVideoTitle(resource.title);
+                      }}
+                    >
+                      <img
+                        src={`https://img.youtube.com/vi/${resource.videoId}/maxresdefault.jpg`}
+                        alt={resource.title}
+                        className='h-40 w-full rounded-lg object-cover shadow-sm'
+                      />
+                      <p className='overflow-wrap mt-1 max-w-[200px] text-center text-sm font-semibold text-gray-600'>
+                        {resource.title}
+                      </p>
+                    </div>
+                  ))}
+                </Marquee>
               </motion.div>
             </div>
             {/* Row 2: YouTube Audio Player */}
-            <YouTubeAudioPlayer />
+            <YouTubeAudioPlayer
+              videoId={selectedVideoId}
+              title={selectedVideoTitle}
+            />
             {/* Row 3: Marquee and Featured Mentors */}
             <div className='flex flex-col gap-4 md:flex-row'>
               {/* Autoscrolling Marquee */}

@@ -37,7 +37,7 @@ export const MeetOutMentors = () => {
   ];
 
   return (
-    <Section className={'flex flex-col gap-16'}>
+    <Section className={'mt-32 flex flex-col gap-16'}>
       <SectionHeader
         title={'Meet our Mentors'}
         subtitle={

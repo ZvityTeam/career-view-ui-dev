@@ -1,83 +1,69 @@
-import logo2 from '../assets/schools/image2.jpeg'; // ED CONNECT Australia
-import logo3 from '../assets/schools/image3.jpg'; // ARC
-import logo4 from '../assets/schools/image4.jpg'; // Csmith
-import logo5 from '../assets/schools/image5.jpg'; // Fertility North
-import logo6 from '../assets/schools/image6.png'; // GIORGI
-import logo7 from '../assets/schools/image7.png'; // 3W Physio (Csmith)
-import logo8 from '../assets/schools/image8.png'; // St Andrews
-import logo9 from '../assets/schools/image9.png'; // Ursula Frayne
+// Importing images with correct extensions
+import logo3 from '../assets/schools/image10.png';
+import logo4 from '../assets/schools/image11png.png';
+import logo7 from '../assets/schools/image12.png';
+import logo10 from '../assets/schools/image2.png';
+import logo14 from '../assets/schools/image3.png';
+import logo18 from '../assets/schools/image4.png';
+import logo21 from '../assets/schools/image5.png';
+import logo24 from '../assets/schools/image6.png';
+import logo25 from '../assets/schools/image7.png';
+import logo26 from '../assets/schools/image8.png';
+import logo28 from '../assets/schools/image9.png';
+import { Marquee } from './marquee/Marquee';
+import { SectionHeader } from './section-header/SectionHeader';
+
+// Array of logos for easy mapping
+const logos = [
+  logo3,
+  logo4,
+  logo7,
+  logo10,
+  logo14,
+  logo18,
+  logo21,
+  logo24,
+  logo25,
+  logo26,
+  logo28,
+];
 
 const DoubleScrollingLogos = () => {
   return (
-    <section className='py-4'>
-      <div className='flex justify-around'>
-        {/* Non For Profits Section */}
-        <div className='flex flex-col items-center'>
-          <h3 className='mb-4 text-lg font-bold'>Non For Profits</h3>
-          <div className='flex flex-row gap-4'>
-            <LogoItem
-              src={logo5}
-              alt='Ed Connect'
-            />
-            <LogoItem
-              src={logo2}
-              alt='ED CONNECT Australia'
-            />
-          </div>
-        </div>
-
-        {/* Commercial Companies Section */}
-        <div className='flex max-w-xl flex-col items-center'>
-          <h3 className='mb-4 text-lg font-bold'>Commercial Companies</h3>
-          <div className='flex flex-row gap-4'>
-            <LogoItem
-              src={logo3}
-              alt='ARC'
-            />
-            <LogoItem
-              src={logo4}
-              alt='Csmith'
-            />
-
-            <LogoItem
-              src={logo6}
-              alt='GIORGI'
-            />
-            <LogoItem
-              src={logo7}
-              alt='3W Physio'
-            />
-          </div>
-        </div>
-
-        {/* Schools Section */}
-        <div className='flex flex-col items-center'>
-          <h3 className='mb-4 text-lg font-bold'>Schools</h3>
-          <div className='flex flex-row gap-4'>
-            <LogoItem
-              src={logo8}
-              alt='St Andrews'
-            />
-            <LogoItem
-              src={logo9}
-              alt='Ursula Frayne'
-            />
-          </div>
-        </div>
-      </div>
+    <section className='mt-36 flex flex-col items-center justify-center space-y-20 py-4'>
+      <SectionHeader
+        title={'Our Partners'}
+        className=''
+      />
+      <Marquee
+        pauseOnHover
+        className='mt-4 h-48'
+      >
+        <LogoItems />
+      </Marquee>
     </section>
   );
 };
 
-const LogoItem = ({ src, alt }: { src: string; alt: string }) => {
-  return (
-    <div className='flex h-16 w-16 items-center justify-center text-black transition-colors md:h-24 md:w-24'>
-      <img
+// LogoItems maps through the array of image sources and renders them
+const LogoItems = () => (
+  <>
+    {logos.map((src, index) => (
+      <LogoItem
+        key={index}
         src={src}
-        alt={alt}
-        className='h-auto max-w-full'
       />
-    </div>
+    ))}
+  </>
+);
+
+const LogoItem = ({ src }: { src: string }) => {
+  return (
+    <img
+      src={src}
+      alt='logo'
+      className='mx-10 h-auto max-w-lg'
+    />
   );
 };
 

@@ -86,7 +86,8 @@ export const WhyChooseUs: React.FC = () => {
             subtitle={
               'Home to a community of Young Professionals (ages 21-29) across different career paths, industries, and cultural backgrounds—who share their real experiences of schooling and early professional life. With over 100 young professionals across various career roles and representing 10 different cultural backgrounds, students will have an opportunity to learn from diverse experiences.'
             }
-            className={'mb-16 text-8xl'}
+            className={'mb-14 text-8xl'}
+            subTitleClassName='my-2 text-xl'
           />
 
           {/* The carousel container (relative) for stacking motion cards */}

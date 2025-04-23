@@ -23,6 +23,7 @@ interface CurvedWrapperProps {
    */
   children: React.ReactNode;
   minHeight?: string;
+  innerClassName?: string;
 }
 
 /**
@@ -44,6 +45,7 @@ export const CurvedWrapper: React.FC<CurvedWrapperProps> = ({
   className = '',
   children,
   minHeight = '80vh',
+  innerClassName = '',
 }: CurvedWrapperProps): React.ReactNode => {
   // Outer container that centers content and provides a base min-height.
   const outerClasses = cn(
@@ -66,7 +68,10 @@ export const CurvedWrapper: React.FC<CurvedWrapperProps> = ({
     return (
       <div className={outerClasses}>
         <section
-          className='absolute -bottom-16 z-10 flex w-full flex-col items-center justify-center space-y-24 rounded-b-[80px] bg-white px-12 py-36'
+          className={
+            'absolute -bottom-16 z-10 flex w-full flex-col items-center justify-center space-y-24 rounded-b-[80px] bg-white px-12 py-36' +
+            innerClassName
+          }
           style={{ minHeight: minHeight }}
         >
           {children}
@@ -78,7 +83,10 @@ export const CurvedWrapper: React.FC<CurvedWrapperProps> = ({
     return (
       <div className={outerClasses}>
         <section
-          className='absolute -bottom-16 -top-16 z-10 flex w-full flex-col items-center justify-center space-y-24 rounded-[80px] bg-white px-12 py-36'
+          className={
+            'absolute -bottom-16 -top-16 z-10 flex w-full flex-col items-center justify-center space-y-24 rounded-[80px] bg-white px-12 py-36' +
+            innerClassName
+          }
           style={{ minHeight: minHeight }}
         >
           {children}
