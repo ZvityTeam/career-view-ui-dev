@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { BecomeMentor } from '../../components/BecomeMentor.tsx';
+import BecomeMentor from '../../components/BecomeMentor.tsx';
 import { FaqSection } from '../../components/faqsection/FaqSection.tsx';
 import { MentorHero } from '../../components/mentor-hero.tsx';
 import { AnimatedPageWrapper } from '../../components/PageWrapper.tsx';
