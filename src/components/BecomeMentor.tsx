@@ -270,15 +270,7 @@ const BecomeMentor: React.FC = () => {
                 className='mt-2 block text-gray-600'
               />
               <span className='text-sm text-gray-500'>
-                See examples at{' '}
-                <a
-                  href='https://www.careerview.com.au/network'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='text-black hover:underline'
-                >
-                  careerview.com.au/network
-                </a>
+                See examples
               </span>
             </p>
             <div className='mt-8 flex justify-between'>
