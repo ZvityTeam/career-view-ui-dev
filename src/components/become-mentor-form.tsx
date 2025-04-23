@@ -1,13 +1,9 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Send } from 'lucide-react';
-import { useRef, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { useMentorStore } from '../store/useMentorStore.ts';
-import { Mentor } from '../types/types';
 import { OutlinedInputWithButton } from './input-box/InputBox.tsx';
 import { Button } from './ui/Button.tsx';
-import { Textarea } from './ui/test-area.tsx';
 
 // Schema & Types
 const formSchema = z.object({
@@ -82,11 +78,8 @@ export const BecomeAMentorForm = () => {
     resolver: zodResolver(formSchema),
   });
 
-  const mentors = useMentorStore((state) => state.mentors);
-  const [selectedMentors, setSelectedMentors] = useState<string[]>([]);
-
   const onSubmit: SubmitHandler<FormSchema> = (data) => {
-    console.log('Form Submitted', data, selectedMentors);
+    console.log('Form Submitted', data);
   };
 
   return (
@@ -350,8 +343,6 @@ export const BecomeAMentorForm = () => {
 
         {/* Full-Width Bio Info */}
         <div>
-      
-
           <div className='mb-5'>
             <label className='mb-1 block text-sm font-medium text-gray-700'>
               Upload profile picture *
@@ -426,110 +417,5 @@ export const BecomeAMentorForm = () => {
         </div>
       </form>
     </section>
-  );
-};
-
-// MentorMultiSelect Component (Unchanged)
-interface MentorMultiSelectProps {
-  mentors: Mentor[];
-  selectedMentors: string[];
-  setSelectedMentors: (emails: string[]) => void;
-}
-
-const MentorMultiSelect: React.FC<MentorMultiSelectProps> = ({
-  mentors,
-  selectedMentors,
-  setSelectedMentors,
-}) => {
-  const [query, setQuery] = useState('');
-  const [focused, setFocused] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const filteredMentors = mentors.filter((mentor) => {
-    if (mentor.name)
-      return mentor.name.toLowerCase().includes(query.toLowerCase());
-  });
-
-  const handleSelectMentor = (email: string | undefined) => {
-    if (!email) return;
-    if (!selectedMentors.includes(email)) {
-      setSelectedMentors([...selectedMentors, email]);
-    }
-    setQuery('');
-  };
-
-  const handleRemoveMentor = (email: string) => {
-    setSelectedMentors(selectedMentors.filter((m) => m !== email));
-  };
-
-  return (
-    <div
-      className='relative'
-      ref={containerRef}
-    >
-      <div
-        className={`flex min-h-[44px] w-full flex-wrap items-center gap-2 rounded-md border border-gray-300 bg-white px-2 py-2 shadow-sm focus-within:ring-2 focus-within:ring-[#F1CE7E] ${focused ? 'ring-2 ring-[#F1CE7E]' : ''}`}
-      >
-        {selectedMentors.map((email) => {
-          const mentor = mentors.find((m) => m.email === email);
-          if (!mentor) return null;
-          return (
-            <div
-              key={email}
-              className='flex items-center gap-1 rounded-full bg-gray-200 px-3 py-1'
-            >
-              <img
-                src={mentor.profileImage}
-                alt={mentor.name}
-                className='h-5 w-5 rounded-full object-cover'
-              />
-              <span className='text-sm text-gray-700'>{mentor.name}</span>
-              <button
-                type='button'
-                onClick={() => handleRemoveMentor(email)}
-                className='text-sm font-semibold text-red-500'
-              >
-                ×
-              </button>
-            </div>
-          );
-        })}
-        <input
-          type='text'
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          onFocus={() => setFocused(true)}
-          onBlur={() => setTimeout(() => setFocused(false), 150)}
-          placeholder={selectedMentors.length === 0 ? 'Search mentors...' : ''}
-          className='min-w-[80px] flex-1 border-none bg-transparent p-0 text-sm placeholder-gray-400 focus:outline-none'
-        />
-      </div>
-      {focused && query && (
-        <div className='absolute left-0 top-full z-10 mt-1 max-h-60 w-full overflow-auto rounded-md border border-gray-200 bg-white shadow-lg'>
-          {filteredMentors.length === 0 ? (
-            <div className='p-2 text-sm text-gray-500'>No mentors found.</div>
-          ) : (
-            filteredMentors.map((mentor) => (
-              <div
-                key={mentor.email}
-                className='flex cursor-pointer items-center gap-2 p-2 hover:bg-gray-100'
-                onMouseDown={(e) => e.preventDefault()}
-                onClick={() => handleSelectMentor(mentor.email)}
-              >
-                <img
-                  src={mentor.profileImage}
-                  alt={mentor.name}
-                  className='h-8 w-8 rounded-full object-cover'
-                />
-                <div>
-                  <div className='font-medium text-gray-800'>{mentor.name}</div>
-                  <div className='text-sm text-gray-500'>{mentor.role}</div>
-                </div>
-              </div>
-            ))
-          )}
-        </div>
-      )}
-    </div>
   );
 };

@@ -73,7 +73,7 @@ const formSchema = z.object({
 type FormSchema = z.infer<typeof formSchema>;
 
 // Main Form Component
-export const BecomeAMentorForm = () => {
+export const BecomeMentor = () => {
   const {
     control,
     handleSubmit,
