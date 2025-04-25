@@ -31,3 +31,7 @@ export interface MentorProfileProps extends Mentor {
   onAddToMentorList?: () => void;
   isAdded?: boolean;
 }
+
+export interface Career {
+  name: string;
+}

@@ -84,7 +84,7 @@ export const CurvedWrapper: React.FC<CurvedWrapperProps> = ({
       <div className={outerClasses}>
         <section
           className={
-            'absolute -bottom-16 -top-16 z-10 flex w-full flex-col items-center justify-center space-y-24 rounded-[80px] bg-white px-12 py-36' +
+            'absolute -bottom-16 -top-16 z-10 flex w-full flex-col items-center justify-center space-y-24 rounded-[80px] bg-white px-12 py-36 ' +
             innerClassName
           }
           style={{ minHeight: minHeight }}

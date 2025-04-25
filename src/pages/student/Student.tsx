@@ -1,3 +1,4 @@
+import AskAQuestionForm from '../../components/AskAQuestionForm.tsx';
 import { MeetOutMentors } from '../../components/meet-our-mentors/MeetOutMentors.tsx';
 import { AnimatedPageWrapper } from '../../components/PageWrapper.tsx';
 import { QuestionsWeGet } from '../../components/questions-we-get/QuestionsWeGet.tsx';
@@ -16,6 +17,7 @@ export const Student = () => {
         <MeetOutMentors />
         {/* <StudentMentorConnect /> */}
         <QuestionsWeGet />
+        <AskAQuestionForm />
         <Testimonials />
         {/* <FaqSection /> */}
       </main>

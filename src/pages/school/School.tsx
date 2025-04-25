@@ -3,6 +3,7 @@ import timeline_img1 from '../../assets/schoolPageIllustrations/timeline_img1.pn
 import { CareerTalksLivestream } from '../../components/CareerTalksLivestream/CareerTalksLivestream.tsx';
 import { AnimatedPageWrapper } from '../../components/PageWrapper.tsx';
 import { SchoolHero } from '../../components/school-hero';
+import SchoolScheduleCallForm from '../../components/SchoolScheduleCallForm.tsx';
 import SearchFieldComponent from '../../components/student-mentor-connect/randomlyplacedcomponents/search-field.tsx';
 import { Testimonials } from '../../components/testimonials/Testimonials.tsx';
 import { VerticalTimelineComponent } from '../../components/vertical-timeline.tsx';
@@ -68,6 +69,8 @@ export const School = () => {
           subtitle='simple 3 step guide to have a live stream event'
         />
         <Testimonials />
+        <div id='form'></div>
+        <SchoolScheduleCallForm />
       </main>
     </AnimatedPageWrapper>
   );

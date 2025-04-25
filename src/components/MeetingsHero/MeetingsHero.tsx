@@ -32,6 +32,7 @@ export default function MeetingsHero() {
     </div>
   );
 
+
   return (
     <div className='flex h-screen w-full flex-col overflow-hidden bg-primary md:flex-row'>
       {/* Left Section */}

@@ -28,7 +28,10 @@ export const SchoolHero = () => {
           effort—connect with our network of Young Professionals who can deliver
           insightful talks to your school via livestream!
         </p>
-        <Button className='w-36 border-white text-white'>
+        <Button
+          className='w-36 border-white text-white'
+          onClick={() => (window.location.href = '#form')}
+        >
           Schedule a Session
         </Button>
       </div>

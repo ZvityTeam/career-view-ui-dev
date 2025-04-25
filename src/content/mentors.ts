@@ -77,7 +77,7 @@ import {
   zach_werner,
   zubair_shariff,
 } from '../assets/mentor_images';
-import { Mentor } from '../types/types';
+import { Career, Mentor } from '../types/types';
 
 export const data = [
   {
@@ -106,7 +106,7 @@ export const data = [
   },
   {
     name: 'Edward Sawle',
-    role: 'Teacher (High School)',
+    role: 'Teacher (High-School)',
     shortDesc:
       'Edward is a High School Teacher that specialises in teaching Geography and Environmental Science. He currently teaches at Iona Presentation College and has worked for the Department of Education. ',
     company: 'N/A',
@@ -239,7 +239,7 @@ export const data = [
   },
   {
     name: 'Merryl Sequeira',
-    role: 'Teacher (High School)',
+    role: 'Teacher (High-School)',
     shortDesc:
       'Merryl is a high school teaching Mathematics, digital technologies and religion. She has taught in both the Catholic and Public System over the past five years.',
     company: 'N/A',
@@ -658,7 +658,7 @@ export const data = [
   },
   {
     name: 'Alex Mirco',
-    role: 'Production / Medical Scientist',
+    role: 'Production/ Medical Scientist',
     shortDesc:
       'Production Scientist Alex makes personalised cell therapies. With 2 yrs exp in Diagnostic Molecular Pathology, he detected pathogens, trained staff, and undertook urgent COVID testing.',
     company: 'N/A',
@@ -1181,7 +1181,7 @@ export const data = [
   },
   {
     name: 'Dimitrio Sidi',
-    role: 'High School Mathematics Teacher',
+    role: 'High-School Mathematics Teacher',
     shortDesc:
       'Dimitrio is a Mathematics teacher at John Tonkin College in Mandurah. With a background in Physics and Applied Mathematics from UWA, he joined teaching through the Teach for Australia program.',
     company: 'John Tonkin College',
@@ -2344,3 +2344,261 @@ export const data = [
     },
   },
 ] as Mentor[];
+
+export const careers = [
+  {
+    name: 'Training Captain (Conquest Fleet)',
+  },
+  {
+    name: 'Teacher (High-School)',
+  },
+  {
+    name: 'Psychologist ',
+  },
+  {
+    name: 'Accountant',
+  },
+  {
+    name: 'Engineer/Business Consultant',
+  },
+  {
+    name: 'Environmental Consultant',
+  },
+  {
+    name: 'Dietitian ',
+  },
+  {
+    name: 'Physiotherapist ',
+  },
+  {
+    name: 'Registered Psychologist ',
+  },
+  {
+    name: 'Exploration Geologist',
+  },
+  {
+    name: 'Associate Software Engineer ',
+  },
+  {
+    name: 'Director/ Deviser/ Actor',
+  },
+  {
+    name: 'Architect',
+  },
+  {
+    name: 'Copywriter',
+  },
+  {
+    name: 'Analyst ',
+  },
+  {
+    name: 'Veterinary Industry',
+  },
+  {
+    name: 'Consultant',
+  },
+  {
+    name: 'Chemical Engineer',
+  },
+  {
+    name: 'Musician',
+  },
+  {
+    name: 'Software Engineer',
+  },
+  {
+    name: 'Mechanical Engineer',
+  },
+  {
+    name: 'Pharmacist ',
+  },
+  {
+    name: 'Human Resources ',
+  },
+  {
+    name: 'Production/ Medical Scientist',
+  },
+  {
+    name: 'Lawyer',
+  },
+  {
+    name: 'Senior Consultant',
+  },
+  {
+    name: 'Occupational Therapist',
+  },
+  {
+    name: 'People and Culture Advisor ',
+  },
+  {
+    name: 'Financial Operation',
+  },
+  {
+    name: 'Enterprise Solutions Specialist - ERP Software',
+  },
+  {
+    name: 'Geologist ',
+  },
+  {
+    name: 'Technology Graduate',
+  },
+  {
+    name: 'Speech Pathologist',
+  },
+  {
+    name: 'HR Manager',
+  },
+  {
+    name: 'Embryologist',
+  },
+  {
+    name: 'Hospitality - Restaurant Manager',
+  },
+  {
+    name: 'Digital Marketing',
+  },
+  {
+    name: 'Legal Assistant',
+  },
+  {
+    name: 'Superintendent',
+  },
+  {
+    name: 'Subsea Pipeline Engineer',
+  },
+  {
+    name: 'Sound Specialist',
+  },
+  {
+    name: 'Project Manager',
+  },
+  {
+    name: 'Screen Printer and Graphic Designer',
+  },
+  {
+    name: 'Bank Manager',
+  },
+  {
+    name: 'High-School Mathematics Teacher',
+  },
+  {
+    name: 'Civil Engineer ',
+  },
+  {
+    name: 'Cinematographer',
+  },
+  {
+    name: 'Registered Midwife and Nurse',
+  },
+  {
+    name: 'Commercial Pilot',
+  },
+  {
+    name: 'Safety Consultant',
+  },
+  {
+    name: 'Enrolled Nurse',
+  },
+  {
+    name: 'Radiographer',
+  },
+  {
+    name: 'Actress ',
+  },
+  {
+    name: 'Systems Engineer',
+  },
+  {
+    name: 'General Manager',
+  },
+  {
+    name: 'ICT Support',
+  },
+  {
+    name: 'Senior Design Engineer',
+  },
+  {
+    name: 'Mechanical Engineer ',
+  },
+  {
+    name: 'Social Worker',
+  },
+  {
+    name: 'Actuary',
+  },
+  {
+    name: 'Process Engineer',
+  },
+  {
+    name: 'Associate Film Producer',
+  },
+  {
+    name: 'Electrician',
+  },
+  {
+    name: 'Digital Transformation Manager',
+  },
+  {
+    name: 'Marketing Specialist',
+  },
+  {
+    name: 'Geologist',
+  },
+  {
+    name: 'Architect Designer',
+  },
+  {
+    name: 'Actor',
+  },
+  {
+    name: 'Student Recruitment',
+  },
+  {
+    name: 'Nurse',
+  },
+  {
+    name: 'Finance',
+  },
+  {
+    name: 'Competitive Bodybuilder ',
+  },
+  {
+    name: 'Pilot',
+  },
+  {
+    name: 'Procurement Officer',
+  },
+  {
+    name: 'Marketing Specialist ',
+  },
+  {
+    name: 'Head-hunter',
+  },
+  {
+    name: 'Subsea Engineer',
+  },
+  {
+    name: 'Management Consultant',
+  },
+  {
+    name: 'Paralegal (Law Student)',
+  },
+  {
+    name: 'Marketing Manager ',
+  },
+  {
+    name: 'Environmental Engineer',
+  },
+  {
+    name: 'Chef',
+  },
+  {
+    name: 'Business Analyst',
+  },
+  {
+    name: 'Photography and Videography',
+  },
+  {
+    name: 'Doctor',
+  },
+] as Career[];
