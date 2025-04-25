@@ -6,6 +6,7 @@ import img1 from '../../assets/student_page/IMG_3965 - Logan Dongray (Custom).jp
 import img3 from '../../assets/student_page/IMG_8500 - Neeka Zand.jpeg';
 import pilotImg from '../../assets/student_page/inbound3005804398879643555 - Andrew Korol Resized.jpg';
 import studentImg from '../../assets/student_page/studentHero.png';
+import studentImg1 from '../../assets/student_page/studentHero1.png';
 
 const StudentHero1 = () => {
   const containerRef = useRef(null);
@@ -48,6 +49,11 @@ const StudentHero1 = () => {
             src={studentImg}
             alt='Student Hero'
             className='absolute left-20 top-[42%] h-auto object-cover'
+          />
+          <img
+            src={studentImg1}
+            alt='Student Hero'
+            className='absolute right-0 top-[42%] h-auto object-cover'
           />
           <motion.div
             className='absolute left-0 top-1/3 z-[1000] w-full -translate-x-1/2 -translate-y-1/2 px-4 text-center'
@@ -159,9 +165,9 @@ const StudentHero1 = () => {
             containerRef={containerRef}
             src={img2}
             alt='Law books'
-            rotate='-3deg'
+            rotate='-15deg'
             top='60%'
-            left='75%'
+            left='68%'
           />
           <VisionNote
             containerRef={containerRef}
