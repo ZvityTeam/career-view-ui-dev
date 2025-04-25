@@ -5,6 +5,7 @@ import img2 from '../../assets/student_page/011-1 - Nagham Saleh.webp';
 import img1 from '../../assets/student_page/IMG_3965 - Logan Dongray (Custom).jpeg';
 import img3 from '../../assets/student_page/IMG_8500 - Neeka Zand.jpeg';
 import pilotImg from '../../assets/student_page/inbound3005804398879643555 - Andrew Korol Resized.jpg';
+import studentImg from '../../assets/student_page/studentHero.png';
 
 const StudentHero1 = () => {
   const containerRef = useRef(null);
@@ -43,6 +44,11 @@ const StudentHero1 = () => {
           />
         </svg>
         <div className='relative h-full w-full overflow-hidden rounded-xl'>
+          <img
+            src={studentImg}
+            alt='Student Hero'
+            className='absolute left-20 top-[42%] h-auto object-cover'
+          />
           <motion.div
             className='absolute left-0 top-1/3 z-[1000] w-full -translate-x-1/2 -translate-y-1/2 px-4 text-center'
             initial={{ opacity: 0, scale: 0.8 }}
@@ -82,7 +88,7 @@ const StudentHero1 = () => {
             src='https://images.unsplash.com/photo-1622021142947-da7dedc7c39a?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80'
             alt='restaurant'
             rotate='-2deg'
-            top='35%'
+            top='30%'
             left='10%'
           />
           <VisionNote
@@ -130,8 +136,8 @@ const StudentHero1 = () => {
             text='How to start a business?'
             color='bg-orange-400'
             rotate='-2deg'
-            top='70%'
-            left='10%'
+            top='52%'
+            left='23%'
           />
           <VisionImage
             containerRef={containerRef}
