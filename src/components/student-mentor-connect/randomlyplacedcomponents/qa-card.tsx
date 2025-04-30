@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 import { Mentor } from '../../../types/types';
 import { Avatar } from './avatar';
 
-// Define animation variants
 const cardVariants = {
   initial: { opacity: 0, y: 20 },
   animate: {
@@ -56,14 +55,12 @@ export function QACard({ mentor }: QACardProps) {
       variants={cardVariants}
       initial='initial'
       animate='animate'
-      className='relative w-[320px] rounded-[24px] bg-white p-6 shadow'
+      className='relative w-[240px] rounded-[16px] bg-white p-4 shadow sm:w-[280px] sm:rounded-[20px] sm:p-5 lg:w-[320px] lg:rounded-[24px] lg:p-6'
     >
-      {/* Top Row: Avatar, Name, Role */}
       <motion.div
         variants={topRowVariants}
         className='flex items-start'
       >
-        {/* Avatar with scale animation */}
         <motion.div variants={avatarVariants}>
           <Avatar
             image={profileImage || 'https://placehold.co/400'}
@@ -72,43 +69,39 @@ export function QACard({ mentor }: QACardProps) {
             size='sm'
           />
         </motion.div>
-
-        {/* Name and Role with fade-in animation */}
         <motion.div
           variants={textVariants}
-          className='ml-3'
+          className='ml-2 sm:ml-3'
         >
           <div className='flex items-center space-x-1'>
-            <h2 className='text-base font-bold text-black'>
+            <h2 className='text-sm font-bold text-black sm:text-base lg:text-base'>
               {name || 'Unknown Mentor'}
             </h2>
-            {/* <Star className="h-4 w-4 text-yellow-400" />
-            <span className="text-sm text-gray-600">4.9</span> */}
           </div>
-          <p className='mt-1 text-sm text-gray-500'>
+          <p className='mt-1 text-xs text-gray-500 sm:text-sm lg:text-sm'>
             {role || 'No role specified'}
           </p>
         </motion.div>
       </motion.div>
-
-      {/* Q&A Section with slide-up and fade-in animation */}
       <motion.div
         variants={qaVariants}
-        className='mt-4 rounded-xl bg-gray-50 p-4'
+        className='mt-3 rounded-lg bg-gray-50 p-3 sm:mt-4 sm:rounded-xl sm:p-4'
       >
         {questions && questions.length > 0 ? (
           <>
-            <p className='mb-2 font-medium text-gray-700'>Q. {questions[0]}</p>
-            <p className='text-sm text-gray-600'>
+            <p className='mb-1 text-xs font-medium text-gray-700 sm:mb-2 sm:text-sm'>
+              Q. {questions[0]}
+            </p>
+            <p className='text-xs text-gray-600 sm:text-sm'>
               Ans. The mentor will provide a detailed answer during the session.
             </p>
           </>
         ) : (
           <>
-            <p className='mb-2 font-medium text-gray-700'>
+            <p className='mb-1 text-xs font-medium text-gray-700 sm:mb-2 sm:text-sm'>
               Q. No questions available
             </p>
-            <p className='text-sm text-gray-600'>
+            <p className='text-xs text-gray-600 sm:text-sm'>
               Ans. This mentor has not provided answers yet.
             </p>
           </>

@@ -1,13 +1,13 @@
-import { useEffect, useRef } from 'react';
 import { animate, useInView } from 'framer-motion';
 import { LucideIcon } from 'lucide-react';
+import { useEffect, useRef } from 'react';
 
 interface Props {
   num: number;
   suffix: string;
   decimals?: number;
   subheading: string;
-  icon: LucideIcon; // Icon as a prop
+  icon: LucideIcon;
 }
 
 export const Stat = ({
@@ -34,17 +34,17 @@ export const Stat = ({
   }, [num, decimals, isInView]);
 
   return (
-    <div className='flex items-center gap-6'>
-      {/* Icon Container */}
-      <div className='flex h-24 w-24 items-center justify-center rounded-[16px] bg-primary shadow-[insert_5px_5px_15px_#000000]'>
-        <Icon className={'h-[60%] w-[60%] text-white'} />
+    <div className='flex items-center gap-4 sm:gap-6'>
+      <div className='flex h-16 w-16 items-center justify-center rounded-[12px] bg-primary shadow-[inset_5px_5px_15px_#000000] sm:h-20 sm:w-20 sm:rounded-[16px] lg:h-24 lg:w-24'>
+        <Icon className='h-[60%] w-[60%] text-white' />
       </div>
-      {/* Number and Text */}
       <div className='flex flex-col'>
-        <p className='font-britania text-4xl text-primary'>
+        <p className='font-britania text-2xl text-primary sm:text-3xl lg:text-4xl'>
           <span ref={ref}></span> {suffix}
         </p>
-        <p className='text-lg text-neutral-600'>{subheading}</p>
+        <p className='text-sm text-neutral-600 sm:text-base lg:text-lg'>
+          {subheading}
+        </p>
       </div>
     </div>
   );

@@ -1,11 +1,11 @@
+import { Send } from 'lucide-react';
 import React from 'react';
 import { OutlinedInputWithButton } from '../input-box/InputBox';
-import { Send } from 'lucide-react';
 import { FOOTER_NAV_ITEMS } from '../navbar/NavbarConfig.ts';
-import { FooterLink } from './footerlink/FooterLink.tsx';
 import bg1 from '../svgs/bg-1.svg';
 import bg2 from '../svgs/bg-2.svg';
 import star from '../svgs/footer-star.svg';
+import { FooterLink } from './footerlink/FooterLink.tsx';
 
 interface FooterProps {
   /** Optional: You can pass in a background image or just rely on a CSS background */
@@ -25,7 +25,7 @@ export const Footer: React.FC<FooterProps> = () => {
         alt={''}
         className={'pointer-events-none absolute right-0 top-0 z-10'}
       />
-      <div className='flex pb-10 justify-between px-44'>
+      <div className='flex justify-between px-44 pb-10'>
         <div className='flex max-w-2xl flex-col gap-7 p-24'>
           {/* Multiline heading */}
           <h4 className='z-20 text-5xl font-bold leading-tight'>
@@ -65,7 +65,7 @@ export const Footer: React.FC<FooterProps> = () => {
         </div>
 
         {/* Navigation Links */}
-        <div className='z-20 flex flex-col gap-8 p-24 pb-0 text-right text-3xl max-w-md'>
+        <div className='z-20 flex max-w-md flex-col gap-8 p-24 pb-0 text-right text-3xl'>
           {FOOTER_NAV_ITEMS.map((item, index) => (
             <FooterLink
               key={index}

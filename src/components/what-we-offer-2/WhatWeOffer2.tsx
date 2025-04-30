@@ -42,6 +42,19 @@ const PDFReader: React.FC = () => {
   const [numPages, setNumPages] = useState<number | null>(null);
   const [pageNumber, setPageNumber] = useState(1);
   const [error, setError] = useState<string | null>(null);
+  const [pdfWidth, setPdfWidth] = useState(400);
+
+  // Update PDF width based on screen size
+  useEffect(() => {
+    const updatePdfWidth = () => {
+      const containerWidth = Math.min(400, window.innerWidth - 40);
+      setPdfWidth(containerWidth);
+    };
+
+    updatePdfWidth();
+    window.addEventListener('resize', updatePdfWidth);
+    return () => window.removeEventListener('resize', updatePdfWidth);
+  }, []);
 
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
     setNumPages(numPages);
@@ -68,7 +81,7 @@ const PDFReader: React.FC = () => {
       <h3 className='mb-4 text-xl font-bold text-black lg:text-2xl'>
         Mentor Guide
       </h3>
-      <p className='mb-4 text-xs leading-relaxed text-gray-600 lg:text-sm'>
+      <p className='mb-4 text-center text-xs leading-relaxed text-gray-600 lg:text-sm'>
         Explore our comprehensive mentor guide in PDF format
       </p>
       {error ? (
@@ -85,16 +98,16 @@ const PDFReader: React.FC = () => {
               renderAnnotationLayer={false}
               renderTextLayer={true}
               className='flex justify-center'
-              width={Math.min(400, window.innerWidth - 40)}
+              width={pdfWidth}
               scale={1.0}
             />
           </Document>
         </div>
       )}
-      <div className='flex items-center gap-4'>
+      <div className='flex items-center gap-2 sm:gap-4'>
         <Button
           variant='secondary'
-          className='rounded-full bg-gray-300 px-4 py-1 text-xs text-black hover:bg-gray-400 lg:text-sm'
+          className='rounded-full bg-gray-300 px-2 py-1 text-xs text-black hover:bg-gray-400 sm:px-4 lg:text-sm'
           onClick={goToPreviousPage}
           disabled={pageNumber <= 1}
         >
@@ -105,7 +118,7 @@ const PDFReader: React.FC = () => {
         </p>
         <Button
           variant='secondary'
-          className='rounded-full bg-black px-4 py-1 text-xs text-white hover:bg-black/90 lg:text-sm'
+          className='rounded-full bg-black px-2 py-1 text-xs text-white hover:bg-black/90 sm:px-4 lg:text-sm'
           onClick={goToNextPage}
           disabled={pageNumber >= (numPages || 1)}
         >
@@ -212,12 +225,12 @@ const YouTubeAudioPlayer = ({
 
   return (
     <motion.div
-      className='h-34 w-full rounded-[24px] bg-gradient-to-r from-[#1a1a1a] to-[#333333] p-6 shadow-sm lg:p-8'
+      className='lg:h-34 h-auto w-full rounded-[24px] bg-gradient-to-r from-[#1a1a1a] to-[#333333] p-4 shadow-sm sm:p-6 lg:p-8'
       {...fadeInUp}
     >
       <div className='mb-4 flex items-center gap-4'>
         <div>
-          <h3 className='text-lg font-semibold text-white lg:text-xl'>
+          <h3 className='text-base font-semibold text-white sm:text-lg lg:text-xl'>
             {title}
           </h3>
           <p className='text-xs text-gray-300 lg:text-sm'>
@@ -238,18 +251,18 @@ const YouTubeAudioPlayer = ({
             onReady={onReady}
             onStateChange={onStateChange}
           />
-          <div className='flex items-center gap-4'>
+          <div className='flex items-center gap-2 sm:gap-4'>
             <button
               onClick={togglePlayPause}
               className='bg-pastel-blue-100 hover:bg-pastel-blue-200 rounded-full p-2'
             >
               {isPlaying ? (
-                <div className='rounded-xl bg-gray-200 p-2'>
-                  <Pause className='h-4 w-4 text-black lg:h-5 lg:w-5' />
+                <div className='rounded-xl bg-gray-200 p-1 sm:p-2'>
+                  <Pause className='h-5 w-5 text-black sm:h-4 sm:w-4 lg:h-5 lg:w-5' />
                 </div>
               ) : (
-                <div className='rounded-xl bg-gray-200 p-2'>
-                  <Play className='h-4 w-4 text-black lg:h-5 lg:w-5' />
+                <div className='rounded-xl bg-gray-200 p-1 sm:p-2'>
+                  <Play className='h-5 w-5 text-black sm:h-4 sm:w-4 lg:h-5 lg:w-5' />
                 </div>
               )}
             </button>
@@ -259,9 +272,9 @@ const YouTubeAudioPlayer = ({
               max={duration || 100}
               value={currentTime}
               onChange={handleSeek}
-              className='h-1 w-[83%] cursor-pointer appearance-none rounded-lg bg-gray-200'
+              className='h-1 w-full cursor-pointer appearance-none rounded-lg bg-gray-200 sm:w-[83%]'
             />
-            <span className='text-xs text-gray-300'>
+            <span className='hidden text-xs text-gray-300 sm:block'>
               {formatTime(currentTime)} / {formatTime(duration)}
             </span>
           </div>
@@ -332,12 +345,12 @@ export default function WhatWeOffer2() {
     Podcasts[0].title
   );
   return (
-    <section className='mt-36 min-h-screen w-full pt-12'>
-      <div className='mx-20 px-6 lg:px-12'>
+    <section className='mt-20 min-h-screen w-full pt-6 sm:mt-28 md:mt-36 md:pt-12'>
+      <div className='mx-4 px-2 sm:mx-8 sm:px-4 md:mx-12 lg:mx-20 lg:px-12'>
         {/* Title */}
         <SectionHeader
           title={'What We Offer'}
-          className='mb-10'
+          className='mb-6 md:mb-10'
         />
 
         {/* MAIN FLEX CONTAINER: Two columns */}
@@ -348,15 +361,15 @@ export default function WhatWeOffer2() {
             <div className='flex flex-col gap-4 md:flex-row'>
               {/* Quick Links */}
               <motion.div
-                className='h-42 w-full rounded-[24px] bg-gradient-to-r from-[#e6f0fa] to-[#ffffff] p-6 shadow-sm md:w-1/3 lg:p-8'
+                className='md:h-42 h-auto w-full rounded-[24px] bg-gradient-to-r from-[#e6f0fa] to-[#ffffff] p-4 shadow-sm sm:p-6 md:w-1/3 lg:p-8'
                 {...fadeInUp}
               >
-                <h3 className='mb-4 text-lg font-bold text-black lg:text-xl'>
+                <h3 className='mb-4 text-base font-bold text-black sm:text-lg lg:text-xl'>
                   Quick Links
                 </h3>
-                <div className='flex flex-col gap-4'>
+                <div className='flex flex-col gap-3 sm:gap-4'>
                   <Button
-                    className='flex items-center gap-3 rounded-full bg-red-600 px-4 py-10 text-lg font-bold text-white hover:bg-red-600/80 lg:text-xl'
+                    className='flex items-center gap-2 rounded-full bg-red-600 px-3 py-6 text-base font-bold text-white hover:bg-red-600/80 sm:gap-3 sm:py-8 sm:text-lg lg:px-4 lg:py-10 lg:text-xl'
                     onClick={() =>
                       window.open(
                         'https://www.youtube.com/@CareerView-Podcast',
@@ -364,11 +377,17 @@ export default function WhatWeOffer2() {
                       )
                     }
                   >
-                    <YoutubeIcon style={{ width: '32px', height: '32px' }} />
+                    <YoutubeIcon
+                      style={{
+                        width: '24px',
+                        height: '24px',
+                      }}
+                      className='sm:h-8 sm:w-8 lg:h-8 lg:w-8'
+                    />
                     YouTube Channel
                   </Button>
                   <Button
-                    className='flex items-center gap-3 rounded-full bg-green-500 px-4 py-10 text-lg font-bold text-black hover:bg-green-500/80 lg:text-xl'
+                    className='flex items-center gap-2 rounded-full bg-green-500 px-3 py-6 text-base font-bold text-black hover:bg-green-500/80 sm:gap-3 sm:py-8 sm:text-lg lg:px-4 lg:py-10 lg:text-xl'
                     onClick={() =>
                       window.open(
                         'https://open.spotify.com/show/1VYkSWt8KZLi0AGJfN3qWT',
@@ -377,8 +396,11 @@ export default function WhatWeOffer2() {
                     }
                   >
                     <PodcastIcon
-                      className='h-14 w-14'
-                      style={{ width: '32px', height: '32px' }}
+                      style={{
+                        width: '24px',
+                        height: '24px',
+                      }}
+                      className='sm:h-8 sm:w-8 lg:h-8 lg:w-8'
                     />
                     Spotify Podcast
                   </Button>
@@ -386,11 +408,11 @@ export default function WhatWeOffer2() {
               </motion.div>
               {/* 1-on-1 Mentoring Text */}
               <motion.div
-                className='h-42 w-full overflow-x-hidden rounded-[24px] bg-gradient-to-br from-[#f5f5dc] to-[#ffffff] p-6 shadow-sm md:flex-1 lg:p-8'
+                className='md:h-42 h-auto w-full overflow-x-hidden rounded-[24px] bg-gradient-to-br from-[#f5f5dc] to-[#ffffff] p-4 shadow-sm sm:p-6 md:flex-1 lg:p-8'
                 {...fadeInUp}
               >
-                <div className='mb-2 flex items-center justify-between'>
-                  <h3 className='text-xl font-bold text-black lg:text-2xl'>
+                <div className='mb-2 flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center'>
+                  <h3 className='text-lg font-bold text-black sm:text-xl lg:text-2xl'>
                     Explore Our Podcasts
                   </h3>
                   <Button
@@ -400,19 +422,19 @@ export default function WhatWeOffer2() {
                         '_blank'
                       )
                     }
-                    className='rounded-full bg-black px-4 py-1 text-xs text-white hover:bg-black/90 lg:text-sm'
+                    className='rounded-full bg-black px-3 py-1 text-xs text-white hover:bg-black/90 lg:px-4 lg:text-sm'
                   >
                     View All Podcasts
                   </Button>
                 </div>
                 <Marquee
                   pauseOnHover
-                  className='h-48'
+                  className='h-36 sm:h-40 md:h-48'
                 >
                   {Podcasts.map((resource, index) => (
                     <div
                       key={index}
-                      className='mx-3 flex flex-shrink-0 flex-col items-center'
+                      className='mx-2 flex flex-shrink-0 flex-col items-center sm:mx-3'
                       onClick={() => {
                         setSelectedVideoId(resource.videoId);
                         setSelectedVideoTitle(resource.title);
@@ -421,9 +443,9 @@ export default function WhatWeOffer2() {
                       <img
                         src={`https://img.youtube.com/vi/${resource.videoId}/maxresdefault.jpg`}
                         alt={resource.title}
-                        className='h-40 w-full rounded-lg object-cover shadow-sm'
+                        className='h-28 w-full rounded-lg object-cover shadow-sm sm:h-32 md:h-40'
                       />
-                      <p className='overflow-wrap mt-1 max-w-[200px] text-center text-sm font-semibold text-gray-600'>
+                      <p className='overflow-wrap mt-1 max-w-[180px] text-center text-xs font-semibold text-gray-600 sm:max-w-[200px] sm:text-sm'>
                         {resource.title}
                       </p>
                     </div>
@@ -440,20 +462,20 @@ export default function WhatWeOffer2() {
             <div className='flex flex-col gap-4 md:flex-row'>
               {/* Autoscrolling Marquee */}
               <motion.div
-                className='h-76 w-full overflow-x-hidden rounded-[24px] bg-gradient-to-br from-[#ffffff] to-[#f5f5f5] p-6 shadow-sm md:flex-1 lg:p-8'
+                className='md:h-76 h-auto w-full overflow-x-hidden rounded-[24px] bg-gradient-to-br from-[#ffffff] to-[#f5f5f5] p-4 shadow-sm sm:p-6 md:flex-1 lg:p-8'
                 {...fadeInUp}
               >
-                <div className='mb-2 flex items-center justify-between'>
-                  <h3 className='text-xl font-bold text-black lg:text-2xl'>
+                <div className='mb-2 flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center'>
+                  <h3 className='text-lg font-bold text-black sm:text-xl lg:text-2xl'>
                     Explore Our eBooks
                   </h3>
-                  <Button className='rounded-full bg-black px-4 py-1 text-xs text-white hover:bg-black/90 lg:text-sm'>
+                  <Button className='rounded-full bg-black px-3 py-1 text-xs text-white hover:bg-black/90 lg:px-4 lg:text-sm'>
                     View All Resources
                   </Button>
                 </div>
                 <Marquee
                   pauseOnHover
-                  className='h-48'
+                  className='h-36 sm:h-40 md:h-48'
                 >
                   {resources.map((resource, index) => (
                     <a
@@ -461,14 +483,14 @@ export default function WhatWeOffer2() {
                       href={resource.pdf}
                       target='_blank'
                       rel='noopener noreferrer'
-                      className='mx-3 flex flex-shrink-0 flex-col items-center'
+                      className='mx-2 flex flex-shrink-0 flex-col items-center sm:mx-3'
                     >
                       <img
                         src={resource.thumbnail}
                         alt={resource.title}
-                        className='h-28 w-20 rounded-lg object-cover shadow-sm'
+                        className='h-24 w-16 rounded-lg object-cover shadow-sm sm:h-28 sm:w-20'
                       />
-                      <p className='overflow-wrap mt-2 max-w-[100px] text-center text-sm text-gray-600'>
+                      <p className='overflow-wrap mt-1 max-w-[80px] text-center text-xs text-gray-600 sm:mt-2 sm:max-w-[100px] sm:text-sm'>
                         {resource.title}
                       </p>
                     </a>
@@ -477,25 +499,25 @@ export default function WhatWeOffer2() {
               </motion.div>
               {/* Featured Mentors */}
               <motion.div
-                className='h-76 w-full rounded-[24px] bg-gradient-to-br from-[#ffffff] to-[#f5f5dc] p-6 shadow-sm md:w-1/3 lg:p-8'
+                className='md:h-76 h-auto w-full rounded-[24px] bg-gradient-to-br from-[#ffffff] to-[#f5f5dc] p-4 shadow-sm sm:p-6 md:w-1/3 lg:p-8'
                 {...fadeInUp}
               >
-                <h3 className='mb-4 text-lg font-bold text-black lg:text-xl'>
+                <h3 className='mb-3 text-base font-bold text-black sm:mb-4 sm:text-lg lg:text-xl'>
                   Meet Our Mentors
                 </h3>
-                <div className='flex flex-col gap-4'>
+                <div className='flex flex-col gap-3 sm:gap-4'>
                   {mentors.map((mentor, index) => (
                     <div
                       key={index}
-                      className='flex items-center gap-4'
+                      className='flex items-center gap-3 sm:gap-4'
                     >
                       <img
                         src={mentor.profileImage}
                         alt={mentor.name}
-                        className='border-pastel-yellow-100 h-12 w-12 rounded-full border-2 object-cover'
+                        className='border-pastel-yellow-100 h-10 w-10 rounded-full border-2 object-cover sm:h-12 sm:w-12'
                       />
                       <div>
-                        <p className='text-sm font-semibold text-black'>
+                        <p className='text-xs font-semibold text-black sm:text-sm'>
                           {mentor.name}
                         </p>
                         <p className='text-xs text-gray-600'>{mentor.role}</p>
@@ -508,7 +530,7 @@ export default function WhatWeOffer2() {
           </div>
 
           {/* RIGHT COLUMN: PDF Reader */}
-          <div className='flex-1 rounded-[24px] bg-gradient-to-br from-[#e6f0fa] to-[#ffffff] p-6 shadow-sm md:flex-[1] lg:p-8'>
+          <div className='mt-4 mb-20 flex-1 rounded-[24px] bg-gradient-to-br from-[#e6f0fa] to-[#ffffff] p-4 shadow-sm sm:p-6 md:mt-0 md:flex-[1] lg:p-8'>
             <PDFReader />
           </div>
         </div>

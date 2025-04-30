@@ -6,6 +6,7 @@ import placeholderImg from '../assets/event2.jpg';
 import timeline_img1 from '../assets/mentors_page/timeline_img1.png';
 import timeline_img2 from '../assets/mentors_page/timeline_img2.png';
 import timeline_img3 from '../assets/mentors_page/timeline_img3.png';
+import useResponsiveLayout from '../hooks/useResponsiveLayout';
 import { SectionHeader } from './section-header/SectionHeader';
 
 interface TimelineItem {
@@ -115,6 +116,7 @@ const TimelineItem: React.FC<{
     triggerOnce: true,
     threshold: 0.2,
   });
+  const { isMobile, isTablet } = useResponsiveLayout();
 
   useEffect(() => {
     if (inView) {
@@ -127,6 +129,63 @@ const TimelineItem: React.FC<{
     .split('|')
     .map((part) => part.trim());
 
+  // Mobile and tablet layout is single column
+  if (isMobile || isTablet) {
+    return (
+      <div
+        ref={ref}
+        className='relative mb-8 overflow-y-hidden sm:mb-12 md:mb-16'
+      >
+        {/* Timeline marker for mobile/tablet */}
+        <motion.div
+          className='absolute left-4 top-0 z-10 overflow-y-hidden sm:left-6'
+          initial='hidden'
+          animate={controls}
+          variants={circleVariants}
+        >
+          <div className='flex h-10 w-10 items-center justify-center rounded-full bg-gray-800 text-sm font-semibold text-white sm:h-12 sm:w-12'>
+            {item.id}
+          </div>
+        </motion.div>
+
+        {/* Content for mobile/tablet */}
+        <div className='ml-16 overflow-y-hidden sm:ml-20'>
+          <motion.div
+            initial='hidden'
+            animate={controls}
+            variants={leftItemVariants}
+            className='mb-4'
+          >
+            <h3 className='text-xl font-bold sm:text-2xl'>{item.title}</h3>
+            <div className='mt-2 space-y-1 text-base text-gray-600 sm:text-lg'>
+              {descriptionParts.map((part, i) => (
+                <p key={i}>{part}</p>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial='hidden'
+            animate={controls}
+            variants={leftItemVariants}
+            className='mt-4 overflow-hidden rounded-lg'
+          >
+            {!item.component ? (
+              <img
+                src={item.imageUrl || placeholderImg}
+                alt={item.title}
+                className='h-auto w-full object-cover shadow-lg'
+              />
+            ) : (
+              item.component
+            )}
+          </motion.div>
+        </div>
+      </div>
+    );
+  }
+
+  // Desktop layout (preserving original)
   return (
     <div
       ref={ref}
@@ -134,7 +193,7 @@ const TimelineItem: React.FC<{
     >
       {/* Timeline marker */}
       <motion.div
-        className='absolute left-[31.55rem] z-10 -translate-x-1/2'
+        className='absolute left-1/2 z-10 -translate-x-1/2 lg:left-[31.55rem]'
         initial='hidden'
         animate={controls}
         variants={circleVariants}
@@ -146,23 +205,20 @@ const TimelineItem: React.FC<{
 
       {/* Content - alternating left and right */}
       <div
-        className={`flex w-full gap-28 ${isEven ? 'flex-row' : 'flex-row-reverse'}`}
+        className={`flex w-full gap-8 lg:gap-28 ${isEven ? 'flex-row' : 'flex-row-reverse'}`}
       >
-        {/* Left/right empty space (45%) */}
-        {/* <div className='w-[%]' /> */}
-
-        {/* Content area (55%) */}
+        {/* Content area */}
         <motion.div
-          className='w-[65%]'
+          className='w-[48%] lg:w-[65%]'
           initial='hidden'
           animate={controls}
           variants={!isEven ? leftItemVariants : rightItemVariants}
         >
           <div
-            className={`flex flex-col ${!isEven ? 'items-start pl-10' : 'items-end'}`}
+            className={`flex flex-col ${!isEven ? 'items-start pl-4 lg:pl-10' : 'items-end'}`}
           >
             {!item.component ? (
-              <div className='mb-4 w-[30rem] rotate-3 transform overflow-hidden rounded-xl shadow-lg'>
+              <div className='mb-4 w-full max-w-md overflow-hidden rounded-xl shadow-lg lg:w-[30rem] lg:rotate-3 lg:transform'>
                 <img
                   src={item.imageUrl || placeholderImg}
                   alt={item.title}
@@ -172,24 +228,25 @@ const TimelineItem: React.FC<{
             ) : (
               item.component
             )}
-            {/* Image */}
           </div>
         </motion.div>
         <motion.div
-          className='my-auto w-[55%] px-8'
+          className='my-auto w-[48%] px-4 lg:w-[55%] lg:px-8'
           initial='hidden'
           animate={controls}
           variants={isEven ? leftItemVariants : rightItemVariants}
         >
           <div
-            className={`flex flex-col items-center justify-center ${!isEven ? 'pr-16' : 'pl-16'}`}
+            className={`flex flex-col items-center justify-center ${!isEven ? 'lg:pr-16' : 'lg:pl-16'}`}
           >
             {/* Text content */}
             <div
               className={`w-full max-w-md ${isEven ? 'text-left' : 'text-right'} `}
             >
-              <h3 className='mb-2 text-2xl font-bold'>{item.title}</h3>
-              <div className='space-y-1 text-lg text-gray-600'>
+              <h3 className='mb-2 text-xl font-bold md:text-2xl'>
+                {item.title}
+              </h3>
+              <div className='space-y-1 text-base text-gray-600 md:text-lg'>
                 {descriptionParts.map((part, i) => (
                   <p key={i}>{part}</p>
                 ))}
@@ -208,19 +265,29 @@ export const VerticalTimelineComponent: React.FC<AlternatingTimelineProps> = ({
   subtitle = 'Shape future journeys with real-world insights. Give students the career advice you wish you had growing up, empower their paths.',
   className,
 }) => {
+  const { isMobile, isTablet } = useResponsiveLayout();
+
   return (
     <>
-      {' '}
-      <div className='my-20 text-center'>
+      <div className='my-10 px-4 text-center md:my-20'>
         <SectionHeader
           title={title}
           subtitle={subtitle}
-          className='gap-4'
+          className='gap-2 md:gap-4'
         />
       </div>
-      <div className={'relative mx-auto w-full max-w-5xl py-12' + className}>
-        {/* Center line */}
-        <div className='absolute bottom-0 left-[33.3rem] top-0 z-0 w-px -translate-x-1/2 border-l-2 border-dashed border-gray-300' />
+      <div
+        className={`relative mx-auto w-full overflow-y-hidden px-4 py-8 md:py-12 ${isMobile || isTablet ? 'max-w-lg' : 'max-w-5xl'} ${className || ''}`}
+      >
+        {/* Center line - Only visible on desktop */}
+        {!isMobile && !isTablet && (
+          <div className='absolute bottom-0 left-1/2 top-0 z-0 w-px -translate-x-1/2 border-l-2 border-dashed border-gray-300 lg:left-[33.3rem]' />
+        )}
+
+        {/* Left vertical line for mobile/tablet */}
+        {(isMobile || isTablet) && (
+          <div className='absolute bottom-36 left-4 top-10 z-0 w-px border-l-2 border-dashed border-gray-300 sm:left-6' />
+        )}
 
         {items.map((item, index) => (
           <TimelineItem

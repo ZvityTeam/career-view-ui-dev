@@ -177,9 +177,9 @@ const FaqSectionComponent = ({ page }: { page: string }) => {
   };
 
   return (
-    <Section className={'flex flex-col gap-6'}>
-      <SectionHeader title={'Frequently Asked Questions'} />
-      <div className='w-[80%]'>
+    <Section className='mx-auto flex max-w-7xl flex-col gap-4 px-4 sm:gap-6 sm:px-6 lg:gap-8 lg:px-8'>
+      <SectionHeader title='Frequently Asked Questions' />
+      <div className='mx-auto w-full sm:w-[90%] lg:w-[80%]'>
         {currentItems.map((value, index) => (
           <FaqItem
             {...value}
@@ -188,16 +188,16 @@ const FaqSectionComponent = ({ page }: { page: string }) => {
         ))}
       </div>
       {totalPages > 1 && (
-        <div className='mt-4 flex justify-center gap-2'>
+        <div className='mt-2 flex justify-center gap-1 sm:mt-4 sm:gap-2'>
           {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
             <button
               key={page}
               onClick={() => handlePageChange(page)}
-              className={`rounded-full px-4 py-2 ${
+              className={`rounded-full px-3 py-1.5 text-sm sm:px-4 sm:py-2 sm:text-base ${
                 currentPage === page
                   ? 'bg-black text-white'
                   : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-              }`}
+              } `}
             >
               {page}
             </button>

@@ -15,15 +15,6 @@ export const MentorCard = ({
   posterImage?: string;
   showActionButton?: boolean;
 }) => {
-  console.log('MentorCard', {
-    name,
-    role,
-    bio,
-    profileVideo,
-    posterImage,
-    showActionButton,
-  });
-
   const [isMuted, setIsMuted] = useState(true);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -36,12 +27,12 @@ export const MentorCard = ({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && videoRef.current && !isVideoLoaded) {
-          videoRef.current.src = profileVideo; // Set src when in view
+          videoRef.current.src = profileVideo;
           setIsVideoLoaded(true);
-          observer.disconnect(); // Stop observing once loaded
+          observer.disconnect();
         }
       },
-      { threshold: 0.1 } // Trigger when 10% of the video is visible
+      { threshold: 0.1 }
     );
 
     if (videoRef.current) {
@@ -54,13 +45,19 @@ export const MentorCard = ({
   }, [profileVideo, isVideoLoaded]);
 
   return (
-    <div className='hover:to-pastelYellow-200 flex min-h-[800px] flex-1 flex-col items-center justify-between rounded-xl bg-white p-12 shadow-lg transition-all hover:bg-gradient-to-b hover:from-gray-50'>
+    <div className='hover:to-yellow-100 flex min-h-[558px] flex-col items-center justify-between rounded-xl bg-white p-6 shadow-lg transition-all hover:bg-gradient-to-b hover:from-gray-50 sm:min-h-[600px] sm:p-8 lg:min-h-[930px] lg:p-12'>
       <div className='text-center'>
-        <h3 className='text-3xl font-bold text-gray-900'>{name}</h3>
-        <p className='text-lg font-light italic text-gray-600'>{role}</p>
+        <h3 className='text-xl font-bold text-gray-900 sm:text-2xl lg:text-3xl'>
+          {name}
+        </h3>
+        <p className='text-sm font-light italic text-gray-600 sm:text-base lg:text-lg'>
+          {role}
+        </p>
       </div>
-      <p className='line-clamp-[7] text-center text-gray-700'>{bio}</p>
-      <div className='relative mt-4 h-[533px] w-full max-w-[300px] overflow-hidden rounded-lg shadow-md'>
+      <p className='line-clamp-[5] text-center text-sm text-gray-700 sm:line-clamp-[6] sm:text-base lg:line-clamp-[7]'>
+        {bio}
+      </p>
+      <div className='relative mt-3 h-[300px] w-full max-w-[240px] overflow-hidden rounded-lg shadow-md sm:mt-4 sm:h-[400px] sm:max-w-[280px] lg:h-[533px] lg:max-w-[300px]'>
         <video
           ref={videoRef}
           poster={posterImage}
@@ -74,13 +71,21 @@ export const MentorCard = ({
         />
         <button
           onClick={toggleMute}
-          className='hover:bg-pastelBlue-600 absolute bottom-2 right-2 rounded-full bg-white/30 p-2 text-black backdrop-blur-3xl focus:ring-2 focus:ring-black'
+          className='hover:bg-pastelBlue-600 absolute bottom-2 right-2 rounded-full bg-white/30 p-1.5 text-black backdrop-blur-3xl focus:ring-2 focus:ring-black sm:p-2'
           aria-label={isMuted ? 'Unmute video' : 'Mute video'}
         >
-          {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+          {isMuted ? (
+            <VolumeX className='h-4 w-4 sm:h-5 sm:w-5' />
+          ) : (
+            <Volume2 className='h-4 w-4 sm:h-5 sm:w-5' />
+          )}
         </button>
       </div>
-      {showActionButton && <Button className='mt-4'>Ask a Question</Button>}
+      {showActionButton && (
+        <Button className='mt-3 text-sm sm:mt-4 sm:text-base'>
+          Ask a Question
+        </Button>
+      )}
     </div>
   );
 };

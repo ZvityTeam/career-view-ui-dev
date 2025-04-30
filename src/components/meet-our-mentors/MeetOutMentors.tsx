@@ -11,7 +11,7 @@ interface Mentor {
   name: string;
   role: string;
   bio: string;
-  profileVideo: string; // Changed from profileImage to profileVideo
+  profileVideo: string;
 }
 
 export const MeetOutMentors = () => {
@@ -31,45 +31,45 @@ export const MeetOutMentors = () => {
     {
       name: 'Peter Wu',
       role: 'Marketing Specialist',
-      bio: 'Peter works in the  Marketing team at Collaborative Solutions. He he has experience in managing and executing a range of  marketing programs across on demand generation and contact acquisition.',
+      bio: 'Peter works in the Marketing team at Collaborative Solutions. He has experience in managing and executing a range of marketing programs across on-demand generation and contact acquisition.',
       profileVideo: peterVideo,
     },
   ];
 
   return (
-    <Section className={'mt-32 flex flex-col gap-16'}>
+    <Section className='mx-auto -mt-10 flex max-w-7xl flex-col gap-8 px-4 sm:mt-24 sm:gap-12 sm:px-6 lg:mx-0 lg:mt-32 lg:max-w-none lg:gap-16 lg:px-8'>
       <SectionHeader
-        title={'Meet our Mentors'}
-        subtitle={
-          'Our mentors are passionate professionals from diverse industries, ready to share their expertise and help students shape their future'
-        }
+        title='Meet our Mentors'
+        subtitle='Our mentors are passionate professionals from diverse industries, ready to share their expertise and help students shape their future'
       />
-      <div className='flex items-center justify-between gap-28'>
+      <div className='flex flex-col items-start justify-between gap-6 sm:gap-8 lg:flex-row lg:gap-28'>
         <Stat
           num={100}
-          suffix={'+'}
-          subheading={'Young Professionals'}
+          suffix='+'
+          subheading='Young Professionals'
           icon={Award}
         />
         <Stat
           num={32}
-          suffix={'+'}
-          subheading={'Career Options'}
+          suffix='+'
+          subheading='Career Options'
           icon={ShoppingBag}
         />
         <Stat
           num={10}
-          suffix={'+'}
-          subheading={'Cultural Backgrounds'}
+          suffix='+'
+          subheading='Cultural Backgrounds'
           icon={Users}
         />
       </div>
-      <div className='flex w-full gap-10 bg-[#272727] p-12'>
+      <div className='scrollbar-hide flex w-full snap-x snap-mandatory flex-row gap-4 overflow-x-auto bg-[#272727] p-6 sm:gap-6 sm:p-8 lg:flex lg:gap-10 lg:overflow-x-visible lg:p-12'>
         {mentorList.map((mentor, index) => (
-          <MentorCard
-            {...mentor}
+          <div
             key={index}
-          />
+            className='w-[85vw] flex-shrink-0 snap-center sm:w-[70vw] lg:w-auto lg:flex-1'
+          >
+            <MentorCard {...mentor} />
+          </div>
         ))}
       </div>
     </Section>

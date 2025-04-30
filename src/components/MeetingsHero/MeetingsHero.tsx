@@ -1,3 +1,4 @@
+import useResponsiveLayout from '../../hooks/useResponsiveLayout';
 import { useMentorStore } from '../../store/useMentorStore';
 import { Mentor } from '../../types/types';
 import { Marquee } from '../marquee/Marquee';
@@ -6,6 +7,7 @@ import { Button } from '../ui/Button';
 export default function MeetingsHero() {
   const { getRandomMentors } = useMentorStore();
   const mentors: Mentor[] = getRandomMentors(30);
+  const { isMobile, isTablet } = useResponsiveLayout();
 
   // Split mentors into three groups of 10 for each column
   const column1Mentors = mentors.slice(0, 10);
@@ -16,25 +18,30 @@ export default function MeetingsHero() {
   const renderMentorCard = (mentor: Mentor, bgColor: string, index: number) => (
     <div
       key={`${mentor.role}-${index}`}
-      className={`h-[450px] w-full ${bgColor} relative mb-4 flex items-end justify-center overflow-hidden rounded-[4rem]`}
+      className={`${
+        isMobile ? 'h-[300px] w-[200px]' : 'h-[450px] w-full'
+      } ${bgColor} relative mb-4 flex items-end justify-center overflow-hidden rounded-[2rem] md:rounded-[4rem]`}
     >
       <img
         src={mentor?.profileImage}
         alt={mentor?.role}
         className='absolute inset-0 h-full w-full object-cover object-center'
       />
-      <div className='relative z-10 h-[3rem] w-full'>
+      <div className='relative z-10 h-[2.5rem] w-full'>
         <div className='absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-70'></div>
-        <p className='relative z-20 text-center font-avenir text-lg font-medium text-white'>
+        <p
+          className={`relative z-20 text-center font-avenir ${
+            isMobile ? 'text-base' : 'text-lg'
+          } font-medium text-white`}
+        >
           {mentor.role}
         </p>
       </div>
     </div>
   );
 
-
   return (
-    <div className='flex h-screen w-full flex-col overflow-hidden bg-primary md:flex-row'>
+    <div className='flex w-full flex-col overflow-hidden bg-primary pb-5 md:h-screen md:flex-row md:pb-0'>
       {/* Left Section */}
       <div className='relative flex w-full flex-col justify-center px-8 py-12 md:w-1/2 md:px-16 lg:px-24'>
         <div className='absolute left-24 top-24 opacity-20'>
@@ -73,10 +80,10 @@ export default function MeetingsHero() {
         </div>
       </div>
       {/* Right Section - Marquee */}
-      <div className='h-screen w-full overflow-hidden md:w-1/2'>
+      <div className='h-54 w-full overflow-hidden md:h-screen md:w-1/2'>
         <div className='flex h-full space-x-2 px-2'>
           {/* First Column */}
-          <div className='flex-1 overflow-hidden'>
+          <div className='hidden flex-1 overflow-hidden md:block'>
             <Marquee
               vertical
               pauseOnHover
@@ -95,7 +102,7 @@ export default function MeetingsHero() {
           {/* Second Column */}
           <div className='flex-1 overflow-hidden'>
             <Marquee
-              vertical
+              vertical={!isMobile && !isTablet}
               pauseOnHover
               className='[--duration:40s] [--gap:1rem] [animation-delay:-5s]'
             >
@@ -110,7 +117,7 @@ export default function MeetingsHero() {
           </div>
 
           {/* Third Column */}
-          <div className='flex-1 overflow-hidden'>
+          <div className='hidden flex-1 overflow-hidden md:block'>
             <Marquee
               vertical
               pauseOnHover

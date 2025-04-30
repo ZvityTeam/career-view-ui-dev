@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
+import { useState } from 'react';
 
 interface FaqItemProps {
   question: string;
@@ -11,22 +11,24 @@ export const FaqItem = ({ question, answer }: FaqItemProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className='border-b border-[#aaaaaa] py-8'>
+    <div className='border-b border-[#aaaaaa] py-4 sm:py-6 lg:py-8'>
       {/* Question Row */}
       <div
         className='flex cursor-pointer items-center justify-between'
         onClick={() => setIsOpen(!isOpen)}
       >
         <div className='flex items-center'>
-          <div className='mr-4 flex h-6 w-6 items-center justify-center rounded-full bg-black text-white'>
+          <div className='mr-3 flex h-5 w-5 items-center justify-center rounded-full bg-black text-white sm:mr-4 sm:h-6 sm:w-6'>
             <motion.div
               animate={{ rotate: isOpen ? 180 : 0 }}
               transition={{ duration: 0.3, ease: 'easeInOut' }}
             >
-              <ChevronDown size={14} />
+              <ChevronDown className='h-3 w-3 sm:h-3.5 sm:w-3.5' />
             </motion.div>
           </div>
-          <p className='text-xl font-medium text-gray-800'>{question}</p>
+          <p className='text-base font-medium text-gray-800 sm:text-lg lg:text-xl'>
+            {question}
+          </p>
         </div>
       </div>
 
@@ -39,7 +41,7 @@ export const FaqItem = ({ question, answer }: FaqItemProps) => {
         transition={{ duration: 0.3, ease: 'easeInOut' }}
         className='overflow-hidden'
       >
-        <div className='mt-3 pl-10 text-lg text-gray-600'>
+        <div className='mt-2 pl-8 text-sm text-gray-600 sm:mt-3 sm:pl-10 sm:text-base lg:text-lg'>
           <p>{answer}</p>
         </div>
       </motion.div>

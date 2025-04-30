@@ -17,7 +17,7 @@ export const FooterLink: React.FC<FooterLinkProps> = ({
     <Link
       to={to}
       className={cn(
-        'transition-colors duration-200 ease-in-out hover:text-secondary',
+        'text-sm transition-colors duration-200 ease-in-out hover:text-secondary sm:text-base lg:text-lg',
         className
       )}
     >

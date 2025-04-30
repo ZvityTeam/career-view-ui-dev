@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { data as mentors, careers } from '../content/mentors';
+import { careers, data as mentors } from '../content/mentors';
 import { CurvedWrapper } from './CurvedWrapper';
 import { Button } from './ui/Button';
 
@@ -37,9 +37,6 @@ const SchoolScheduleCallForm: React.FC = () => {
     }
     if (!formData.questions.trim())
       newErrors.questions = 'Questions are required';
-    if (formData.selections.length === 0) {
-      newErrors.selectionError = 'Please select at least one mentor or career';
-    }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -147,17 +144,17 @@ const SchoolScheduleCallForm: React.FC = () => {
   return (
     <CurvedWrapper
       curve='both'
-      className='z-20 mb-36 mt-32 bg-gray-100'
+      className='z-20 mb-52 mt-16 bg-gray-100 md:mb-36 md:mt-32'
       innerClassName='pt-0'
       minHeight='90vh'
     >
-      <div className='container mx-auto mt-36 px-6'>
-        <h1 className='mb-2 text-center text-4xl font-extrabold tracking-tight text-black'>
+      <div className='container mx-auto mt-16 px-4 sm:mt-36 sm:px-6'>
+        <h1 className='mb-2 text-center text-2xl font-extrabold tracking-tight text-black sm:text-4xl'>
           Schedule a Call
         </h1>
         <div className='grid grid-cols-1'>
-          <div className='form-column max-h-[80vh] w-full overflow-y-auto rounded-lg p-6 pt-0'>
-            <div className='space-y-6 text-lg'>
+          <div className='form-column w-full overflow-y-auto rounded-lg p-4 pt-0 sm:p-6 sm:pt-0'>
+            <div className='space-y-6 text-base sm:text-lg'>
               <p className='mb-8 text-center text-gray-600'>
                 Your email will not be shared publicly.
               </p>
@@ -169,7 +166,7 @@ const SchoolScheduleCallForm: React.FC = () => {
                   value={formData.fullName}
                   onChange={handleInputChange}
                   placeholder='e.g. John Smith'
-                  className='inline w-56 border-b-2 border-gray-300 bg-transparent p-1 text-black transition-colors duration-300 focus:border-blue-400 focus:outline-none'
+                  className='inline w-48 border-b-2 border-gray-300 bg-transparent p-1 text-black transition-colors duration-300 focus:border-blue-400 focus:outline-none sm:w-56'
                 />
                 , and you can reach me at{' '}
                 <input
@@ -178,7 +175,7 @@ const SchoolScheduleCallForm: React.FC = () => {
                   value={formData.email}
                   onChange={handleInputChange}
                   placeholder='e.g. john.smith@example.com'
-                  className='inline w-64 border-b-2 border-gray-300 bg-transparent p-1 text-black transition-colors duration-300 focus:border-blue-400 focus:outline-none'
+                  className='inline w-56 border-b-2 border-gray-300 bg-transparent p-1 text-black transition-colors duration-300 focus:border-blue-400 focus:outline-none sm:w-64'
                 />{' '}
                 (private). I work at{' '}
                 <input
@@ -187,7 +184,7 @@ const SchoolScheduleCallForm: React.FC = () => {
                   value={formData.schoolName}
                   onChange={handleInputChange}
                   placeholder='e.g. Springfield High'
-                  className='inline w-64 border-b-2 border-gray-300 bg-transparent p-1 text-black transition-colors duration-300 focus:border-blue-400 focus:outline-none'
+                  className='inline w-56 border-b-2 border-gray-300 bg-transparent p-1 text-black transition-colors duration-300 focus:border-blue-400 focus:outline-none sm:w-64'
                 />{' '}
                 (optional).
               </p>
@@ -214,9 +211,9 @@ const SchoolScheduleCallForm: React.FC = () => {
                 )}
               </p>
               <div className='mb-6'>
-                <div className='mb-2 flex items-center justify-between'>
+                <div className='mb-2 flex flex-col items-start justify-between sm:flex-row sm:items-center'>
                   <label className='mb-1 font-bold text-black'>
-                    I'd like to invite (select mentors or careers) *
+                    I'd like to invite (select mentors or careers)
                   </label>
                   <div className='mb-2 flex space-x-2'>
                     <button
@@ -282,16 +279,16 @@ const SchoolScheduleCallForm: React.FC = () => {
                             <div className='flex items-center space-x-3'>
                               {getAvatar(item.display, item.profileImage)}
                               <div>
-                                <span className='text-lg font-semibold text-black'>
+                                <span className='text-base font-semibold text-black sm:text-lg'>
                                   {item.type === 'career' && (
-                                    <span className='block text-sm text-gray-600'>
+                                    <span className='block text-xs text-gray-600 sm:text-sm'>
                                       All
                                     </span>
                                   )}
                                   {item.display}
                                 </span>
                                 {item.type === 'mentor' && (
-                                  <span className='block text-sm text-gray-600'>
+                                  <span className='block text-xs text-gray-600 sm:text-sm'>
                                     {item.role}
                                   </span>
                                 )}
@@ -305,7 +302,7 @@ const SchoolScheduleCallForm: React.FC = () => {
                           <div
                             key={item.name}
                             onClick={() => handleSelectionToggle(item.name)}
-                            className={`w-72 flex-none cursor-pointer rounded-lg border p-4 transition-all duration-300 hover:bg-gray-50 hover:shadow-lg ${
+                            className={`flex-none cursor-pointer rounded-lg border p-4 transition-all duration-300 hover:bg-gray-50 hover:shadow-lg ${
                               formData.selections.includes(item.name)
                                 ? 'border-blue-400 bg-blue-50'
                                 : 'border-gray-300'
@@ -314,16 +311,16 @@ const SchoolScheduleCallForm: React.FC = () => {
                             <div className='flex items-center space-x-3'>
                               {getAvatar(item.display, item.profileImage)}
                               <div>
-                                <span className='text-lg font-semibold text-black'>
+                                <span className='text-base font-semibold text-black sm:text-lg'>
                                   {item.type === 'career' && (
-                                    <span className='block text-sm text-gray-600'>
+                                    <span className='block text-xs text-gray-600 sm:text-sm'>
                                       All
                                     </span>
                                   )}
                                   {item.display}
                                 </span>
                                 {item.type === 'mentor' && (
-                                  <span className='block text-sm text-gray-600'>
+                                  <span className='block text-xs text-gray-600 sm:text-sm'>
                                     {item.role}
                                   </span>
                                 )}

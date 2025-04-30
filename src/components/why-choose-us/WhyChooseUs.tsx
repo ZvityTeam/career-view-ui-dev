@@ -72,8 +72,8 @@ export const WhyChooseUs: React.FC = () => {
   // };
 
   return (
-    <div className='relative mt-44 grid h-[65vh] place-items-center'>
-      <div className='absolute h-[82vh] w-full rounded-[80px] bg-white'>
+    <div className='relative -mb-44 grid h-[65vh] place-items-center md:mb-0 md:mt-44'>
+      <div className='absolute h-[52vh] w-full rounded-[80px] bg-white md:h-[82vh]'>
         <img
           className='absolute left-0 top-0 h-full w-full rounded-[80px] object-cover'
           src={curved}
@@ -86,12 +86,11 @@ export const WhyChooseUs: React.FC = () => {
             subtitle={
               'Home to a community of Young Professionals (ages 21-29) across different career paths, industries, and cultural backgrounds—who share their real experiences of schooling and early professional life. With over 100 young professionals across various career roles and representing 10 different cultural backgrounds, students will have an opportunity to learn from diverse experiences.'
             }
-            className={'mb-14 text-8xl'}
-            subTitleClassName='my-2 text-xl'
+            className={'-mt-10 mb-1 px-10 text-5xl md:mt-0 md:px-0 md:text-8xl'}
           />
 
           {/* The carousel container (relative) for stacking motion cards */}
-          <div className='relative mx-auto h-[700px] w-full overflow-hidden'>
+          <div className='relative mx-auto hidden h-[0px] w-full overflow-hidden md:block md:h-[700px]'>
             <NetworkVisualization />
             {/* <MentorNetwork /> */}
             {/*{cards.map((card, index) => {*/}

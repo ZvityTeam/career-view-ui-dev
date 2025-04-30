@@ -6,18 +6,18 @@ export const MentorHero = () => {
   const navigate = useNavigate();
   return (
     <section
-      className='relative min-h-screen bg-cover bg-center bg-no-repeat pt-32'
+      className='relative min-h-[90vh] bg-cover bg-center bg-no-repeat pt-16 sm:min-h-screen sm:pt-32'
       style={{
         backgroundImage: `url(${mentorHeroBg})`,
       }}
     >
       <div
         className={
-          'absolute left-0 top-20 flex h-96 flex-col justify-center gap-6 rounded-br-full bg-black/10 px-24 pb-60 pt-72 text-white backdrop-blur-3xl'
+          'absolute left-0 top-22 flex h-auto flex-col justify-center gap-4 rounded-br-[10rem] bg-black/10 px-6 py-8 text-white backdrop-blur-3xl sm:top-20 sm:h-96 sm:gap-6 sm:rounded-br-full sm:px-24 sm:pb-60 sm:pt-72'
         }
       >
-        <h1 className='text-8xl'>Share Your Journey</h1>
-        <p className='max-w-2xl text-2xl'>
+        <h1 className='text-4xl sm:text-8xl'>Share Your Journey</h1>
+        <p className='max-w-lg text-lg sm:max-w-2xl sm:text-2xl'>
           Join CareerView as a mentor and make a difference by guiding students
           toward their dreams with your expertise.
         </p>

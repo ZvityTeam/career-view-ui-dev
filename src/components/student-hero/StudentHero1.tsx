@@ -15,7 +15,7 @@ const StudentHero1 = () => {
     <div className='w-full overflow-hidden bg-primary pt-[10vh]'>
       <div
         ref={containerRef}
-        className='relative h-[87vh] w-full rounded-2xl'
+        className='relative h-[67vh] w-full rounded-2xl sm:h-[87vh]'
       >
         <svg
           aria-hidden='true'
@@ -48,12 +48,12 @@ const StudentHero1 = () => {
           <img
             src={studentImg}
             alt='Student Hero'
-            className='absolute left-20 top-[42%] h-auto object-cover'
+            className='absolute left-4 top-[42%] hidden h-auto w-1/3 object-cover sm:left-20 sm:w-auto md:block'
           />
           <img
             src={studentImg1}
             alt='Student Hero'
-            className='absolute right-0 top-[42%] h-auto object-cover'
+            className='absolute right-4 top-[42%] hidden h-auto w-1/3 object-cover sm:right-0 sm:w-auto md:block'
           />
           <motion.div
             className='absolute left-0 top-1/3 z-[1000] w-full -translate-x-1/2 -translate-y-1/2 px-4 text-center'
@@ -61,7 +61,7 @@ const StudentHero1 = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}
           >
-            <h1 className='text-5xl font-extrabold leading-tight tracking-tight text-white drop-shadow-xl md:text-7xl lg:text-8xl'>
+            <h1 className='text-5xl font-extrabold leading-tight tracking-tight text-white shadow-lg drop-shadow-xl sm:text-5xl md:text-7xl lg:text-8xl'>
               Shape Your <span className='text-yellow-500'>Future</span>
             </h1>
           </motion.div>
@@ -214,14 +214,16 @@ const VisionNote = ({ containerRef, text, color, rotate, top, left }: any) => {
     <motion.div
       onMouseDown={updateZIndex}
       style={{ top, left, rotate, zIndex }}
-      className={`vision-note absolute h-auto w-40 cursor-pointer p-4 md:w-48 ${color} rounded-2xl border border-white/20 bg-gradient-to-br from-white/60 to-white/30 shadow-[0_10px_25px_rgba(0,0,0,0.15)] backdrop-blur-md hover:shadow-[0_15px_30px_rgba(0,0,0,0.2)]`}
+      className={`vision-note absolute h-auto w-32 cursor-pointer p-3 sm:w-40 md:w-48 ${color} rounded-2xl border border-white/20 bg-gradient-to-br from-white/60 to-white/30 shadow-[0_10px_25px_rgba(0,0,0,0.15)] backdrop-blur-md hover:shadow-[0_15px_30px_rgba(0,0,0,0.2)]`}
       drag
       dragConstraints={containerRef}
       dragElastic={0.2}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.98 }}
     >
-      <p className='font-semibold text-[#1f1f1f] drop-shadow-sm'>{text}</p>
+      <p className='text-sm font-semibold text-[#1f1f1f] drop-shadow-sm sm:text-base'>
+        {text}
+      </p>
     </motion.div>
   );
 };
@@ -251,7 +253,7 @@ const VisionImage = ({ containerRef, src, alt, rotate, top, left }: any) => {
       src={src}
       alt={alt}
       style={{ top, left, rotate, zIndex }}
-      className='vision-image absolute h-32 w-32 cursor-pointer rounded-lg object-cover shadow-md md:h-40 md:w-40'
+      className='vision-image absolute h-24 w-24 cursor-pointer rounded-lg object-cover shadow-md sm:h-32 sm:w-32 md:h-40 md:w-40'
       drag
       dragConstraints={containerRef}
       dragElastic={0.2}

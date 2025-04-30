@@ -1,4 +1,3 @@
-// Importing images with correct extensions
 import logo3 from '../assets/schools/image10.png';
 import logo4 from '../assets/schools/image11png.png';
 import logo7 from '../assets/schools/image12.png';
@@ -13,7 +12,6 @@ import logo28 from '../assets/schools/image9.png';
 import { Marquee } from './marquee/Marquee';
 import { SectionHeader } from './section-header/SectionHeader';
 
-// Array of logos for easy mapping
 const logos = [
   logo3,
   logo4,
@@ -30,14 +28,14 @@ const logos = [
 
 const DoubleScrollingLogos = () => {
   return (
-    <section className='mt-36 flex flex-col items-center justify-center space-y-20 py-4'>
+    <section className='mt-36 flex flex-col items-center justify-center space-y-20 py-4 px-4 sm:px-6 lg:px-8'>
       <SectionHeader
         title={'Our Partners'}
         className=''
       />
       <Marquee
         pauseOnHover
-        className='mt-4 h-48'
+        className='mt-4 h-32 sm:h-40 lg:h-ful w-full max-w-7xl md:max-w-[90%]'
       >
         <LogoItems />
       </Marquee>
@@ -45,7 +43,6 @@ const DoubleScrollingLogos = () => {
   );
 };
 
-// LogoItems maps through the array of image sources and renders them
 const LogoItems = () => (
   <>
     {logos.map((src, index) => (
@@ -62,7 +59,7 @@ const LogoItem = ({ src }: { src: string }) => {
     <img
       src={src}
       alt='logo'
-      className='mx-10 h-auto max-w-lg'
+      className='mx-4 sm:mx-6 lg:mx-10 h-auto  max-w-xs sm:max-w-sm lg:max-w-xl'
     />
   );
 };

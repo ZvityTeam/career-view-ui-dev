@@ -18,15 +18,15 @@ export const StudentMentorConnect = () => {
 
   return (
     <section
-      className='grid min-h-[100vh] place-items-center pt-44'
+      className='grid place-items-center py-32  md:pt-44 md:min-h-[100vh]'
       style={{
         background:
           'linear-gradient(220deg, #000000 0%, #767676 33%, #F1CE7E 71%, #FFFBF0 100%)',
       }}
     >
-      <div className='flex min-h-screen w-full gap-20 p-32 pb-14'>
+      <div className='flex w-full gap-20 overflow-hidden px-8 pt-10 md:p-32 pb-14 md:min-h-screen md:overflow-visible'>
         {/* Left Side: Floating Elements */}
-        <div className='relative flex-1 pr-20'>
+        <div className='relative hidden flex-1 pr-20 lg:block'>
           {/* Background Ellipses */}
           <div className='float-animation absolute left-[-5%] top-[-30%] z-0 mix-blend-overlay'>
             <img
@@ -93,7 +93,7 @@ export const StudentMentorConnect = () => {
             <div className='my-6 h-0.5 w-[95%] bg-white' />
             <p className='text-xl'>
               {
-                'CareerView’s Student-Mentor Connect brings students and mentors together on an interactive platform. Students gain real-world insights, while mentors share their expertise through 1:1 mentoring.'
+                "CareerView's Student-Mentor Connect brings students and mentors together on an interactive platform. Students gain real-world insights, while mentors share their expertise through 1:1 mentoring."
               }
             </p>
             {firstMentor?.email && (
