@@ -43,7 +43,7 @@ export const MentorsList = () => {
       }
     >
       {(items) => (
-        <Section className='mt-44 gap-8'>
+        <Section className='mt-20 gap-8 md:mt-44'>
           {items.map((item, index) => {
             const isAdded = savedMentors.some((m) => m.name === item.name);
             return (
@@ -53,6 +53,11 @@ export const MentorsList = () => {
                 isAdded={isAdded}
                 onSeeProfile={() => navigate(`/browse-mentors/${index}`)}
                 onAddToMentorList={() => toggleMentorInList(item)}
+                onAskQuestion={() =>
+                  navigate(`/student?scrollTo=ask-a-question`, {
+                    state: { index },
+                  })
+                }
               />
             );
           })}

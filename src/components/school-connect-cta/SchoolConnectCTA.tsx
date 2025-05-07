@@ -48,7 +48,7 @@ export const SchoolConnectCTA = () => {
           }
         />
         <div className='mt-5 flex justify-center gap-6'>
-          <Button
+          {/* <Button
             variant={'outline'}
             size={'lg'}
             className={
@@ -56,13 +56,13 @@ export const SchoolConnectCTA = () => {
             }
           >
             See It in Action
-          </Button>
+          </Button> */}
           <Button
             size={'lg'}
-            onClick={() => navigate(`/contact-us`)}
+            onClick={() => navigate(`/school?scrollTo=schedule-call`)}
             className='bg-black text-white hover:bg-[rgba(0,0,0,0.8)]'
           >
-            Contact Us
+            Schedule a Call
           </Button>
         </div>
       </div>

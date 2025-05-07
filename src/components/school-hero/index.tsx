@@ -1,5 +1,6 @@
 // SchoolHero.tsx
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import schoolHero from '../../assets/schoolHreroBg.png';
 import { useNavbarContext } from '../../context/navbar-context/NavbarContext.tsx';
 import useResponsiveLayout from '../../hooks/useResponsiveLayout';
@@ -45,6 +46,7 @@ export const SchoolHero = () => {
   };
 
   const styles = getContainerStyles();
+  const navigate = useNavigate();
 
   return (
     <section
@@ -62,7 +64,7 @@ export const SchoolHero = () => {
         </p>
         <Button
           className={styles.buttonClass}
-          onClick={() => (window.location.href = '#form')}
+          onClick={() => navigate('/school?scrollTo=schedule-call')}
         >
           Schedule a Session
         </Button>

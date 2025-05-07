@@ -25,19 +25,15 @@ export const FOOTER_NAV_ITEMS: NavbarItem[] = [
     link: '/resources',
   },
   {
-    label: 'About Us',
-    link: '/about-us',
-  },
-  {
     label: 'Ask a Question',
-    link: '/ask-a-question',
+    link: '/student?scrollTo=ask-a-question',
   },
   {
     label: 'Become a Mentor',
-    link: '/become-a-mentor',
+    link: '/mentors?scrollTo=become-mentor',
   },
   {
     label: 'Schedule a Livestream Event',
-    link: '/contact-us',
+    link: '/school?scrollTo=schedule-call',
   },
 ];

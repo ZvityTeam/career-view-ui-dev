@@ -2,15 +2,12 @@ import { Home as HomeIcon, Menu as MenuIcon, X as XIcon } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AppLogo } from '../../assets';
-import AppLogoDark from '../../assets/CareerViewLogo_black (Custom).png';
-import { useNavbarContext } from '../../context/navbar-context/NavbarContext';
 import { cn } from '../../utils/cn.ts';
 import { NavIcon } from '../nav-icon/NavIcon';
 import { Button } from '../ui/Button';
 import { NAV_ITEMS } from './NavbarConfig';
 
 export const Navbar = () => {
-  const { isDark } = useNavbarContext();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -18,13 +15,13 @@ export const Navbar = () => {
       <nav
         className={cn(
           'absolute top-0 z-[9999] w-full px-4 pt-6 sm:px-10 sm:pt-8 lg:px-20 lg:pt-12',
-          'bg-black/10 backdrop-blur-3xl'
+          'bg-black/40 backdrop-blur-3xl'
         )}
       >
         <div
           className={cn(
             'flex flex-col items-center justify-between border-b-[1px] pb-4 sm:flex-row sm:pb-6 lg:pb-8',
-            isDark ? 'border-gray-800' : 'border-white'
+            'border-white'
           )}
         >
           {/* Left Side */}
@@ -36,7 +33,7 @@ export const Navbar = () => {
                 className='flex items-center space-x-2'
               >
                 <img
-                  src={isDark ? AppLogoDark : AppLogo}
+                  src={AppLogo}
                   alt='CareerViewLogo'
                   className='w-56 sm:w-40 lg:w-48'
                 />
@@ -48,19 +45,9 @@ export const Navbar = () => {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? (
-                <XIcon
-                  className={cn(
-                    'h-8 w-8',
-                    isDark ? 'text-gray-800' : 'text-white'
-                  )}
-                />
+                <XIcon className={cn('h-8 w-8', 'text-white')} />
               ) : (
-                <MenuIcon
-                  className={cn(
-                    'h-8 w-8',
-                    isDark ? 'text-gray-800' : 'text-white'
-                  )}
-                />
+                <MenuIcon className={cn('h-8 w-8', 'text-white')} />
               )}
             </button>
             {/* Navigation Links (Visible on Desktop) */}
@@ -69,11 +56,7 @@ export const Navbar = () => {
                 <Link
                   key={item.label}
                   to={item.link}
-                  className={cn(
-                    isDark
-                      ? 'text-gray-800 hover:text-gray-600'
-                      : 'text-white hover:text-gray-300'
-                  )}
+                  className={cn('text-white hover:text-gray-300')}
                 >
                   {item.label}
                 </Link>
@@ -87,9 +70,7 @@ export const Navbar = () => {
               to='/'
               className={cn(
                 'text-base sm:text-lg lg:text-xl',
-                isDark
-                  ? 'text-gray-800 hover:text-gray-600'
-                  : 'text-white hover:text-gray-300'
+                'text-white hover:text-gray-300'
               )}
             >
               <NavIcon
@@ -116,10 +97,8 @@ export const Navbar = () => {
                 key={item.label}
                 to={item.link}
                 className={cn(
-                  'text-4xl font-medium py-3',
-                  isDark
-                    ? 'text-gray-800 hover:text-gray-600'
-                    : 'text-white hover:text-gray-300'
+                  'py-3 text-4xl font-medium',
+                  'text-white hover:text-gray-300'
                 )}
                 onClick={() => setIsMenuOpen(false)}
               >

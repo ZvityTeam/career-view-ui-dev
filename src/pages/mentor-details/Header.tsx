@@ -8,9 +8,7 @@ export const Header = ({ name, profileImage, bio }: HeaderProps) => {
       <div className='relative z-10 w-full'>
         <img
           src={placeholderImg}
-          className='w-full object-contain'
-          height={50}
-          width={600}
+          className='object-contain'
           alt={name}
         />
         <img

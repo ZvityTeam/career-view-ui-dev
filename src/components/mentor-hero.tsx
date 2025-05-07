@@ -13,7 +13,7 @@ export const MentorHero = () => {
     >
       <div
         className={
-          'absolute left-0 top-22 flex h-auto flex-col justify-center gap-4 rounded-br-[10rem] bg-black/10 px-6 py-8 text-white backdrop-blur-3xl sm:top-20 sm:h-96 sm:gap-6 sm:rounded-br-full sm:px-24 sm:pb-60 sm:pt-72'
+          'top-22 absolute left-0 flex h-auto flex-col justify-center gap-4 rounded-br-[10rem] bg-black/10 px-6 py-8 text-white backdrop-blur-3xl sm:top-20 sm:h-96 sm:gap-6 sm:rounded-br-full sm:px-24 sm:pb-60 sm:pt-72'
         }
       >
         <h1 className='text-4xl sm:text-8xl'>Share Your Journey</h1>
@@ -23,7 +23,7 @@ export const MentorHero = () => {
         </p>
         <Button
           className='w-36 border-white text-white'
-          onClick={() => navigate(`/become-a-mentor`)}
+          onClick={() => navigate(`/mentors?scrollTo=become-mentor`)}
         >
           Become a mentor
         </Button>

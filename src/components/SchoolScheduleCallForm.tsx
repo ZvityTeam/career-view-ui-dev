@@ -13,6 +13,7 @@ interface FormData {
 
 interface Errors extends Partial<FormData> {
   selectionError?: string;
+  submitError?: string;
 }
 
 const SchoolScheduleCallForm: React.FC = () => {
@@ -24,6 +25,7 @@ const SchoolScheduleCallForm: React.FC = () => {
     selections: [],
   });
   const [errors, setErrors] = useState<Errors>({});
+  const [successMessage, setSuccessMessage] = useState<string>('');
   const [searchQuery, setSearchQuery] = useState('');
   const [filter, setFilter] = useState<'all' | 'mentors' | 'careers'>('all');
 
@@ -36,7 +38,8 @@ const SchoolScheduleCallForm: React.FC = () => {
       newErrors.email = 'Invalid email format';
     }
     if (!formData.questions.trim())
-      newErrors.questions = 'Questions are required';
+      newErrors.questions =
+        'Message is required to help us understand your request';
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -98,19 +101,63 @@ const SchoolScheduleCallForm: React.FC = () => {
     return [...mentorResults, ...careerResults];
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSuccessMessage('');
     if (validateForm()) {
-      console.log('Form submitted:', formData);
-      setFormData({
-        fullName: '',
-        email: '',
-        schoolName: '',
-        questions: '',
-        selections: [],
-      });
-      setSearchQuery('');
-      alert('Question submitted successfully!');
+      try {
+        // Format selections as "name - role" for mentors, or just name for careers
+        const formattedSelections = formData.selections
+          .map((selection) => {
+            const mentor = mentors.find((m) => m.name === selection);
+            if (mentor) {
+              return `${mentor.name} - ${mentor.role || 'No Role'}`;
+            }
+            const career = careers.find((c) => c.name === selection);
+            if (career) {
+              return career.name;
+            }
+            return selection;
+          })
+          .join(', ');
+
+        // Google Form URL and entry IDs
+        const GOOGLE_FORM_URL =
+          'https://docs.google.com/forms/d/e/1FAIpQLSd6PozhzFurxYiwPcpSAPxrmWvjdx2h_BLOOm7MDMpGHGf0-A/formResponse';
+        const formPayload = {
+          'entry.1299404302': formData.fullName, // Full name
+          'entry.1521851492': formData.email, // Email
+          'entry.1224065352': formData.schoolName, // School name
+          'entry.783412761': formData.questions, // Questions
+          'entry.842032282': formattedSelections, // Mentors/Careers Selection
+        };
+
+        // Send POST request to Google Form
+        await fetch(GOOGLE_FORM_URL, {
+          method: 'POST',
+          mode: 'no-cors', // Required for Google Forms
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: new URLSearchParams(formPayload).toString(),
+        });
+
+        console.log('Form submitted:', formData);
+        setFormData({
+          fullName: '',
+          email: '',
+          schoolName: '',
+          questions: '',
+          selections: [],
+        });
+        setSearchQuery('');
+        setSuccessMessage('Call request submitted successfully!');
+      } catch (error) {
+        console.error('Error submitting form:', error);
+        setErrors({
+          submitError: 'Failed to submit call request. Please try again.',
+        });
+      }
     }
   };
 
@@ -140,13 +187,14 @@ const SchoolScheduleCallForm: React.FC = () => {
   const midPoint = Math.ceil(items.length / 2);
   const topRow = items.slice(0, midPoint);
   const bottomRow = items.slice(midPoint);
+  const errorMessages = Object.values(errors).filter((error) => error);
 
   return (
     <CurvedWrapper
       curve='both'
-      className='z-20 mb-52 mt-16 bg-gray-100 md:mb-36 md:mt-32'
+      className='z-20 mb-96 mt-16 bg-gray-100 md:mb-72 md:mt-32'
       innerClassName='pt-0'
-      minHeight='90vh'
+      minHeight='110vh'
     >
       <div className='container mx-auto mt-16 px-4 sm:mt-36 sm:px-6'>
         <h1 className='mb-2 text-center text-2xl font-extrabold tracking-tight text-black sm:text-4xl'>
@@ -188,12 +236,6 @@ const SchoolScheduleCallForm: React.FC = () => {
                 />{' '}
                 (optional).
               </p>
-              {errors.fullName && (
-                <p className='mt-1 text-sm text-gray-600'>{errors.fullName}</p>
-              )}
-              {errors.email && (
-                <p className='mt-1 text-sm text-gray-600'>{errors.email}</p>
-              )}
               <p className='mb-4'>
                 I have a request:{' '}
                 <textarea
@@ -204,16 +246,11 @@ const SchoolScheduleCallForm: React.FC = () => {
                   className='mt-2 w-full border-b-2 border-gray-300 bg-transparent p-1 text-black transition-colors duration-300 focus:border-blue-400 focus:outline-none'
                   placeholder='Any special Requests?'
                 />
-                {errors.questions && (
-                  <p className='mt-1 text-sm text-gray-600'>
-                    {errors.questions}
-                  </p>
-                )}
               </p>
               <div className='mb-6'>
                 <div className='mb-2 flex flex-col items-start justify-between sm:flex-row sm:items-center'>
                   <label className='mb-1 font-bold text-black'>
-                    I'd like to invite (select mentors or careers)
+                    I'd like to invite (select mentors or careers, optional)
                   </label>
                   <div className='mb-2 flex space-x-2'>
                     <button
@@ -332,19 +369,31 @@ const SchoolScheduleCallForm: React.FC = () => {
                     </div>
                   )}
                 </div>
-                {errors.selectionError && (
-                  <p className='mt-1 text-sm text-gray-600'>
-                    {errors.selectionError}
-                  </p>
-                )}
               </div>
+              {successMessage && (
+                <div className='mt-4 rounded bg-green-100 p-4 text-green-600'>
+                  <p className='font-semibold'>{successMessage}</p>
+                </div>
+              )}
+              {errorMessages.length > 0 && (
+                <div className='mt-4 rounded bg-pink-100 p-4 text-red-600'>
+                  <p className='font-semibold'>
+                    Please fix the following errors:
+                  </p>
+                  <ul className='list-disc pl-5'>
+                    {errorMessages.map((error, index) => (
+                      <li key={index}>{error}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
               <div className='mt-8 flex justify-end'>
                 <Button
                   variant={'default'}
                   size={'lg'}
                   onClick={handleSubmit}
                 >
-                  Submit Question
+                  Submit Request
                 </Button>
               </div>
             </div>

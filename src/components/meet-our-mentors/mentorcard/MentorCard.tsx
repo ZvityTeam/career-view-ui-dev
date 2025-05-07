@@ -2,6 +2,7 @@ import { Volume2, VolumeX } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Mentor } from '../../../types/types';
 import { Button } from '../../ui/Button.tsx';
+import { useNavigate } from 'react-router-dom';
 
 export const MentorCard = ({
   name,
@@ -18,6 +19,7 @@ export const MentorCard = ({
   const [isMuted, setIsMuted] = useState(true);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const navigate = useNavigate();
 
   const toggleMute = () => {
     setIsMuted((prev) => !prev);
@@ -82,7 +84,7 @@ export const MentorCard = ({
         </button>
       </div>
       {showActionButton && (
-        <Button className='mt-3 text-sm sm:mt-4 sm:text-base'>
+        <Button className='mt-3 text-sm sm:mt-4 sm:text-base' onClick={()=> navigate('/student?scrollTo=ask-a-question')}>
           Ask a Question
         </Button>
       )}

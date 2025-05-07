@@ -134,10 +134,10 @@ export const StudentMentorConnect = () => {
               </div>
             )}
             <div className='flex gap-6'>
-              <Button>Browse Mentors</Button>
+              <Button onClick={()=>navigate('/browse-mentors')}>Browse Mentors</Button>
               <Button
                 variant='outline'
-                onClick={() => navigate(`/become-a-mentor`)}
+                onClick={() => navigate(`/mentors?scrollTo=become-mentor`)}
               >
                 Become Mentor
               </Button>

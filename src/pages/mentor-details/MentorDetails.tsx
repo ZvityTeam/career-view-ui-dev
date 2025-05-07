@@ -1,13 +1,13 @@
-import { useParams } from 'react-router-dom';
-import { useNavbarContext } from '../../context/navbar-context/NavbarContext';
 import { useEffect } from 'react';
-import { Header } from './Header';
-import { MentorProfileSection } from './MentorProfileSection';
-import { useMentorStore } from '../../store/useMentorStore';
-import { Mentor } from '../../types/types';
+import { useNavigate, useParams } from 'react-router-dom';
 import { AnimatedPageWrapper } from '../../components/PageWrapper';
 import { data as mentorsData } from '../../content/mentors';
+import { useNavbarContext } from '../../context/navbar-context/NavbarContext';
 import useLocalStorageState from '../../hooks/useLocalStorageState.ts';
+import { useMentorStore } from '../../store/useMentorStore';
+import { Mentor } from '../../types/types';
+import { Header } from './Header';
+import { MentorProfileSection } from './MentorProfileSection';
 
 export const MentorDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -39,18 +39,23 @@ export const MentorDetails = () => {
       setMentors(mentorsData);
     }
   }, [mentors, setMentors]);
+  const navigate = useNavigate();
 
   const mentorIndex = Number(id);
   const mentor: Mentor | undefined = mentors[mentorIndex];
 
   if (!mentor) {
-    return <div>Mentor not found</div>;
+    return (
+      <div className='text-center text-base text-gray-600 sm:text-lg'>
+        Mentor not found
+      </div>
+    );
   }
 
   const isAdded = savedMentors.some((m) => m.name === mentor.name);
   return (
     <AnimatedPageWrapper>
-      <main className='m-32'>
+      <main className='mx-0 py-36 sm:mx-8 sm:py-8 lg:mx-16 xl:mx-32'>
         <Header
           name={mentor.name}
           profileImage={mentor.profileImage}
@@ -71,8 +76,13 @@ export const MentorDetails = () => {
           industries={mentor.industries}
           questions={mentor.questions}
           socialLinks={mentor.socialLinks}
-          onAskQuestion={() => {}}
+          onAskQuestion={() =>
+            navigate('/student?scrollTo=ask-a-question', {
+              state: { index: id },
+            })
+          }
           onAddToMentorList={() => toggleMentorInList(mentor)}
+          podcastLink={mentor.podcastLink}
           isAdded={isAdded}
         />
       </main>

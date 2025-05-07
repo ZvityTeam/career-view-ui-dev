@@ -1,7 +1,4 @@
-import { AskAQuestion } from '../pages/ask-a-question/AskAQuestion.tsx';
-import { BecomeAMentor } from '../pages/become-a-mentor/BecomeAMentor.tsx';
 import { BrowseMentors } from '../pages/browse-mentors/BrowseMentors.tsx';
-import { ContactUs } from '../pages/contact-us/ContactUs.tsx';
 import { Home } from '../pages/home/Home.tsx';
 import { MentorDetails } from '../pages/mentor-details/MentorDetails.tsx';
 import { Mentors } from '../pages/mentors/mentors.tsx';
@@ -18,7 +15,7 @@ export const ROUTES: Route[] = [
     component: Home,
     secured: false,
     metaData: {
-      title: 'Career View - Home',
+      title: 'CareerView',
     },
   },
   {
@@ -26,7 +23,7 @@ export const ROUTES: Route[] = [
     component: Student,
     secured: false,
     metaData: {
-      title: 'Career View - Student',
+      title: 'CareerView - Student',
     },
   },
   {
@@ -34,7 +31,7 @@ export const ROUTES: Route[] = [
     component: School,
     secured: false,
     metaData: {
-      title: 'Career View - School',
+      title: 'CareerView - School',
     },
   },
   {
@@ -42,7 +39,7 @@ export const ROUTES: Route[] = [
     component: Mentors,
     secured: false,
     metaData: {
-      title: 'Career View - School',
+      title: 'CareerView - Mentor',
     },
   },
   {
@@ -50,7 +47,7 @@ export const ROUTES: Route[] = [
     component: BrowseMentors,
     secured: false,
     metaData: {
-      title: 'Career View - Mentor',
+      title: 'CareerView - Mentor',
     },
   },
   {
@@ -58,31 +55,7 @@ export const ROUTES: Route[] = [
     component: MentorDetails,
     secured: false,
     metaData: {
-      title: 'Career View - Mentor Details',
-    },
-  },
-  {
-    path: '/ask-a-question',
-    component: AskAQuestion,
-    secured: false,
-    metaData: {
-      title: 'Career View - Ask a question',
-    },
-  },
-  {
-    path: '/contact-us',
-    component: ContactUs,
-    secured: false,
-    metaData: {
-      title: 'Career View - Contact Us',
-    },
-  },
-  {
-    path: '/become-a-mentor',
-    component: BecomeAMentor,
-    secured: false,
-    metaData: {
-      title: 'Career View - Become a Mentor',
+      title: 'CareerView - Mentor Details',
     },
   },
   {
@@ -90,7 +63,7 @@ export const ROUTES: Route[] = [
     component: Resources,
     secured: false,
     metaData: {
-      title: 'Career View - E books',
+      title: 'CareerView - E books',
     },
   },
   {
@@ -98,7 +71,7 @@ export const ROUTES: Route[] = [
     component: PrivacyPoilicyPage,
     secured: false,
     metaData: {
-      title: 'Career View - E books',
+      title: 'CareerView - Privacy Policy',
     },
   },
   {
@@ -106,7 +79,7 @@ export const ROUTES: Route[] = [
     component: TermsAndConditionsPage,
     secured: false,
     metaData: {
-      title: 'Career View - E books',
+      title: 'CareerView - Terms and Conditions',
     },
   },
 ];

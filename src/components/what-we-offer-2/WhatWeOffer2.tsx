@@ -26,6 +26,7 @@ import { useMentorStore } from '../../store/useMentorStore';
 import { Marquee } from '../marquee/Marquee';
 import { SectionHeader } from '../section-header/SectionHeader';
 import { Button } from '../ui/Button';
+import { useNavigate } from 'react-router-dom';
 
 // Set up pdfjs worker
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
@@ -344,6 +345,7 @@ export default function WhatWeOffer2() {
   const [selectedVideoTitle, setSelectedVideoTitle] = useState<string>(
     Podcasts[0].title
   );
+  const navigate = useNavigate();
   return (
     <section className='mt-20 min-h-screen w-full pt-6 sm:mt-28 md:mt-36 md:pt-12'>
       <div className='mx-4 px-2 sm:mx-8 sm:px-4 md:mx-12 lg:mx-20 lg:px-12'>
@@ -469,7 +471,7 @@ export default function WhatWeOffer2() {
                   <h3 className='text-lg font-bold text-black sm:text-xl lg:text-2xl'>
                     Explore Our eBooks
                   </h3>
-                  <Button className='rounded-full bg-black px-3 py-1 text-xs text-white hover:bg-black/90 lg:px-4 lg:text-sm'>
+                  <Button onClick={()=>navigate('/resources')} className='rounded-full bg-black px-3 py-1 text-xs text-white hover:bg-black/90 lg:px-4 lg:text-sm'>
                     View All Resources
                   </Button>
                 </div>

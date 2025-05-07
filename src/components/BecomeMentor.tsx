@@ -19,7 +19,6 @@ interface MentorFormData {
   highSchoolSubjects: string;
   hobbies: string;
   sideHustles: string;
-  profilePicture: File | null;
 }
 
 const BecomeMentor: React.FC = () => {
@@ -41,28 +40,110 @@ const BecomeMentor: React.FC = () => {
     highSchoolSubjects: '',
     hobbies: '',
     sideHustles: '',
-    profilePicture: null,
   });
   const [step, setStep] = useState(1);
+  const [errors, setErrors] = useState<Partial<MentorFormData & { submitError?: string }>>({});
+  const [successMessage, setSuccessMessage] = useState<string>('');
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0] || null;
-    setFormData((prev) => ({ ...prev, profilePicture: file }));
+    setErrors((prev) => ({ ...prev, [name]: '' }));
   };
 
   const nextStep = () => setStep((prev) => prev + 1);
   const prevStep = () => setStep((prev) => prev - 1);
 
+  const validateForm = (): boolean => {
+    const newErrors: Partial<MentorFormData> = {};
+    if (!formData.fullName.trim()) newErrors.fullName = 'Full name is required';
+    if (!formData.dob.trim()) newErrors.dob = 'Date of birth is required';
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'Invalid email format';
+    }
+    if (!formData.mobile.trim()) newErrors.mobile = 'Mobile number is required';
+    if (!formData.state.trim()) newErrors.state = 'State is required';
+    if (!formData.profession.trim()) newErrors.profession = 'Profession is required';
+    if (!formData.jobTitle.trim()) newErrors.jobTitle = 'Job title is required';
+    if (!formData.organization.trim()) newErrors.organization = 'Organization is required';
+    if (!formData.industry.trim()) newErrors.industry = 'Industry is required';
+    if (!formData.qualification.trim()) newErrors.qualification = 'Qualification is required';
+    if (!formData.university.trim()) newErrors.university = 'University is required';
+    if (!formData.highSchool.trim()) newErrors.highSchool = 'High school is required';
+    if (!formData.highSchoolSubjects.trim()) newErrors.highSchoolSubjects = 'High school subjects are required';
+    if (!formData.hobbies.trim()) newErrors.hobbies = 'Hobbies are required';
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async () => {
+    if (validateForm()) {
+      try {
+        // Google Form URL
+        const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdY21gWXe9CcgncjbPXCcDRaQTb62jxz_bFUkvjUjHN1itaaA/formResponse';
+
+        // Form payload for text fields
+        const textPayload = {
+          'entry.283236330': formData.fullName, // full name
+          'entry.1872632309': formData.dob, // dob
+          'entry.1755238445': formData.email, // email
+          'entry.325343894': formData.mobile, // mobile
+          'entry.709087808': formData.state, // state
+          'entry.1056982546': formData.profession, // profession
+          'entry.327016597': formData.jobTitle, // Job title
+          'entry.1983453090': formData.organization, // organization
+          'entry.51879886': formData.industry, // industry
+          'entry.93708825': formData.qualification, // qualification
+          'entry.1549775718': formData.university, // University
+          'entry.386331571': formData.highSchool, // High school
+          'entry.1098732716': formData.highSchoolSubjects, // High school Subjects
+          'entry.771753730': formData.hobbies, // Hobbies
+          'entry.2101607953': formData.sideHustles, // Side Hustles
+        };
+
+        // Send POST request to Google Form
+        await fetch(GOOGLE_FORM_URL, {
+          method: 'POST',
+          mode: 'no-cors', // Required for Google Forms
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: new URLSearchParams(textPayload).toString(),
+        });
+
+        console.log('Form submitted:', formData);
+        setFormData({
+          fullName: '',
+          dob: '',
+          email: '',
+          mobile: '',
+          state: '',
+          profession: '',
+          jobTitle: '',
+          organization: '',
+          industry: '',
+          qualification: '',
+          university: '',
+          highSchool: '',
+          highSchoolSubjects: '',
+          hobbies: '',
+          sideHustles: '',
+        });
+        setStep(1);
+        setSuccessMessage('Mentor profile submitted successfully!');
+      } catch (error) {
+        console.error('Error submitting form:', error);
+        setErrors({ submitError: 'Failed to submit mentor profile. Please try again.' });
+      }
+    }
+  };
+
   // Responsive form field classes
   const getInputClasses = (width: string) => {
-    // Adjust widths based on screen size
     const baseClasses =
       'border-b-2 border-gray-300 bg-transparent p-1 text-black focus:border-black focus:outline-none';
 
@@ -88,6 +169,8 @@ const BecomeMentor: React.FC = () => {
   };
 
   const renderStep = () => {
+    const errorMessages = Object.values(errors).filter((error) => error);
+
     switch (step) {
       case 1:
         return (
@@ -187,6 +270,16 @@ const BecomeMentor: React.FC = () => {
                 )}
               </p>
             </div>
+            {errorMessages.length > 0 && (
+              <div className='mt-4 rounded bg-pink-100 p-4 text-red-600'>
+                <p className='font-semibold'>Please fix the following errors:</p>
+                <ul className='list-disc pl-5'>
+                  {errorMessages.map((error, index) => (
+                    <li key={index}>{error}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
             <div className='mt-8 flex justify-end'>
               <button
                 className='w-full rounded bg-black px-4 py-2 font-semibold text-white transition hover:bg-gray-800 sm:w-auto'
@@ -325,6 +418,16 @@ const BecomeMentor: React.FC = () => {
                 )}
               </p>
             </div>
+            {errorMessages.length > 0 && (
+              <div className='mt-4 rounded bg-pink-100 p-4 text-red-600'>
+                <p className='font-semibold'>Please fix the following errors:</p>
+                <ul className='list-disc pl-5'>
+                  {errorMessages.map((error, index) => (
+                    <li key={index}>{error}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
             <div className='mt-8 flex flex-wrap justify-between gap-4'>
               <button
                 className='w-full rounded bg-gray-300 px-4 py-2 font-semibold text-black transition hover:bg-gray-400 sm:w-auto'
@@ -397,19 +500,21 @@ const BecomeMentor: React.FC = () => {
                 )}
               </p>
             </div>
-            <div className={`mt-8 ${isMobile ? 'space-y-4' : ''}`}>
-              <p className={isMobile ? 'flex flex-col' : 'block'}>
-                Upload a profile picture (portrait, in work attire, facing
-                forward):
-                <input
-                  type='file'
-                  accept='image/*'
-                  onChange={handleFileChange}
-                  className={`${isMobile ? 'my-2 w-full' : 'mt-2 block'} text-gray-600`}
-                />
-                <span className='text-sm text-gray-500'>See examples</span>
-              </p>
-            </div>
+            {successMessage && (
+              <div className='mt-4 rounded bg-green-100 p-4 text-green-600'>
+                <p className='font-semibold'>{successMessage}</p>
+              </div>
+            )}
+            {errorMessages.length > 0 && (
+              <div className='mt-4 rounded bg-pink-100 p-4 text-red-600'>
+                <p className='font-semibold'>Please fix the following errors:</p>
+                <ul className='list-disc pl-5'>
+                  {errorMessages.map((error, index) => (
+                    <li key={index}>{error}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
             <div className='mt-8 flex flex-wrap justify-between gap-4'>
               <button
                 className='w-full rounded bg-gray-300 px-4 py-2 font-semibold text-black transition hover:bg-gray-400 sm:w-auto'
@@ -419,9 +524,7 @@ const BecomeMentor: React.FC = () => {
               </button>
               <button
                 className='w-full rounded bg-black px-4 py-2 font-semibold text-white transition hover:bg-gray-800 sm:w-auto'
-                onClick={() =>
-                  alert('Form submitted! (Placeholder for submission logic)')
-                }
+                onClick={handleSubmit}
               >
                 Submit My Mentor Profile
               </button>
@@ -470,7 +573,6 @@ const BecomeMentor: React.FC = () => {
         <div
           className={`grid grid-cols-1 ${isMobile || isTablet ? 'gap-8' : 'gap-12 lg:grid-cols-2'}`}
         >
-          {/* Info Column - Conditionally render based on step in mobile view */}
           {(!isMobile || (isMobile && step === 1)) && (
             <div className='info-column rounded-lg bg-white p-4 shadow-sm sm:p-6'>
               <YouTube
@@ -492,8 +594,6 @@ const BecomeMentor: React.FC = () => {
               )}
             </div>
           )}
-
-          {/* Form Column */}
           <div className='form-column rounded-lg bg-white p-4 shadow-sm sm:p-6'>
             <div className='mb-6 flex items-center justify-center'>
               <div className='flex items-center'>

@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import useResponsiveLayout from '../../hooks/useResponsiveLayout';
 import { useMentorStore } from '../../store/useMentorStore';
 import { Mentor } from '../../types/types';
@@ -8,6 +9,7 @@ export default function MeetingsHero() {
   const { getRandomMentors } = useMentorStore();
   const mentors: Mentor[] = getRandomMentors(30);
   const { isMobile, isTablet } = useResponsiveLayout();
+  const navigate = useNavigate();
 
   // Split mentors into three groups of 10 for each column
   const column1Mentors = mentors.slice(0, 10);
@@ -41,7 +43,7 @@ export default function MeetingsHero() {
   );
 
   return (
-    <div className='flex w-full flex-col overflow-hidden bg-primary pb-5 md:h-screen md:flex-row md:pb-0'>
+    <div className='flex w-full flex-col overflow-hidden bg-primary pb-5 pt-14 md:h-screen md:flex-row md:pb-0 md:pt-0'>
       {/* Left Section */}
       <div className='relative flex w-full flex-col justify-center px-8 py-12 md:w-1/2 md:px-16 lg:px-24'>
         <div className='absolute left-24 top-24 opacity-20'>
@@ -67,14 +69,16 @@ export default function MeetingsHero() {
             <Button
               variant={'default'}
               className='hover:bg-[#ffffff] hover:text-black'
+              onClick={() => navigate('/student?scrollTo=ask-a-question')}
             >
-              Start Today!
+              Ask a Question
             </Button>
             <Button
               variant={'outline'}
               className='hover:bg-[#ffffff]'
+              onClick={() => navigate('/school?scrollTo=schedule-call')}
             >
-              Registration
+              Register for a livestream
             </Button>
           </div>
         </div>

@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import timeline_img2 from '../../assets/mentors_page/timeline_img1.png';
 import timeline_img1 from '../../assets/schoolPageIllustrations/timeline_img1.png';
 import { CareerTalksLivestream } from '../../components/CareerTalksLivestream/CareerTalksLivestream.tsx';
@@ -5,7 +7,6 @@ import { AnimatedPageWrapper } from '../../components/PageWrapper.tsx';
 import { SchoolHero } from '../../components/school-hero';
 import SchoolScheduleCallForm from '../../components/SchoolScheduleCallForm.tsx';
 import SearchFieldComponent from '../../components/student-mentor-connect/randomlyplacedcomponents/search-field.tsx';
-import { Testimonials } from '../../components/testimonials/Testimonials.tsx';
 import { VerticalTimelineComponent } from '../../components/vertical-timeline.tsx';
 
 interface TimelineItem {
@@ -20,10 +21,13 @@ interface TimelineItem {
 }
 
 export const School = () => {
+  const location = useLocation();
+  const scheduleCallRef = useRef<HTMLDivElement>(null);
+
   const stepsData: TimelineItem[] = [
     {
       id: 1,
-      title: 'Step 1:  Choose a Date',
+      title: 'Step 1: Choose a Date',
       subtitle: '',
       description:
         'Select a date for the livestream that works best for your students. Consider their schedule and availability to ensure maximum participation.',
@@ -57,20 +61,47 @@ export const School = () => {
     },
   ];
 
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    if (params.get('scrollTo') === 'schedule-call' && scheduleCallRef.current) {
+      const scrollToForm = () => {
+        scheduleCallRef.current?.scrollIntoView({ behavior: 'smooth' });
+      };
+
+      // Initial scroll attempt
+      scrollToForm();
+
+      // Set up observer to handle dynamic height changes
+      const observer = new ResizeObserver(() => {
+        scrollToForm();
+      });
+
+      // Observe the document body for height changes
+      observer.observe(document.body);
+
+      // Retry scroll after a short delay to account for loading
+      const timeout = setTimeout(scrollToForm, 1000);
+
+      return () => {
+        observer.disconnect();
+        clearTimeout(timeout);
+      };
+    }
+  }, [location.search]);
+
   return (
     <AnimatedPageWrapper>
       <main>
         <SchoolHero />
-        {/* <WhatToExpect /> */}
         <CareerTalksLivestream />
         <VerticalTimelineComponent
           items={stepsData}
           title='How to get started'
           subtitle='simple 3 step guide to have a live stream event'
         />
-        <Testimonials />
-        <div id='form'></div>
-        <SchoolScheduleCallForm />
+        <div ref={scheduleCallRef}>
+          <SchoolScheduleCallForm />
+        </div>
       </main>
     </AnimatedPageWrapper>
   );

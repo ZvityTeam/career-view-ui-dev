@@ -5,7 +5,6 @@ import MeetingsHero from '../../components/MeetingsHero/MeetingsHero.tsx';
 import { AnimatedPageWrapper } from '../../components/PageWrapper.tsx';
 import { SchoolConnectCTA } from '../../components/school-connect-cta/SchoolConnectCTA.tsx';
 import { StudentMentorConnect } from '../../components/student-mentor-connect/StudentMentorConnect.tsx';
-import { Testimonials } from '../../components/testimonials/Testimonials.tsx';
 import { WhatWeDo } from '../../components/what-we-do/WhatWeDo.tsx';
 import { WhyChooseUs } from '../../components/why-choose-us/WhyChooseUs.tsx';
 
@@ -23,7 +22,7 @@ export const Home = () => {
         {/* <OurEvents /> */}
         <SchoolConnectCTA />
         <MeetOutMentors />
-        <Testimonials />
+        {/* <Testimonials /> */}
         <FaqSection page='home' />
       </main>
     </AnimatedPageWrapper>

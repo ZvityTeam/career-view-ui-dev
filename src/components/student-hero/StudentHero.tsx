@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
   Activity,
@@ -11,12 +10,15 @@ import {
   MousePointerClick,
   Verified,
 } from 'lucide-react';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useNavbarContext } from '../../context/navbar-context/NavbarContext';
 import { Section } from '../container/Section';
 import { Button } from '../ui/Button';
-import { useNavbarContext } from '../../context/navbar-context/NavbarContext';
 
 export const StudentHero = () => {
   const { setNavbarTheme } = useNavbarContext();
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Switch navbar to dark theme on mount
@@ -53,7 +55,9 @@ export const StudentHero = () => {
             personalized guidance and tools to explore career paths and achieve
             your goals.
           </p>
-          <Button>Ask a Question</Button>
+          <Button onClick={() => navigate('/student?scrollTo=ask-a-question')}>
+            Ask a Question
+          </Button>
         </div>
 
         {/* Styled section with "falling" items */}

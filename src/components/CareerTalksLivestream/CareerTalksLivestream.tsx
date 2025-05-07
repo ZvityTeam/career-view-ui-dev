@@ -82,7 +82,7 @@ export const CareerTalksLivestream = () => {
   const styles = getTitleStyles();
 
   return (
-    <CurvedWrapper className='ld:mb-36 mb-48 md:mb-24'>
+    <CurvedWrapper className='ld:mb-36 mb-48 md:mb-42'>
       <div
         className={`flex flex-col items-center justify-center gap-4 ${isMobile ? 'max-w-full px-4' : isTablet ? 'max-w-2xl px-6' : 'max-w-5xl'}`}
       >

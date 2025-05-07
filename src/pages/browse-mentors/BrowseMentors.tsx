@@ -3,7 +3,6 @@ import { FaqSection } from '../../components/faqsection/FaqSection.tsx';
 import MentorSearch from '../../components/mentor-search';
 import { MentorsList } from '../../components/mentors-list';
 import { AnimatedPageWrapper } from '../../components/PageWrapper.tsx';
-import { Testimonials } from '../../components/testimonials/Testimonials.tsx';
 
 export const BrowseMentors = () => {
   return (
@@ -12,8 +11,8 @@ export const BrowseMentors = () => {
         <BrowseMentorsHero />
         <MentorSearch />
         <MentorsList />
-        <Testimonials />
-        <FaqSection page='browseMentors'/>
+        {/* <Testimonials /> */}
+        <FaqSection page='browseMentors' />
       </main>
     </AnimatedPageWrapper>
   );

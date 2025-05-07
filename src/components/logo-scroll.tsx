@@ -1,18 +1,22 @@
 import logo3 from '../assets/schools/image10.png';
 import logo4 from '../assets/schools/image11png.png';
 import logo7 from '../assets/schools/image12.png';
+import logo29 from '../assets/schools/image13.png';
 import logo10 from '../assets/schools/image2.png';
 import logo14 from '../assets/schools/image3.png';
+import logo2 from '../assets/schools/image31.png';
 import logo18 from '../assets/schools/image4.png';
 import logo21 from '../assets/schools/image5.png';
 import logo24 from '../assets/schools/image6.png';
 import logo25 from '../assets/schools/image7.png';
 import logo26 from '../assets/schools/image8.png';
 import logo28 from '../assets/schools/image9.png';
+
 import { Marquee } from './marquee/Marquee';
 import { SectionHeader } from './section-header/SectionHeader';
 
 const logos = [
+  logo2,
   logo3,
   logo4,
   logo7,
@@ -24,18 +28,19 @@ const logos = [
   logo25,
   logo26,
   logo28,
+  logo29,
 ];
 
 const DoubleScrollingLogos = () => {
   return (
-    <section className='mt-36 flex flex-col items-center justify-center space-y-20 py-4 px-4 sm:px-6 lg:px-8'>
+    <section className='mt-36 flex flex-col items-center justify-center space-y-20 px-4 py-4 sm:px-6 lg:px-8'>
       <SectionHeader
         title={'Our Partners'}
         className=''
       />
       <Marquee
         pauseOnHover
-        className='mt-4 h-32 sm:h-40 lg:h-ful w-full max-w-7xl md:max-w-[90%]'
+        className='lg:h-ful mt-4 h-32 w-full max-w-7xl sm:h-40 md:max-w-[90%]'
       >
         <LogoItems />
       </Marquee>
@@ -59,7 +64,7 @@ const LogoItem = ({ src }: { src: string }) => {
     <img
       src={src}
       alt='logo'
-      className='mx-4 sm:mx-6 lg:mx-10 h-auto  max-w-xs sm:max-w-sm lg:max-w-xl'
+      className='mx-4 h-auto max-w-xs sm:mx-6 sm:max-w-sm lg:mx-10 lg:max-w-xl'
     />
   );
 };
