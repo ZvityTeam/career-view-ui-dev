@@ -3,12 +3,12 @@ import { useLocation } from 'react-router-dom';
 import timeline_img2 from '../../assets/mentors_page/timeline_img1.png';
 import timeline_img1 from '../../assets/schoolPageIllustrations/timeline_img1.png';
 import { CareerTalksLivestream } from '../../components/CareerTalksLivestream/CareerTalksLivestream.tsx';
+import LogoScroll from '../../components/logo-scroll.tsx';
 import { AnimatedPageWrapper } from '../../components/PageWrapper.tsx';
 import { SchoolHero } from '../../components/school-hero';
 import SchoolScheduleCallForm from '../../components/SchoolScheduleCallForm.tsx';
 import SearchFieldComponent from '../../components/student-mentor-connect/randomlyplacedcomponents/search-field.tsx';
 import { VerticalTimelineComponent } from '../../components/vertical-timeline.tsx';
-
 interface TimelineItem {
   id: number;
   title: string;
@@ -94,11 +94,13 @@ export const School = () => {
       <main>
         <SchoolHero />
         <CareerTalksLivestream />
+        <LogoScroll from="school"/>
         <VerticalTimelineComponent
           items={stepsData}
           title='How to get started'
           subtitle='simple 3 step guide to have a live stream event'
         />
+        {/* <Testimonials /> */}
         <div ref={scheduleCallRef}>
           <SchoolScheduleCallForm />
         </div>
