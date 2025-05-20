@@ -79,7 +79,7 @@ export default function MentorshipConnection() {
 
   return (
     <div
-      className='relative flex h-[40vh] w-[70dvw] items-center justify-center overflow-hidden p-6'
+      className='relative flex h-[40dvh] w-[70dvw] items-center justify-center overflow-hidden p-6'
       ref={containerRef}
     >
       {/* Main Content */}

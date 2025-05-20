@@ -193,7 +193,7 @@ const TimelineItem: React.FC<{
     >
       {/* Timeline marker */}
       <motion.div
-        className='absolute left-1/2 z-10 -translate-x-1/2 lg:left-[31.55rem]'
+        className='absolute left-1/2 z-10 -translate-x-1/2 lg:left-[30.55rem]'
         initial='hidden'
         animate={controls}
         variants={circleVariants}
@@ -268,7 +268,11 @@ export const VerticalTimelineComponent: React.FC<AlternatingTimelineProps> = ({
   const { isMobile, isTablet } = useResponsiveLayout();
 
   return (
-    <>
+    <div
+      className={
+        title === 'Why Join as a Mentor?' ? 'pt-10' : 'rounded-[80px] bg-white pt-10'
+      }
+    >
       <div className='my-10 px-4 text-center md:my-20'>
         <SectionHeader
           title={title}
@@ -297,6 +301,6 @@ export const VerticalTimelineComponent: React.FC<AlternatingTimelineProps> = ({
           />
         ))}
       </div>
-    </>
+    </div>
   );
 };

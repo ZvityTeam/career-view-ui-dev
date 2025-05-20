@@ -191,8 +191,10 @@ export const MentorProfileSection: React.FC<MentorProfileProps> = ({
                     width: '100%',
                     height: 'auto',
                     playerVars: {
-                      autoplay: 0,
+                      autoplay: 1,
                       mute: 1,
+                      loop: 1,
+                      playlist: videoId,
                     },
                   }}
                   iframeClassName='w-full aspect-video'

@@ -15,11 +15,11 @@ export const CurvedWrapper: React.FC<CurvedWrapperProps> = ({
   curve = 'both',
   className = '',
   children,
-  minHeight = '80vh',
+  minHeight = '80dvh',
   innerClassName = '',
 }: CurvedWrapperProps): React.ReactNode => {
   const outerClasses = cn(
-    'relative grid place-items-center min-h-[60vh]',
+    'relative grid place-items-center min-h-[60dvh]',
     className
   );
 

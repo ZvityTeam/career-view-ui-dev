@@ -8,6 +8,7 @@ import { AnimatedPageWrapper } from '../../components/PageWrapper.tsx';
 import { SchoolHero } from '../../components/school-hero';
 import SchoolScheduleCallForm from '../../components/SchoolScheduleCallForm.tsx';
 import SearchFieldComponent from '../../components/student-mentor-connect/randomlyplacedcomponents/search-field.tsx';
+import TestimonialsPage from '../../components/testimonials/TestimonialsSection.tsx';
 import { VerticalTimelineComponent } from '../../components/vertical-timeline.tsx';
 interface TimelineItem {
   id: number;
@@ -94,13 +95,13 @@ export const School = () => {
       <main>
         <SchoolHero />
         <CareerTalksLivestream />
-        <LogoScroll from="school"/>
+        <LogoScroll from='school' />
         <VerticalTimelineComponent
           items={stepsData}
           title='How to get started'
           subtitle='simple 3 step guide to have a live stream event'
         />
-        {/* <Testimonials /> */}
+        <TestimonialsPage type='school' />
         <div ref={scheduleCallRef}>
           <SchoolScheduleCallForm />
         </div>

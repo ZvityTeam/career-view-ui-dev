@@ -166,7 +166,7 @@ export default function NetworkVisualization() {
   }, [lineElements]);
 
   return (
-    <div className='relative flex h-[60vh] w-full items-center justify-center'>
+    <div className='relative flex h-[60dvh] w-full items-center justify-center'>
       <div
         ref={containerRef}
         className='relative h-full w-full max-w-7xl'

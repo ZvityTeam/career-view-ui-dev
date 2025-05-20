@@ -212,7 +212,7 @@ const AskAQuestionForm: React.FC = () => {
       curve='both'
       className='z-20 mb-96 mt-16 bg-gray-100 md:mb-72 md:mt-32'
       innerClassName='pt-0'
-      minHeight='110vh'
+      minHeight='110dvh'
     >
       <div className='container mx-auto mt-16 px-4 py-8 sm:mt-3 sm:px-6 sm:py-12'>
         <h1 className='mb-2 text-center text-2xl font-extrabold tracking-tight text-black sm:text-4xl'>

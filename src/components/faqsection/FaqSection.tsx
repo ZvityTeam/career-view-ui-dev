@@ -99,12 +99,12 @@ const MENTOR_FAQ_DATA = [
   {
     question: 'Why should I join CareerView?',
     answer:
-      'Many students face challenges when deciding on their careers during and after school. This happens because they lack honest and relatable guidance. CareerView offers you an opportunity to support students by sharing your own career journey and offering genuine advice from your own experiences. This can assist students in making informed career choices, something that you might not have had access to when you were younger. Numerous Young Professionals like you have joined CareerView due to the lack of guidance they had in their youth. CareerView also wants to promote YOU! We hope with your contribution, it will give you a platform to share your story while helping students. We promote all our Young Professionals on our website and LinkedIn page. Lastly, joining CareerView as a Young Professional helps you build new networks and connections with other Young Professionals. They come from lots of different industries and have various career experiences. You will get special invitations to events where you can meet over 100 young professionals from 12 different industries.',
+      'Many students face challenges when deciding on their careers during and after school. This happens because they lack honest and relatable guidance. CareerView offers you an opportunity to support students by sharing your own career journey and offering genuine advice from your own experiences. This can assist students in making informed career choices, something that you might not have had access to when you were younger.\nNumerous Young Professionals like you have joined CareerView due to the lack of guidance they had in their youth. CareerView also wants to promote YOU! We hope with your contribution, it will give you a platform to share your story while helping students. We promote all our Young Professionals on our website and LinkedIn page.\nLastly, joining CareerView as a Young Professional helps you build new networks and connections with other Young Professionals. They come from lots of different industries and have various career experiences. You will get special invitations to events where you can meet over 100 young professionals from 12 different industries.',
   },
   {
     question: 'What is expected of me as a Young Professional?',
     answer:
-      'All Young Professionals are volunteers! Hence, you can dedicate as much time as you are comfortable with. We have a few simple requirements that need to be fulfilled in order to be considered as a Young Professional: • Complete the BIO Template document, so we can create your network profile • Participate in a podcast interview with one of our hosts (when you have availability). All other activities are optional and can be participated in whenever you decide to do so. These include: • Answering student questions on your profile page. • Contributing your personal career advice to our student E-books. • Joining networking or school events organized by the CareerView team',
+      'All Young Professionals are volunteers! Hence, you can dedicate as much time as you are comfortable with. We have a few simple requirements that need to be fulfilled in order to be considered as a Young Professional:\n• Complete the BIO Template document, so we can create your network profile\n• Participate in a podcast interview with one of our hosts (when you have availability)\nAll other activities are optional and can be participated in whenever you decide to do so. These include:\n• Answering student questions on your profile page\n• Contributing your personal career advice to our student E-books\n• Joining networking or school events organized by the CareerView team',
   },
   {
     question: 'Would my info be publicly accessible?',
@@ -120,7 +120,7 @@ const MENTOR_FAQ_DATA = [
     question:
       'How long are the podcast recordings and what kind of questions will I answer?',
     answer:
-      'Podcast recordings usually last between 20 to 30 minutes. The actual time depends on how detailed your answers are and whether any questions need to be repeated. The questions we ask are a mix of common inquiries from students. To keep things engaging for students, we recommend keeping your responses under 2 minutes. This is because students tend to have shorter attention spans. Links below provide you a sample: • Audio: https://www.careerview.com.au/podcast/episode/24968a97/accountantdarren-sweeney • Video: https://www.youtube.com/watch?v=xxAyemmVb9U',
+      'Podcast recordings usually last between 20 to 30 minutes. The actual time depends on how detailed your answers are and whether any questions need to be repeated. The questions we ask are a mix of common inquiries from students. To keep things engaging for students, we recommend keeping your responses under 2 minutes. This is because students tend to have shorter attention spans.\nLinks below provide you a sample:\n• Audio: https://www.careerview.com.au/podcast/episode/24968a97/accountantdarren-sweeney\n• Video: https://www.youtube.com/watch?v=xxAyemmVb9U',
   },
   {
     question: 'Where are the podcasts published?',
@@ -196,7 +196,7 @@ const FaqSectionComponent = ({ page }: { page: string }) => {
               className={`rounded-full px-3 py-1.5 text-sm sm:px-4 sm:py-2 sm:text-base ${
                 currentPage === page
                   ? 'bg-black text-white'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  : 'bg-gray-200 text-gray-700 hover:bg-blue-100'
               } `}
             >
               {page}

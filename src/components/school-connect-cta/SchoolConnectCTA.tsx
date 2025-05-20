@@ -131,6 +131,8 @@ export const SchoolConnectCTA = () => {
                   playerVars: {
                     autoplay: 1,
                     mute: 1,
+                    loop: 1, // Enable looping
+                    playlist: videos[activeTab].id,
                   },
                 }}
               />

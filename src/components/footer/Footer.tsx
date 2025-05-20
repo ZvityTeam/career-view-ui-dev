@@ -89,7 +89,7 @@ export const Footer: React.FC<FooterProps> = () => {
           <img
             src={star}
             alt=''
-            className='pointer-events-none absolute -top-[20%] left-[10%] z-10 w-1/3 sm:-top-[15%] sm:left-[20%] sm:w-1/4 lg:-top-1/3 lg:left-0 lg:w-auto'
+            className='pointer-events-none absolute -top-[20%] left-[10%] z-10 w-1/3 sm:-top-[15%] sm:left-[20%] sm:w-1/4 lg:-top-[50%] lg:left-6 lg:w-auto'
           />
           CareerView
         </h4>

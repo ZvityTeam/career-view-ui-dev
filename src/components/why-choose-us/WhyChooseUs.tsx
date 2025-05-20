@@ -72,8 +72,8 @@ export const WhyChooseUs: React.FC = () => {
   // };
 
   return (
-    <div className='relative -mb-44 grid h-[65vh] place-items-center md:mb-0 md:mt-44'>
-      <div className='absolute h-[52vh] w-full rounded-[80px] bg-white md:h-[82vh]'>
+    <div className='relative -mb-44 grid h-[65dvh] place-items-center md:mb-0 md:mt-44'>
+      <div className='absolute h-[52dvh] w-full rounded-[80px] bg-white md:h-[82dvh]'>
         <img
           className='absolute left-0 top-0 h-full w-full rounded-[80px] object-cover'
           src={curved}
@@ -84,7 +84,7 @@ export const WhyChooseUs: React.FC = () => {
           <SectionHeader
             title={'Why CareerView?'}
             subtitle={
-              'Home to a community of Young Professionals (ages 21-29) across different career paths, industries, and cultural backgrounds—who share their real experiences of schooling and early professional life. With over 100 young professionals across various career roles and representing 10 different cultural backgrounds, students will have an opportunity to learn from diverse experiences.'
+              'CareerView is a community of YOUNG Professionals from a wide range of careers, industries, and cultures. They openly share what school and work are really like—so students can learn from real stories, not just job descriptions. With over 100 professionals from 10+ cultural backgrounds, students get access to a truly diverse set of experiences.'
             }
             className={'-mt-10 mb-1 px-10 text-5xl md:mt-0 md:px-0 md:text-8xl'}
           />

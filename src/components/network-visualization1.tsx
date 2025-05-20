@@ -185,10 +185,10 @@ export default function NetworkVisualization1() {
   }, [lineElements]);
 
   return (
-    <div className='relative flex h-[80vh] w-full items-center justify-center'>
+    <div className='relative flex h-[80dvh] w-full items-center justify-center'>
       <div
         ref={containerRef}
-        className='relative h-[80vh] w-full'
+        className='relative h-[80dvh] w-full'
       >
         <svg className='absolute inset-0 h-full w-full'></svg>
         {avatarPositions.map((position, index) => (

@@ -10,6 +10,80 @@ interface FaqItemProps {
 export const FaqItem = ({ question, answer }: FaqItemProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  // Process the answer to handle bullet points
+  const renderAnswer = () => {
+    // Split the answer by newlines to identify potential bullet points
+    const lines = answer.split('\n');
+    let currentList: string[] = [];
+    const elements: JSX.Element[] = [];
+    let isInList = false;
+
+    lines.forEach((line, index) => {
+      // Trim whitespace for consistent processing
+      const trimmedLine = line.trim();
+
+      // Check if the line starts with a bullet point (•)
+      if (trimmedLine.startsWith('•')) {
+        isInList = true;
+        // Remove the bullet point and trim
+        currentList.push(trimmedLine.replace(/^•\s*/, ''));
+      } else {
+        // If we were in a list and hit a non-bullet line, render the list
+        if (isInList && currentList.length > 0) {
+          elements.push(
+            <ul
+              key={`list-${index}`}
+              className='my-2 list-disc pl-6'
+            >
+              {currentList.map((item, i) => (
+                <li
+                  key={i}
+                  className='text-sm text-gray-600 sm:text-base lg:text-lg'
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          );
+          currentList = [];
+          isInList = false;
+        }
+        // Add non-empty lines as paragraphs
+        if (trimmedLine) {
+          elements.push(
+            <p
+              key={index}
+              className='text-sm text-gray-600 sm:text-base lg:text-lg'
+            >
+              {trimmedLine}
+            </p>
+          );
+        }
+      }
+    });
+
+    // If the answer ends with a list, render it
+    if (currentList.length > 0) {
+      elements.push(
+        <ul
+          key='final-list'
+          className='my-2 list-disc pl-6'
+        >
+          {currentList.map((item, i) => (
+            <li
+              key={i}
+              className='text-sm text-gray-600 sm:text-base lg:text-lg'
+            >
+              {item}
+            </li>
+          ))}
+        </ul>
+      );
+    }
+
+    return elements;
+  };
+
   return (
     <div className='border-b border-[#aaaaaa] py-4 sm:py-6 lg:py-8'>
       {/* Question Row */}
@@ -42,7 +116,7 @@ export const FaqItem = ({ question, answer }: FaqItemProps) => {
         className='overflow-hidden'
       >
         <div className='mt-2 pl-8 text-sm text-gray-600 sm:mt-3 sm:pl-10 sm:text-base lg:text-lg'>
-          <p>{answer}</p>
+          {renderAnswer()}
         </div>
       </motion.div>
     </div>

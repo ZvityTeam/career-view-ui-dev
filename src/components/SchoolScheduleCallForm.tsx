@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Select from 'react-select';
 import { careers, data as mentors } from '../content/mentors';
 import { CurvedWrapper } from './CurvedWrapper';
 import { Button } from './ui/Button';
@@ -9,12 +10,24 @@ interface FormData {
   schoolName: string;
   questions: string;
   selections: string[];
+  dateRange: string;
+  industry: string;
+  numSpeakers: string;
 }
 
 interface Errors extends Partial<FormData> {
   selectionError?: string;
   submitError?: string;
 }
+
+const industries = [
+  { value: 'technology', label: 'Technology' },
+  { value: 'finance', label: 'Finance' },
+  { value: 'healthcare', label: 'Healthcare' },
+  { value: 'education', label: 'Education' },
+  { value: 'engineering', label: 'Engineering' },
+  { value: 'arts', label: 'Arts & Entertainment' },
+];
 
 const SchoolScheduleCallForm: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
@@ -23,6 +36,9 @@ const SchoolScheduleCallForm: React.FC = () => {
     schoolName: '',
     questions: '',
     selections: [],
+    dateRange: '',
+    industry: '',
+    numSpeakers: '',
   });
   const [errors, setErrors] = useState<Errors>({});
   const [successMessage, setSuccessMessage] = useState<string>('');
@@ -37,38 +53,46 @@ const SchoolScheduleCallForm: React.FC = () => {
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = 'Invalid email format';
     }
+    if (!formData.schoolName.trim())
+      newErrors.schoolName = 'School name is required';
     if (!formData.questions.trim())
-      newErrors.questions =
-        'Message is required to help us understand your request';
+      newErrors.questions = 'Request details are required';
+    if (!formData.dateRange.trim())
+      newErrors.dateRange = 'Date range is required';
+    if (!formData.industry.trim()) newErrors.industry = 'Industry is required';
+    if (!formData.numSpeakers.trim()) {
+      newErrors.numSpeakers = 'Number of speakers is required';
+    } else if (
+      isNaN(Number(formData.numSpeakers)) ||
+      Number(formData.numSpeakers) < 1
+    ) {
+      newErrors.numSpeakers = 'Must be a valid number (1 or more)';
+    }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     setErrors((prev) => ({ ...prev, [name]: '' }));
   };
 
-  const handleSelectionToggle = (item: string) => {
-    setFormData((prev) => {
-      const selections = prev.selections.includes(item)
-        ? prev.selections.filter((sel) => sel !== item)
-        : [...prev.selections, item];
-      return { ...prev, selections };
-    });
+  const handleSelectionChange = (selectedOptions: any) => {
+    const selections = selectedOptions
+      ? selectedOptions.map((opt: any) => opt.value)
+      : [];
+    setFormData((prev) => ({ ...prev, selections }));
     setErrors((prev) => ({ ...prev, selectionError: undefined }));
-  };
-
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
   };
 
   const filteredItems = () => {
     const query = searchQuery.toLowerCase().trim();
-    const mentorResults = mentors
+    const mentorOptions = mentors
       .filter(
         (mentor) =>
           (!query ||
@@ -77,28 +101,22 @@ const SchoolScheduleCallForm: React.FC = () => {
           (filter === 'all' || filter === 'mentors')
       )
       .map((mentor) => ({
-        name: mentor.name || 'Unnamed Mentor',
-        display: mentor.name || 'Unnamed Mentor',
-        type: 'mentor' as const,
-        role: mentor.role || 'No Role',
-        profileImage: mentor.profileImage,
+        value: mentor.name,
+        label: `${mentor.name} - ${mentor.role || 'No Role'}`,
       }));
 
-    const careerResults = careers
+    const careerOptions = careers
       .filter(
         (career) =>
           (!query || career.name.toLowerCase().includes(query)) &&
           (filter === 'all' || filter === 'careers')
       )
       .map((career) => ({
-        name: career.name,
-        display: career.name,
-        type: 'career' as const,
-        role: '',
-        profileImage: null,
+        value: career.name,
+        label: career.name,
       }));
 
-    return [...mentorResults, ...careerResults];
+    return [...mentorOptions, ...careerOptions];
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -106,7 +124,6 @@ const SchoolScheduleCallForm: React.FC = () => {
     setSuccessMessage('');
     if (validateForm()) {
       try {
-        // Format selections as "name - role" for mentors, or just name for careers
         const formattedSelections = formData.selections
           .map((selection) => {
             const mentor = mentors.find((m) => m.name === selection);
@@ -121,34 +138,37 @@ const SchoolScheduleCallForm: React.FC = () => {
           })
           .join(', ');
 
-        // Google Form URL and entry IDs
         const GOOGLE_FORM_URL =
           'https://docs.google.com/forms/d/e/1FAIpQLSd6PozhzFurxYiwPcpSAPxrmWvjdx2h_BLOOm7MDMpGHGf0-A/formResponse';
         const formPayload = {
-          'entry.1299404302': formData.fullName, // Full name
-          'entry.1521851492': formData.email, // Email
-          'entry.1224065352': formData.schoolName, // School name
-          'entry.783412761': formData.questions, // Questions
-          'entry.842032282': formattedSelections, // Mentors/Careers Selection
+          'entry.1299404302': formData.fullName,
+          'entry.1521851492': formData.email,
+          'entry.1224065352': formData.schoolName,
+          'entry.783412761': formData.questions,
+          'entry.842032282': formattedSelections,
+          'entry.1234567890': formData.dateRange,
+          'entry.0987654321': formData.industry,
+          'entry.1122334455': formData.numSpeakers,
         };
 
-        // Send POST request to Google Form
         await fetch(GOOGLE_FORM_URL, {
           method: 'POST',
-          mode: 'no-cors', // Required for Google Forms
+          mode: 'no-cors',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
           body: new URLSearchParams(formPayload).toString(),
         });
 
-        console.log('Form submitted:', formData);
         setFormData({
           fullName: '',
           email: '',
           schoolName: '',
           questions: '',
           selections: [],
+          dateRange: '',
+          industry: '',
+          numSpeakers: '',
         });
         setSearchQuery('');
         setSuccessMessage('Call request submitted successfully!');
@@ -161,222 +181,44 @@ const SchoolScheduleCallForm: React.FC = () => {
     }
   };
 
-  const getAvatar = (name: string, profileImage: string | null) => {
-    if (profileImage) {
-      return (
-        <div className='relative rounded-full bg-gradient-to-br from-yellow-300 via-white to-blue-300 p-[2px]'>
-          <img
-            src={profileImage}
-            alt={name}
-            className='h-12 w-12 rounded-full object-cover'
-          />
-        </div>
-      );
-    }
-    const initial = name.charAt(0).toUpperCase();
-    return (
-      <div className='relative rounded-full bg-gradient-to-r from-yellow-400 to-blue-400 p-[2px]'>
-        <div className='flex h-12 w-12 items-center justify-center rounded-full bg-gray-200 text-lg font-medium text-black'>
-          {initial}
-        </div>
-      </div>
-    );
-  };
-
-  const items = filteredItems();
-  const midPoint = Math.ceil(items.length / 2);
-  const topRow = items.slice(0, midPoint);
-  const bottomRow = items.slice(midPoint);
   const errorMessages = Object.values(errors).filter((error) => error);
 
   return (
     <CurvedWrapper
-      curve='both'
-      className='z-20 mb-96 mt-16 bg-gray-100 md:mb-72 md:mt-32'
-      innerClassName='pt-0'
-      minHeight='110vh'
+      minHeight='60dvh'
+      curve='bottom'
+      className='z-30 -mb-3 mt-[34rem] md:mt-0'
+      innerClassName='overflow-hidden lg:px-0 lg:py-0'
     >
-      <div className='container mx-auto mt-16 px-4 sm:mt-36 sm:px-6'>
-        <h1 className='mb-2 text-center text-2xl font-extrabold tracking-tight text-black sm:text-4xl'>
-          Schedule a Call
-        </h1>
-        <div className='grid grid-cols-1'>
-          <div className='form-column w-full overflow-y-auto rounded-lg p-4 pt-0 sm:p-6 sm:pt-0'>
-            <div className='space-y-6 text-base sm:text-lg'>
-              <p className='mb-8 text-center text-gray-600'>
-                Your email will not be shared publicly.
-              </p>
-              <p>
-                My name is{' '}
-                <input
-                  type='text'
-                  name='fullName'
-                  value={formData.fullName}
-                  onChange={handleInputChange}
-                  placeholder='e.g. John Smith'
-                  className='inline w-48 border-b-2 border-gray-300 bg-transparent p-1 text-black transition-colors duration-300 focus:border-blue-400 focus:outline-none sm:w-56'
-                />
-                , and you can reach me at{' '}
-                <input
-                  type='email'
-                  name='email'
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  placeholder='e.g. john.smith@example.com'
-                  className='inline w-56 border-b-2 border-gray-300 bg-transparent p-1 text-black transition-colors duration-300 focus:border-blue-400 focus:outline-none sm:w-64'
-                />{' '}
-                (private). I work at{' '}
-                <input
-                  type='text'
-                  name='schoolName'
-                  value={formData.schoolName}
-                  onChange={handleInputChange}
-                  placeholder='e.g. Springfield High'
-                  className='inline w-56 border-b-2 border-gray-300 bg-transparent p-1 text-black transition-colors duration-300 focus:border-blue-400 focus:outline-none sm:w-64'
-                />{' '}
-                (optional).
-              </p>
-              <p className='mb-4'>
-                I have a request:{' '}
-                <textarea
-                  name='questions'
-                  value={formData.questions}
-                  onChange={handleInputChange}
-                  rows={2}
-                  className='mt-2 w-full border-b-2 border-gray-300 bg-transparent p-1 text-black transition-colors duration-300 focus:border-blue-400 focus:outline-none'
-                  placeholder='Any special Requests?'
-                />
-              </p>
-              <div className='mb-6'>
-                <div className='mb-2 flex flex-col items-start justify-between sm:flex-row sm:items-center'>
-                  <label className='mb-1 font-bold text-black'>
-                    I'd like to invite (select mentors or careers, optional)
-                  </label>
-                  <div className='mb-2 flex space-x-2'>
-                    <button
-                      type='button'
-                      onClick={() => setFilter('all')}
-                      className={`rounded-md px-3 py-1 text-sm font-medium transition-all duration-300 hover:scale-105 ${
-                        filter === 'all'
-                          ? 'bg-gradient-to-br from-white to-blue-300 text-black'
-                          : 'bg-gray-200 text-gray-700 hover:bg-blue-200'
-                      }`}
-                    >
-                      All
-                    </button>
-                    <button
-                      type='button'
-                      onClick={() => setFilter('mentors')}
-                      className={`rounded-md px-3 py-1 text-sm font-medium transition-all duration-300 hover:scale-105 ${
-                        filter === 'mentors'
-                          ? 'bg-gradient-to-br from-white to-blue-300 text-black'
-                          : 'bg-gray-200 text-gray-700 hover:bg-blue-200'
-                      }`}
-                    >
-                      Mentors
-                    </button>
-                    <button
-                      type='button'
-                      onClick={() => setFilter('careers')}
-                      className={`rounded-md px-3 py-1 text-sm font-medium transition-all duration-300 hover:scale-105 ${
-                        filter === 'careers'
-                          ? 'bg-gradient-to-br from-white to-blue-300 text-black'
-                          : 'bg-gray-200 text-gray-700 hover:bg-blue-200'
-                      }`}
-                    >
-                      Careers
-                    </button>
-                  </div>
-                </div>
-                <input
-                  type='text'
-                  value={searchQuery}
-                  onChange={handleSearchChange}
-                  className='mb-2 w-full border-b-2 border-gray-300 bg-transparent p-2 text-black transition-colors duration-300 focus:border-blue-400 focus:outline-none'
-                  placeholder='Search mentors or careers...'
-                />
-                <div className='overflow-x-auto rounded-md border border-gray-300 bg-white p-2 shadow-md'>
-                  {items.length === 0 ? (
-                    <p className='p-4 text-sm text-gray-500'>
-                      No results found
-                    </p>
-                  ) : (
-                    <div className='flex flex-col space-y-2'>
-                      <div className='flex space-x-2'>
-                        {topRow.map((item) => (
-                          <div
-                            key={item.name}
-                            onClick={() => handleSelectionToggle(item.name)}
-                            className={`flex-none cursor-pointer rounded-lg border p-4 transition-all duration-300 hover:bg-gray-50 hover:shadow-lg ${
-                              formData.selections.includes(item.name)
-                                ? 'border-blue-400 bg-blue-50'
-                                : 'border-gray-300'
-                            }`}
-                          >
-                            <div className='flex items-center space-x-3'>
-                              {getAvatar(item.display, item.profileImage)}
-                              <div>
-                                <span className='text-base font-semibold text-black sm:text-lg'>
-                                  {item.type === 'career' && (
-                                    <span className='block text-xs text-gray-600 sm:text-sm'>
-                                      All
-                                    </span>
-                                  )}
-                                  {item.display}
-                                </span>
-                                {item.type === 'mentor' && (
-                                  <span className='block text-xs text-gray-600 sm:text-sm'>
-                                    {item.role}
-                                  </span>
-                                )}
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                      <div className='flex space-x-2'>
-                        {bottomRow.map((item) => (
-                          <div
-                            key={item.name}
-                            onClick={() => handleSelectionToggle(item.name)}
-                            className={`flex-none cursor-pointer rounded-lg border p-4 transition-all duration-300 hover:bg-gray-50 hover:shadow-lg ${
-                              formData.selections.includes(item.name)
-                                ? 'border-blue-400 bg-blue-50'
-                                : 'border-gray-300'
-                            }`}
-                          >
-                            <div className='flex items-center space-x-3'>
-                              {getAvatar(item.display, item.profileImage)}
-                              <div>
-                                <span className='text-base font-semibold text-black sm:text-lg'>
-                                  {item.type === 'career' && (
-                                    <span className='block text-xs text-gray-600 sm:text-sm'>
-                                      All
-                                    </span>
-                                  )}
-                                  {item.display}
-                                </span>
-                                {item.type === 'mentor' && (
-                                  <span className='block text-xs text-gray-600 sm:text-sm'>
-                                    {item.role}
-                                  </span>
-                                )}
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
+      <div className='flex w-full items-center justify-center bg-gradient-to-br from-indigo-50 via-white to-blue-50'>
+        <div className='w-full overflow-hidden bg-white'>
+          <div className='flex flex-col lg:flex-row'>
+            {/* Left Column: Image, Title, and Description */}
+            <div className='relative flex hidden bg-gradient-to-br from-indigo-700 to-blue-600 text-white md:block lg:w-1/2'>
+              <img
+                src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'
+                alt='Professional career talk in classroom'
+                className='absolute inset-0 h-full w-full object-cover opacity-30'
+              />
+              <div className='absolute top-1/3 z-10 flex flex-col items-center justify-center'>
+                <h1 className='mx-10 mb-6 text-4xl font-bold leading-tight md:text-7xl'>
+                  Inspire Students with Expert Career Talks
+                </h1>
+                <p className='mx-10 text-2xl opacity-90'>
+                  Connect your students with top professionals for inspiring
+                  career guidance. Your information is secure and private.
+                </p>
               </div>
+            </div>
+            {/* Right Column: Form */}
+            <div className='p-8 lg:w-1/2'>
               {successMessage && (
-                <div className='mt-4 rounded bg-green-100 p-4 text-green-600'>
-                  <p className='font-semibold'>{successMessage}</p>
+                <div className='mb-6 rounded-lg bg-green-100 p-4 text-green-700 shadow-sm'>
+                  {successMessage}
                 </div>
               )}
               {errorMessages.length > 0 && (
-                <div className='mt-4 rounded bg-pink-100 p-4 text-red-600'>
+                <div className='mb-6 rounded-lg bg-red-100 p-4 text-red-700 shadow-sm'>
                   <p className='font-semibold'>
                     Please fix the following errors:
                   </p>
@@ -387,15 +229,238 @@ const SchoolScheduleCallForm: React.FC = () => {
                   </ul>
                 </div>
               )}
-              <div className='mt-8 flex justify-end'>
-                <Button
-                  variant={'default'}
-                  size={'lg'}
-                  onClick={handleSubmit}
-                >
-                  Submit Request
-                </Button>
-              </div>
+              <form
+                onSubmit={handleSubmit}
+                className='space-y-6'
+              >
+                <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
+                  <div>
+                    <label
+                      htmlFor='fullName'
+                      className='block text-sm font-medium text-gray-700'
+                    >
+                      Full Name *
+                    </label>
+                    <input
+                      id='fullName'
+                      type='text'
+                      name='fullName'
+                      value={formData.fullName}
+                      onChange={handleInputChange}
+                      placeholder='e.g. John Smith'
+                      className='mt-1 w-full rounded-md border border-gray-300 bg-gray-50 p-3 text-gray-900 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500'
+                    />
+                    {errors.fullName && (
+                      <p className='mt-1 text-sm text-red-500'>
+                        {errors.fullName}
+                      </p>
+                    )}
+                  </div>
+                  <div>
+                    <label
+                      htmlFor='email'
+                      className='block text-sm font-medium text-gray-700'
+                    >
+                      Email *
+                    </label>
+                    <input
+                      id='email'
+                      type='email'
+                      name='email'
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      placeholder='e.g. john.smith@example.com'
+                      className='mt-1 w-full rounded-md border border-gray-300 bg-gray-50 p-3 text-gray-900 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500'
+                    />
+                    {errors.email && (
+                      <p className='mt-1 text-sm text-red-500'>
+                        {errors.email}
+                      </p>
+                    )}
+                  </div>
+                  <div>
+                    <label
+                      htmlFor='schoolName'
+                      className='block text-sm font-medium text-gray-700'
+                    >
+                      School Name *
+                    </label>
+                    <input
+                      id='schoolName'
+                      type='text'
+                      name='schoolName'
+                      value={formData.schoolName}
+                      onChange={handleInputChange}
+                      placeholder='e.g. Springfield High'
+                      className='mt-1 w-full rounded-md border border-gray-300 bg-gray-50 p-3 text-gray-900 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500'
+                    />
+                    {errors.schoolName && (
+                      <p className='mt-1 text-sm text-red-500'>
+                        {errors.schoolName}
+                      </p>
+                    )}
+                  </div>
+                  <div>
+                    <label
+                      htmlFor='dateRange'
+                      className='block text-sm font-medium text-gray-700'
+                    >
+                      Preferred Date Range *
+                    </label>
+                    <input
+                      id='dateRange'
+                      type='text'
+                      name='dateRange'
+                      value={formData.dateRange}
+                      onChange={handleInputChange}
+                      placeholder='e.g. November 10-15, 2025'
+                      className='mt-1 w-full rounded-md border border-gray-300 bg-gray-50 p-3 text-gray-900 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500'
+                    />
+                    {errors.dateRange && (
+                      <p className='mt-1 text-sm text-red-500'>
+                        {errors.dateRange}
+                      </p>
+                    )}
+                  </div>
+                  <div>
+                    <label
+                      htmlFor='industry'
+                      className='block text-sm font-medium text-gray-700'
+                    >
+                      Industry *
+                    </label>
+                    <select
+                      id='industry'
+                      name='industry'
+                      value={formData.industry}
+                      onChange={handleInputChange}
+                      className='mt-1 w-full rounded-md border border-gray-300 bg-gray-50 p-3 text-gray-900 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500'
+                    >
+                      <option value=''>Select an industry</option>
+                      {industries.map((industry) => (
+                        <option
+                          key={industry.value}
+                          value={industry.value}
+                        >
+                          {industry.label}
+                        </option>
+                      ))}
+                    </select>
+                    {errors.industry && (
+                      <p className='mt-1 text-sm text-red-500'>
+                        {errors.industry}
+                      </p>
+                    )}
+                  </div>
+                  <div>
+                    <label
+                      htmlFor='numSpeakers'
+                      className='block text-sm font-medium text-gray-700'
+                    >
+                      Number of Speakers *
+                    </label>
+                    <input
+                      id='numSpeakers'
+                      type='number'
+                      name='numSpeakers'
+                      value={formData.numSpeakers}
+                      onChange={handleInputChange}
+                      placeholder='e.g. 2'
+                      min='1'
+                      className='mt-1 w-full rounded-md border border-gray-300 bg-gray-50 p-3 text-gray-900 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500'
+                    />
+                    {errors.numSpeakers && (
+                      <p className='mt-1 text-sm text-red-500'>
+                        {errors.numSpeakers}
+                      </p>
+                    )}
+                  </div>
+                </div>
+                <div>
+                  <label
+                    htmlFor='questions'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Request Details *
+                  </label>
+                  <textarea
+                    id='questions'
+                    name='questions'
+                    value={formData.questions}
+                    onChange={handleInputChange}
+                    placeholder='Describe your request or special requirements'
+                    className='mt-1 min-h-[120px] w-full rounded-md border border-gray-300 bg-gray-50 p-3 text-gray-900 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500'
+                  />
+                  {errors.questions && (
+                    <p className='mt-1 text-sm text-red-500'>
+                      {errors.questions}
+                    </p>
+                  )}
+                </div>
+                <div>
+                  <label className='block text-sm font-medium text-gray-700'>
+                    Invite Mentors or Careers (Optional)
+                  </label>
+                  <div className='mt-2 flex space-x-2'>
+                    {['all', 'mentors', 'careers'].map((type) => (
+                      <button
+                        key={type}
+                        type='button'
+                        onClick={() =>
+                          setFilter(type as 'all' | 'mentors' | 'careers')
+                        }
+                        className={`rounded-md px-4 py-2 text-sm font-medium transition-all duration-300 ${
+                          filter === type
+                            ? 'bg-indigo-600 text-white'
+                            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                        }`}
+                      >
+                        {type.charAt(0).toUpperCase() + type.slice(1)}
+                      </button>
+                    ))}
+                  </div>
+                  <Select
+                    isMulti
+                    options={filteredItems()}
+                    onChange={handleSelectionChange}
+                    onInputChange={setSearchQuery}
+                    placeholder='Search mentors or careers...'
+                    className='mt-2'
+                    styles={{
+                      control: (base) => ({
+                        ...base,
+                        borderColor: '#d1d5db',
+                        background: '#f9fafb',
+                        borderRadius: '0.375rem',
+                        padding: '0.25rem',
+                        boxShadow: '0 1px 2px rgba(0, 0, 0, 0.05)',
+                        '&:hover': { borderColor: '#4f46e5' },
+                      }),
+                      menu: (base) => ({
+                        ...base,
+                        background: 'white',
+                        borderRadius: '0.375rem',
+                        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                      }),
+                      option: (base, { isFocused }) => ({
+                        ...base,
+                        background: isFocused ? '#4f46e5' : 'white',
+                        color: isFocused ? 'white' : '#1f2937',
+                        borderRadius: '0.25rem',
+                      }),
+                    }}
+                  />
+                </div>
+                <div className='flex justify-end'>
+                  <Button
+                    variant='default'
+                    size='lg'
+                    className='transform rounded-md bg-indigo-600 px-6 py-3 font-semibold text-white transition-transform duration-300 hover:scale-105 hover:bg-indigo-700'
+                  >
+                    Submit Request
+                  </Button>
+                </div>
+              </form>
             </div>
           </div>
         </div>

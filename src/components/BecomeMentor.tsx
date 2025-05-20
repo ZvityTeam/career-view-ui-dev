@@ -42,7 +42,9 @@ const BecomeMentor: React.FC = () => {
     sideHustles: '',
   });
   const [step, setStep] = useState(1);
-  const [errors, setErrors] = useState<Partial<MentorFormData & { submitError?: string }>>({});
+  const [errors, setErrors] = useState<
+    Partial<MentorFormData & { submitError?: string }>
+  >({});
   const [successMessage, setSuccessMessage] = useState<string>('');
 
   const handleInputChange = (
@@ -67,14 +69,20 @@ const BecomeMentor: React.FC = () => {
     }
     if (!formData.mobile.trim()) newErrors.mobile = 'Mobile number is required';
     if (!formData.state.trim()) newErrors.state = 'State is required';
-    if (!formData.profession.trim()) newErrors.profession = 'Profession is required';
+    if (!formData.profession.trim())
+      newErrors.profession = 'Profession is required';
     if (!formData.jobTitle.trim()) newErrors.jobTitle = 'Job title is required';
-    if (!formData.organization.trim()) newErrors.organization = 'Organization is required';
+    if (!formData.organization.trim())
+      newErrors.organization = 'Organization is required';
     if (!formData.industry.trim()) newErrors.industry = 'Industry is required';
-    if (!formData.qualification.trim()) newErrors.qualification = 'Qualification is required';
-    if (!formData.university.trim()) newErrors.university = 'University is required';
-    if (!formData.highSchool.trim()) newErrors.highSchool = 'High school is required';
-    if (!formData.highSchoolSubjects.trim()) newErrors.highSchoolSubjects = 'High school subjects are required';
+    if (!formData.qualification.trim())
+      newErrors.qualification = 'Qualification is required';
+    if (!formData.university.trim())
+      newErrors.university = 'University is required';
+    if (!formData.highSchool.trim())
+      newErrors.highSchool = 'High school is required';
+    if (!formData.highSchoolSubjects.trim())
+      newErrors.highSchoolSubjects = 'High school subjects are required';
     if (!formData.hobbies.trim()) newErrors.hobbies = 'Hobbies are required';
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -84,7 +92,8 @@ const BecomeMentor: React.FC = () => {
     if (validateForm()) {
       try {
         // Google Form URL
-        const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdY21gWXe9CcgncjbPXCcDRaQTb62jxz_bFUkvjUjHN1itaaA/formResponse';
+        const GOOGLE_FORM_URL =
+          'https://docs.google.com/forms/d/e/1FAIpQLSdY21gWXe9CcgncjbPXCcDRaQTb62jxz_bFUkvjUjHN1itaaA/formResponse';
 
         // Form payload for text fields
         const textPayload = {
@@ -137,7 +146,9 @@ const BecomeMentor: React.FC = () => {
         setSuccessMessage('Mentor profile submitted successfully!');
       } catch (error) {
         console.error('Error submitting form:', error);
-        setErrors({ submitError: 'Failed to submit mentor profile. Please try again.' });
+        setErrors({
+          submitError: 'Failed to submit mentor profile. Please try again.',
+        });
       }
     }
   };
@@ -272,7 +283,9 @@ const BecomeMentor: React.FC = () => {
             </div>
             {errorMessages.length > 0 && (
               <div className='mt-4 rounded bg-pink-100 p-4 text-red-600'>
-                <p className='font-semibold'>Please fix the following errors:</p>
+                <p className='font-semibold'>
+                  Please fix the following errors:
+                </p>
                 <ul className='list-disc pl-5'>
                   {errorMessages.map((error, index) => (
                     <li key={index}>{error}</li>
@@ -420,7 +433,9 @@ const BecomeMentor: React.FC = () => {
             </div>
             {errorMessages.length > 0 && (
               <div className='mt-4 rounded bg-pink-100 p-4 text-red-600'>
-                <p className='font-semibold'>Please fix the following errors:</p>
+                <p className='font-semibold'>
+                  Please fix the following errors:
+                </p>
                 <ul className='list-disc pl-5'>
                   {errorMessages.map((error, index) => (
                     <li key={index}>{error}</li>
@@ -507,7 +522,9 @@ const BecomeMentor: React.FC = () => {
             )}
             {errorMessages.length > 0 && (
               <div className='mt-4 rounded bg-pink-100 p-4 text-red-600'>
-                <p className='font-semibold'>Please fix the following errors:</p>
+                <p className='font-semibold'>
+                  Please fix the following errors:
+                </p>
                 <ul className='list-disc pl-5'>
                   {errorMessages.map((error, index) => (
                     <li key={index}>{error}</li>
@@ -551,6 +568,8 @@ const BecomeMentor: React.FC = () => {
       playerVars: {
         autoplay: 1,
         mute: 1,
+        loop: 1, // Enable looping
+        playlist: 'l_ofR0v0pjY',
       },
     };
   };
@@ -558,8 +577,8 @@ const BecomeMentor: React.FC = () => {
   return (
     <CurvedWrapper
       curve='both'
-      className='mb-[120vh] md:mb-32 bg-gray-100'
-      minHeight={isMobile ? '180vh' : '80vh'}
+      className='mb-[120dvh] bg-gray-100 md:mb-32'
+      minHeight={isMobile ? '180dvh' : '80dvh'}
     >
       <div className='container mx-auto px-4 py-8 sm:px-6 sm:py-12'>
         <h1 className='mb-6 text-center text-3xl font-bold text-black sm:mb-8 sm:text-4xl'>

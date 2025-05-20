@@ -1,10 +1,10 @@
-import { useRef } from 'react';
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
+import { useRef } from 'react';
+import { cn } from '../utils/cn.ts';
 import {
   ReelImageGallery,
   ReelImageGalleryProps,
 } from './ui/reel-image-gallary.tsx';
-import { cn } from '../utils/cn.ts';
 
 /**
  * Combined props: the same as ReelImageGallery + any extra if needed.
@@ -83,11 +83,11 @@ export default function ScrollPathGallery({
       {/* Right side: the scrolling timeline/path */}
       <div
         ref={containerRef}
-        className='min-h-[200vh] flex-1'
+        className='min-h-[200dvh] flex-1'
       >
         {/*
           We use a "sticky" style on the left side so it stays put,
-          while the right side is tall (min-h-[200vh]) to demonstrate
+          while the right side is tall (min-h-[200dvh]) to demonstrate
           the scroll-based animation.
         */}
         <div className='sticky top-12 flex h-screen items-center'>

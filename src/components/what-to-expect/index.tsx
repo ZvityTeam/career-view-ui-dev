@@ -14,7 +14,7 @@ export const WhyBecomeAMentor = () => {
 
   return (
     <CurvedWrapper
-      minHeight='70vh'
+      minHeight='70dvh'
       className='bg-gray-50 py-16'
     >
       <div className='container mx-auto px-6'>
@@ -25,7 +25,7 @@ export const WhyBecomeAMentor = () => {
               title='Become a CareerView Mentor'
               subtitle='Share the guidance you wish you’d received. Students seek relatable career advice—join CareerView to shape their futures with your insights.'
               className='max-w-3xl text-left'
-              subTitleClassName='text-gray-600 text-sm leading-relaxed'
+              subTitleClassName='text-gray-600 text-2xl leading-relaxed'
             />
             <div className='mt-8'>
               <Button
@@ -56,6 +56,8 @@ export const WhyBecomeAMentor = () => {
                   playerVars: {
                     autoplay: 1, // Autoplay on hover
                     mute: 1, // Muted for autoplay compliance
+                    loop: 1, // Enable looping
+                    playlist: 'l_ofR0v0pjY',
                   },
                 }}
               />

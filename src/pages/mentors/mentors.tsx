@@ -4,6 +4,7 @@ import BecomeMentor from '../../components/BecomeMentor.tsx';
 import { FaqSection } from '../../components/faqsection/FaqSection.tsx';
 import { MentorHero } from '../../components/mentor-hero.tsx';
 import { AnimatedPageWrapper } from '../../components/PageWrapper.tsx';
+import TestimonialsPage from '../../components/testimonials/TestimonialsSection.tsx';
 import { VerticalTimelineComponent } from '../../components/vertical-timeline.tsx';
 import { useNavbarContext } from '../../context/navbar-context/NavbarContext.tsx';
 
@@ -53,6 +54,7 @@ export const Mentors = () => {
           <BecomeMentor />
         </div>
         <VerticalTimelineComponent />
+        <TestimonialsPage type='mentor' />
         <FaqSection page='mentor' />
       </main>
     </AnimatedPageWrapper>

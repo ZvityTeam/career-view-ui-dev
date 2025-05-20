@@ -82,7 +82,7 @@ export const CareerTalksLivestream = () => {
   const styles = getTitleStyles();
 
   return (
-    <CurvedWrapper className='ld:mb-36 mb-48 md:mb-42'>
+    <CurvedWrapper className='ld:mb-36 md:mb-42 mb-48'>
       <div
         className={`flex flex-col items-center justify-center gap-4 ${isMobile ? 'max-w-full px-4' : isTablet ? 'max-w-2xl px-6' : 'max-w-5xl'}`}
       >
@@ -106,6 +106,8 @@ export const CareerTalksLivestream = () => {
                 playerVars: {
                   autoplay: 1, // Autoplay on hover
                   mute: 1, // Muted for autoplay compliance
+                  loop: 1, // Enable looping
+                  playlist: 'KdumvY3eGcA',
                 },
               }}
             />

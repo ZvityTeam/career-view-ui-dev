@@ -18,13 +18,13 @@ export const StudentMentorConnect = () => {
 
   return (
     <section
-      className='grid place-items-center py-32  md:pt-44 md:min-h-[100vh]'
+      className='grid place-items-center py-32 md:min-h-[100dvh] md:pt-44'
       style={{
         background:
           'linear-gradient(220deg, #000000 0%, #767676 33%, #F1CE7E 71%, #FFFBF0 100%)',
       }}
     >
-      <div className='flex w-full gap-20 overflow-hidden px-8 pt-10 md:p-32 pb-14 md:min-h-screen md:overflow-visible'>
+      <div className='flex w-full gap-20 overflow-hidden px-8 pb-14 pt-10 md:min-h-screen md:overflow-visible md:p-32'>
         {/* Left Side: Floating Elements */}
         <div className='relative hidden flex-1 pr-20 lg:block'>
           {/* Background Ellipses */}
@@ -134,7 +134,9 @@ export const StudentMentorConnect = () => {
               </div>
             )}
             <div className='flex gap-6'>
-              <Button onClick={()=>navigate('/browse-mentors')}>Browse Mentors</Button>
+              <Button onClick={() => navigate('/browse-mentors')}>
+                Browse Mentors
+              </Button>
               <Button
                 variant='outline'
                 onClick={() => navigate(`/mentors?scrollTo=become-mentor`)}

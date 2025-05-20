@@ -6,7 +6,7 @@ export const BrowseMentorsHero = () => {
   return (
     <section
       className={
-        'relative flex min-h-[35vh] md:min-h-[50vh] w-full flex-col items-center overflow-hidden bg-gradient-to-br from-slate-900 to-slate-700 md:min-h-[60vh]'
+        'relative flex min-h-[35dvh] w-full flex-col items-center overflow-hidden bg-gradient-to-br from-slate-900 to-slate-700 md:min-h-[50dvh] md:min-h-[60dvh]'
       }
     >
       <img
@@ -23,7 +23,7 @@ export const BrowseMentorsHero = () => {
         <div className='hidden md:block'>
           <NetworkVisualization />
         </div>
-        <div className='mt-20  md:hidden'>
+        <div className='mt-20 md:hidden'>
           <h1 className='text-2xl font-bold text-white'>
             Connect with Top Mentors
           </h1>

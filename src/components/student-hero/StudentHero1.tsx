@@ -12,10 +12,10 @@ const StudentHero1 = () => {
   const containerRef = useRef(null);
 
   return (
-    <div className='w-full overflow-hidden bg-primary pt-[10vh]'>
+    <div className='w-full overflow-hidden bg-primary pt-[10dvh]'>
       <div
         ref={containerRef}
-        className='relative h-[67vh] w-full rounded-2xl sm:h-[87vh]'
+        className='relative h-[67dvh] w-full rounded-2xl sm:h-[87dvh]'
       >
         <svg
           aria-hidden='true'

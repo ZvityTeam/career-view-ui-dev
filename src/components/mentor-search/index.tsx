@@ -96,8 +96,8 @@ export default function MentorSearch() {
   };
 
   return (
-    <div className='relative grid min-h-[20vh] place-items-center px-4 sm:px-6 lg:px-8'>
-      <section className='absolute -bottom-16 -top-16 z-10 flex w-full flex-col items-center justify-center space-y-12 rounded-[40px] bg-white px-6 py-16 sm:space-y-16 sm:rounded-[60px] sm:px-8 sm:py-24 md:min-h-[43vh] lg:space-y-24 lg:rounded-[80px] lg:px-12 lg:py-36'>
+    <div className='relative grid min-h-[20dvh] place-items-center px-4 sm:px-6 lg:px-8'>
+      <section className='absolute -bottom-16 -top-16 z-10 flex w-full flex-col items-center justify-center space-y-12 rounded-[40px] bg-white px-6 py-16 sm:space-y-16 sm:rounded-[60px] sm:px-8 sm:py-24 md:min-h-[43dvh] lg:space-y-24 lg:rounded-[80px] lg:px-12 lg:py-36'>
         <div className='w-full rounded-[30px] bg-white p-4 sm:rounded-[40px] sm:p-6'>
           <div className='container mx-auto flex max-w-6xl flex-col items-center justify-center gap-6 sm:gap-8'>
             <div className='text-center'>
@@ -222,7 +222,7 @@ export default function MentorSearch() {
             {/* Mobile Filter Modal */}
             {showFilter && (
               <div className='fixed inset-0 z-20 flex items-center justify-center bg-black bg-opacity-60 sm:hidden'>
-                <div className='max-h-[85vh] w-11/12 overflow-y-auto rounded-2xl bg-white p-6 shadow-lg'>
+                <div className='max-h-[85dvh] w-11/12 overflow-y-auto rounded-2xl bg-white p-6 shadow-lg'>
                   <div className='mb-5 flex items-center justify-between'>
                     <h3 className='font-britania text-2xl font-medium text-black'>
                       Filter your search

@@ -6,7 +6,7 @@ export const MentorHero = () => {
   const navigate = useNavigate();
   return (
     <section
-      className='relative min-h-[90vh] bg-cover bg-center bg-no-repeat pt-16 sm:min-h-screen sm:pt-32'
+      className='relative min-h-[90dvh] bg-cover bg-center bg-no-repeat pt-16 sm:min-h-screen sm:pt-32'
       style={{
         backgroundImage: `url(${mentorHeroBg})`,
       }}

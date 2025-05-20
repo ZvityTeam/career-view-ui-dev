@@ -50,7 +50,7 @@ export const SchoolHero = () => {
 
   return (
     <section
-      className={`relative ${isMobile ? 'min-h-[85vh]' : isTablet ? 'min-h-[90vh]' : 'min-h-screen'} overflow-y-hidden bg-cover bg-center bg-no-repeat pt-32`}
+      className={`relative ${isMobile ? 'min-h-[85dvh]' : isTablet ? 'min-h-[90dvh]' : 'min-h-screen'} overflow-y-hidden bg-cover bg-center bg-no-repeat pt-32`}
       style={{
         backgroundImage: `url(${schoolHero})`,
       }}
