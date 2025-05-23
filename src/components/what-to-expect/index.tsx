@@ -13,10 +13,7 @@ export const WhyBecomeAMentor = () => {
   }, []);
 
   return (
-    <CurvedWrapper
-      minHeight='70dvh'
-      className='bg-gray-50 py-16'
-    >
+    <CurvedWrapper className='bg-gray-50 py-16'>
       <div className='container mx-auto px-6'>
         <div className='grid grid-cols-1 items-center gap-12 lg:grid-cols-2'>
           {/* Text Content */}
