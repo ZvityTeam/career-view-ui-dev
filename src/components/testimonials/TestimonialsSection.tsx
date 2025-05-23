@@ -51,15 +51,15 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial }) => {
             <div>
               <h3
                 id={`testimonial-${testimonial.name.replace(/\s+/g, '-')}`}
-                className='font-avenir text-2xl md:text-[28px] font-semibold text-black'
+                className='font-avenir text-2xl font-semibold text-black md:text-[28px]'
               >
                 {testimonial.name}
               </h3>
-              <p className='font-avenir text-lg md:text-[22px] text-gray-600'>
+              <p className='font-avenir text-lg text-gray-600 md:text-[22px]'>
                 {testimonial.role}
               </p>
             </div>
-            <p className='text-lg mt-3 font-avenir font-light leading-relaxed text-gray-600 md:text-lg'>
+            <p className='mt-3 font-avenir text-lg font-light leading-relaxed text-gray-600 md:text-lg'>
               <AnimatePresence mode='wait'>
                 {isExpanded ? (
                   <motion.span
@@ -116,7 +116,7 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
   testimonials,
 }) => {
   return (
-    <section className='my-20 mb-40 bg-gray-100 px-4 py-12'>
+    <section className='my-20 bg-gray-100 px-4 py-12'>
       <SectionHeader
         title={title}
         subtitle={subtitle}
@@ -205,7 +205,7 @@ const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ type }) => {
       : 'Discover how schools are transforming career education';
 
   return (
-    <div className='bg-white'>
+    <div className={type === 'mentor' ? 'bg-white' : 'md:mb-40 bg-white'}>
       <TestimonialSection
         title={title}
         subtitle={subtitle}

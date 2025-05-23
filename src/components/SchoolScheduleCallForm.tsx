@@ -210,7 +210,7 @@ const SchoolScheduleCallForm: React.FC = () => {
               </div>
             </div>
             {/* Right Column: Form */}
-            <div className='p-8 lg:w-1/2'>
+            <div className='p-8 md:mb-10 lg:w-1/2'>
               {successMessage && (
                 <div className='mb-6 rounded-lg bg-green-100 p-4 text-green-700 shadow-sm'>
                   {successMessage}
@@ -228,6 +228,9 @@ const SchoolScheduleCallForm: React.FC = () => {
                   </ul>
                 </div>
               )}
+              <h1 className='mb-2 block text-center text-3xl font-extrabold tracking-tight text-black sm:hidden sm:text-4xl'>
+                Schedule a Call
+              </h1>
               <form
                 onSubmit={handleSubmit}
                 className='space-y-6'

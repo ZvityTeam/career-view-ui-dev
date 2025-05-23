@@ -1,11 +1,11 @@
+import { ArrowDown } from 'lucide-react';
+import { useState } from 'react';
 import { Section } from '../container/Section.tsx';
+import ListWrapper from '../list-wrapper.tsx';
 import { SectionHeader } from '../section-header/SectionHeader.tsx';
+import { Button } from '../ui/Button.tsx';
 import { QuestionCard, QuestionCardProps } from './QuestionCard.tsx';
 import { QuestionCategory } from './QuestionCategory.tsx';
-import { useState } from 'react';
-import ListWrapper from '../list-wrapper.tsx';
-import { Button } from '../ui/Button.tsx';
-import { ArrowDown } from 'lucide-react';
 
 const QUESTIONS_WE_GET: {
   category: string;
@@ -198,7 +198,7 @@ export const QuestionsWeGet = () => {
     ALL_CATEGORIES.find((cat) => cat.category === currentCategory)?.items || [];
 
   return (
-    <Section className='flex flex-col gap-8'>
+    <Section className='mt-10 flex flex-col gap-8'>
       <SectionHeader
         title='Questions we get from our Students'
         subtitle='Here are examples of what students ask...'

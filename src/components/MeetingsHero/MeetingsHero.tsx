@@ -28,6 +28,7 @@ export default function MeetingsHero() {
         src={mentor?.profileImage}
         alt={mentor?.role}
         className='absolute inset-0 h-full w-full object-cover object-center'
+        loading='lazy'
       />
       <div className='relative z-10 h-[2.5rem] w-full'>
         <div className='absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-70'></div>

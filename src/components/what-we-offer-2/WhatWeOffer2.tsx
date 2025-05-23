@@ -348,7 +348,7 @@ export default function WhatWeOffer2() {
   );
   const navigate = useNavigate();
   return (
-    <section className='mt-10 min-h-screen w-full pt-6 sm:mt-28 md:mt-36 md:pt-12'>
+    <section className='mt-20 min-h-screen w-full pt-6 sm:mt-28 md:mt-36 md:pt-12'>
       <div className='mx-4 px-2 sm:mx-8 sm:px-4 md:mx-12 lg:mx-20 lg:px-12'>
         {/* Title */}
         <SectionHeader

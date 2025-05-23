@@ -214,7 +214,7 @@ const AskAQuestionForm: React.FC = () => {
       innerClassName='pt-0'
     >
       <div className='container mx-auto mt-16 px-4 py-8 sm:mt-3 sm:px-6 sm:py-12'>
-        <h1 className='mb-2 text-center text-2xl font-extrabold tracking-tight text-black sm:text-4xl'>
+        <h1 className='mb-2 text-center text-3xl font-extrabold tracking-tight text-black sm:text-4xl'>
           Ask a Question
         </h1>
         <div className='grid grid-cols-1'>
