@@ -35,7 +35,8 @@ export const WhatWeDo: React.FC = () => {
   return (
     <CurvedWrapper
       curve='both'
-      className='flex flex-col items-center px-4 sm:px-6 lg:px-8'
+      className='flex flex-col items-center md:mb-20'
+      innerClassName='px-4 sm:px-6 lg:px-8 md:py-20'
     >
       {/* Heading */}
       <div className='text-center'>

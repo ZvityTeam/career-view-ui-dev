@@ -238,9 +238,9 @@ export const MentorProfileSection: React.FC<MentorProfileProps> = ({
               )}
             </Button> */}
             <Button
-              variant='outline'
+              variant='default'
               size='lg'
-              className='w-full border-gray-700 text-sm text-gray-700 hover:bg-gray-100 sm:w-auto sm:text-base'
+              className='w-full text-sm sm:w-auto sm:text-base'
               onClick={onAskQuestion}
             >
               Ask a Question

@@ -185,9 +185,8 @@ const SchoolScheduleCallForm: React.FC = () => {
 
   return (
     <CurvedWrapper
-      minHeight='60dvh'
       curve='bottom'
-      className='z-30 -mb-3 mt-[34rem] md:mt-0'
+      className='z-30 -mb-3 md:mt-0'
       innerClassName='overflow-hidden lg:px-0 lg:py-0'
     >
       <div className='flex w-full items-center justify-center bg-gradient-to-br from-indigo-50 via-white to-blue-50'>

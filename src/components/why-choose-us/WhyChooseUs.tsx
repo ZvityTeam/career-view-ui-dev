@@ -72,14 +72,14 @@ export const WhyChooseUs: React.FC = () => {
   // };
 
   return (
-    <div className='relative -mb-44 grid h-[65dvh] place-items-center md:mb-0 md:mt-44'>
-      <div className='absolute h-[52dvh] w-full rounded-[80px] bg-white md:h-[82dvh]'>
+    <div className='relative -mb-32 grid place-items-center md:mt-44'>
+      <div className='w-full rounded-[80px] bg-white md:h-[82dvh]'>
         <img
           className='absolute left-0 top-0 h-full w-full rounded-[80px] object-cover'
           src={curved}
           alt={''}
         />
-        <section className='relative w-full py-24'>
+        <section className='relative w-full py-20'>
           {/* Section heading */}
           <SectionHeader
             title={'Why CareerView?'}

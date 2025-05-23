@@ -577,8 +577,7 @@ const BecomeMentor: React.FC = () => {
   return (
     <CurvedWrapper
       curve='both'
-      className='mb-[120dvh] bg-gray-100 md:mb-32'
-      minHeight={isMobile ? '180dvh' : '80dvh'}
+      className='mb-20 bg-gray-100'
     >
       <div className='container mx-auto px-4 py-8 sm:px-6 sm:py-12'>
         <h1 className='mb-6 text-center text-3xl font-bold text-black sm:mb-8 sm:text-4xl'>
