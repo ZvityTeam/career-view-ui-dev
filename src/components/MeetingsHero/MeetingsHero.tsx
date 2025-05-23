@@ -46,7 +46,7 @@ export default function MeetingsHero() {
   return (
     <div className='flex w-full flex-col overflow-hidden bg-primary pb-5 pt-14 md:h-screen md:flex-row md:pb-0 md:pt-0'>
       {/* Left Section */}
-      <div className='relative flex w-full flex-col justify-center px-8 py-12 md:w-1/2 md:px-16 lg:px-24'>
+      <div className='itmers-center relative flex w-full flex-col justify-center px-8 py-12 md:w-1/2 md:px-16 lg:px-24'>
         <div className='absolute left-24 top-24 opacity-20'>
           <div className='grid grid-cols-10 gap-2'>
             {Array.from({ length: 50 }).map((_, i) => (
@@ -58,15 +58,15 @@ export default function MeetingsHero() {
           </div>
         </div>
         <div className='max-w-xl space-y-6'>
-          <h1 className='font-serif text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl'>
+          <h1 className='text-center font-serif text-4xl font-bold leading-tight text-white md:text-left md:text-5xl lg:text-6xl'>
             Explore Career Paths with Real Mentors
           </h1>
-          <p className='font-avenir text-lg text-muted-foreground text-slate-300 md:text-xl'>
+          <p className='text-center font-avenir text-lg text-muted-foreground text-slate-300 md:text-left md:text-xl'>
             CareerView helps students connect with industry mentors to gain
             practical, relatable, and honest career insights to make more
             informed decisions about their future careers.
           </p>
-          <div className='flex flex-wrap gap-4 pt-4'>
+          <div className='flex flex-wrap justify-center gap-4 pt-4 md:justify-start'>
             <Button
               variant={'default'}
               className='hover:bg-[#ffffff] hover:text-black'

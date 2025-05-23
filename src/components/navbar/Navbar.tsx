@@ -88,8 +88,8 @@ export const Navbar = () => {
         {isMenuOpen && (
           <div
             className={cn(
-              'flex flex-col items-center justify-center space-y-10 border-b-[1px] py-6 sm:hidden',
-              'w-full py-20'
+              'flex flex-col items-center justify-center space-y-4 border-b-[1px] py-6 sm:hidden',
+              'w-full py-10'
             )}
           >
             {NAV_ITEMS.map((item) => (
@@ -97,7 +97,7 @@ export const Navbar = () => {
                 key={item.label}
                 to={item.link}
                 className={cn(
-                  'py-3 text-4xl font-medium',
+                  'py-3 text-2xl font-medium',
                   'text-white hover:text-gray-300'
                 )}
                 onClick={() => setIsMenuOpen(false)}
