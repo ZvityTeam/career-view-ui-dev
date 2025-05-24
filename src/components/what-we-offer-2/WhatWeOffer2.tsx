@@ -78,7 +78,7 @@ const PDFReader: React.FC = () => {
   };
 
   return (
-    <div className='flex h-full flex-col items-center'>
+    <div className='flex h-full flex-col items-center justify-between'>
       <h3 className='mb-4 text-xl font-bold text-black lg:text-2xl'>
         Mentor Guide
       </h3>
@@ -533,7 +533,7 @@ export default function WhatWeOffer2() {
           </div>
 
           {/* RIGHT COLUMN: PDF Reader */}
-          <div className='mt-4 mb-20 flex-1 rounded-[24px] bg-gradient-to-br from-[#e6f0fa] to-[#ffffff] p-4 shadow-sm sm:p-6 md:mt-0 md:flex-[1] lg:p-8'>
+          <div className='mt-4 flex-1 rounded-[24px] bg-gradient-to-br from-[#e6f0fa] to-[#ffffff] p-4 shadow-sm sm:p-6 md:mt-0 md:flex-[1] lg:p-8'>
             <PDFReader />
           </div>
         </div>
