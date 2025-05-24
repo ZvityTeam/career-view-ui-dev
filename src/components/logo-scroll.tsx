@@ -23,7 +23,7 @@ const schoollogos = [schoolLogo, schoolLogo1, schoolLogo2, schoolLogo3];
 
 const DoubleScrollingLogos = ({ from = 'home' }: { from?: string }) => {
   return (
-    <section className='mt-20 mb-20 md:mt-40 flex flex-col items-center justify-center space-y-20 px-4 py-4 sm:px-6 lg:px-8'>
+    <section className='mt-20 mb-20 md:mt-40 md:mb-10 flex flex-col items-center justify-center space-y-20 px-4 py-4 sm:px-6 lg:px-8'>
       <SectionHeader
         title={from === 'home' ? 'Our Partners' : 'Schools We Work With'}
         className=''

@@ -72,7 +72,7 @@ export const WhyChooseUs: React.FC = () => {
   // };
 
   return (
-    <div className='relative -mb-32 grid place-items-center md:mt-44'>
+    <div className='relative -mb-32 grid place-items-center'>
       <div className='w-full rounded-[80px] bg-white md:h-[82dvh]'>
         <img
           className='absolute left-0 top-0 h-full w-full rounded-[80px] object-cover'
