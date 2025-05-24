@@ -35,8 +35,8 @@ export const WhatWeDo: React.FC = () => {
   return (
     <CurvedWrapper
       curve='both'
-      className='flex flex-col items-center md:mb-20'
-      innerClassName='px-4 sm:px-6 lg:px-8 md:py-20'
+      className='flex flex-col mt-10 items-center md:mb-20'
+      innerClassName='px-4  sm:px-6 lg:px-8 md:py-20 flex flex-col items-center space-y-12 md:space-y-16 lg:space-y-20'
     >
       {/* Heading */}
       <div className='text-center'>
@@ -50,7 +50,7 @@ export const WhatWeDo: React.FC = () => {
       </div>
 
       {/* Cards */}
-      <div className='mx-auto grid w-full max-w-7xl  grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:gap-10'>
+      <div className='grid w-full max-w-7xl grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:gap-12'>
         {cards.map((card, index) => (
           <Card
             key={index}
