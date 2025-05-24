@@ -198,7 +198,7 @@ export const QuestionsWeGet = () => {
     ALL_CATEGORIES.find((cat) => cat.category === currentCategory)?.items || [];
 
   return (
-    <Section className='mt-10 flex flex-col gap-8'>
+    <Section className='mt-10 md:mt-0 flex flex-col gap-8'>
       <SectionHeader
         title='Questions we get from our Students'
         subtitle='Here are examples of what students ask...'

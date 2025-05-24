@@ -58,10 +58,13 @@ export const SchoolHero = () => {
       <div className={styles.className}>
         <h1 className={styles.headerClass}>CareerTalks</h1>
         <p className={styles.paragraphClass}>
-          Struggling to find industry speakers for your students? Save time and
-          effort—connect with our network of Young Professionals who can deliver
-          insightful talks to your school via livestream!
+          Struggling to find industry speakers for your students?
+          <p>
+            Save time and effort—connect with our network of Young Professionals
+            who can deliver insightful talks to your school via livestream!
+          </p>
         </p>
+
         <Button
           className={styles.buttonClass}
           onClick={() => navigate('/school?scrollTo=schedule-call')}

@@ -205,7 +205,7 @@ const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ type }) => {
       : 'Discover how schools are transforming career education';
 
   return (
-    <div className={type === 'mentor' ? 'bg-white' : 'md:mb-40 bg-white'}>
+    <div className={type === 'mentor' ? 'bg-white' : 'md:mb-48 md:-mt-14 bg-white'}>
       <TestimonialSection
         title={title}
         subtitle={subtitle}

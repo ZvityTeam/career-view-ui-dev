@@ -15,7 +15,7 @@ export const CareerTalksLivestream = () => {
 
   // Heading and top text
   const heading = {
-    title: 'What is Career Talks Livestream?',
+    title: 'What is CareerTalks?',
     subtitle:
       "This fully online and interactive livestream allows students to engage directly with young professionals from various industries in a safe, structured, and engaging environment. You can select the number of speakers you'd like, and we will take care of all the logistics to ensure an impactful session.",
   };
@@ -73,7 +73,7 @@ export const CareerTalksLivestream = () => {
       };
     } else {
       return {
-        titleClass: 'text-5xl font-extrabold text-black',
+        titleClass: 'text-5xl font-extrabold text-black mb-4',
         textClass: 'text-xl text-black',
       };
     }
@@ -82,7 +82,7 @@ export const CareerTalksLivestream = () => {
   const styles = getTitleStyles();
 
   return (
-    <CurvedWrapper className='ld:mb-36 md:mb-42 mb-48'>
+    <CurvedWrapper className='ld:mb-36 md:mb-32 md:mt-10 mb-48' innerClassName='md:py-20'>
       <div
         className={`flex flex-col items-center justify-center gap-4 ${isMobile ? 'max-w-full px-4' : isTablet ? 'max-w-2xl px-6' : 'max-w-5xl'}`}
       >

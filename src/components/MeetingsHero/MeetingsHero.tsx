@@ -59,14 +59,16 @@ export default function MeetingsHero() {
         </div>
         <div className='max-w-xl space-y-6'>
           <h1 className='text-center font-serif text-4xl font-bold leading-tight text-white md:text-left md:text-5xl lg:text-6xl'>
-            Explore Career Paths with Real Mentors
+            Explore <span className='text-yellow-500'>Career Paths</span> with{' '}
+            Real Mentors
           </h1>
           <p className='text-center font-avenir text-lg text-muted-foreground text-slate-300 md:text-left md:text-xl'>
-            CareerView helps students connect with industry mentors to gain
-            practical, relatable, and honest career insights to make more
-            informed decisions about their future careers.
+            <span className='text-yellow-400'>CareerView</span> helps students
+            connect with industry mentors to gain practical, relatable, and
+            honest career insights to make more informed decisions about their
+            future careers.
           </p>
-          <div className='flex flex-wrap  justify-center gap-4 pt-4 md:justify-start'>
+          <div className='flex flex-wrap justify-center gap-4 pt-4 md:justify-start'>
             <Button
               variant={'default'}
               className='hover:bg-[#ffffff] hover:text-black'

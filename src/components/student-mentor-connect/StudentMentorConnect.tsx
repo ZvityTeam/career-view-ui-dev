@@ -18,7 +18,7 @@ export const StudentMentorConnect = () => {
 
   return (
     <section
-      className='grid place-items-center py-32 md:min-h-[100dvh] md:pt-44'
+      className='grid place-items-center py-32 md:min-h-[100dvh] md:pt-60'
       style={{
         background:
           'linear-gradient(220deg, #000000 0%, #767676 33%, #F1CE7E 71%, #FFFBF0 100%)',

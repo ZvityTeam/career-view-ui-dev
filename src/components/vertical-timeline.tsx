@@ -237,16 +237,16 @@ const TimelineItem: React.FC<{
           variants={isEven ? leftItemVariants : rightItemVariants}
         >
           <div
-            className={`flex flex-col items-center justify-center ${!isEven ? 'lg:pr-16' : 'lg:pl-16'}`}
+            className={`flex flex-col items-center justify-center `}
           >
             {/* Text content */}
             <div
-              className={`w-full max-w-md ${isEven ? 'text-left' : 'text-right'} `}
+              className={`w-full max-w-xl ${isEven ? 'text-left' : 'text-right'} `}
             >
-              <h3 className='mb-2 text-xl font-bold md:text-2xl'>
+              <h3 className='mb-2 text-xl font-bold md:text-4xl'>
                 {item.title}
               </h3>
-              <div className='space-y-1 text-base text-gray-600 md:text-lg'>
+              <div className='space-y-1 text-base text-gray-600 md:text-xl'>
                 {descriptionParts.map((part, i) => (
                   <p key={i}>{part}</p>
                 ))}
@@ -270,7 +270,9 @@ export const VerticalTimelineComponent: React.FC<AlternatingTimelineProps> = ({
   return (
     <div
       className={
-        title === 'Why Join as a Mentor?' ? 'pt-10' : 'rounded-[80px] bg-white pt-10'
+        title === 'Why Join as a Mentor?'
+          ? 'pt-10'
+          : 'rounded-[80px] bg-white pt-1'
       }
     >
       <div className='my-10 px-4 text-center md:my-20'>

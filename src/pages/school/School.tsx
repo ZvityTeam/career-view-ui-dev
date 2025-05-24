@@ -38,7 +38,7 @@ export const School = () => {
     },
     {
       id: 2,
-      title: 'Step 2: Select an Industry & Speaker Count',
+      title: 'Step 2: Select an Industry & Speaker',
       subtitle: '',
       description:
         'Choose the industry or career field you want students to learn about. Then, specify how many speakers you’d like—whether a single expert for deep insights or multiple professionals for diverse perspectives.',
@@ -52,7 +52,7 @@ export const School = () => {
     },
     {
       id: 3,
-      title: 'Step 3: Get Matched & Confirm the Session',
+      title: 'Step 3: Get Matched & Confirm',
       subtitle: '',
       description:
         'We will match you with industry professionals based on your selections. Once confirmed, you’ll receive the session details, and we’ll coordinate the livestream for an engaging discussion with your students.',

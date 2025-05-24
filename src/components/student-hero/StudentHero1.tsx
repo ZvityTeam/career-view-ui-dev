@@ -61,7 +61,7 @@ const StudentHero1 = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}
           >
-            <h1 className='text-5xl font-extrabold leading-tight tracking-tight text-white shadow-lg drop-shadow-xl sm:text-5xl md:text-7xl lg:text-8xl'>
+            <h1 className='text-5xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl md:text-7xl lg:text-8xl'>
               Shape Your <span className='text-yellow-500'>Future</span>
             </h1>
           </motion.div>

@@ -577,17 +577,20 @@ const BecomeMentor: React.FC = () => {
   return (
     <CurvedWrapper
       curve='both'
-      className='mb-20 bg-gray-100'
+      className='mb-20 bg-gray-100 md:mt-10'
     >
       <div className='container mx-auto px-4 py-8 sm:px-6 sm:py-12'>
-        <h1 className='mb-6 text-center text-3xl font-bold text-black sm:mb-8 sm:text-4xl'>
+        <h1 className='mb-6 text-center text-3xl font-bold text-black sm:mb-4 sm:text-4xl'>
           Become a CareerView Mentor
         </h1>
-        <p className='mb-8 px-2 text-center text-gray-600 sm:mb-12 sm:px-0'>
-          Share the guidance you wish you'd received. Students seek relatable
-          career advice—join CareerView to shape their futures with your
-          insights.
-        </p>
+        <div className='flex flex-col items-center justify-center text-center'>
+          <p className='mb-8 max-w-3xl px-2 text-center text-gray-600 sm:mb-12 sm:px-0'>
+            Share the guidance you wish you'd received. Students seek relatable
+            career advice—join CareerView to shape their futures with your
+            insights.
+          </p>
+        </div>
+
         <div
           className={`grid grid-cols-1 ${isMobile || isTablet ? 'gap-8' : 'gap-12 lg:grid-cols-2'}`}
         >

@@ -16,13 +16,13 @@ export const WhatWeDo: React.FC = () => {
       icon: BookOpen,
       title: 'Career E-Books',
       description:
-        'Access best tips and insights provided by Young Professionals on how to navigate through life after school.',
+        'Access best tips and insights provided by Young Professionals to navigate life after school.',
     },
     {
       icon: RadioIcon,
       title: 'Livestream Events',
       description:
-        'Meet the CareerView Young Professional community! Where students can have the opportunity to connect in person.',
+        'Meet the CareerView Young Professional community! Where students can connect with mentors in person.',
     },
     {
       icon: Users,
@@ -36,7 +36,7 @@ export const WhatWeDo: React.FC = () => {
     <CurvedWrapper
       curve='both'
       className='flex flex-col mt-10 items-center md:mb-20'
-      innerClassName='px-4  sm:px-6 lg:px-8 md:py-20 flex flex-col items-center space-y-12 md:space-y-16 lg:space-y-20'
+      innerClassName='px-4  sm:px-6 lg:px-8 md:py-20 flex flex-col items-center space-y-12 md:space-y-16 lg:space-y-10'
     >
       {/* Heading */}
       <div className='text-center'>
@@ -50,7 +50,7 @@ export const WhatWeDo: React.FC = () => {
       </div>
 
       {/* Cards */}
-      <div className='grid w-full max-w-7xl grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:gap-12'>
+      <div className='grid w-full max-w-7xl grid-cols-1 gap-6 ml-24 sm:grid-cols-2 sm:gap-8 lg:gap-12'>
         {cards.map((card, index) => (
           <Card
             key={index}
