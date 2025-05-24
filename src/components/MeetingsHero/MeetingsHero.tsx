@@ -66,7 +66,7 @@ export default function MeetingsHero() {
             practical, relatable, and honest career insights to make more
             informed decisions about their future careers.
           </p>
-          <div className='flex flex-wrap justify-center gap-4 pt-4 md:justify-start'>
+          <div className='flex flex-wrap  justify-center gap-4 pt-4 md:justify-start'>
             <Button
               variant={'default'}
               className='hover:bg-[#ffffff] hover:text-black'

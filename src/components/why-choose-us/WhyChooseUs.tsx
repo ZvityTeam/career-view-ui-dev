@@ -87,6 +87,7 @@ export const WhyChooseUs: React.FC = () => {
               'CareerView is a community of YOUNG Professionals from a wide range of careers, industries, and cultures. They openly share what school and work are really like—so students can learn from real stories, not just job descriptions. With over 100 professionals from 10+ cultural backgrounds, students get access to a truly diverse set of experiences.'
             }
             className={'mb-1 px-10 text-5xl md:mt-0 md:px-0 md:text-8xl'}
+            subTitleClassName='max-w-7xl'
           />
 
           {/* The carousel container (relative) for stacking motion cards */}
