@@ -236,9 +236,7 @@ const TimelineItem: React.FC<{
           animate={controls}
           variants={isEven ? leftItemVariants : rightItemVariants}
         >
-          <div
-            className={`flex flex-col items-center justify-center `}
-          >
+          <div className={`flex flex-col items-center justify-center`}>
             {/* Text content */}
             <div
               className={`w-full max-w-xl ${isEven ? 'text-left' : 'text-right'} `}
