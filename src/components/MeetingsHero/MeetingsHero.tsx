@@ -30,12 +30,12 @@ export default function MeetingsHero() {
         className='absolute inset-0 h-full w-full object-cover object-center'
         loading='lazy'
       />
-      <div className='relative z-10 h-[2.5rem] w-full'>
+      <div className='relative z-10 h-[12%] max-w-[90%] w-full'>
         <div className='absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-70'></div>
         <p
           className={`relative z-20 text-center font-avenir ${
             isMobile ? 'text-base' : 'text-lg'
-          } font-medium text-white`}
+          } font-semibold text-white`}
         >
           {mentor.role}
         </p>
