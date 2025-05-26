@@ -50,7 +50,7 @@ export const WhatWeDo: React.FC = () => {
       </div>
 
       {/* Cards */}
-      <div className='grid w-full max-w-7xl grid-cols-1 gap-6 ml-24 sm:grid-cols-2 sm:gap-8 lg:gap-12'>
+      <div className='grid w-full max-w-7xl grid-cols-1 gap-6 md:ml-24 sm:grid-cols-2 sm:gap-8 lg:gap-12'>
         {cards.map((card, index) => (
           <Card
             key={index}
