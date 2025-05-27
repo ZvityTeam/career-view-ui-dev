@@ -21,6 +21,52 @@ const AppRouter = () => {
       {currentRoute && (
         <Helmet>
           <title>{currentRoute?.metaData?.title ?? 'Career View'}</title>
+          <link
+            rel='preconnect'
+            href='https://fonts.gstatic.com'
+            crossOrigin='anonymous'
+          />
+          <link
+            rel='preconnect'
+            href='https://www.google-analytics.com'
+          />
+          <link
+            rel='preconnect'
+            href='https://www.gstatic.com'
+          />
+          {/* DNS-prefetch for less-critical origins */}
+          <link
+            rel='dns-prefetch'
+            href='https://www.google.com'
+          />
+          <link
+            rel='dns-prefetch'
+            href='https://play.google.com'
+          />
+          <link
+            rel='dns-prefetch'
+            href='https://jnn-pa.googleapis.com'
+          />
+          <link
+            rel='dns-prefetch'
+            href='https://googleads.g.doubleclick.net'
+          />
+          <link
+            rel='dns-prefetch'
+            href='https://static.doubleclick.net'
+          />
+          <link
+            rel='dns-prefetch'
+            href='https://www.youtube.com'
+          />
+          <link
+            rel='dns-prefetch'
+            href='https://yt3.ggpht.com'
+          />
+          <link
+            rel='dns-prefetch'
+            href='https://rr4---sn-gwpa-cagy.googlevideo.com'
+          />
           {currentRoute?.metaData?.description && (
             <meta
               name='description'
