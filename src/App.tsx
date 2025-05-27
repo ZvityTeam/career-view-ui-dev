@@ -1,4 +1,3 @@
-import { Analytics } from '@vercel/analytics/next';
 import { useEffect } from 'react';
 import { Footer } from './components/footer/Footer.tsx';
 import { Navbar } from './components/navbar/Navbar.tsx';
@@ -18,7 +17,6 @@ function App() {
   return (
     <>
       <Providers>
-        <Analytics />
         <ScrollToTop />
         <Navbar />
         <AppRouter />
