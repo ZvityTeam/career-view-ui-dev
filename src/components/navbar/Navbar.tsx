@@ -31,6 +31,8 @@ const Navbar = () => {
               <Link
                 to='/'
                 className='flex items-center space-x-2'
+                aria-label='Go to Home'
+                title='CareerView'
               >
                 <img
                   src={AppLogo}
@@ -43,6 +45,8 @@ const Navbar = () => {
             <button
               className='absolute right-4 top-6 sm:hidden'
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+              title={isMenuOpen ? 'Close menu' : 'Open menu'}
             >
               {isMenuOpen ? (
                 <XIcon className={cn('h-8 w-8', 'text-white')} />
@@ -57,6 +61,8 @@ const Navbar = () => {
                   key={item.label}
                   to={item.link}
                   className={cn('text-white hover:text-gray-300')}
+                  aria-label={item.label}
+                  title={item.label}
                 >
                   {item.label}
                 </Link>
@@ -68,6 +74,8 @@ const Navbar = () => {
           <div className='hidden items-center space-x-6 sm:flex'>
             <Link
               to='/'
+              aria-label='Go to Home'
+              title='Home'
               className={cn(
                 'text-base sm:text-lg lg:text-xl',
                 'text-white hover:text-gray-300'
@@ -78,7 +86,12 @@ const Navbar = () => {
                 filled
               />
             </Link>
-            <Link to='/browse-mentors'>
+
+            <Link
+              to='/browse-mentors'
+              aria-label='Browse Mentors'
+              title='Browse Mentors'
+            >
               <Button className='text-sm sm:text-base'>Browse Mentors</Button>
             </Link>
           </div>
@@ -101,6 +114,8 @@ const Navbar = () => {
                   'text-white hover:text-gray-300'
                 )}
                 onClick={() => setIsMenuOpen(false)}
+                aria-label={item.label}
+                title={item.label}
               >
                 {item.label}
               </Link>
