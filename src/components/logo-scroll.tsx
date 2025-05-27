@@ -59,7 +59,7 @@ const LogoItem = ({ src }: { src: string }) => {
     <img
       src={src}
       alt='logo'
-      className='w-42 mx-4 h-auto object-contain sm:mx-6 sm:max-w-md lg:mx-10 lg:max-w-xl'
+      className='mx-4 h-auto object-contain sm:mx-6 sm:max-w-md lg:mx-10 lg:max-w-xl'
     />
   );
 };
