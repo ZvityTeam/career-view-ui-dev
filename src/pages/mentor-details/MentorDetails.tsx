@@ -55,7 +55,7 @@ export const MentorDetails = () => {
   const isAdded = savedMentors.some((m) => m.name === mentor.name);
   return (
     <AnimatedPageWrapper>
-      <main className='mx-0 py-36 sm:mx-8 sm:py-8 lg:mx-16 xl:mx-32'>
+      <main className='mx-0 py-36 sm:py-8 md:pl-5 md:pr-10'>
         <Header
           name={mentor.name}
           profileImage={mentor.profileImage}

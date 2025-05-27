@@ -28,7 +28,7 @@ const itemVariants = {
   visible: { opacity: 1, x: 0 },
 };
 
-export const SavedMentors = () => {
+const SavedMentors = () => {
   const [savedMentors, setSavedMentors] = useLocalStorageState<any[]>(
     'savedMentors',
     []
@@ -117,3 +117,5 @@ export const SavedMentors = () => {
     </motion.div>
   );
 };
+
+export default SavedMentors;

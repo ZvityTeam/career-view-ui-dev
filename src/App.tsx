@@ -1,12 +1,14 @@
-import { useEffect } from 'react';
-import { Footer } from './components/footer/Footer.tsx';
-import { Navbar } from './components/navbar/Navbar.tsx';
-import { SavedMentors } from './components/saved-mentor';
-import { ScrollToTop } from './components/ui/scroll-to-top.tsx';
+import { Suspense, lazy, useEffect } from 'react';
 import { data as mentorsData } from './content/mentors.ts';
 import { Providers } from './context/Providers.tsx';
-import { AppRouter } from './routes/AppRouter.tsx';
 import { useMentorStore } from './store/useMentorStore.ts';
+
+// Lazy-load components
+const Navbar = lazy(() => import('./components/navbar/Navbar.tsx'));
+const Footer = lazy(() => import('./components/footer/Footer.tsx'));
+const SavedMentors = lazy(() => import('./components/saved-mentor'));
+const AppRouter = lazy(() => import('./routes/AppRouter.tsx'));
+const ScrollToTop = lazy(() => import('./components/ui/scroll-to-top.tsx'));
 
 function App() {
   const setMentors = useMentorStore((state) => state.setMentors);
@@ -14,16 +16,32 @@ function App() {
   useEffect(() => {
     setMentors(mentorsData);
   }, [setMentors]);
+
   return (
-    <>
-      <Providers>
+    <Providers>
+      <Suspense
+        fallback={
+          <div
+            className='fixed inset-0 z-50 flex items-center justify-center bg-black/80'
+            style={{ backdropFilter: 'blur(4px)' }} // Optional: subtle blur effect
+          >
+            <div className='text-center'>
+              <div className='mx-auto h-16 w-16 animate-spin rounded-full border-4 border-dashed border-yellow-500' />
+              <h2 className='mt-4 text-white'>Loading...</h2>
+              <p className='text-zinc-400'>
+                Your career journey is about to start!
+              </p>
+            </div>
+          </div>
+        }
+      >
         <ScrollToTop />
         <Navbar />
         <AppRouter />
         <Footer />
         <SavedMentors />
-      </Providers>
-    </>
+      </Suspense>
+    </Providers>
   );
 }
 

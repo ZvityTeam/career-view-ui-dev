@@ -7,7 +7,7 @@ import { NavIcon } from '../nav-icon/NavIcon';
 import { Button } from '../ui/Button';
 import { NAV_ITEMS } from './NavbarConfig';
 
-export const Navbar = () => {
+const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -125,3 +125,5 @@ export const Navbar = () => {
     </>
   );
 };
+
+export default Navbar;

@@ -12,9 +12,9 @@ interface FooterProps {
   backgroundImageUrl?: string;
 }
 
-export const Footer: React.FC<FooterProps> = () => {
+const Footer: React.FC<FooterProps> = () => {
   return (
-    <footer className='relative pt-10 w-full overflow-hidden bg-[linear-gradient(165deg,_#000000,_#272727,_#6E6E6E)] text-white'>
+    <footer className='relative w-full overflow-hidden bg-[linear-gradient(165deg,_#000000,_#272727,_#6E6E6E)] pt-10 text-white'>
       {/* Background Images */}
       <img
         src={bg1}
@@ -28,15 +28,13 @@ export const Footer: React.FC<FooterProps> = () => {
       />
 
       {/* Main Content */}
-      <div className='flex flex-col md:flex-row justify-between px-4 pb-6 sm:px-8 sm:pb-8 lg:flex lg:px-44 lg:pb-10'>
+      <div className='flex flex-col justify-between px-4 pb-6 sm:px-8 sm:pb-8 md:flex-row lg:flex lg:px-44 lg:pb-10'>
         {/* Left Section */}
         <div className='flex max-w-2xl flex-col gap-4 p-4 sm:gap-6 sm:p-8 lg:gap-7 lg:p-24'>
           {/* Multiline Heading */}
           <h4 className='z-20 text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl'>
             <span className='relative'>
-              <span className=' italic mr-3 md:mr-5'>
-                Let’s
-              </span>
+              <span className='mr-3 italic md:mr-5'>Let’s</span>
               Connect
             </span>
             <br />
@@ -97,3 +95,5 @@ export const Footer: React.FC<FooterProps> = () => {
     </footer>
   );
 };
+
+export default Footer;

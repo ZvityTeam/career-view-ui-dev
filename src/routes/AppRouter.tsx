@@ -1,10 +1,10 @@
+import { AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { ROUTES } from './RouteConfig.ts';
-import { Helmet } from 'react-helmet-async';
-import { useEffect, useState } from 'react';
-import { AnimatePresence } from 'framer-motion';
 
-export const AppRouter = () => {
+const AppRouter = () => {
   const location = useLocation(); // ✅ Get current location reactively
   const [currentRoute, setCurrentRoute] = useState(() =>
     ROUTES.find((route) => route.path === location.pathname)
@@ -46,3 +46,5 @@ export const AppRouter = () => {
     </>
   );
 };
+
+export default AppRouter;

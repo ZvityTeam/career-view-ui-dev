@@ -1,6 +1,5 @@
-import { ListFilter } from 'lucide-react';
+import { ListFilter, Search } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { FaMagnifyingGlass } from 'react-icons/fa6';
 import { useMentorStore } from '../../store/useMentorStore.ts';
 import { Mentor } from '../../types/types';
 
@@ -111,7 +110,7 @@ export default function MentorSearch() {
 
             {/* Search bar and filter */}
             <div className='relative w-full max-w-3xl'>
-              <FaMagnifyingGlass className='absolute left-4 top-1/2 h-6 w-6 -translate-y-1/2 text-gray-500 sm:h-8 sm:w-8' />
+              <Search className='absolute left-4 top-1/2 h-6 w-6 -translate-y-1/2 stroke-[2.8] text-gray-500 sm:h-8 sm:w-8' />
               <input
                 type='text'
                 placeholder='Search for mentors'
