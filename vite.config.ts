@@ -36,7 +36,6 @@ export default defineConfig({
       outDir: 'dist',
       changefreq: 'weekly',
       priority: 0.8,
-      exclude: ['/404', '/admin'], // Exclude non-public routes
     }),
   ],
   assetsInclude: ['**/*.pdf', '**/*.mp4', '**/*.webp'], // Include WebP assets
