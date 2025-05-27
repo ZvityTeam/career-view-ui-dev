@@ -35,7 +35,7 @@ const DoubleScrollingLogos = ({ from = 'home' }: { from?: string }) => {
       />
       <Marquee
         pauseOnHover
-        className='lg:h-ful mt-4 h-32 w-full max-w-7xl md:max-w-[90%]'
+        className='lg:h-ful mt-4 h-32 w-full max-w-7xl [--duration:50s] md:max-w-[90%]'
       >
         <LogoItems from={from} />
       </Marquee>
@@ -59,7 +59,7 @@ const LogoItem = ({ src }: { src: string }) => {
     <img
       src={src}
       alt='logo'
-      className='mx-4 h-auto max-w-sm sm:mx-6 sm:max-w-md lg:mx-10 lg:max-w-xl'
+      className='h-auto object-contain sm:mx-2 lg:mx-10 lg:max-w-xl'
     />
   );
 };
