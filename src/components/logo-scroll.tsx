@@ -35,7 +35,7 @@ const DoubleScrollingLogos = ({ from = 'home' }: { from?: string }) => {
       />
       <Marquee
         pauseOnHover
-        className='lg:h-ful mt-4 h-32 w-full max-w-7xl [--duration:30s] md:max-w-[90%]'
+        className='lg:h-ful mt-4 h-32 w-full max-w-7xl [--duration:50s] md:max-w-[90%]'
       >
         <LogoItems from={from} />
       </Marquee>
