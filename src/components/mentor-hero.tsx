@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import mentorHeroBg from '../assets/CareerView -3137.jpg';
+import mentorHeroBg from '../assets/CareerViewMentorHero.webp';
 import { Button } from './ui/Button.tsx';
 
 export const MentorHero = () => {

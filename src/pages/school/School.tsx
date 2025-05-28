@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import timeline_img2 from '../../assets/mentors_page/timeline_img1.png';
-import timeline_img1 from '../../assets/schoolPageIllustrations/timeline_img1.png';
+import timeline_img1 from '../../assets/schoolPageIllustrations/timeline_img1.webp';
 import { CareerTalksLivestream } from '../../components/CareerTalksLivestream/CareerTalksLivestream.tsx';
 import LogoScroll from '../../components/logo-scroll.tsx';
 import { AnimatedPageWrapper } from '../../components/PageWrapper.tsx';

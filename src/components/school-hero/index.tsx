@@ -1,7 +1,7 @@
 // SchoolHero.tsx
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import schoolHero from '../../assets/schoolHreroBg.png';
+import schoolHero from '../../assets/schoolHreroBg.webp';
 import { useNavbarContext } from '../../context/navbar-context/NavbarContext.tsx';
 import useResponsiveLayout from '../../hooks/useResponsiveLayout';
 import { Button } from '../ui/Button.tsx';
