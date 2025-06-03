@@ -182,7 +182,7 @@ const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ type }) => {
       role: 'VET, Careers Coordinator',
       organization: 'Ursula Frayne Catholic College',
       testimonial:
-        'One of the biggest challenges in career education is bridging the gap between classroom learning and the real world. CareerView has become valuable in this space—not just by bringing industry into the classroom, but by making those encounters meaningful and accessible to all students, regardless of background or confidence level. What stood out most was how quickly students connected with the stories and experiences shared by mentors. For many, it was the first time they’d heard a career journey that felt relatable. It shifted their thinking—from "What job should I do?" to "What kind of life do I want to create?" That’s a powerful mindset change.',
+        'A range of global reports recommend that young people in schools need to be more connected with the world of work and their future career opportunities. CareerView are solving this problem with their innovative virtual platform that creates an easy, engaging career development experience for school students. Students can choose to listen to a young professional who has commenced work in an industry that they are interested in and find out more about their experiences. I recommend CareerView to other schools who are looking to enhance the career development opportunities for their students.',
       image: schoolAdminImg1,
     },
     {
@@ -205,7 +205,9 @@ const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ type }) => {
       : 'Discover how schools are transforming career education';
 
   return (
-    <div className={type === 'mentor' ? 'bg-white' : 'md:mb-48 md:-mt-14 bg-white'}>
+    <div
+      className={type === 'mentor' ? 'bg-white' : 'bg-white md:-mt-14 md:mb-48'}
+    >
       <TestimonialSection
         title={title}
         subtitle={subtitle}
