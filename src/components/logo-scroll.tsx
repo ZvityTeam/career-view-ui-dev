@@ -13,13 +13,20 @@ import logo26 from '../assets/schools/image8.png';
 import schoolLogo from '../assets/schools/SchoolsWeWorkWith/image11png.png';
 import schoolLogo1 from '../assets/schools/SchoolsWeWorkWith/image12.png';
 import schoolLogo2 from '../assets/schools/SchoolsWeWorkWith/image13.png';
+import schoolLogo4 from '../assets/schools/SchoolsWeWorkWith/image14.webp';
 import schoolLogo3 from '../assets/schools/SchoolsWeWorkWith/image9.png';
 
 import { Marquee } from './marquee/Marquee';
 import { SectionHeader } from './section-header/SectionHeader';
 
 const logos = [logo3, logo10, logo14, logo18, logo21, logo24, logo25, logo26];
-const schoollogos = [schoolLogo, schoolLogo1, schoolLogo2, schoolLogo3];
+const schoollogos = [
+  schoolLogo,
+  schoolLogo1,
+  schoolLogo2,
+  schoolLogo3,
+  schoolLogo4,
+];
 
 const DoubleScrollingLogos = ({ from = 'home' }: { from?: string }) => {
   return (

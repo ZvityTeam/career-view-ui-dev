@@ -112,3 +112,10 @@ export { default as alaine_bailey } from './webp_output/alaine_bailey.webp';
 export { default as stephanie_munro } from './webp_output/stephanie_munro.webp';
 // export { default as alexandra_colalillo } from './webp_output/alexandra_colalillo.webp';
 export { default as henri_crisp } from './webp_output/henri_crisp.webp';
+export { default as shreya } from './webp_output/Shreya.webp';
+export { default as chloe_leopold } from './webp_output/Chloe_Leopold.webp';
+export { default as brendan_joel } from './webp_output/Brendan_Joel.webp';
+export { default as jordan_korol } from './webp_output/Jordan_Korol.webp';
+export { default as kennedy_aves } from './webp_output/Kennedy_Aves.webp';
+export { default as vivian_wong } from './webp_output/Vivian_Wong.webp';
+
