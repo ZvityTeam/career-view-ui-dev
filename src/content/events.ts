@@ -17,7 +17,7 @@ export const events: Event[] = [
       'Matt Sankey',
       'Benito Vehlo',
     ],
-    imageUrl: '/src/assets/CAREERVIEW-32721.jpg',
+    imageUrl: '/assets/CAREERVIEW-32721.jpg',
     joiningLink:
       'https://3ds.zoom.us/j/84988150293?pwd=GJNrCoY0bVb9a4iF4Bgaa0NSVbbpTF.1',
   },
@@ -30,7 +30,7 @@ export const events: Event[] = [
     description:
       'High School #2: School Talks event featuring discussions and presentations for students by professionals in various fields.',
     speakers: ['Andrew Korol', 'Nicholas Lee', 'Hannah Ngo'],
-    imageUrl: '/src/assets/CAREERVIEW-32721.jpg',
+    imageUrl: '/assets/CAREERVIEW-32721.jpg',
     joiningLink:
       'https://3ds.zoom.us/j/84504015444?pwd=kjfeqjoVdsCrMDbfRJOU4S7xquSJan.1',
   },
@@ -43,7 +43,7 @@ export const events: Event[] = [
     description:
       'High School #3: School Talks event featuring discussions and presentations for students by professionals in various fields.',
     speakers: ['David Gardiner', 'Jordy Skye', 'Tammy Lee'],
-    imageUrl: '/src/assets/CAREERVIEW-32721.jpg',
+    imageUrl: '/assets/CAREERVIEW-32721.jpg',
     joiningLink:
       'https://3ds.zoom.us/j/81508393788?pwd=zah1R2pghbZG8mxxelwTHaKbAlVA3A.1',
   },
@@ -56,7 +56,7 @@ export const events: Event[] = [
     description:
       'High School #4: School Talks event featuring discussions and presentations for students by professionals in various fields.',
     speakers: ['Harley Webb', 'Peter Wu', 'Naomi Crosby'],
-    imageUrl: '/src/assets/CAREERVIEW-32721.jpg',
+    imageUrl: '/assets/CAREERVIEW-32721.jpg',
     joiningLink: '',
   },
 ];
