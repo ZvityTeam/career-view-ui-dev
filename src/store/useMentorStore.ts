@@ -3,6 +3,7 @@ import { Mentor } from '../types/types'; // adjust the import path as needed
 
 interface MentorState {
   mentors: Mentor[];
+  initialMentors: Mentor[];
   setMentors: (mentors: Mentor[]) => void;
   getRandomMentorProfiles: (count: number) => string[];
   getRandomMentors: (count: number) => Mentor[];
@@ -10,12 +11,16 @@ interface MentorState {
 
 export const useMentorStore = create<MentorState>((set, get) => ({
   mentors: [],
-  setMentors: (mentors: Mentor[]) => set(() => ({ mentors })),
+  initialMentors: [],
+  setMentors: (mentors: Mentor[]) => set((state) => ({ 
+    mentors, 
+    initialMentors: state.initialMentors.length === 0 ? mentors : state.initialMentors 
+  })),
   getRandomMentorProfiles: (count: number) => {
-    const { mentors } = get();
+    const { initialMentors } = get();
 
     // Filter mentors with valid profile images
-    const validMentors = mentors.filter(
+    const validMentors = initialMentors.filter(
       (mentor) =>
         typeof mentor.profileImage === 'string' &&
         mentor.profileImage.trim() !== ''
@@ -35,10 +40,10 @@ export const useMentorStore = create<MentorState>((set, get) => ({
       .map(({ profileImage }) => profileImage);
   },
   getRandomMentors: (count: number) => {
-    const { mentors } = get();
+    const { initialMentors } = get();
 
     // Filter mentors with valid profile images and non-null required fields
-    const validMentors = mentors.filter(
+    const validMentors = initialMentors.filter(
       (mentor) =>
         typeof mentor.name === 'string' &&
         mentor.name.trim() !== '' &&
