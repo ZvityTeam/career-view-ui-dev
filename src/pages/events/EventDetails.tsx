@@ -1,4 +1,5 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import banner from '../../assets/CAREERVIEW-32721.jpg';
 import { AnimatedPageWrapper } from '../../components/PageWrapper';
 import { Section } from '../../components/container/Section';
 import { SectionHeader } from '../../components/section-header/SectionHeader';
@@ -10,7 +11,7 @@ export const EventDetails = () => {
   const navigate = useNavigate();
 
   const event = events.find((e) => e.id === eventId);
-  
+
   // Get speaker details using custom hook - moved before conditional return
   // If event doesn't exist, pass empty array to avoid hook errors
   const speakerDetails = useSpeakerDetails(event?.speakers || []);
@@ -40,9 +41,9 @@ export const EventDetails = () => {
   return (
     <AnimatedPageWrapper>
       <div className='relative mt-16 h-[40vh] w-full overflow-hidden'>
-        <div className='absolute inset-0 z-10 pt-16 bg-black/60'></div>
+        <div className='absolute inset-0 z-10 bg-black/60 pt-16'></div>
         <img
-          src={event.imageUrl}
+          src={banner}
           alt={event.name}
           className='h-full w-full object-cover'
         />
@@ -91,7 +92,7 @@ export const EventDetails = () => {
             </p>
           </div>
 
-          {speakerDetails.filter(speaker => speaker.isMentor).length > 0 && (
+          {speakerDetails.filter((speaker) => speaker.isMentor).length > 0 && (
             <div>
               <SectionHeader
                 title='Speakers'
@@ -99,41 +100,45 @@ export const EventDetails = () => {
                 className='mb-6'
               />
               <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
-                {speakerDetails.filter(speaker => speaker.isMentor).map((speaker, index) => (
-                  <Link
-                    key={index}
-                    to={`/browse-mentors/${speaker.mentorIndex}`}
-                    className='block rounded-xl bg-gray-50 p-6 shadow-sm transition-shadow duration-300 hover:shadow-md cursor-pointer'
-                  >
-                    <div className='flex items-start gap-4'>
-                      {speaker.profileImage && (
-                        <div className='h-16 w-16 flex-shrink-0 overflow-hidden rounded-full'>
-                          <img
-                            src={speaker.profileImage}
-                            alt={speaker.name}
-                            className='h-full w-full object-cover'
-                          />
-                        </div>
-                      )}
-                      <div className='flex-1'>
-                        <h3 className='mb-2 text-xl font-bold'>{speaker.name}</h3>
-                        {(speaker.role || speaker.company) && (
-                          <p className='mb-3 text-gray-600'>
-                            {speaker.role}
-                            {speaker.role && speaker.company && ' at '}
-                            {speaker.company}
+                {speakerDetails
+                  .filter((speaker) => speaker.isMentor)
+                  .map((speaker, index) => (
+                    <Link
+                      key={index}
+                      to={`/browse-mentors/${speaker.mentorIndex}`}
+                      className='block cursor-pointer rounded-xl bg-gray-50 p-6 shadow-sm transition-shadow duration-300 hover:shadow-md'
+                    >
+                      <div className='flex items-start gap-4'>
+                        {speaker.profileImage && (
+                          <div className='h-16 w-16 flex-shrink-0 overflow-hidden rounded-full'>
+                            <img
+                              src={speaker.profileImage}
+                              alt={speaker.name}
+                              className='h-full w-full object-cover'
+                            />
+                          </div>
+                        )}
+                        <div className='flex-1'>
+                          <h3 className='mb-2 text-xl font-bold'>
+                            {speaker.name}
+                          </h3>
+                          {(speaker.role || speaker.company) && (
+                            <p className='mb-3 text-gray-600'>
+                              {speaker.role}
+                              {speaker.role && speaker.company && ' at '}
+                              {speaker.company}
+                            </p>
+                          )}
+                          {speaker.bio && (
+                            <p className='text-gray-700'>{speaker.bio}</p>
+                          )}
+                          <p className='mt-3 font-medium text-blue-600'>
+                            View mentor profile →
                           </p>
-                        )}
-                        {speaker.bio && (
-                          <p className='text-gray-700'>{speaker.bio}</p>
-                        )}
-                        <p className='mt-3 font-medium text-blue-600'>
-                          View mentor profile →
-                        </p>
+                        </div>
                       </div>
-                    </div>
-                  </Link>
-                ))}
+                    </Link>
+                  ))}
               </div>
             </div>
           )}
