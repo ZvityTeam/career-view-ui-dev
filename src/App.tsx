@@ -2,12 +2,12 @@ import { Suspense, lazy, useEffect } from 'react';
 import { data as mentorsData } from './content/mentors.ts';
 import { Providers } from './context/Providers.tsx';
 import { useMentorStore } from './store/useMentorStore.ts';
+import AppRouter from './routes/AppRouter.tsx';
 
 // Lazy-load components
 const Navbar = lazy(() => import('./components/navbar/Navbar.tsx'));
 const Footer = lazy(() => import('./components/footer/Footer.tsx'));
 const SavedMentors = lazy(() => import('./components/saved-mentor'));
-const AppRouter = lazy(() => import('./routes/AppRouter.tsx'));
 const ScrollToTop = lazy(() => import('./components/ui/scroll-to-top.tsx'));
 
 function App() {

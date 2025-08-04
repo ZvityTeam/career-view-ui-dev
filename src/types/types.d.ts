@@ -35,3 +35,25 @@ export interface MentorProfileProps extends Mentor {
 export interface Career {
   name: string;
 }
+
+export interface Speaker {
+  name: string;
+  role?: string;
+  company?: string;
+  bio?: string;
+  profileImage?: string | File;
+  isMentor?: boolean;
+  mentorIndex?: number;
+}
+
+export interface Event {
+  id: string;
+  name: string;
+  schoolName: string;
+  time: string;
+  venue?: string;
+  description: string;
+  speakers: string[];
+  imageUrl: string;
+  joiningLink: string;
+}

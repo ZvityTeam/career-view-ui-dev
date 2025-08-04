@@ -5,7 +5,10 @@ import { defineConfig } from 'vite';
 import viteCompression from 'vite-plugin-compression';
 import sitemap from 'vite-plugin-sitemap';
 
-export default defineConfig({
+export default defineConfig({  
+  optimizeDeps: {
+    exclude: ['react-intersection-observer', 'chunk-ILK4XV7T', 'chunk-MVRAC76T'],
+  },
   plugins: [
     react(),
     viteCompression({

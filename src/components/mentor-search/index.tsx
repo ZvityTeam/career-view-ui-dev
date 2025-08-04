@@ -1,10 +1,11 @@
 import { ListFilter, Search } from 'lucide-react';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useMentorStore } from '../../store/useMentorStore.ts';
 import { Mentor } from '../../types/types';
 
 export default function MentorSearch() {
   const [showFilter, setShowFilter] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
   const mentors = useMentorStore((state) => state.mentors);
   const setMentors = useMentorStore((state) => state.setMentors);
 
@@ -16,14 +17,14 @@ export default function MentorSearch() {
     }
   }, [mentors]);
 
-  // Extract unique values dynamically from the ORIGINAL mentors list
-  const uniqueValues = (key: keyof Mentor) => {
+  // Extract unique values dynamically from the ORIGINAL mentors list - memoized
+  const uniqueValues = useCallback((key: keyof Mentor) => {
     return [
       ...new Set(
         originalMentorsRef.current.map((mentor) => mentor[key]).filter(Boolean)
       ),
     ];
-  };
+  }, []);
 
   const uniqueIndustries = useMemo(() => {
     return [
@@ -46,8 +47,84 @@ export default function MentorSearch() {
   // State to manage dropdown visibility
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
-  // Function to filter mentors from the original list based on current filters
-  const filterMentors = (activeFilters: typeof filters) => {
+  // Function to search mentors by text with priority: name > role > industry > company > university - memoized
+  const searchMentors = useCallback((term: string, activeFilters: typeof filters) => {
+    if (!term.trim()) {
+      return filterMentors(activeFilters);
+    }
+
+    const searchLower = term.toLowerCase();
+    const filtered = originalMentorsRef.current.filter((mentor) => {
+      // Apply dropdown filters first
+      const matchesRole = activeFilters.role
+        ? mentor.role === activeFilters.role
+        : true;
+      const matchesUniversity = activeFilters.university
+        ? mentor.university === activeFilters.university
+        : true;
+      const matchesCompany = activeFilters.company
+        ? mentor.company === activeFilters.company
+        : true;
+      const matchesAvailableHours = activeFilters.availableHours
+        ? mentor.availableHours === activeFilters.availableHours
+        : true;
+      const matchesLocation = activeFilters.location
+        ? mentor.location === activeFilters.location
+        : true;
+      const matchesIndustry = activeFilters.industry
+        ? mentor.industries &&
+          mentor.industries.includes(activeFilters.industry)
+        : true;
+
+      const passesDropdownFilters = (
+        matchesRole &&
+        matchesUniversity &&
+        matchesCompany &&
+        matchesAvailableHours &&
+        matchesLocation &&
+        matchesIndustry
+      );
+
+      if (!passesDropdownFilters) return false;
+
+      // Text search with priority
+      const matchesName = mentor.name?.toLowerCase().includes(searchLower);
+      const matchesRoleText = mentor.role?.toLowerCase().includes(searchLower);
+      const matchesIndustryText = mentor.industries?.some(industry => 
+        industry.toLowerCase().includes(searchLower)
+      );
+      const matchesCompanyText = mentor.company?.toLowerCase().includes(searchLower);
+      const matchesUniversityText = mentor.university?.toLowerCase().includes(searchLower);
+
+      return matchesName || matchesRoleText || matchesIndustryText || matchesCompanyText || matchesUniversityText;
+    });
+
+    // Sort by priority: name matches first, then role, then industry, etc.
+    const sortedFiltered = filtered.sort((a, b) => {
+      const aName = a.name?.toLowerCase().includes(searchLower) ? 1 : 0;
+      const bName = b.name?.toLowerCase().includes(searchLower) ? 1 : 0;
+      if (aName !== bName) return bName - aName;
+
+      const aRole = a.role?.toLowerCase().includes(searchLower) ? 1 : 0;
+      const bRole = b.role?.toLowerCase().includes(searchLower) ? 1 : 0;
+      if (aRole !== bRole) return bRole - aRole;
+
+      const aIndustry = a.industries?.some(industry => 
+        industry.toLowerCase().includes(searchLower)
+      ) ? 1 : 0;
+      const bIndustry = b.industries?.some(industry => 
+        industry.toLowerCase().includes(searchLower)
+      ) ? 1 : 0;
+      if (aIndustry !== bIndustry) return bIndustry - aIndustry;
+
+      return 0;
+    });
+
+    setMentors(sortedFiltered);
+  }, [setMentors]);
+
+  // Function to filter mentors from the original list based on current filters - memoized
+  const filterMentors = useCallback((activeFilters: typeof filters) => {
     const filtered = originalMentorsRef.current.filter((mentor) => {
       const matchesRole = activeFilters.role
         ? mentor.role === activeFilters.role
@@ -79,20 +156,37 @@ export default function MentorSearch() {
       );
     });
     setMentors(filtered);
-  };
+  }, [setMentors]);
 
-  // Handle filter change: update state and filter mentors
-  const handleFilterChange = (key: keyof typeof filters, value: string) => {
+  // Handle search input change - memoized
+  const handleSearchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const term = e.target.value;
+    setSearchTerm(term);
+    searchMentors(term, filters);
+  }, [filters, searchMentors]);
+
+  // Handle filter change: update state and filter mentors - memoized
+  const handleFilterChange = useCallback((key: keyof typeof filters, value: string) => {
     const newFilters = { ...filters, [key]: value };
     setFilters(newFilters);
-    filterMentors(newFilters);
+    searchMentors(searchTerm, newFilters);
     setOpenDropdown(null); // Close dropdown after selection
-  };
+  }, [filters, searchTerm, searchMentors]);
 
-  // Handle dropdown toggle
-  const toggleDropdown = (key: string) => {
+  // Handle dropdown toggle - memoized
+  const toggleDropdown = useCallback((key: string) => {
     setOpenDropdown(openDropdown === key ? null : key);
-  };
+  }, [openDropdown]);
+
+  // Memoized filter options to prevent unnecessary recalculations
+  const filterOptions = useMemo(() => [
+    { key: 'role', label: 'Role' },
+    { key: 'university', label: 'University' },
+    { key: 'company', label: 'Company' },
+    { key: 'availableHours', label: 'Availability' },
+    { key: 'location', label: 'Location' },
+    { key: 'industry', label: 'Industry' },
+  ], []);
 
   return (
     <div className='relative grid min-h-[20dvh] place-items-center px-4 sm:px-6 lg:px-8'>
@@ -114,6 +208,8 @@ export default function MentorSearch() {
               <input
                 type='text'
                 placeholder='Search for mentors'
+                value={searchTerm}
+                onChange={handleSearchChange}
                 className='h-12 w-full rounded-full bg-slate-200 py-3 pl-12 pr-12 text-base placeholder-gray-500 outline-none ring-0 sm:h-16 sm:py-4 sm:pl-16 sm:pr-16 sm:text-xl'
               />
               <ListFilter
@@ -130,14 +226,7 @@ export default function MentorSearch() {
                     Filter your search
                   </h3>
                   <div className='flex w-full flex-wrap gap-4'>
-                    {[
-                      { key: 'role', label: 'Role' },
-                      { key: 'university', label: 'University' },
-                      { key: 'company', label: 'Company' },
-                      { key: 'availableHours', label: 'Availability' },
-                      { key: 'location', label: 'Location' },
-                      { key: 'industry', label: 'Industry' },
-                    ].map(({ key, label }) => (
+                    {filterOptions.map(({ key, label }) => (
                       <div
                         key={key}
                         className='relative w-44'
@@ -247,14 +336,7 @@ export default function MentorSearch() {
                     </button>
                   </div>
                   <div className='flex flex-col gap-4'>
-                    {[
-                      { key: 'role', label: 'Role' },
-                      { key: 'university', label: 'University' },
-                      { key: 'company', label: 'Company' },
-                      { key: 'availableHours', label: 'Availability' },
-                      { key: 'location', label: 'Location' },
-                      { key: 'industry', label: 'Industry' },
-                    ].map(({ key, label }) => (
+                    {filterOptions.map(({ key, label }) => (
                       <div
                         key={key}
                         className='relative w-full'

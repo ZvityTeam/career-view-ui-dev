@@ -1,4 +1,5 @@
 import { BrowseMentors } from '../pages/browse-mentors/BrowseMentors.tsx';
+import { EventDetails } from '../pages/events/EventDetails.tsx';
 import { Home } from '../pages/home/Home.tsx';
 import { MentorDetails } from '../pages/mentor-details/MentorDetails.tsx';
 import { Mentors } from '../pages/mentors/mentors.tsx';
@@ -92,7 +93,20 @@ export const ROUTES: Route[] = [
         'career resources Australia, e-books Australia, career guidance tools',
     },
   },
+
   {
+    path: '/events/:eventId',
+    component: EventDetails,
+    secured: false,
+    metaData: {
+      title: 'Event Details | CareerView Australia',
+      description:
+        'Get details about CareerView career events including speakers, venue, and schedule.',
+      keywords:
+        'career event details, professional speakers, career networking, student events',
+    },
+  },
+  {    
     path: '/privacy-policy',
     component: PrivacyPolicyPage,
     secured: false,

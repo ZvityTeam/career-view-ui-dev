@@ -215,7 +215,7 @@ export const data = [
     },
   },
   {
-    name: 'Hannah Nichol ',
+    name: 'Hannah Nichol',
     role: 'Environmental Consultant',
     shortDesc:
       "Hannah is an environmental consultant at Jacobs, where she's had experience in a range of projects including environment plans, environmental impact studies and environmental compliance reporting.",
