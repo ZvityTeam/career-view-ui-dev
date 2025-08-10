@@ -2,7 +2,7 @@ import { Event } from '../types/types';
 
 export const events: Event[] = [
   {
-    id: 'E-SchoolTalksStJohnBoscoCollege-MLJB',
+    id: 'E-SchoolTalksStJohnBoscoCollege-MAJB',
     name: 'School Talks - St John Bosco College',
     schoolName: 'St John Bosco College',
     time: 'August 12, 2025 at 11:05 AM',
@@ -22,7 +22,7 @@ export const events: Event[] = [
       'https://3ds.zoom.us/j/84988150293?pwd=GJNrCoY0bVb9a4iF4Bgaa0NSVbbpTF.1',
   },
   {
-    id: 'E-SchoolTalksStJohnBoscoCollege-ANH',
+    id: 'E-SchoolTalksStJohnBoscoCollege-RNH',
     name: 'School Talks - St John Bosco College',
     schoolName: 'St John Bosco College',
     time: 'August 13, 2025 at 12:05 PM',
