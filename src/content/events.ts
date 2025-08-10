@@ -5,7 +5,7 @@ export const events: Event[] = [
     id: 'E-SchoolTalksStJohnBoscoCollege-MLJB',
     name: 'School Talks - St John Bosco College',
     schoolName: 'St John Bosco College',
-    time: 'August 12, 2025 at 11:00 AM',
+    time: 'August 12, 2025 at 11:05 AM',
     venue: 'Online',
     description:
       'High School #1: School Talks event featuring discussions and presentations for students by professionals in various fields.',
@@ -25,7 +25,7 @@ export const events: Event[] = [
     id: 'E-SchoolTalksStJohnBoscoCollege-ANH',
     name: 'School Talks - St John Bosco College',
     schoolName: 'St John Bosco College',
-    time: 'August 13, 2025 at 11:00 AM',
+    time: 'August 13, 2025 at 12:05 PM',
     venue: 'Online',
     description:
       'High School #2: School Talks event featuring discussions and presentations for students by professionals in various fields.',
@@ -38,7 +38,7 @@ export const events: Event[] = [
     id: 'E-SchoolTalksStJohnBoscoCollege-DJT',
     name: 'School Talks - St John Bosco College',
     schoolName: 'St John Bosco College',
-    time: 'August 18, 2025 at 11:00 AM',
+    time: 'August 18, 2025 at 11:05 AM',
     venue: 'Online',
     description:
       'High School #3: School Talks event featuring discussions and presentations for students by professionals in various fields.',
@@ -51,11 +51,11 @@ export const events: Event[] = [
     id: 'E-SchoolTalksStJohnBoscoCollege-HPN',
     name: 'School Talks - St John Bosco College',
     schoolName: 'St John Bosco College',
-    time: 'August 22, 2025 at 11:35 AM',
+    time: 'August 22, 2025 at 1:25 PM',
     venue: 'Online',
     description:
       'High School #4: School Talks event featuring discussions and presentations for students by professionals in various fields.',
-    speakers: ['Harley Webb', 'Peter Wu', 'Naomi Crosby'],
+    speakers: ['Naomi Crosby', 'Peter Wu','Harley Webb' ],
     imageUrl: '/assets/CAREERVIEW-32721.jpg',
     joiningLink: '',
   },
