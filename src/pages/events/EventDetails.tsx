@@ -22,7 +22,7 @@ export const EventDetails = () => {
   if (!event) {
     return (
       <AnimatedPageWrapper>
-        <div className='container mx-auto px-4 py-12 text-center'>
+        <div className='container mx-auto mt-20 px-4 py-12 text-center'>
           <h1 className='mb-6 text-3xl font-bold'>Event Not Found</h1>
           <p className='mb-6'>
             Sorry, the event you're looking for doesn't exist.
