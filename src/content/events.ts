@@ -11,7 +11,7 @@ export const events: Event[] = [
       'High School #1: School Talks event featuring discussions and presentations for students by professionals in various fields.',
     speakers: [
       'Manu Nair',
-      'Lauren Dornan',
+      'Andrew Korol',
       'Lara Urosevic',
       'Jason Wong',
       'Matt Sankey',
@@ -29,7 +29,7 @@ export const events: Event[] = [
     venue: 'Online',
     description:
       'High School #2: School Talks event featuring discussions and presentations for students by professionals in various fields.',
-    speakers: ['Andrew Korol', 'Nicholas Lee', 'Hannah Ngo'],
+    speakers: ['Rox Magniet', 'Nicholas Lee', 'Hannah Ngo'],
     imageUrl: '/assets/CAREERVIEW-32721.jpg',
     joiningLink:
       'https://3ds.zoom.us/j/84504015444?pwd=kjfeqjoVdsCrMDbfRJOU4S7xquSJan.1',
@@ -55,7 +55,7 @@ export const events: Event[] = [
     venue: 'Online',
     description:
       'High School #4: School Talks event featuring discussions and presentations for students by professionals in various fields.',
-    speakers: ['Naomi Crosby', 'Peter Wu','Harley Webb' ],
+    speakers: ['Naomi Crosby', 'Peter Wu', 'Harley Webb'],
     imageUrl: '/assets/CAREERVIEW-32721.jpg',
     joiningLink: '',
   },
