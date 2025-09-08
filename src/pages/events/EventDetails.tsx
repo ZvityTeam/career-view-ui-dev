@@ -40,14 +40,14 @@ export const EventDetails = () => {
 
   return (
     <AnimatedPageWrapper>
-      <div className='relative mt-16 h-[40vh] w-full overflow-hidden'>
-        <div className='absolute inset-0 z-10 bg-black/60 pt-16'></div>
+      <div className='relative h-[40vh] md:h-[50vh] w-full overflow-hidden'>
         <img
           src={banner}
           alt={event.name}
           className='h-full w-full object-cover'
         />
-        <div className='absolute inset-0 z-20 flex flex-col items-center justify-center text-white'>
+        <div className='absolute inset-0 z-10 bg-gradient-to-br from-black/70 via-black/90 to-black pt-16'></div>
+        <div className='absolute inset-0 mt-16 z-20 flex flex-col items-center justify-center text-white'>
           <h1 className='mb-4 text-center text-4xl font-bold md:text-5xl'>
             {event.name}
           </h1>
@@ -64,7 +64,7 @@ export const EventDetails = () => {
                   <img
                     src={event.schoolLogo}
                     alt={event.schoolName}
-                    className='h-12 mt-1 mb-5'
+                    className='mb-5 mt-1 h-12'
                   />
                   <span className='font-semibold'>Date & Time:</span>{' '}
                   {eventTime}

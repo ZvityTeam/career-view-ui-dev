@@ -17,15 +17,20 @@ png_files = [f for f in os.listdir(input_folder) if f.lower().endswith('.png')]
 # Convert and resize each PNG to WebP
 for png_file in png_files:
     try:
+        # Define output file path (replace .png with .webp)
+        output_file = os.path.join(output_folder, os.path.splitext(png_file)[0] + '.webp')
+        
+        # Skip if WebP file already exists
+        if os.path.exists(output_file):
+            print(f"Skipping {png_file} - WebP already exists")
+            continue
+        
         # Open the PNG image
         img_path = os.path.join(input_folder, png_file)
         img = Image.open(img_path)
         
         # Resize image while preserving aspect ratio
         img.thumbnail(max_size, Image.Resampling.LANCZOS)  # High-quality resizing
-        
-        # Define output file path (replace .png with .webp)
-        output_file = os.path.join(output_folder, os.path.splitext(png_file)[0] + '.webp')
         
         # Save as WebP with quality setting (80 for lossy, preserves transparency)
         img.save(output_file, 'WEBP', quality=80, method=6)  # method=6 for max compression

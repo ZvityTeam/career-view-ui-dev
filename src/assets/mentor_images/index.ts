@@ -118,4 +118,9 @@ export { default as brendan_joel } from './webp_output/Brendan_Joel.webp';
 export { default as jordan_korol } from './webp_output/Jordan_Korol.webp';
 export { default as kennedy_aves } from './webp_output/Kennedy_Aves.webp';
 export { default as vivian_wong } from './webp_output/Vivian_Wong.webp';
+export { default as damien_yu } from './webp_output/damien_yu.webp';
+export { default as harley_webb } from './webp_output/harley_webb.webp';
+export { default as luke_jennings } from './webp_output/luke_jennings.webp';
+export { default as matt_sankey } from './webp_output/matt_sankey.webp';
+export { default as nirajit_syamal } from './webp_output/nirajit_syamal.webp';
 
