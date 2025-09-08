@@ -56,4 +56,5 @@ export interface Event {
   speakers: string[];
   imageUrl: string;
   joiningLink: string;
+  schoolLogo?: string;
 }

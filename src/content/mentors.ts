@@ -1465,7 +1465,7 @@ export const data = [
     },
   },
   {
-    name: 'Dien Nguyen ',
+    name: 'Dien Nguyen',
     role: 'Systems Engineer',
     shortDesc:
       'Dien is an experienced process control and automation engineer, with experience in a range of different industries (oil & gas, water treatment & More)',
