@@ -112,7 +112,7 @@ export const events: Event[] = [
     id: 'E-SchoolTalksMorleySeniorHS-Stream1',
     name: 'Exploring Careers in Medicine, Engineering & Law',
     schoolName: 'Morley Senior High School',
-    time: 'September 16, 2025 at 10:00 AM',
+    time: 'September 16, 2025 at 10:30 AM',
     venue: 'Online',
     description:
       'For Year 9 & 10 (Potential ATAR) - Hear from a Doctor, Engineer, and Lawyer about what their jobs are really like, the pathways they took, and what skills students should start building today.',
@@ -126,7 +126,7 @@ export const events: Event[] = [
     id: 'E-SchoolTalksMorleySeniorHS-Stream2',
     name: 'Pathways to Professional Careers',
     schoolName: 'Morley Senior High School',
-    time: 'September 17, 2025 at 10:00 AM',
+    time: 'September 17, 2025 at 12:00 PM',
     venue: 'Online',
     description:
       'For Year 11 (ATAR) - Learn how careers in Medicine, Engineering, and Law evolve at senior high school level, with insights on ATAR preparation and university pathways.',
@@ -140,7 +140,7 @@ export const events: Event[] = [
     id: 'E-SchoolTalksMorleySeniorHS-Stream3',
     name: 'Leadership & Technology in Action',
     schoolName: 'Morley Senior High School',
-    time: 'September 18, 2025 at 10:00 AM',
+    time: 'September 18, 2025 at 1:00 PM',
     venue: 'Online',
     description:
       'For Year 11 (General) - Meet a Project Manager, Navy Officer, and Software Developer to discover how leadership, discipline, and coding skills shape modern careers.',
@@ -154,7 +154,7 @@ export const events: Event[] = [
     id: 'E-SchoolTalksMorleySeniorHS-Stream4',
     name: 'Careers in Management, Defence & Tech',
     schoolName: 'Morley Senior High School',
-    time: 'September 22, 2025 at 10:00 AM',
+    time: 'September 22, 2025 at 9:30 AM',
     venue: 'Online',
     description:
       'For Year 10 (General) - Engage with a Project Manager, Navy Officer, and Software Developer as they share practical career journeys and opportunities outside traditional ATAR streams.',
