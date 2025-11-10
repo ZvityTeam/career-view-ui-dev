@@ -2,16 +2,16 @@ import { NavbarItem } from './types.ts';
 
 export const NAV_ITEMS: NavbarItem[] = [
   {
+    label: 'School',
+    link: '/school',
+  },
+  {
     label: 'Student',
     link: '/student',
   },
   {
     label: 'Mentor',
     link: '/mentors',
-  },
-  {
-    label: 'School',
-    link: '/school',
   },
 ];
 

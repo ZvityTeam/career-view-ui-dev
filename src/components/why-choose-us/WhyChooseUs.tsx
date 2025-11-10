@@ -72,10 +72,10 @@ export const WhyChooseUs: React.FC = () => {
   // };
 
   return (
-    <div className='relative -mb-32 grid place-items-center'>
+    <div className='relative -mt-20 md:-mt-10 md:-mb-28 grid place-items-center'>
       <div className='w-full rounded-[80px] bg-white md:h-[82dvh]'>
         <img
-          className='absolute left-0 top-0 h-full w-full rounded-[80px] object-cover'
+          className='absolute left-0 top-0 h-full w-full rounded-[80px] object-cover shadow-lg'
           src={curved}
           alt={''}
         />
@@ -87,55 +87,13 @@ export const WhyChooseUs: React.FC = () => {
               'CareerView is a community of YOUNG Professionals from a wide range of careers, industries, and cultures. They openly share what school and work are really like—so students can learn from real stories, not just job descriptions. With over 100 professionals from 10+ cultural backgrounds, students get access to a truly diverse set of experiences.'
             }
             className={'mb-1 px-10 text-5xl md:mt-0 md:px-0 md:text-8xl'}
-            subTitleClassName='max-w-7xl'
+            subTitleClassName='max-w-7xl text-xl'
           />
 
           {/* The carousel container (relative) for stacking motion cards */}
           <div className='relative mx-auto hidden h-[0px] w-full overflow-hidden md:block md:h-[700px]'>
             <NetworkVisualization />
-            {/* <MentorNetwork /> */}
-            {/*{cards.map((card, index) => {*/}
-            {/*  // We'll place the middle card (position=0) in the center,*/}
-            {/*  // the next/prev around it, etc.*/}
-            {/*  const middleIndex = Math.floor(cards.length / 2);*/}
-            {/*  const position = index - middleIndex;*/}
-            {/*  // E.g., if we have 5 cards, indexes are 0..4, middleIndex=2,*/}
-            {/*  // positions => -2, -1, 0, +1, +2*/}
-            {/*  const zIndex = 10 - Math.abs(position);*/}
-
-            {/*  // The "active" card is the center one (position === 0)*/}
-            {/*  const isActive = position === 0;*/}
-
-            {/*  return (*/}
-            {/*    <WhyChooseUsCard*/}
-            {/*      key={card.id}*/}
-            {/*      card={card}*/}
-            {/*      zIndex={zIndex}*/}
-            {/*      position={position}*/}
-            {/*      isActive={isActive}*/}
-            {/*      onClick={() => handleMove(position)}*/}
-            {/*    />*/}
-            {/*  );*/}
-            {/*})}*/}
           </div>
-
-          {/*/!* Left/right arrow buttons *!/*/}
-          {/*<div className='absolute inset-y-0 left-10 flex items-center'>*/}
-          {/*  <button*/}
-          {/*    onClick={() => handleMove(-1)}*/}
-          {/*    className='ml-2 grid h-12 w-12 place-content-center rounded-full border text-2xl transition hover:bg-black hover:text-white'*/}
-          {/*  >*/}
-          {/*    <StepBack />*/}
-          {/*  </button>*/}
-          {/*</div>*/}
-          {/*<div className='absolute inset-y-0 right-10 flex items-center'>*/}
-          {/*  <button*/}
-          {/*    onClick={() => handleMove(1)}*/}
-          {/*    className='mr-2 grid h-12 w-12 place-content-center rounded-full border text-2xl transition hover:bg-black hover:text-white'*/}
-          {/*  >*/}
-          {/*    <StepForward />*/}
-          {/*  </button>*/}
-          {/*</div>*/}
         </section>
       </div>
     </div>

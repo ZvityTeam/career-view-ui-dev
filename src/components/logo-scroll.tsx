@@ -32,13 +32,13 @@ const DoubleScrollingLogos = ({ from = 'home' }: { from?: string }) => {
   return (
     <section
       className={
-        'mb-20 mt-20 flex flex-col items-center justify-center space-y-10 px-4 py-4 sm:px-6 md:mb-10 lg:px-8' +
-        `${from === 'home' ? ' md:mt-40' : 'md:-mt-10'}`
+        'mb-20 flex flex-col items-center justify-center space-y-14 px-4 py-4 sm:px-6 md:mb-10 lg:px-8' +
+        `${from === 'home' ? 'mt-20 md:mt-40' : 'mt-0 md:mt-10'}`
       }
     >
       <SectionHeader
         title={from === 'home' ? 'Our Partners' : 'Schools We Work With'}
-        className=''
+        className='text-5xl md:text-8xl'
       />
       <Marquee
         pauseOnHover

@@ -15,10 +15,6 @@ export const SchoolConnectCTA = () => {
     { id: 'A1GEExL4ye4', title: 'Networking Events' },
   ];
 
-  const handleTabSwitch = (index: number) => {
-    setActiveTab(index);
-  };
-
   // Framer Motion variants for slide animation
   const slideVariants = {
     enter: (direction: number) => ({
@@ -37,8 +33,10 @@ export const SchoolConnectCTA = () => {
 
   return (
     <CurvedWrapper
-      className={'mb-32 h-[80dvh] space-y-10 bg-white pt-5 text-[#272727]'}
-      innerClassName=' space-y-10'
+      className={
+        'mb-32 mt-32 space-y-10 bg-white pt-5 text-[#272727] shadow-lg'
+      }
+      innerClassName=' space-y-10 flex flow-row'
     >
       <div>
         <SectionHeader
@@ -47,101 +45,92 @@ export const SchoolConnectCTA = () => {
             'We host events for schools bringing professionals from various industries to share honest advice about their career journey to students!'
           }
         />
-        <div className='mt-5 flex justify-center gap-6'>
-          {/* <Button
-            variant={'outline'}
-            size={'lg'}
-            className={
-              'border-[#272727] text-[#272727] hover:border-black hover:bg-[rgba(0,0,0,0.2)]'
-            }
-          >
-            See It in Action
-          </Button> */}
-          <Button
-            size={'lg'}
-            onClick={() => navigate(`/school?scrollTo=schedule-call`)}
-            className='bg-black text-white hover:bg-[rgba(0,0,0,0.8)]'
-          >
-            Schedule a Call
-          </Button>
-        </div>
       </div>
 
-      <div className='mx-auto w-full max-w-3xl'>
-        {/* Tab Navigation */}
-        <div className='mb-4 flex border-b border-[#272727]'>
-          {videos.map((video, index) => (
-            <div
-              key={video.id}
-              onClick={() => handleTabSwitch(index)}
-              className={`relative flex-1 cursor-pointer rounded-t-full px-4 py-2 text-center text-sm font-medium transition-colors ${
-                activeTab === index
-                  ? 'text-black'
-                  : 'text-[#272727] hover:bg-black/10'
-              }`}
+      <div className='mx-auto grid w-full max-w-6xl grid-cols-1 items-start gap-8 md:grid-cols-6'>
+        {/* Left: Video Content */}
+        <div className='w-full md:col-span-4'>
+          <motion.div className='relative w-full rounded-lg bg-white p-2 md:p-4'>
+            <AnimatePresence
+              mode='wait'
+              initial={false}
             >
-              {video.title}
-              {activeTab === index && (
-                <motion.div
-                  className='absolute bottom-0 left-0 h-0.5 w-full bg-black'
-                  layoutId='underline'
-                  transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              <motion.div
+                key={activeTab}
+                custom={activeTab}
+                variants={slideVariants}
+                initial='enter'
+                animate='center'
+                exit='exit'
+                transition={{ duration: 0.3 }}
+                className='relative w-full overflow-hidden rounded-lg shadow-lg'
+                style={{ aspectRatio: '16/9' }}
+              >
+                <YouTube
+                  videoId={videos[activeTab].id}
+                  className='absolute left-0 top-0 h-full w-full rounded-lg'
+                  opts={{
+                    width: '100%',
+                    height: '100%',
+                    playerVars: {
+                      autoplay: 1,
+                      mute: 1,
+                      loop: 1,
+                      playlist: videos[activeTab].id,
+                    },
+                  }}
                 />
-              )}
-            </div>
-          ))}
+              </motion.div>
+            </AnimatePresence>
+            <p className='mt-2 text-center text-lg font-medium'>
+              {videos[activeTab].title}
+            </p>
+          </motion.div>
         </div>
-        {/* Video Content */}
-        <motion.div
-          className='relative w-full rounded-lg bg-white p-4'
-          drag='x'
-          dragConstraints={{ left: 0, right: 0 }}
-          dragElastic={0.2}
-          onDragEnd={(e, { offset }) => {
-            if (offset.x > 50 && activeTab > 0) {
-              console.log(e);
-              setActiveTab(activeTab - 1); // Swipe right
-            } else if (offset.x < -50 && activeTab < videos.length - 1) {
-              console.log(e);
-              setActiveTab(activeTab + 1); // Swipe left
-            }
-          }}
-        >
-          <AnimatePresence
-            mode='wait'
-            initial={false}
+
+        {/* Right: Toggle Buttons */}
+        <div className='my-auto flex w-full flex-col gap-3 md:gap-5 md:col-span-2 px-2 md:px-0'>
+          <button
+            type='button'
+            aria-pressed={activeTab === 0}
+            onClick={() => setActiveTab(0)}
+            className={`h-10 md:h-12 w-full rounded-2xl text-sm md:text-base text-[#272727] transition-all duration-200 ${
+              activeTab === 0
+                ? 'bg-gray-100 shadow-[inset_6px_6px_12px_rgba(0,0,0,0.08),inset_-6px_-6px_12px_rgba(255,255,255,0.8)]'
+                : 'bg-black text-white hover:bg-gray-200'
+            }`}
           >
-            <motion.div
-              key={activeTab}
-              custom={activeTab}
-              variants={slideVariants}
-              initial='enter'
-              animate='center'
-              exit='exit'
-              transition={{ duration: 0.3 }}
-              className='relative w-full overflow-hidden rounded-lg shadow-lg'
-              style={{ aspectRatio: '16/9' }}
-            >
-              <YouTube
-                videoId={videos[activeTab].id}
-                className='absolute left-0 top-0 h-full w-full rounded-lg'
-                opts={{
-                  width: '100%',
-                  height: '100%',
-                  playerVars: {
-                    autoplay: 1,
-                    mute: 1,
-                    loop: 1, // Enable looping
-                    playlist: videos[activeTab].id,
-                  },
-                }}
-              />
-            </motion.div>
-          </AnimatePresence>
-          <p className='mt-2 text-center text-lg font-medium'>
-            {videos[activeTab].title}
+            Livestreams
+          </button>
+
+          <button
+            type='button'
+            aria-pressed={activeTab === 1}
+            onClick={() => setActiveTab(1)}
+            className={`h-10 md:h-12 w-full rounded-2xl text-sm md:text-base text-[#272727] transition-all duration-200 ${
+              activeTab === 1
+                ? 'bg-gray-100 shadow-[inset_6px_6px_12px_rgba(0,0,0,0.08),inset_-6px_-6px_12px_rgba(255,255,255,0.8)]'
+                : 'bg-black text-white hover:bg-gray-200 hover:text-[#272727]'
+            }`}
+          >
+            Networking Events
+          </button>
+
+          <p className='mt-6 md:mt-14 pt-0 md:pt-1 text-center text-xs md:text-sm text-[#272727] px-2 md:px-0'>
+            Join our livestreams to learn from industry professionals and
+            network with like-minded students.
           </p>
-        </motion.div>
+
+          <div className='mt-4 md:mt-0'>
+            <Button
+              size={'lg'}
+              onClick={() => navigate(`/school?scrollTo=schedule-call`)}
+              className='h-10 md:h-12 w-full text-sm md:text-base'
+            >
+              Schedule a Call
+            </Button>
+          </div>
+        </div>
       </div>
     </CurvedWrapper>
   );
