@@ -1,8 +1,8 @@
 import React from 'react';
 // import { CardData } from '../why-choose-us-card/WhyChooseUsCard.tsx';
-import NetworkVisualization from '../network-visualization.tsx';
 import { SectionHeader } from '../section-header/SectionHeader.tsx';
 import curved from '../svgs/curved.svg';
+import WhyChooseUsProfile from '../WhyChooseUsProfile.tsx';
 /** Example data. Replace with your actual content & images. */
 // const WHY_CHOOSE_US_DATA: CardData[] = [
 //   {
@@ -72,29 +72,39 @@ export const WhyChooseUs: React.FC = () => {
   // };
 
   return (
-    <div className='relative -mt-20 md:-mt-10 md:-mb-28 grid place-items-center'>
-      <div className='w-full rounded-[80px] bg-white md:h-[82dvh]'>
+    <div className='relative -mt-20 grid place-items-center md:-mb-28 md:-mt-10'>
+      <div className='relative w-full overflow-hidden rounded-[80px] bg-white md:h-[67dvh] md:shadow-lg'>
         <img
           className='absolute left-0 top-0 h-full w-full rounded-[80px] object-cover shadow-lg'
           src={curved}
           alt={''}
         />
+        {/* <img
+          className='absolute bottom-0 left-0 w-[80%] translate-x-[10%]'
+          src={whyChooseUsImg}
+          alt={''}
+          /> */}
+
         <section className='relative w-full py-20'>
           {/* Section heading */}
           <SectionHeader
             title={'Why CareerView?'}
             subtitle={
-              'CareerView is a community of YOUNG Professionals from a wide range of careers, industries, and cultures. They openly share what school and work are really like—so students can learn from real stories, not just job descriptions. With over 100 professionals from 10+ cultural backgrounds, students get access to a truly diverse set of experiences.'
+              'We host a community of YOUNG Professionals from a wide range of careers, industries, and cultures. They openly share what school and work are really like—so students can learn from real stories, not just job descriptions.'
             }
             className={'mb-1 px-10 text-5xl md:mt-0 md:px-0 md:text-8xl'}
             subTitleClassName='max-w-7xl text-xl'
           />
 
           {/* The carousel container (relative) for stacking motion cards */}
-          <div className='relative mx-auto hidden h-[0px] w-full overflow-hidden md:block md:h-[700px]'>
+
+          {/* <div className='relative mx-auto hidden h-[0px] w-full overflow-hidden md:block md:h-[700px]'>
             <NetworkVisualization />
-          </div>
+          </div> */}
         </section>
+        <div className='absolute -bottom-16 left-0 w-full'>
+          <WhyChooseUsProfile />
+        </div>
       </div>
     </div>
   );

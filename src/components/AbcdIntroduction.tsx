@@ -53,31 +53,31 @@ const AbcdIntroduction: React.FC = () => {
   const stages = [
     {
       title: 'Awareness',
-      description: 'Individuals are becoming aware of the world of work.',
+      description: 'Individuals are becoming aware of the world of work and starting to recognize the many career paths available to them.',
       image: awareness,
     },
     {
       title: 'Exploring',
       description:
-        'Individuals are being introduced to career development concepts.',
+        'Individuals are being introduced to key career development ideas and beginning to explore opportunities that match their interests.',
       image: exploring,
     },
     {
       title: 'Starting out',
       description:
-        ' Individuals are consolidating, extending and beginning to apply their career management skills and knowledge.',
+        'Individuals are consolidating, extending, and beginning to apply their growing career management skills and knowledge in real situations.',
       image: startingOut,
     },
     {
       title: 'Groundwork',
       description:
-        'Individuals are beginning to build career management skills and knowledge.',
+        'Individuals are beginning to build and strengthen their career management skills, laying the foundation for future development.',
       image: groundwork,
     },
     {
       title: 'Advancing',
       description:
-        'Individuals are applying their career management skills and knowledge.',
+        'Individuals are actively applying their career management skills and knowledge to grow professionally and achieve new goals.',
       image: advancing,
     },
   ];
@@ -119,7 +119,7 @@ const AbcdIntroduction: React.FC = () => {
         >
           <SectionHeader
             title='Australian Blueprint for Career Development'
-            subtitle='A small description of why students should choose your platform instead of other competitors. This has a horizontal animation on a loop.'
+            subtitle='CareerView brings the Australian Blueprint to life — combining authentic student engagement with measurable data schools can act on.”'
             className='text-gray-800'
             subTitleClassName='text-gray-600 mx-auto max-w-xl md:max-w-3xl'
             align='center'

@@ -61,7 +61,7 @@ export const SchoolHero = () => {
           Struggling to find industry speakers for your students?
           <p>
             Save time and effort—connect with our network of Young Professionals
-            who can deliver insightful talks to your school via livestream!
+            who can deliver insightful talks to your school!
           </p>
         </p>
 
